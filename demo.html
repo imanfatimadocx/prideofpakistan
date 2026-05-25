@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pride of Pakistan — Rebuilt Demo</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a5c2a;
+    --gold: #c8972b;
+    --cream: #faf7f0;
+    --dark: #0d1f12;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+  .font-playfair { font-family: 'Playfair Display', serif; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(13, 31, 18, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 151, 43, 0.2);
+  }
+  nav .inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo .flag-bar { display: flex; flex-direction: column; gap: 2px; }
+  .nav-logo .flag-bar span { display: block; width: 24px; height: 4px; border-radius: 2px; }
+  .nav-logo .flag-bar span:nth-child(1) { background: #fff; }
+  .nav-logo .flag-bar span:nth-child(2) { background: var(--green); }
+  .nav-logo .flag-bar span:nth-child(3) { background: var(--gold); }
+  .nav-logo strong { color: #fff; font-size: 15px; font-weight: 500; letter-spacing: 0.03em; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-links a { color: rgba(255,255,255,0.7); font-size: 13px; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { background: var(--gold); color: var(--dark) !important; padding: 8px 18px; border-radius: 4px; font-weight: 500 !important; }
+  .nav-cta:hover { background: #e0a830; color: var(--dark) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,92,42,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(200,151,43,0.15) 0%, transparent 50%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-star {
+    position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+    width: 320px; height: 320px; opacity: 0.06;
+    font-size: 320px; line-height: 1;
+    color: var(--green);
+    font-family: serif;
+    user-select: none;
+    animation: slowspin 60s linear infinite;
+  }
+  @keyframes slowspin { from { transform: translateY(-50%) rotate(0); } to { transform: translateY(-50%) rotate(360deg); } }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+  .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+  .hero-eyebrow .line { width: 36px; height: 1px; background: var(--gold); }
+  .hero-eyebrow span { color: var(--gold); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; color: #fff; line-height: 1.05; max-width: 760px; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { color: rgba(255,255,255,0.6); font-size: 17px; max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 14px 28px; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 14px; letter-spacing: 0.03em; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-primary:hover { background: #e0a830; transform: translateY(-1px); }
+  .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 14px 28px; border-radius: 4px; text-decoration: none; font-weight: 400; font-size: 14px; letter-spacing: 0.03em; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); transform: translateY(-1px); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+  .stat-item .num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #fff; font-weight: 700; }
+  .stat-item .lbl { color: rgba(255,255,255,0.4); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+
+  /* MARQUEE */
+  .marquee-wrap { background: var(--gold); overflow: hidden; padding: 12px 0; }
+  .marquee-track { display: flex; white-space: nowrap; animation: marquee 30s linear infinite; }
+  .marquee-track span { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); padding: 0 2rem; }
+  .marquee-track span::before { content: '✦ '; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTION BASE */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .section-tag .line { width: 28px; height: 1px; background: var(--gold); }
+  .section-tag span { color: var(--gold); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--dark); line-height: 1.15; margin-bottom: 0.75rem; }
+  .section-sub { color: #5a6a5e; font-size: 16px; line-height: 1.7; max-width: 540px; font-weight: 300; }
+
+  /* MISSION */
+  .mission { background: #fff; }
+  .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
+  .mission-visual { position: relative; }
+  .mission-visual .img-main { width: 100%; height: 420px; object-fit: cover; border-radius: 2px; display: block; background: linear-gradient(135deg, #1a5c2a 0%, #0d3318 100%); }
+  .mission-visual .img-flag { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 140px; height: 90px; border-radius: 2px; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+  .mission-text blockquote { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; color: var(--green); line-height: 1.6; margin: 2rem 0; padding-left: 1.5rem; border-left: 3px solid var(--gold); }
+  .mission-text p { color: #4a5a4e; line-height: 1.8; margin-bottom: 1rem; font-weight: 300; }
+
+  /* PROFILES */
+  .profiles { background: var(--cream); }
+  .profiles-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+  .profile-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .profile-card { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 4px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+  .profile-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+  .profile-img { height: 220px; background: linear-gradient(135deg, #1a5c2a, #2d7a40); display: flex; align-items: flex-end; padding: 1rem; position: relative; overflow: hidden; }
+  .profile-img::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%); }
+  .profile-img .initials { position: relative; z-index: 1; font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.15); position: absolute; top: 1rem; right: 1rem; }
+  .profile-field { position: relative; z-index: 1; background: var(--gold); color: var(--dark); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 3px 8px; border-radius: 2px; }
+  .profile-body { padding: 1.25rem; }
+  .profile-body h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+  .profile-body .role { font-size: 12px; color: var(--gold); font-weight: 500; letter-spacing: 0.04em; margin-bottom: 8px; }
+  .profile-body p { font-size: 13px; color: #6a7a6e; line-height: 1.6; font-weight: 300; }
+
+  /* AWARDS */
+  .awards { background: var(--dark); position: relative; overflow: hidden; }
+  .awards-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(26,92,42,0.3) 0%, transparent 70%); }
+  .awards-inner { position: relative; z-index: 1; text-align: center; }
+  .awards-inner .section-tag { justify-content: center; }
+  .awards-inner .section-title { color: #fff; }
+  .awards-inner .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto 3rem; }
+  .trophy { font-size: 5rem; margin-bottom: 1.5rem; display: block; }
+  .awards-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 4rem 0; background: rgba(255,255,255,0.06); }
+  .award-cat { background: rgba(13,31,18,0.8); padding: 2rem 1.5rem; text-align: center; }
+  .award-cat .icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+  .award-cat h4 { color: #fff; font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .award-cat p { color: rgba(255,255,255,0.4); font-size: 12px; }
+  .nominations-open { display: inline-flex; align-items: center; gap: 10px; background: rgba(200,151,43,0.1); border: 1px solid rgba(200,151,43,0.3); padding: 12px 24px; border-radius: 4px; color: var(--gold); font-size: 13px; letter-spacing: 0.05em; margin-bottom: 2rem; }
+  .nominations-open .dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* BLOG */
+  .blog { background: #fff; }
+  .blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .blog-main { grid-row: span 2; }
+  .blog-card { border: 1px solid rgba(0,0,0,0.06); border-radius: 4px; overflow: hidden; transition: box-shadow 0.2s; cursor: pointer; }
+  .blog-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+  .blog-img { height: 200px; background: linear-gradient(135deg, #2d4a35 0%, #1a3020 100%); }
+  .blog-main .blog-img { height: 320px; }
+  .blog-body { padding: 1.25rem; }
+  .blog-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 500; margin-bottom: 8px; }
+  .blog-body h3 { font-family: 'Playfair Display', serif; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+  .blog-main .blog-body h3 { font-size: 1.4rem; }
+  .blog-card:not(.blog-main) .blog-body h3 { font-size: 1rem; }
+  .blog-body p { font-size: 13px; color: #6a7a6e; line-height: 1.6; font-weight: 300; }
+  .blog-main .blog-body p { display: block; }
+  .blog-card:not(.blog-main) .blog-body p { display: none; }
+  .blog-date { font-size: 11px; color: #aaa; margin-top: 10px; }
+
+  /* NEWSLETTER */
+  .newsletter { background: var(--green); padding: 5rem 2rem; }
+  .newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+  .newsletter-inner h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; font-weight: 800; margin-bottom: 0.75rem; }
+  .newsletter-inner p { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 2rem; font-weight: 300; }
+  .newsletter-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+  .newsletter-form input { flex: 1; padding: 14px 18px; border: none; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; background: #fff; border-radius: 4px 0 0 4px; }
+  .newsletter-form button { background: var(--gold); color: var(--dark); border: none; padding: 14px 22px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; border-radius: 0 4px 4px 0; white-space: nowrap; transition: background 0.2s; }
+  .newsletter-form button:hover { background: #e0a830; }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 4rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { color: rgba(255,255,255,0.4); font-size: 13px; line-height: 1.7; margin-top: 1rem; font-weight: 300; }
+  .footer-col h4 { color: rgba(255,255,255,0.5); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; font-weight: 500; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 12px; }
+  .social-links { display: flex; gap: 1rem; }
+  .social-links a { color: rgba(255,255,255,0.3); font-size: 12px; text-decoration: none; transition: color 0.2s; letter-spacing: 0.05em; }
+  .social-links a:hover { color: var(--gold); }
+
+  /* fade in animation */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero h1 { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero p { animation: fadeUp 0.6s ease 0.2s both; }
+  .hero-ctas { animation: fadeUp 0.6s ease 0.3s both; }
+  .hero-stats { animation: fadeUp 0.6s ease 0.4s both; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .profile-cards { grid-template-columns: 1fr; }
+    .awards-cards { grid-template-columns: 1fr 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-main { grid-row: auto; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input { border-radius: 4px; margin-bottom: 8px; }
+    .newsletter-form button { border-radius: 4px; }
+    .profiles-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <div class="nav-logo">
+      <div class="flag-bar">
+        <span></span><span></span><span></span>
+      </div>
+      <strong>Pride of Pakistan</strong>
+    </div>
+    <div class="nav-links">
+      <a href="#">Our Pakistan</a>
+      <a href="#">Who Is Who</a>
+      <a href="#">Businesses</a>
+      <a href="#">Awards</a>
+      <a href="#">Blog</a>
+      <a href="./demo.html" class="nav-cta">Submit Profile</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-star" aria-hidden="true">☪</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="line"></div>
+      <span>Celebrating Pakistani Achievement</span>
+    </div>
+    <h1>The world deserves to see <em>the real</em> Pakistan.</h1>
+    <p>We spotlight Pakistanis who have excelled in every walk of life — from medicine to the arts, business to public service — at home and across the globe.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">Explore Profiles</a>
+      <a href="#" class="btn-outline">Nominate for Awards →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="num">500+</div>
+        <div class="lbl">Profiles</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">40+</div>
+        <div class="lbl">Countries</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">20K</div>
+        <div class="lbl">Community</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">15+</div>
+        <div class="lbl">Years Running</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Medicine</span><span>Law</span><span>Business</span><span>Politics</span><span>Science</span><span>Sports</span><span>Arts</span><span>Education</span><span>Technology</span><span>Finance</span>
+    <span>Medicine</span><span>Law</span><span>Business</span><span>Politics</span><span>Science</span><span>Sports</span><span>Arts</span><span>Education</span><span>Technology</span><span>Finance</span>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="section-inner">
+    <div class="mission-grid">
+      <div class="mission-visual">
+        <div class="img-main" style="display:flex;align-items:center;justify-content:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.3">
+            <circle cx="60" cy="60" r="50" stroke="white" stroke-width="1"/>
+            <path d="M75 55 A15 15 0 1 1 60 40" stroke="white" stroke-width="2" fill="none"/>
+            <polygon points="75,52 80,55 75,58" fill="white"/>
+            <circle cx="82" cy="45" r="4" fill="white" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="img-flag">🇵🇰</div>
+      </div>
+      <div class="mission-text">
+        <div class="section-tag">
+          <div class="line"></div>
+          <span>Our Mission</span>
+        </div>
+        <h2 class="section-title">Changing the narrative, one story at a time.</h2>
+        <blockquote>"Pakistan remains the land of their heart."<br><small style="font-size:0.8rem; color:#888;">— Dr. Maleeha Lodhi, High Commissioner for Pakistan, London</small></blockquote>
+        <p>Pride of Pakistan was founded to challenge the misconceptions that have long defined how the world views our nation — by shining a light on the extraordinary people who represent its true character.</p>
+        <p>From Nobel laureates to community champions, our platform celebrates every Pakistani who has made their mark.</p>
+        <a href="#" class="btn-primary" style="margin-top:1.5rem;">Read Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILES -->
+<section class="profiles">
+  <div class="section-inner">
+    <div class="profiles-header">
+      <div>
+        <div class="section-tag">
+          <div class="line"></div>
+          <span>Featured Profiles</span>
+        </div>
+        <h2 class="section-title">Who Is Who</h2>
+      </div>
+      <a href="#" style="color:var(--green);font-size:14px;text-decoration:none;font-weight:500;border-bottom:1px solid var(--green);padding-bottom:2px;">View all profiles →</a>
+    </div>
+    <div class="profile-cards">
+      <div class="profile-card">
+        <div class="profile-img" style="background:linear-gradient(135deg,#1a5c2a,#0d3318);">
+          <span class="initials">NA</span>
+          <span class="profile-field">Medicine</span>
+        </div>
+        <div class="profile-body">
+          <h3>Dr. Nadeem Ashraf</h3>
+          <div class="role">Consultant Cardiologist · NHS, UK</div>
+          <p>A pioneer in interventional cardiology, Dr. Ashraf has performed over 4,000 life-saving procedures and trained the next generation of heart specialists.</p>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-img" style="background:linear-gradient(135deg,#3a2a1a,#1a1208);">
+          <span class="initials">SK</span>
+          <span class="profile-field">Law</span>
+        </div>
+        <div class="profile-body">
+          <h3>Saira Khan, KC</h3>
+          <div class="role">King's Counsel · Barrister, London</div>
+          <p>One of the first Pakistani-heritage barristers to be awarded King's Counsel, Saira is a trailblazer in human rights and immigration law.</p>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-img" style="background:linear-gradient(135deg,#1a2a4a,#0d1830);">
+          <span class="initials">RI</span>
+          <span class="profile-field">Business</span>
+        </div>
+        <div class="profile-body">
+          <h3>Raza Iqbal</h3>
+          <div class="role">Founder & CEO · TechBridge Group</div>
+          <p>Built a technology company from a Glasgow garage to a £40M enterprise employing 300 people, with offices across Europe and the Gulf.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards">
+  <div class="awards-bg"></div>
+  <div class="section-inner awards-inner">
+    <div class="section-tag" style="justify-content:center;">
+      <div class="line"></div>
+      <span>Pride Awards</span>
+    </div>
+    <div class="nominations-open"><div class="dot"></div> Nominations are now open</div>
+    <h2 class="section-title" style="color:#fff;">Recognising the best<br>among us.</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.5);margin:0 auto 3rem;">The Pride of Pakistan Awards honour outstanding Pakistanis who have made a meaningful difference in their field and their community.</p>
+    <div class="awards-cards">
+      <div class="award-cat">
+        <span class="icon">🏥</span>
+        <h4>Healthcare</h4>
+        <p>Doctors, surgeons & researchers</p>
+      </div>
+      <div class="award-cat">
+        <span class="icon">⚖️</span>
+        <h4>Law & Politics</h4>
+        <p>Advocates & public servants</p>
+      </div>
+      <div class="award-cat">
+        <span class="icon">📈</span>
+        <h4>Business</h4>
+        <p>Entrepreneurs & innovators</p>
+      </div>
+      <div class="award-cat">
+        <span class="icon">🎓</span>
+        <h4>Education</h4>
+        <p>Academics & educators</p>
+      </div>
+    </div>
+    <a href="#" class="btn-primary" style="font-size:15px;padding:16px 36px;">Submit a Nomination</a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog">
+  <div class="section-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:0.5rem;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <div class="section-tag"><div class="line"></div><span>Latest Stories</span></div>
+        <h2 class="section-title">Pride Blog</h2>
+      </div>
+      <a href="#" style="color:var(--green);font-size:14px;text-decoration:none;font-weight:500;border-bottom:1px solid var(--green);padding-bottom:2px;">All posts →</a>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card blog-main">
+        <div class="blog-img" style="height:320px;background:linear-gradient(160deg,#1a4a2a 0%,#0d2a18 100%);display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:5rem;opacity:0.2;">🗻</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-tag">Travel · Pakistan</div>
+          <h3>Why Northern Pakistan is now one of the world's top adventure destinations</h3>
+          <p>From K2 base camp to the Fairy Meadows, international tourists are finally discovering what Pakistanis have always known — this is some of the most breathtaking terrain on earth.</p>
+          <div class="blog-date">May 18, 2026</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img" style="background:linear-gradient(135deg,#2a1a4a,#18103a);display:flex;align-items:center;justify-content:center;"><span style="font-size:3rem;opacity:0.2;">⚗️</span></div>
+        <div class="blog-body">
+          <div class="blog-tag">Science</div>
+          <h3>Pakistani researchers make breakthrough in solar cell efficiency</h3>
+          <div class="blog-date">May 12, 2026</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img" style="background:linear-gradient(135deg,#3a2a10,#1a1208);display:flex;align-items:center;justify-content:center;"><span style="font-size:3rem;opacity:0.2;">🏆</span></div>
+        <div class="blog-body">
+          <div class="blog-tag">Community</div>
+          <h3>Glasgow's Pakistani community raises £200K for flood relief</h3>
+          <div class="blog-date">May 8, 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2>Stay connected to the pride.</h2>
+    <p>Get our monthly roundup of featured profiles, news, and upcoming events delivered to your inbox.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address">
+      <button type="button">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <strong style="color:#fff;font-size:15px;font-family:'Playfair Display',serif;">Pride of Pakistan</strong>
+        <p>Showcasing the achievements of Pakistanis around the world since 2008. Built on stories of resilience, excellence, and pride.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#">Who Is Who</a>
+        <a href="#">Our Pakistan</a>
+        <a href="#">Pakistani Products</a>
+        <a href="#">Pakistan Cities</a>
+      </div>
+      <div class="footer-col">
+        <h4>Participate</h4>
+        <a href="#">Submit a Profile</a>
+        <a href="#">List a Business</a>
+        <a href="#">Nominate for Awards</a>
+        <a href="#">Join the Pride Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Organisation</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Advertise</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pride of Pakistan. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
