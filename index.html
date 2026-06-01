@@ -1,1619 +1,1551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Pride of Pakistan — Premium Edition</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pride of Pakistan — Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-:root{
-  --green:#1a5c2a;
-  --green-dark:#07110a;
-  --gold:#c8972b;
-  --cream:#f8f5ef;
-  --dark:#0d1f12;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--cream);
-  color:var(--dark);
-  overflow-x:hidden;
-  position:relative;
-}
-
-/* PREMIUM NOISE */
-
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:0.025;
-  z-index:9999;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-.font-playfair{
-  font-family:'Playfair Display',serif;
-}
-
-/* NAVBAR */
-
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:1000;
-
-  background:rgba(10,20,12,0.75);
-  backdrop-filter:blur(18px);
-
-  border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.nav-inner{
-  max-width:1250px;
-  margin:auto;
-  height:78px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 2rem;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.logo-bars{
-  display:flex;
-  flex-direction:column;
-  gap:3px;
-}
-
-.logo-bars span{
-  width:28px;
-  height:4px;
-  border-radius:20px;
-}
-
-.logo-bars span:nth-child(1){
-  background:white;
-}
-
-.logo-bars span:nth-child(2){
-  background:var(--green);
-}
-
-.logo-bars span:nth-child(3){
-  background:var(--gold);
-}
-
-.logo strong{
-  color:white;
-  font-size:15px;
-  letter-spacing:0.05em;
-  font-weight:600;
-}
-
-.nav-links{
-  display:flex;
-  gap:2rem;
-  align-items:center;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:rgba(255,255,255,0.65);
-  font-size:14px;
-  transition:0.3s;
-}
-
-.nav-links a:hover{
-  color:white;
-}
-
-.nav-btn{
-  padding:12px 22px;
-  border-radius:999px;
-  background:var(--gold);
-  color:var(--dark) !important;
-  font-weight:600;
-  box-shadow:0 10px 30px rgba(200,151,43,0.3);
-}
-
-/* HERO */
-
-.hero{
-  min-height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-
-  background:
-    radial-gradient(circle at top right,
-      rgba(200,151,43,0.16),
-      transparent 35%),
-
-    radial-gradient(circle at left,
-      rgba(26,92,42,0.25),
-      transparent 40%),
-
-    linear-gradient(
-      135deg,
-      #08110b 0%,
-      #102015 40%,
-      #08110b 100%
-    );
-}
-
-/* FLOATING GLOW */
-
-.hero::after{
-  content:'';
-  position:absolute;
-
-  width:700px;
-  height:700px;
-
-  background:radial-gradient(circle,
-    rgba(200,151,43,0.12),
-    transparent 70%);
-
-  top:-220px;
-  right:-180px;
-
-  animation:floatGlow 10s ease-in-out infinite alternate;
-}
-
-@keyframes floatGlow{
-  from{
-    transform:translateY(0);
-  }
-  to{
-    transform:translateY(40px);
-  }
-}
-
-.hero-pattern{
-  position:absolute;
-  inset:0;
-
-  opacity:0.03;
-
-  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-.hero-star{
-  position:absolute;
-  right:5%;
-  top:50%;
-  transform:translateY(-50%);
-
-  font-size:340px;
-  opacity:0.05;
-  color:var(--green);
-
-  animation:spin 70s linear infinite;
-}
-
-@keyframes spin{
-  from{
-    transform:translateY(-50%) rotate(0deg);
-  }
-  to{
-    transform:translateY(-50%) rotate(360deg);
-  }
-}
-
-.hero-inner{
-  position:relative;
-  z-index:2;
-
-  max-width:1250px;
-  margin:auto;
-
-  padding:10rem 2rem 5rem;
-}
-
-.hero-eyebrow{
-  display:flex;
-  align-items:center;
-  gap:12px;
-
-  margin-bottom:1.7rem;
-}
-
-.hero-eyebrow .line{
-  width:42px;
-  height:1px;
-  background:var(--gold);
-}
-
-.hero-eyebrow span{
-  color:var(--gold);
-  text-transform:uppercase;
-  letter-spacing:0.14em;
-  font-size:12px;
-  font-weight:600;
-}
-
-.hero h1{
-  font-family:'Playfair Display',serif;
-
-  font-size:clamp(3.4rem,8vw,7rem);
-
-  line-height:0.95;
-  letter-spacing:-0.05em;
-
-  max-width:850px;
-
-  color:white;
-
-  margin-bottom:1.8rem;
-}
-
-.hero h1 em{
-  color:var(--gold);
-  font-style:italic;
-}
-
-.hero p{
-  max-width:620px;
-
-  color:rgba(255,255,255,0.72);
-
-  font-size:17px;
-  line-height:1.9;
-
-  font-weight:300;
-
-  margin-bottom:2.7rem;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:1rem;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  text-decoration:none;
-
-  padding:15px 30px;
-
-  border-radius:999px;
-
-  font-size:14px;
-  font-weight:600;
-
-  transition:0.3s;
-}
-
-.btn-primary{
-  background:var(--gold);
-  color:var(--dark);
-
-  box-shadow:0 12px 30px rgba(200,151,43,0.25);
-}
-
-.btn-primary:hover{
-  transform:translateY(-3px);
-}
-
-.btn-outline{
-  border:1px solid rgba(255,255,255,0.2);
-  color:white;
-
-  backdrop-filter:blur(10px);
-}
-
-.btn-outline:hover{
-  background:rgba(255,255,255,0.08);
-  transform:translateY(-3px);
-}
-
-.hero-stats{
-  margin-top:4rem;
-
-  display:flex;
-  flex-wrap:wrap;
-  gap:2rem;
-
-  width:fit-content;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(18px);
-
-  border:1px solid rgba(255,255,255,0.08);
-
-  border-radius:28px;
-
-  padding:2rem 2.5rem;
-
-  box-shadow:0 10px 40px rgba(0,0,0,0.2);
-}
-
-.stat{
-  min-width:120px;
-}
-
-.stat h3{
-  font-size:2.5rem;
-  color:white;
-  font-family:'Playfair Display',serif;
-}
-
-.stat p{
-  margin:0;
-  font-size:12px;
-  color:rgba(255,255,255,0.45);
-  text-transform:uppercase;
-  letter-spacing:0.08em;
-}
-
-/* MARQUEE */
-
-.marquee{
-  background:var(--gold);
-  overflow:hidden;
-  padding:14px 0;
-}
-
-.marquee-track{
-  display:flex;
-  width:max-content;
-
-  animation:marquee 26s linear infinite;
-}
-
-.marquee-track span{
-  padding:0 2rem;
-
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-  font-weight:700;
-
-  color:var(--dark);
-}
-
-.marquee-track span::before{
-  content:'✦ ';
-}
-
-@keyframes marquee{
-  from{
-    transform:translateX(0);
-  }
-  to{
-    transform:translateX(-50%);
-  }
-}
-
-/* SECTIONS */
-
-section{
-  padding:7rem 2rem;
-}
-
-.section-inner{
-  max-width:1250px;
-  margin:auto;
-}
-
-.section-tag{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  margin-bottom:1rem;
-}
-
-.section-tag .line{
-  width:30px;
-  height:1px;
-  background:var(--gold);
-}
-
-.section-tag span{
-  color:var(--gold);
-
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-
-  font-size:11px;
-  font-weight:700;
-}
-
-.section-title{
-  font-family:'Playfair Display',serif;
-
-  font-size:clamp(2.4rem,5vw,4rem);
-
-  line-height:1.05;
-  letter-spacing:-0.04em;
-
-  margin-bottom:1rem;
-}
-
-.section-sub{
-  max-width:620px;
-
-  font-size:16px;
-  line-height:1.9;
-
-  color:#5c6c61;
-}
-
-/* MISSION */
-
-.mission-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5rem;
-  align-items:center;
-}
-
-.mission-visual{
-  position:relative;
-}
-
-.mission-main{
-  height:500px;
-
-  border-radius:32px;
-
-  overflow:hidden;
-
-  background:
-    linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5)),
-    url('https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?q=80&w=1400&auto=format&fit=crop');
-
-  background-size:cover;
-  background-position:center;
-
-  box-shadow:0 20px 60px rgba(0,0,0,0.15);
-}
-
-.flag-card{
-  position:absolute;
-  right:-30px;
-  bottom:-30px;
-
-  width:160px;
-  height:110px;
-
-  border-radius:24px;
-
-  background:rgba(255,255,255,0.2);
-
-  backdrop-filter:blur(18px);
-
-  border:1px solid rgba(255,255,255,0.25);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:4rem;
-}
-
-blockquote{
-  margin:2rem 0;
-
-  padding-left:1.5rem;
-
-  border-left:4px solid var(--gold);
-
-  font-size:1.35rem;
-  line-height:1.8;
-
-  color:var(--green);
-
-  font-style:italic;
-
-  font-family:'Playfair Display',serif;
-}
-
-.mission-text p{
-  color:#5b685f;
-  line-height:1.9;
-  margin-bottom:1rem;
-}
-
-/* CARDS */
-
-.profiles{
-  background:linear-gradient(to bottom,#faf8f2,#f4f1e8);
-}
-
-.profile-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-bottom:3rem;
-  gap:2rem;
-}
-
-.profile-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1.8rem;
-}
-
-.profile-card{
-  position:relative;
-  overflow:hidden;
-
-  background:rgba(255,255,255,0.7);
-
-  backdrop-filter:blur(18px);
-
-  border:1px solid rgba(255,255,255,0.5);
-
-  border-radius:28px;
-
-  box-shadow:
-    0 10px 40px rgba(0,0,0,0.06),
-    inset 0 1px rgba(255,255,255,0.4);
-
-  transition:0.4s;
-}
-
-.profile-card:hover{
-  transform:translateY(-10px);
-}
-
-.profile-card::before{
-  content:'';
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.22),
-      transparent 60%
-    );
-
-  opacity:0;
-  transition:0.4s;
-}
-
-.profile-card:hover::before{
-  opacity:1;
-}
-
-.profile-image{
-  height:280px;
-
-  position:relative;
-
-  display:flex;
-  align-items:flex-end;
-
-  padding:1.5rem;
-
-  background-size:cover;
-  background-position:center;
-}
-
-.profile-image::after{
-  content:'';
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,0.75),
-      transparent 60%
-    );
-}
-
-.profile-field{
-  position:relative;
-  z-index:2;
-
-  background:var(--gold);
-
-  padding:7px 14px;
-
-  border-radius:999px;
-
-  font-size:11px;
-  font-weight:700;
-
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-}
-
-.profile-body{
-  padding:1.6rem;
-}
-
-.profile-body h3{
-  font-size:1.4rem;
-  margin-bottom:5px;
-  font-family:'Playfair Display',serif;
-}
-
-.role{
-  color:var(--gold);
-
-  font-size:13px;
-  font-weight:600;
-
-  margin-bottom:1rem;
-}
-
-.profile-body p{
-  font-size:14px;
-  line-height:1.9;
-  color:#66766c;
-}
-
-/* AWARDS */
-
-.awards{
-  position:relative;
-  overflow:hidden;
-
-  background:
-    radial-gradient(circle at top,
-      rgba(26,92,42,0.6),
-      #07110a 70%);
-}
-
-.awards-inner{
-  position:relative;
-  z-index:2;
-  text-align:center;
-}
-
-.awards .section-title{
-  color:white;
-}
-
-.awards .section-sub{
-  color:rgba(255,255,255,0.55);
-  margin:auto;
-}
-
-.nomination{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-
-  padding:12px 24px;
-
-  border-radius:999px;
-
-  background:rgba(200,151,43,0.12);
-
-  border:1px solid rgba(200,151,43,0.25);
-
-  color:var(--gold);
-
-  margin-bottom:2rem;
-}
-
-.dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--gold);
-
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{
-    opacity:1;
-  }
-  50%{
-    opacity:0.3;
-  }
-}
-
-.award-grid{
-  margin:4rem 0;
-
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:1.5rem;
-}
-
-.award-card{
-  padding:2.5rem 1.5rem;
-
-  border-radius:24px;
-
-  background:rgba(255,255,255,0.05);
-
-  backdrop-filter:blur(14px);
-
-  border:1px solid rgba(255,255,255,0.08);
-
-  transition:0.3s;
-}
-
-.award-card:hover{
-  transform:translateY(-8px);
-}
-
-.award-card .icon{
-  font-size:2.5rem;
-  margin-bottom:1rem;
-}
-
-.award-card h4{
-  color:white;
-  margin-bottom:8px;
-}
-
-.award-card p{
-  color:rgba(255,255,255,0.5);
-  font-size:14px;
-}
-
-/* BLOG */
-
-.blog-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:1.8rem;
-
-  margin-top:3rem;
-}
-
-.blog-main{
-  grid-row:span 2;
-}
-
-.blog-card{
-  overflow:hidden;
-
-  border-radius:28px;
-
-  background:white;
-
-  box-shadow:0 10px 40px rgba(0,0,0,0.05);
-
-  transition:0.35s;
-}
-
-.blog-card:hover{
-  transform:translateY(-8px);
-}
-
-.blog-image{
-  height:220px;
-  background-size:cover;
-  background-position:center;
-}
-
-.blog-main .blog-image{
-  height:360px;
-}
-
-.blog-body{
-  padding:1.5rem;
-}
-
-.blog-tag{
-  color:var(--gold);
-
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-
-  font-size:11px;
-  font-weight:700;
-
-  margin-bottom:1rem;
-}
-
-.blog-body h3{
-  font-family:'Playfair Display',serif;
-  line-height:1.35;
-  margin-bottom:0.8rem;
-}
-
-.blog-main h3{
-  font-size:1.7rem;
-}
-
-.blog-body p{
-  line-height:1.8;
-  color:#65756a;
-}
-
-.blog-date{
-  margin-top:1rem;
-  color:#999;
-  font-size:13px;
-}
-
-/* NEWSLETTER */
-
-.newsletter{
-  background:
-    linear-gradient(
-      135deg,
-      #154422,
-      #0c2414
-    );
-}
-
-.newsletter-inner{
-  max-width:720px;
-  margin:auto;
-  text-align:center;
-}
-
-.newsletter h2{
-  font-family:'Playfair Display',serif;
-
-  color:white;
-
-  font-size:3rem;
-
-  margin-bottom:1rem;
-}
-
-.newsletter p{
-  color:rgba(255,255,255,0.65);
-
-  line-height:1.8;
-
-  margin-bottom:2rem;
-}
-
-.newsletter-form{
-  display:flex;
-  max-width:550px;
-  margin:auto;
-}
-
-.newsletter-form input{
-  flex:1;
-
-  border:none;
-  outline:none;
-
-  padding:18px 22px;
-
-  border-radius:999px 0 0 999px;
-
-  font-size:15px;
-}
-
-.newsletter-form button{
-  border:none;
-
-  padding:0 28px;
-
-  background:var(--gold);
-
-  border-radius:0 999px 999px 0;
-
-  font-weight:700;
-
-  cursor:pointer;
-}
-
-/* FOOTER */
-
-footer{
-  background:#07110a;
-  padding:5rem 2rem 2rem;
-}
-
-.footer-grid{
-  max-width:1250px;
-  margin:auto;
-
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:3rem;
-
-  margin-bottom:3rem;
-}
-
-.footer-grid h4{
-  color:white;
-  margin-bottom:1rem;
-}
-
-.footer-grid p,
-.footer-grid a{
-  color:rgba(255,255,255,0.5);
-
-  line-height:2;
-
-  text-decoration:none;
-
-  font-size:14px;
-}
-
-.footer-grid a:hover{
-  color:var(--gold);
-}
-
-.footer-bottom{
-  max-width:1250px;
-  margin:auto;
-
-  padding-top:2rem;
-
-  border-top:1px solid rgba(255,255,255,0.08);
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+:root {
+  --green: #1a5c2a;
+  --green-mid: #2a7a3e;
+  --green-light: #3a9452;
+  --gold: #c8972b;
+  --gold-light: #e8b84b;
+  --cream: #f9f6ef;
+  --cream-dark: #f0ead8;
+  --dark: #080f0a;
+  --dark-mid: #121c14;
+  --text: #2c3e2f;
+  --text-muted: #6b7c6e;
+  --white: #ffffff;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(8, 15, 10, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200, 151, 43, 0.15);
+}
+.nav-wrap {
+  max-width: 1280px; margin: auto;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--green), var(--gold));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.nav-logo-text strong {
+  display: block;
+  color: white; font-size: 14px; letter-spacing: 0.06em; font-weight: 600;
+}
+.nav-logo-text span {
+  display: block;
+  color: var(--gold); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 0.2rem;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  padding: 8px 14px; border-radius: 8px;
+  transition: 0.2s;
+}
+.nav-links a:hover { color: white; background: rgba(255,255,255,0.07); }
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--dark) !important;
+  border-radius: 999px !important;
+  padding: 9px 20px !important;
+  font-weight: 700 !important;
+}
+.nav-cta:hover { background: var(--gold-light) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, #040a05 0%, #0d1f0f 45%, #07120a 100%);
+}
+.hero-bg-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); pointer-events: none;
+}
+.hero-bg-orb.gold {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(200,151,43,0.18), transparent 70%);
+  top: -150px; right: -100px;
+  animation: orbFloat 12s ease-in-out infinite alternate;
+}
+.hero-bg-orb.green {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(26,92,42,0.25), transparent 70%);
+  bottom: -100px; left: -80px;
+  animation: orbFloat 15s ease-in-out infinite alternate-reverse;
+}
+@keyframes orbFloat { from { transform: translateY(0) scale(1); } to { transform: translateY(30px) scale(1.05); } }
+
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.025;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-crescent {
+  position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+  font-size: 380px; opacity: 0.04; color: white;
+  animation: slowSpin 80s linear infinite;
+  user-select: none;
+}
+@keyframes slowSpin { to { transform: translateY(-50%) rotate(360deg); } }
+
+.hero-wrap {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: auto;
+  padding: 10rem 2rem 6rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.hero-left {}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,151,43,0.12);
+  border: 1px solid rgba(200,151,43,0.3);
+  border-radius: 999px;
+  padding: 8px 16px;
+  margin-bottom: 1.8rem;
+}
+.hero-badge .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+.hero-badge span { color: var(--gold); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.0;
+  color: white;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.6rem;
+}
+.hero-h1 em { color: var(--gold); font-style: italic; }
+.hero-sub-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+  margin-bottom: 1.8rem;
+}
+.hero-desc {
+  font-size: 16px; line-height: 1.85;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 999px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: 0.3s; cursor: pointer; border: none;
+}
+.btn-gold { background: var(--gold); color: var(--dark); box-shadow: 0 8px 30px rgba(200,151,43,0.3); }
+.btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(200,151,43,0.4); }
+.btn-glass { background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(10px); }
+.btn-glass:hover { background: rgba(255,255,255,0.13); transform: translateY(-3px); }
+.btn-green { background: var(--green); color: white; }
+.btn-green:hover { background: var(--green-mid); transform: translateY(-3px); }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px; overflow: hidden;
+  backdrop-filter: blur(16px);
+}
+.hero-stat {
+  padding: 1.8rem;
+  background: rgba(255,255,255,0.03);
+  transition: 0.3s;
+}
+.hero-stat:hover { background: rgba(200,151,43,0.06); }
+.hero-stat h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem; color: white; line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat h3 span { color: var(--gold); }
+.hero-stat p { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* ─── MARQUEE ─── */
+.marquee-bar {
+  background: var(--gold);
+  overflow: hidden; padding: 12px 0;
+}
+.marquee-track {
+  display: flex; width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track span {
+  padding: 0 2.5rem;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--dark);
+  white-space: nowrap;
+}
+.marquee-track span::before { content: '✦  '; }
+@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* ─── SECTION SHARED ─── */
+section { padding: 6rem 2rem; }
+.section-wrap { max-width: 1280px; margin: auto; }
+.section-eyebrow {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+}
+.section-eyebrow .line { width: 28px; height: 1.5px; background: var(--gold); }
+.section-eyebrow span {
+  color: var(--gold); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+.section-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  line-height: 1.1; letter-spacing: -0.03em;
+  margin-bottom: 0.8rem;
+}
+.section-desc { font-size: 16px; line-height: 1.9; color: var(--text-muted); max-width: 580px; }
+.section-header-row {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap;
+}
+.view-all {
+  color: var(--green); font-weight: 600; text-decoration: none;
+  font-size: 14px; display: flex; align-items: center; gap: 6px;
+  transition: 0.2s; white-space: nowrap;
+}
+.view-all:hover { color: var(--gold); }
+
+/* ─── WHO IS WHO ─── */
+.who-section { background: white; }
+.who-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+.who-card {
+  border-radius: 24px; overflow: hidden;
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: 0.4s;
+}
+.who-card:hover { transform: translateY(-8px); box-shadow: 0 16px 50px rgba(0,0,0,0.1); }
+.who-img {
+  height: 260px;
+  background-size: cover; background-position: center top;
+  position: relative;
+}
+.who-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 55%);
+}
+.who-field {
+  position: absolute; bottom: 1.2rem; left: 1.2rem; z-index: 2;
+  background: var(--gold);
+  color: var(--dark); font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 5px 12px; border-radius: 999px;
+}
+.who-body { padding: 1.4rem 1.6rem; }
+.who-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; margin-bottom: 4px;
+}
+.who-role { color: var(--gold); font-size: 12px; font-weight: 600; margin-bottom: 0.8rem; letter-spacing: 0.04em; }
+.who-body p { font-size: 13.5px; line-height: 1.85; color: var(--text-muted); }
+
+/* ─── SUBMIT PROFILE ─── */
+.submit-band {
+  background: linear-gradient(135deg, var(--green-mid), var(--green));
+  padding: 4rem 2rem;
+}
+.submit-inner {
+  max-width: 900px; margin: auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+}
+.submit-inner h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; color: white; line-height: 1.2;
+}
+.submit-inner p { color: rgba(255,255,255,0.7); font-size: 15px; margin-top: 6px; }
+
+/* ─── CITIES ─── */
+.cities-section { background: var(--cream); }
+.cities-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+.city-card {
+  border-radius: 20px; overflow: hidden;
+  position: relative; height: 220px;
+  cursor: pointer;
+}
+.city-card img { width:100%; height:100%; object-fit:cover; transition: 0.5s; }
+.city-card:hover img { transform: scale(1.08); }
+.city-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72), transparent 50%);
+}
+.city-card.tall { grid-row: span 2; height: auto; }
+.city-label {
+  position: absolute; bottom: 1.2rem; left: 1.2rem; z-index: 2;
+  color: white;
+}
+.city-label h4 { font-size: 1.1rem; font-weight: 700; }
+.city-label span { font-size: 11px; color: rgba(255,255,255,0.65); }
+
+/* ─── BUSINESS DIRECTORY ─── */
+.biz-section { background: white; }
+.biz-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+.biz-card {
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.07);
+  padding: 1.8rem;
+  transition: 0.3s;
+  background: var(--cream);
+}
+.biz-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); border-color: var(--gold); }
+.biz-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 1.2rem;
+}
+.biz-icon.green { background: rgba(26,92,42,0.1); }
+.biz-icon.gold { background: rgba(200,151,43,0.1); }
+.biz-icon.blue { background: rgba(59,130,246,0.1); }
+.biz-card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+.biz-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem; }
+.biz-tag { display: inline-block; background: rgba(26,92,42,0.08); color: var(--green); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.list-biz-banner {
+  margin-top: 2.5rem;
+  background: linear-gradient(135deg, #0d1f0f, #1a3d20);
+  border-radius: 24px;
+  padding: 2.8rem 3rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  border: 1px solid rgba(200,151,43,0.2);
+}
+.list-biz-banner h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: white; }
+.list-biz-banner p { color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 4px; }
+
+/* ─── PRODUCTS ─── */
+.products-section { background: linear-gradient(to bottom, #faf8f2, var(--cream)); }
+.products-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.4rem; }
+.product-card {
+  border-radius: 20px; overflow: hidden;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: 0.35s;
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,0.08); }
+.product-img {
+  height: 180px;
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.product-body { padding: 1.2rem 1.4rem; }
+.product-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 4px; }
+.product-body p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+.product-origin { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--gold); font-weight: 600; margin-top: 8px; }
+
+/* ─── OUR PAKISTAN ─── */
+.ourpak-section {
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #070e08, #0f1f10, #070e08);
+}
+.ourpak-section::before {
+  content: '';position:absolute;inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Ccircle cx='1.5' cy='1.5' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.02;
+}
+.ourpak-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  position: relative; z-index: 2;
+}
+.ourpak-text .section-h2 { color: white; }
+.ourpak-text .section-desc { color: rgba(255,255,255,0.55); }
+.ourpak-text blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 1.8rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(200,151,43,0.06);
+  border-radius: 0 12px 12px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-style: italic;
+  color: rgba(255,255,255,0.8); line-height: 1.7;
+}
+.ourpak-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.ourpak-feat {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 1rem 1.2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+}
+.ourpak-feat .icon { font-size: 1.4rem; flex-shrink: 0; }
+.ourpak-feat h5 { color: white; font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.ourpak-feat p { color: rgba(255,255,255,0.45); font-size: 12px; line-height: 1.6; }
+.ourpak-image-stack { position: relative; }
+.ourpak-main-img {
+  border-radius: 28px; overflow: hidden; height: 500px;
+  background-size: cover; background-position: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  background-image: url('https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?q=80&w=1400&auto=format&fit=crop');
+}
+.ourpak-float-card {
+  position: absolute; bottom: -20px; right: -20px;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px; padding: 1.2rem 1.5rem;
+  min-width: 170px;
+}
+.ourpak-float-card p { color: rgba(255,255,255,0.55); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.ourpak-float-card strong { color: white; font-size: 1.6rem; font-family: 'Cormorant Garamond', serif; }
+
+/* ─── AWARDS ─── */
+.awards-section {
+  background: linear-gradient(to bottom, var(--cream-dark), var(--cream));
+}
+.awards-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.4rem; margin-top: 3rem; }
+.award-card {
+  padding: 2.2rem 1.8rem;
+  border-radius: 22px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.06);
+  text-align: center;
+  transition: 0.35s;
+  position: relative; overflow: hidden;
+}
+.award-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  transform: scaleX(0); transition: 0.35s; transform-origin: left;
+}
+.award-card:hover { transform: translateY(-8px); box-shadow: 0 16px 50px rgba(0,0,0,0.08); }
+.award-card:hover::before { transform: scaleX(1); }
+.award-icon { font-size: 2.4rem; margin-bottom: 1rem; display: block; }
+.award-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.award-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+.nominations-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(26,92,42,0.08); border: 1px solid rgba(26,92,42,0.2);
+  color: var(--green);
+  border-radius: 999px; padding: 8px 18px;
+  font-size: 13px; font-weight: 600;
+  margin-bottom: 2rem;
+}
+.nominations-badge .dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+
+/* ─── PRIDE TV ─── */
+.pridetv-section { background: var(--dark-mid); }
+.pridetv-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
+.pridetv-video {
+  border-radius: 24px; overflow: hidden;
+  aspect-ratio: 16/9;
+  background: #000;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.pridetv-video img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+.pridetv-play {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.play-btn {
+  width: 70px; height: 70px; background: var(--gold); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; cursor: pointer; transition: 0.3s;
+  box-shadow: 0 8px 30px rgba(200,151,43,0.5);
+}
+.play-btn:hover { transform: scale(1.1); }
+.pridetv-text .section-h2 { color: white; }
+.pridetv-text .section-desc { color: rgba(255,255,255,0.55); }
+.pridetv-episodes { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+.episode {
+  display: flex; gap: 1rem; align-items: center;
+  padding: 0.9rem 1.1rem; border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer; transition: 0.2s;
+}
+.episode:hover { background: rgba(200,151,43,0.08); border-color: rgba(200,151,43,0.2); }
+.ep-thumb { width: 48px; height: 34px; border-radius: 6px; background-size: cover; background-position: center; flex-shrink: 0; }
+.ep-info h5 { color: white; font-size: 13px; font-weight: 600; }
+.ep-info span { color: rgba(255,255,255,0.4); font-size: 11px; }
+
+/* ─── BLOG ─── */
+.blog-section { background: var(--cream); }
+.blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1.6rem; margin-top: 3rem; }
+.blog-card { border-radius: 22px; overflow: hidden; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: 0.35s; }
+.blog-card:hover { transform: translateY(-6px); box-shadow: 0 14px 50px rgba(0,0,0,0.1); }
+.blog-img { height: 200px; background-size: cover; background-position: center; }
+.blog-main-card .blog-img { height: 320px; }
+.blog-body { padding: 1.4rem 1.6rem; }
+.blog-cat { color: var(--gold); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.7rem; }
+.blog-body h3 { font-family: 'Cormorant Garamond', serif; line-height: 1.3; margin-bottom: 0.6rem; }
+.blog-main-card h3 { font-size: 1.6rem; }
+.blog-body p { font-size: 13.5px; line-height: 1.8; color: var(--text-muted); }
+.blog-meta { font-size: 12px; color: #aaa; margin-top: 0.8rem; }
+
+/* ─── NEWSLETTER ─── */
+.newsletter-section {
+  background: linear-gradient(135deg, #0e2213, #173320);
+  padding: 6rem 2rem;
+}
+.newsletter-inner { max-width: 680px; margin: auto; text-align: center; }
+.newsletter-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: white; margin-bottom: 1rem; }
+.newsletter-inner p { color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 2rem; }
+.nl-form { display: flex; max-width: 520px; margin: auto; }
+.nl-form input {
+  flex: 1; border: none; outline: none;
+  padding: 16px 22px;
+  border-radius: 999px 0 0 999px;
+  font-size: 14px; font-family: 'Outfit', sans-serif;
+  background: rgba(255,255,255,0.95);
+}
+.nl-form button {
+  border: none; padding: 0 26px;
+  background: var(--gold); border-radius: 0 999px 999px 0;
+  font-weight: 700; font-family: 'Outfit', sans-serif;
+  cursor: pointer; font-size: 14px; color: var(--dark);
+  transition: 0.2s;
+}
+.nl-form button:hover { background: var(--gold-light); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #060d07;
+  padding: 5rem 2rem 2rem;
+}
+.footer-grid {
+  max-width: 1280px; margin: auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand-logo {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;
+}
+.footer-brand-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--green), var(--gold));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.footer-brand-text { color: white; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
+.footer-grid p, .footer-grid a {
+  color: rgba(255,255,255,0.4); font-size: 13.5px; line-height: 2.1;
+  text-decoration: none; display: block;
+}
+.footer-grid h4 { color: white; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.2rem; }
+.footer-grid a:hover { color: var(--gold); }
+.footer-bottom {
+  max-width: 1280px; margin: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { color: rgba(255,255,255,0.3); font-size: 13px; }
+.footer-socials { display: flex; gap: 0.8rem; }
+.social-pill {
+  padding: 6px 14px; border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.4); font-size: 12px;
+  text-decoration: none; transition: 0.2s;
+}
+.social-pill:hover { background: rgba(200,151,43,0.15); color: var(--gold); }
+
+/* ─── FEATURED PERSON (Mahjool Raasi style) ─── */
+.featured-person-section { background: var(--cream-dark); }
+.featured-person-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3.5rem; align-items: center; }
+.fp-image-wrap { position: relative; }
+.fp-main-photo {
+  border-radius: 24px; overflow: hidden; height: 420px;
+  background-size: cover; background-position: center top;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+.fp-badge {
+  position: absolute; top: 1.2rem; left: 1.2rem;
+  background: var(--green); color: white;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px;
+}
+.fp-text {}
+.fp-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 4px; }
+.fp-text .fp-role { color: var(--gold); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1rem; }
+.fp-text p { font-size: 15px; line-height: 1.9; color: var(--text-muted); margin-bottom: 1.4rem; }
+.fp-thumbnails { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+.fp-thumb-card {
+  flex: 1; border-radius: 14px; overflow: hidden;
+  background: white; border: 1px solid rgba(0,0,0,0.07);
+  transition: 0.3s; cursor: pointer;
+}
+.fp-thumb-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.fp-thumb-img { height: 70px; background-size: cover; background-position: center top; }
+.fp-thumb-info { padding: 0.5rem 0.7rem; }
+.fp-thumb-info strong { font-size: 11px; font-weight: 700; display: block; }
+.fp-thumb-info span { font-size: 10px; color: var(--text-muted); }
+
+/* ─── DID YOU KNOW / TRIVIA ─── */
+.trivia-section { background: var(--green); }
+.trivia-inner { max-width: 1280px; margin: auto; padding: 0 2rem; }
+.trivia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.trivia-card {
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px; padding: 2.2rem;
+  transition: 0.3s; cursor: pointer;
+}
+.trivia-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-4px); }
+.trivia-q-tag {
+  display: inline-block; background: var(--gold); color: var(--dark);
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 4px 12px; border-radius: 999px; margin-bottom: 1rem;
+}
+.trivia-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: white; line-height: 1.3; margin-bottom: 0.8rem; }
+.trivia-card p { color: rgba(255,255,255,0.6); font-size: 13.5px; line-height: 1.8; }
+.trivia-card .read-more { color: var(--gold); font-size: 12px; font-weight: 600; margin-top: 1rem; display: inline-block; }
+
+/* ─── PAKISTAN EXPERIENCES AS A FEMALE ─── */
+.female-section { background: white; }
+.female-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+.female-img-stack { position: relative; }
+.female-main-img {
+  border-radius: 24px; overflow: hidden; height: 460px;
+  background-size: cover; background-position: center;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.1);
+}
+.female-float {
+  position: absolute; bottom: -16px; right: -16px;
+  background: var(--gold); color: var(--dark);
+  border-radius: 18px; padding: 1.2rem 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 700;
+  box-shadow: 0 8px 30px rgba(200,151,43,0.35);
+}
+.female-float span { display: block; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; opacity: 0.7; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ─── PICTORIALNEWS ─── */
+.pn-section { background: var(--dark); padding: 4rem 2rem; }
+.pn-inner { max-width: 1280px; margin: auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+.pn-brand { }
+.pn-logo {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 1rem;
+}
+.pn-logo .pn-p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem; font-weight: 700; line-height: 1;
+  background: linear-gradient(135deg, var(--green-light), var(--green));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.pn-logo .pn-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem; font-weight: 700; line-height: 1;
+  color: white;
+}
+.pn-wordmark { color: rgba(255,255,255,0.4); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+.pn-desc { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.9; max-width: 340px; }
+.pn-stories { display: flex; flex-direction: column; gap: 1rem; }
+.pn-story {
+  display: flex; gap: 1rem; align-items: center;
+  padding: 1rem 1.2rem; border-radius: 14px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  text-decoration: none; transition: 0.2s;
+}
+.pn-story:hover { background: rgba(255,255,255,0.08); border-color: rgba(200,151,43,0.2); }
+.pn-story-thumb { width: 72px; height: 50px; border-radius: 8px; flex-shrink: 0; background-size: cover; background-position: center; }
+.pn-story-info h5 { color: white; font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 3px; }
+.pn-story-info span { color: rgba(255,255,255,0.4); font-size: 11px; }
+
+/* ─── TOP STORIES ─── */
+.top-stories-section { background: var(--cream); }
+.top-stories-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.4rem; margin-top: 2.5rem; }
+.ts-card {
+  background: white; border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 1.4rem 1.6rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+  transition: 0.3s;
+}
+.ts-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.07); }
+.ts-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--cream-dark); line-height: 1; flex-shrink: 0; min-width: 2rem; }
+.ts-info h5 { font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+.ts-info span { font-size: 11px; color: var(--text-muted); }
+.ts-cat { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 4px; }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(35px); transition: 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.show { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width: 1024px) {
+  .hero-wrap { grid-template-columns: 1fr; }
+  .hero-stats { max-width: 500px; }
+  .ourpak-grid, .pridetv-grid, .featured-person-grid, .female-grid, .pn-inner { grid-template-columns: 1fr; }
+  .cities-grid { grid-template-columns: repeat(2,1fr); }
+  .city-card.tall { grid-row: auto; }
+  .products-grid { grid-template-columns: repeat(2,1fr); }
+  .awards-grid { grid-template-columns: repeat(2,1fr); }
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-main-card { grid-row: auto; }
+  .trivia-grid { grid-template-columns: 1fr; }
+  .top-stories-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .who-grid, .biz-grid, .footer-grid { grid-template-columns: 1fr; }
+  .cities-grid { grid-template-columns: repeat(2,1fr); }
+  .products-grid { grid-template-columns: repeat(2,1fr); }
+  .awards-grid { grid-template-columns: 1fr 1fr; }
+  .hero-h1 { font-size: 3rem; }
+  .list-biz-banner { flex-direction: column; text-align: center; }
+  .submit-inner { text-align: center; justify-content: center; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .nl-form { flex-direction: column; gap: 0.8rem; }
+  .nl-form input, .nl-form button { border-radius: 999px; height: 52px; }
+  .top-stories-grid { grid-template-columns: 1fr; }
+  .fp-thumbnails { flex-wrap: wrap; }
 }
-
-.footer-bottom p{
-  color:rgba(255,255,255,0.35);
-  font-size:13px;
-}
-
-/* REVEAL */
-
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-
-.reveal.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* MOBILE */
-
-@media(max-width:950px){
-
-  .mission-grid,
-  .profile-grid,
-  .award-grid,
-  .blog-grid,
-  .footer-grid{
-    grid-template-columns:1fr;
-  }
-
-  .blog-main{
-    grid-row:auto;
-  }
-
-}
-
-@media(max-width:768px){
-
-  .nav-links{
-    display:none;
-  }
-
-  .hero{
-    text-align:center;
-  }
-
-  .hero-eyebrow,
-  .hero-buttons,
-  .hero-stats{
-    justify-content:center;
-  }
-
-  .hero h1{
-    font-size:3.8rem;
-  }
-
-  .hero-stats{
-    width:100%;
-  }
-
-  .newsletter-form{
-    flex-direction:column;
-    gap:1rem;
-  }
-
-  .newsletter-form input,
-  .newsletter-form button{
-    border-radius:999px;
-    height:58px;
-  }
-
-  .footer-bottom{
-    flex-direction:column;
-    gap:1rem;
-  }
-
-}
-
 </style>
 </head>
-
 <body>
 
 <!-- NAV -->
-
 <nav>
-  <div class="nav-inner">
-
-    <div class="logo">
-      <div class="logo-bars">
-        <span></span>
-        <span></span>
-        <span></span>
+  <div class="nav-wrap">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🇵🇰</div>
+      <div class="nav-logo-text">
+        <strong>Pride of Pakistan</strong>
+        <span>Est. 2008</span>
       </div>
-
-      <strong>Pride of Pakistan</strong>
-    </div>
-
+    </a>
     <div class="nav-links">
-      <a href="#">Our Pakistan</a>
-      <a href="#">Who Is Who</a>
-      <a href="#">Businesses</a>
-      <a href="#">Awards</a>
-      <a href="#">Blog</a>
-      <a href="./demo.html" class="nav-btn">Submit Profile</a>
+      <a href="#who">Who Is Who</a>
+      <a href="#cities">Cities</a>
+      <a href="#biz">Businesses</a>
+      <a href="#products">Products</a>
+      <a href="#ourpak">Our Pakistan</a>
+      <a href="#awards">Awards</a>
+      <a href="#submit" class="nav-cta">Submit Profile</a>
     </div>
-
   </div>
 </nav>
 
 <!-- HERO -->
-
 <section class="hero">
+  <div class="hero-bg-orb gold"></div>
+  <div class="hero-bg-orb green"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-crescent">☪</div>
 
-  <div class="hero-pattern"></div>
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="hero-badge reveal">
+        <div class="dot"></div>
+        <span>Celebrating Pakistani Excellence · Introducing the Real Pakistan</span>
+      </div>
 
-  <div class="hero-star">☪</div>
+      <h1 class="hero-h1 reveal reveal-delay-1">
+        The world deserves<br>to see <em>the real</em><br>Pakistan.
+      </h1>
+      <p class="hero-sub-headline reveal reveal-delay-1">"Introducing the Real Pakistan — one story at a time."</p>
 
-  <div class="hero-inner">
+      <p class="hero-desc reveal reveal-delay-2">
+        We spotlight extraordinary Pakistanis shaping the world through excellence, resilience, and innovation — from medicine to arts, business to public service, across every continent.
+      </p>
 
-    <div class="hero-eyebrow reveal">
-      <div class="line"></div>
-      <span>Celebrating Pakistani Excellence</span>
+      <div class="hero-btns reveal reveal-delay-3">
+        <a href="#who" class="btn btn-gold">Explore Profiles</a>
+        <a href="#awards" class="btn btn-glass">Nominate for Awards</a>
+      </div>
     </div>
 
-    <h1 class="reveal">
-      The world deserves to see
-      <em>the real</em>
-      Pakistan.
-    </h1>
-
-    <p class="reveal">
-      We spotlight Pakistanis who have excelled in every walk of life — from medicine to arts, business to public service — across the globe.
-    </p>
-
-    <div class="hero-buttons reveal">
-      <a href="#" class="btn btn-primary">Explore Profiles</a>
-      <a href="#" class="btn btn-outline">Nominate for Awards</a>
-    </div>
-
-    <div class="hero-stats reveal">
-
-      <div class="stat">
-        <h3>500+</h3>
-        <p>Profiles</p>
+    <div class="hero-stats reveal reveal-delay-2">
+      <div class="hero-stat">
+        <h3>500<span>+</span></h3>
+        <p>Profiles Published</p>
       </div>
-
-      <div class="stat">
-        <h3>40+</h3>
-        <p>Countries</p>
+      <div class="hero-stat">
+        <h3>40<span>+</span></h3>
+        <p>Countries Represented</p>
       </div>
-
-      <div class="stat">
-        <h3>20K</h3>
-        <p>Community</p>
+      <div class="hero-stat">
+        <h3>20<span>K</span></h3>
+        <p>Community Members</p>
       </div>
-
-      <div class="stat">
-        <h3>15+</h3>
+      <div class="hero-stat">
+        <h3>15<span>+</span></h3>
         <p>Years Running</p>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
 <!-- MARQUEE -->
-
-<div class="marquee">
+<div class="marquee-bar">
   <div class="marquee-track">
-
-    <span>Medicine</span>
-    <span>Business</span>
-    <span>Technology</span>
-    <span>Science</span>
-    <span>Education</span>
-    <span>Sports</span>
-    <span>Politics</span>
-    <span>Arts</span>
-
-    <span>Medicine</span>
-    <span>Business</span>
-    <span>Technology</span>
-    <span>Science</span>
-    <span>Education</span>
-    <span>Sports</span>
-    <span>Politics</span>
-    <span>Arts</span>
-
+    <span>Medicine</span><span>Business</span><span>Technology</span><span>Science</span>
+    <span>Education</span><span>Sports</span><span>Politics</span><span>Arts</span>
+    <span>Engineering</span><span>Law</span><span>Culture</span><span>Innovation</span>
+    <span>Medicine</span><span>Business</span><span>Technology</span><span>Science</span>
+    <span>Education</span><span>Sports</span><span>Politics</span><span>Arts</span>
+    <span>Engineering</span><span>Law</span><span>Culture</span><span>Innovation</span>
   </div>
 </div>
 
-<!-- MISSION -->
-
-<section>
-
-  <div class="section-inner mission-grid">
-
-    <div class="mission-visual reveal">
-
-      <div class="mission-main"></div>
-
-      <div class="flag-card">
-        🇵🇰
+<!-- WHO IS WHO -->
+<section class="who-section" id="who">
+  <div class="section-wrap">
+    <div class="section-header-row reveal">
+      <div>
+        <div class="section-eyebrow"><div class="line"></div><span>Featured Profiles</span></div>
+        <h2 class="section-h2">Who Is Who</h2>
+        <p class="section-desc">Pakistanis making a mark in every field, every corner of the globe.</p>
       </div>
-
+      <a href="#" class="view-all">View all profiles →</a>
     </div>
 
-    <div class="mission-text reveal">
-
-      <div class="section-tag">
-        <div class="line"></div>
-        <span>Our Mission</span>
+    <div class="who-grid">
+      <div class="who-card reveal reveal-delay-1">
+        <div class="who-img" style="background-image:url('https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?q=80&w=1200&auto=format&fit=crop');">
+          <div class="who-field">Medicine</div>
+        </div>
+        <div class="who-body">
+          <h3>Dr. Nadeem Ashraf</h3>
+          <div class="who-role">Consultant Cardiologist · NHS UK</div>
+          <p>A pioneer in interventional cardiology with over 4,000 life-saving procedures and decades of dedicated mentorship.</p>
+        </div>
       </div>
-
-      <h2 class="section-title">
-        Changing the narrative,
-        one story at a time.
-      </h2>
-
-      <blockquote>
-        “Pakistan remains the land of their heart.”
-      </blockquote>
-
-      <p>
-        Pride of Pakistan was founded to challenge misconceptions and highlight extraordinary Pakistanis shaping the world through excellence, resilience, and innovation.
-      </p>
-
-      <p>
-        From Nobel laureates to community champions, our platform celebrates every Pakistani making a difference globally.
-      </p>
-
-      <a href="#" class="btn btn-primary" style="margin-top:1rem;">
-        Read Our Story
-      </a>
-
+      <div class="who-card reveal reveal-delay-2">
+        <div class="who-img" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop');">
+          <div class="who-field">Law</div>
+        </div>
+        <div class="who-body">
+          <h3>Saira Khan, KC</h3>
+          <div class="who-role">Human Rights Barrister · London</div>
+          <p>One of the first Pakistani-heritage barristers awarded King's Counsel for outstanding legal advocacy.</p>
+        </div>
+      </div>
+      <div class="who-card reveal reveal-delay-3">
+        <div class="who-img" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop');">
+          <div class="who-field">Business</div>
+        </div>
+        <div class="who-body">
+          <h3>Raza Iqbal</h3>
+          <div class="who-role">Founder & CEO · TechBridge</div>
+          <p>Built a multi-million pound tech enterprise employing hundreds across Europe and the Gulf region.</p>
+        </div>
+      </div>
     </div>
-
   </div>
-
 </section>
 
-<!-- PROFILES -->
-
-<section class="profiles">
-
-  <div class="section-inner">
-
-    <div class="profile-header reveal">
-
+<!-- FEATURED PERSON -->
+<section class="featured-person-section">
+  <div class="section-wrap">
+    <div class="section-header-row reveal">
       <div>
-        <div class="section-tag">
-          <div class="line"></div>
-          <span>Featured Profiles</span>
-        </div>
-
-        <h2 class="section-title">
-          Who Is Who
-        </h2>
+        <div class="section-eyebrow"><div class="line"></div><span>Profile of the Month</span></div>
+        <h2 class="section-h2">Mahjool Raasi</h2>
       </div>
-
-      <a href="#" style="color:var(--green);font-weight:600;text-decoration:none;">
-        View all profiles →
-      </a>
-
+      <a href="#" class="view-all">View full profile →</a>
     </div>
-
-    <div class="profile-grid">
-
-      <div class="profile-card reveal">
-
-        <div class="profile-image"
-          style="background-image:url('https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?q=80&w=1200&auto=format&fit=crop');">
-
-          <div class="profile-field">Medicine</div>
-
-        </div>
-
-        <div class="profile-body">
-
-          <h3>Dr. Nadeem Ashraf</h3>
-
-          <div class="role">
-            Consultant Cardiologist · NHS UK
-          </div>
-
-          <p>
-            A pioneer in interventional cardiology with over 4,000 life-saving procedures and decades of mentorship.
-          </p>
-
-        </div>
-
+    <div class="featured-person-grid">
+      <div class="fp-image-wrap reveal">
+        <div class="fp-main-photo" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="fp-badge">British Pakistani</div>
       </div>
+      <div class="fp-text reveal reveal-delay-1">
+        <h3>Mahjool Raasi</h3>
+        <div class="fp-role">Consultant Cardiothoracic Surgeon · NHS UK · King's College Hospital</div>
+        <p>Born and educated in Pakistan, Mahjool Raasi was educated at a top Birmingham school before receiving his top core surgical training in Britain. He was first appointed as a Consultant at age 32 — one of the youngest in his specialty. His work has helped thousands of patients across the UK.</p>
+        <p>His story is one of talent, dedication, and the pride of carrying Pakistan's name to the highest levels of British medicine.</p>
+        <a href="#" class="btn btn-gold" style="margin-top:0.5rem;">Read Full Profile →</a>
 
-      <div class="profile-card reveal">
-
-        <div class="profile-image"
-          style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop');">
-
-          <div class="profile-field">Law</div>
-
-        </div>
-
-        <div class="profile-body">
-
-          <h3>Saira Khan, KC</h3>
-
-          <div class="role">
-            Human Rights Barrister · London
+        <div class="fp-thumbnails">
+          <div class="fp-thumb-card">
+            <div class="fp-thumb-img" style="background-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop');"></div>
+            <div class="fp-thumb-info"><strong>Umar Sharif</strong><span>Comedy</span></div>
           </div>
-
-          <p>
-            One of the first Pakistani-heritage barristers awarded King’s Counsel for outstanding legal advocacy.
-          </p>
-
-        </div>
-
-      </div>
-
-      <div class="profile-card reveal">
-
-        <div class="profile-image"
-          style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop');">
-
-          <div class="profile-field">Business</div>
-
-        </div>
-
-        <div class="profile-body">
-
-          <h3>Raza Iqbal</h3>
-
-          <div class="role">
-            Founder & CEO · TechBridge
+          <div class="fp-thumb-card">
+            <div class="fp-thumb-img" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop');"></div>
+            <div class="fp-thumb-info"><strong>Salman Alam</strong><span>Business</span></div>
           </div>
-
-          <p>
-            Built a multi-million pound tech enterprise employing hundreds across Europe and the Gulf region.
-          </p>
-
+          <div class="fp-thumb-card">
+            <div class="fp-thumb-img" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop');"></div>
+            <div class="fp-thumb-info"><strong>Amin Gulgee</strong><span>Art</span></div>
+          </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
+</section>
 
+<!-- SUBMIT PROFILE BAND -->
+<div class="submit-band" id="submit">
+  <div class="submit-inner reveal">
+    <div>
+      <h3>Know an extraordinary Pakistani?<br>Help us tell their story.</h3>
+      <p>Submit a profile and join 500+ Pakistanis celebrated on our platform.</p>
+    </div>
+    <a href="#" class="btn btn-gold" style="font-size:15px; padding:16px 36px;">Submit a Profile →</a>
+  </div>
+</div>
+
+<!-- CITIES -->
+<section class="cities-section" id="cities">
+  <div class="section-wrap">
+    <div class="section-header-row reveal">
+      <div>
+        <div class="section-eyebrow"><div class="line"></div><span>Pakistan</span></div>
+        <h2 class="section-h2">Cities, Towns & Villages</h2>
+        <p class="section-desc">Explore the landscapes, heritage and culture that define our beloved nation.</p>
+      </div>
+      <a href="#" class="view-all">View all cities →</a>
+    </div>
+
+    <div class="cities-grid">
+      <div class="city-card tall reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200&auto=format&fit=crop" alt="Lahore">
+        <div class="city-label">
+          <h4>Lahore</h4>
+          <span>City of Gardens</span>
+        </div>
+      </div>
+      <div class="city-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1599638836726-f71a4a0d3e62?q=80&w=1200&auto=format&fit=crop" alt="Karachi">
+        <div class="city-label">
+          <h4>Karachi</h4>
+          <span>City of Lights</span>
+        </div>
+      </div>
+      <div class="city-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1598976616523-1c4c26c3acca?q=80&w=1200&auto=format&fit=crop" alt="Islamabad">
+        <div class="city-label">
+          <h4>Islamabad</h4>
+          <span>Capital</span>
+        </div>
+      </div>
+      <div class="city-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=1200&auto=format&fit=crop" alt="Hunza">
+        <div class="city-label">
+          <h4>Hunza Valley</h4>
+          <span>Northern Gem</span>
+        </div>
+      </div>
+      <div class="city-card reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop" alt="Peshawar">
+        <div class="city-label">
+          <h4>Peshawar</h4>
+          <span>City of Flowers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DO YOU KNOW / TRIVIA -->
+<section class="trivia-section">
+  <div class="trivia-inner">
+    <div class="section-header-row reveal" style="margin-bottom:2.5rem;">
+      <div>
+        <div class="section-eyebrow"><div class="line" style="background:rgba(255,255,255,0.4)"></div><span style="color:rgba(255,255,255,0.6);">Pakistan Trivia</span></div>
+        <h2 class="section-h2" style="color:white;">Do You Know Pakistan?</h2>
+      </div>
+      <a href="#" class="view-all" style="color:var(--gold-light);">All trivia →</a>
+    </div>
+    <div class="trivia-grid">
+      <div class="trivia-card reveal reveal-delay-1">
+        <div class="trivia-q-tag">Did You Know?</div>
+        <h4>Who founded and named Abbottabad?</h4>
+        <p>Abbottabad is a city in the Hazara region of Khyber Pakhtunkhwa, in north-eastern Pakistan. It is 120 kilometres (74 mi) north of the capital Islamabad. It was founded by Major James Abbott of the British Indian Army in 1853, who named it after himself.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+      <div class="trivia-card reveal reveal-delay-2">
+        <div class="trivia-q-tag">Did You Know?</div>
+        <h4>Pakistan has the world's second-largest salt mine</h4>
+        <p>The Khewra Salt Mine in Punjab, Pakistan, is the world's second-largest salt mine and one of the oldest. It has been mined since the 1200s and produces pink Himalayan salt exported globally.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+      <div class="trivia-card reveal reveal-delay-1">
+        <div class="trivia-q-tag">Did You Know?</div>
+        <h4>Pakistan is home to K2, the world's most dangerous peak</h4>
+        <p>K2 stands at 8,611 metres in the Karakoram range. It is considered harder and more deadly to climb than Everest, earning the nickname "The Savage Mountain."</p>
+        <span class="read-more">Read More →</span>
+      </div>
+      <div class="trivia-card reveal reveal-delay-2">
+        <div class="trivia-q-tag">Did You Know?</div>
+        <h4>The first Pakistani Nobel laureate was a physicist</h4>
+        <p>Abdus Salam won the Nobel Prize in Physics in 1979 for his contributions to the theory of the unified weak and electromagnetic interaction — the first Pakistani to receive a Nobel.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS DIRECTORY -->
+<section class="biz-section" id="biz">
+  <div class="section-wrap">
+    <div class="section-header-row reveal">
+      <div>
+        <div class="section-eyebrow"><div class="line"></div><span>Business Directory</span></div>
+        <h2 class="section-h2">Pakistani Businesses</h2>
+        <p class="section-desc">Discover and support businesses run by Pakistanis around the world.</p>
+      </div>
+      <a href="#" class="view-all">Browse directory →</a>
+    </div>
+
+    <div class="biz-grid">
+      <div class="biz-card reveal reveal-delay-1">
+        <div class="biz-icon green">🏥</div>
+        <h4>UCare Medical Group</h4>
+        <p>A multi-specialty medical group serving Pakistani diaspora communities across the UK and Europe with award-winning care.</p>
+        <span class="biz-tag">Healthcare</span>
+      </div>
+      <div class="biz-card reveal reveal-delay-2">
+        <div class="biz-icon gold">🏨</div>
+        <h4>Hotel Akbar's</h4>
+        <p>Luxury hospitality brand with properties in Lahore, Islamabad and Dubai, known for world-class service and Pakistani heritage.</p>
+        <span class="biz-tag">Hospitality</span>
+      </div>
+      <div class="biz-card reveal reveal-delay-3">
+        <div class="biz-icon blue">💻</div>
+        <h4>K.A. Imtiaz & Co.</h4>
+        <p>Leading technology consultancy with 200+ engineers delivering enterprise solutions across three continents.</p>
+        <span class="biz-tag">Technology</span>
+      </div>
+      <div class="biz-card reveal reveal-delay-1">
+        <div class="biz-icon gold">⚖️</div>
+        <h4>Pak Legal Associates</h4>
+        <p>Specialist immigration and commercial law firm serving Pakistani businesses and families in the UK for over 20 years.</p>
+        <span class="biz-tag">Legal</span>
+      </div>
+      <div class="biz-card reveal reveal-delay-2">
+        <div class="biz-icon green">🌾</div>
+        <h4>Indus Organic Farms</h4>
+        <p>Pioneering organic agricultural exports from Punjab — mangoes, rice, and spices reaching 40+ countries globally.</p>
+        <span class="biz-tag">Agriculture</span>
+      </div>
+      <div class="biz-card reveal reveal-delay-3">
+        <div class="biz-icon blue">📐</div>
+        <h4>Innovation Architecture</h4>
+        <p>Award-winning Pakistani design firm reshaping skylines across the Gulf with sustainable, culturally-inspired architecture.</p>
+        <span class="biz-tag">Architecture</span>
+      </div>
+    </div>
+
+    <div class="list-biz-banner reveal">
+      <div>
+        <h3>List your business — reach thousands of Pakistanis worldwide.</h3>
+        <p>Join 800+ businesses already on the Pride of Pakistan directory.</p>
+      </div>
+      <a href="#" class="btn btn-gold">List Your Business →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="section-wrap">
+    <div class="section-header-row reveal">
+      <div>
+        <div class="section-eyebrow"><div class="line"></div><span>Made in Pakistan</span></div>
+        <h2 class="section-h2">Pakistani Products</h2>
+        <p class="section-desc">From world-famous mangoes to handcrafted textiles — celebrate and buy Pakistani.</p>
+      </div>
+      <a href="#" class="view-all">View all products →</a>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="product-body">
+          <h4>Chaunsa Mangoes</h4>
+          <p>The king of mangoes — sweet, aromatic, and adored worldwide.</p>
+          <div class="product-origin">🌾 Punjab, Pakistan</div>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="product-body">
+          <h4>Pashmina & Khaddar</h4>
+          <p>Handwoven textiles with centuries of artisan tradition.</p>
+          <div class="product-origin">✂️ KPK & Kashmir</div>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="product-body">
+          <h4>Basmati Rice</h4>
+          <p>Long-grain fragrant rice, prized by chefs across the globe.</p>
+          <div class="product-origin">🌾 Sindh & Punjab</div>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="product-body">
+          <h4>Sialkot Sporting Goods</h4>
+          <p>Supplying 80% of the world's footballs from a single Pakistani city.</p>
+          <div class="product-origin">⚽ Sialkot, Pakistan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PAKISTAN -->
+<section class="ourpak-section" id="ourpak">
+  <div class="section-wrap ourpak-grid">
+    <div class="ourpak-text">
+      <div class="section-eyebrow" style="margin-bottom:1rem;">
+        <div class="line"></div>
+        <span>Our Pakistan</span>
+      </div>
+      <h2 class="section-h2 reveal">Introducing the Real Pakistan to the World.</h2>
+
+      <blockquote class="reveal reveal-delay-1">
+        "Pakistan remains the land of their heart — and we are here to show the world why."
+      </blockquote>
+
+      <p class="section-desc reveal reveal-delay-1" style="color:rgba(255,255,255,0.55);">
+        Beyond the headlines lies a nation of breathtaking landscapes, ancient civilisations, Nobel laureates, global entrepreneurs, and 220 million stories of resilience, warmth, and pride.
+      </p>
+
+      <div class="ourpak-features reveal reveal-delay-2">
+        <div class="ourpak-feat">
+          <div class="icon">🏔️</div>
+          <div>
+            <h5>K2 & the Karakoram</h5>
+            <p>Home to 5 of the world's 14 eight-thousanders</p>
+          </div>
+        </div>
+        <div class="ourpak-feat">
+          <div class="icon">🏛️</div>
+          <div>
+            <h5>Indus Civilisation</h5>
+            <p>5,000-year heritage at Mohenjo-daro</p>
+          </div>
+        </div>
+        <div class="ourpak-feat">
+          <div class="icon">🍋</div>
+          <div>
+            <h5>Food & Cuisine</h5>
+            <p>One of the world's richest culinary traditions</p>
+          </div>
+        </div>
+        <div class="ourpak-feat">
+          <div class="icon">🎓</div>
+          <div>
+            <h5>Nobel Laureates</h5>
+            <p>Pakistani minds changing science & peace globally</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="btn btn-gold" style="margin-top:2rem;" class="reveal">Discover Our Pakistan →</a>
+    </div>
+
+    <div class="ourpak-image-stack reveal reveal-delay-2">
+      <div class="ourpak-main-img"></div>
+      <div class="ourpak-float-card">
+        <p>Provinces Explored</p>
+        <strong>8 Regions</strong>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- AWARDS -->
-
-<section class="awards">
-
-  <div class="section-inner awards-inner reveal">
-
-    <div class="section-tag" style="justify-content:center;">
-      <div class="line"></div>
-      <span>Pride Awards</span>
+<section class="awards-section" id="awards">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center; max-width:700px; margin:0 auto 1rem;">
+      <div class="section-eyebrow" style="justify-content:center;">
+        <div class="line"></div><span>Pride Awards</span>
+      </div>
+      <div class="nominations-badge">
+        <div class="dot"></div>
+        Nominations are now open for 2026
+      </div>
+      <h2 class="section-h2">Recognising the best among us.</h2>
+      <p class="section-desc" style="margin:0 auto;">Celebrating Pakistanis who have transformed industries, inspired communities, and elevated the nation's global image.</p>
     </div>
 
-    <div class="nomination">
-      <div class="dot"></div>
-      Nominations are now open
+    <div class="awards-grid">
+      <div class="award-card reveal reveal-delay-1">
+        <span class="award-icon">🏥</span>
+        <h4>Healthcare Excellence</h4>
+        <p>Honouring doctors, surgeons, and researchers pushing boundaries in medicine</p>
+      </div>
+      <div class="award-card reveal reveal-delay-2">
+        <span class="award-icon">⚖️</span>
+        <h4>Law & Public Service</h4>
+        <p>Celebrating Pakistani leaders in law, politics and civil society</p>
+      </div>
+      <div class="award-card reveal reveal-delay-3">
+        <span class="award-icon">📈</span>
+        <h4>Business & Innovation</h4>
+        <p>Recognising entrepreneurs and innovators building the future</p>
+      </div>
+      <div class="award-card reveal reveal-delay-1">
+        <span class="award-icon">🎓</span>
+        <h4>Education & Academia</h4>
+        <p>Spotlighting academics, teachers and scholars shaping minds globally</p>
+      </div>
+      <div class="award-card reveal reveal-delay-2">
+        <span class="award-icon">🎨</span>
+        <h4>Arts & Culture</h4>
+        <p>Honouring those who carry Pakistani culture to the world's stages</p>
+      </div>
+      <div class="award-card reveal reveal-delay-3">
+        <span class="award-icon">⚽</span>
+        <h4>Sports Achievement</h4>
+        <p>Celebrating athletes who compete at the highest levels with pride</p>
+      </div>
+      <div class="award-card reveal reveal-delay-1">
+        <span class="award-icon">🌍</span>
+        <h4>Community Impact</h4>
+        <p>Recognising those who serve, uplift and unite communities worldwide</p>
+      </div>
+      <div class="award-card reveal reveal-delay-2">
+        <span class="award-icon">🔬</span>
+        <h4>Science & Research</h4>
+        <p>Honouring Pakistani scientists tackling global challenges</p>
+      </div>
     </div>
 
-    <h2 class="section-title">
-      Recognising the best among us.
-    </h2>
-
-    <p class="section-sub">
-      Celebrating Pakistanis who have transformed industries, inspired communities, and elevated the nation’s global image.
-    </p>
-
-    <div class="award-grid">
-
-      <div class="award-card">
-        <div class="icon">🏥</div>
-        <h4>Healthcare</h4>
-        <p>Doctors & Researchers</p>
-      </div>
-
-      <div class="award-card">
-        <div class="icon">⚖️</div>
-        <h4>Law & Politics</h4>
-        <p>Public Leaders</p>
-      </div>
-
-      <div class="award-card">
-        <div class="icon">📈</div>
-        <h4>Business</h4>
-        <p>Entrepreneurs</p>
-      </div>
-
-      <div class="award-card">
-        <div class="icon">🎓</div>
-        <h4>Education</h4>
-        <p>Academics</p>
-      </div>
-
+    <div style="text-align:center; margin-top:3rem;" class="reveal">
+      <a href="#" class="btn btn-gold" style="font-size:15px; padding:16px 40px;">Submit a Nomination</a>
     </div>
-
-    <a href="#" class="btn btn-primary">
-      Submit a Nomination
-    </a>
-
   </div>
+</section>
 
+<!-- PRIDE TV -->
+<section class="pridetv-section" id="pridetv">
+  <div class="section-wrap pridetv-grid">
+    <div class="pridetv-video reveal">
+      <img src="https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?q=80&w=1400&auto=format&fit=crop" alt="Pride TV">
+      <div class="pridetv-play">
+        <div class="play-btn">▶</div>
+      </div>
+    </div>
+    <div class="pridetv-text">
+      <div class="section-eyebrow">
+        <div class="line" style="background:var(--gold)"></div>
+        <span>Pride TV</span>
+      </div>
+      <h2 class="section-h2 reveal" style="color:white;">Inspiring stories, on screen.</h2>
+      <p class="section-desc reveal reveal-delay-1">Watch our exclusive documentary series on Pakistanis making history across the globe.</p>
+
+      <div class="pridetv-episodes">
+        <div class="episode reveal reveal-delay-1">
+          <div class="ep-thumb" style="background-image:url('https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?q=80&w=400&auto=format&fit=crop');"></div>
+          <div class="ep-info">
+            <h5>The Surgeon Who Changed Cardiology</h5>
+            <span>Episode 1 · 24 min</span>
+          </div>
+        </div>
+        <div class="episode reveal reveal-delay-2">
+          <div class="ep-thumb" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop');"></div>
+          <div class="ep-info">
+            <h5>Barrister Breaking Barriers in Britain</h5>
+            <span>Episode 2 · 18 min</span>
+          </div>
+        </div>
+        <div class="episode reveal reveal-delay-3">
+          <div class="ep-thumb" style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=400&auto=format&fit=crop');"></div>
+          <div class="ep-info">
+            <h5>From Lahore to Silicon Valley</h5>
+            <span>Episode 3 · 31 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAKISTAN EXPERIENCES AS A FEMALE -->
+<section class="female-section">
+  <div class="section-wrap female-grid">
+    <div class="female-img-stack reveal">
+      <div class="female-main-img" style="background-image:url('https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1200&auto=format&fit=crop');"></div>
+      <div class="female-float">
+        <span>Editorial Series</span>
+        Untold Stories
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="section-eyebrow"><div class="line"></div><span>Special Feature</span></div>
+      <h2 class="section-h2">Pakistan — Experiences as a Female</h2>
+      <p class="section-desc" style="margin-bottom:1.4rem;">Pakistani women are doctors, engineers, mountaineers, lawyers, entrepreneurs, artists, and leaders. Their stories challenge every stereotype and reveal the true, complex, and inspiring face of modern Pakistan.</p>
+      <p class="section-desc" style="margin-bottom:2rem;">From the boardrooms of Karachi to the peaks of the Karakoram, this is their Pakistan — told in their own words.</p>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#" class="btn btn-gold">Read Their Stories →</a>
+        <a href="#" class="btn btn-green">Submit Your Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PICTORIAL NEWS -->
+<section class="pn-section">
+  <div class="pn-inner">
+    <div class="pn-brand reveal">
+      <div class="pn-logo">
+        <span class="pn-p">P</span><span class="pn-n">N</span>
+      </div>
+      <div class="pn-wordmark">Pictorial News</div>
+      <p class="pn-desc">Pakistan's premier visual news platform — stories told through stunning photography and documentary journalism from across the nation.</p>
+      <a href="#" class="btn btn-gold" style="margin-top:1.5rem; display:inline-flex;">Visit PictorialNews →</a>
+    </div>
+    <div class="pn-stories reveal reveal-delay-1">
+      <div class="pn-story">
+        <div class="pn-story-thumb" style="background-image:url('https://images.unsplash.com/photo-1598976616523-1c4c26c3acca?q=80&w=400&auto=format&fit=crop');"></div>
+        <div class="pn-story-info">
+          <span>August 14, 2026 · National</span>
+          <h5>Top 15 People On 14th August — Nahari Cities</h5>
+        </div>
+      </div>
+      <div class="pn-story">
+        <div class="pn-story-thumb" style="background-image:url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=400&auto=format&fit=crop');"></div>
+        <div class="pn-story-info">
+          <span>July 2026 · Travel</span>
+          <h5>Pakistan Experiences as a Female — Photo Essay</h5>
+        </div>
+      </div>
+      <div class="pn-story">
+        <div class="pn-story-thumb" style="background-image:url('https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?q=80&w=400&auto=format&fit=crop');"></div>
+        <div class="pn-story-info">
+          <span>June 2026 · Heritage</span>
+          <h5>The Ancient Forts of Khyber Pakhtunkhwa</h5>
+        </div>
+      </div>
+      <div class="pn-story">
+        <div class="pn-story-thumb" style="background-image:url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=400&auto=format&fit=crop');"></div>
+        <div class="pn-story-info">
+          <span>May 2026 · Community</span>
+          <h5>Lahore Food Street — A Visual Journey</h5>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- BLOG -->
-
-<section>
-
-  <div class="section-inner">
-
-    <div class="reveal">
-
-      <div class="section-tag">
-        <div class="line"></div>
-        <span>Latest Stories</span>
+<section class="blog-section" id="blog">
+  <div class="section-wrap">
+    <div class="section-header-row reveal">
+      <div>
+        <div class="section-eyebrow"><div class="line"></div><span>Pride Blog</span></div>
+        <h2 class="section-h2">Latest Stories</h2>
       </div>
-
-      <h2 class="section-title">
-        Pride Blog
-      </h2>
-
+      <a href="#" class="view-all">All stories →</a>
     </div>
 
     <div class="blog-grid">
-
-      <div class="blog-card blog-main reveal">
-
-        <div class="blog-image"
-          style="background-image:url('https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1400&auto=format&fit=crop');">
-        </div>
-
+      <div class="blog-card blog-main-card reveal">
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1400&auto=format&fit=crop');"></div>
         <div class="blog-body">
-
-          <div class="blog-tag">
-            Travel · Pakistan
-          </div>
-
-          <h3>
-            Northern Pakistan is becoming one of the world’s top adventure destinations
-          </h3>
-
-          <p>
-            International travelers are finally discovering the breathtaking landscapes Pakistanis have cherished for generations.
-          </p>
-
-          <div class="blog-date">
-            May 18, 2026
-          </div>
-
+          <div class="blog-cat">Travel · Pakistan</div>
+          <h3>Northern Pakistan is becoming one of the world's top adventure destinations</h3>
+          <p>International travellers are finally discovering the breathtaking landscapes Pakistanis have cherished for generations — from Hunza to Skardu.</p>
+          <div class="blog-meta">May 18, 2026 · 8 min read</div>
         </div>
-
       </div>
-
-      <div class="blog-card reveal">
-
-        <div class="blog-image"
-          style="background-image:url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop');">
-        </div>
-
+      <div class="blog-card reveal reveal-delay-1">
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop');"></div>
         <div class="blog-body">
-
-          <div class="blog-tag">
-            Science
-          </div>
-
-          <h3>
-            Pakistani researchers improve solar cell efficiency
-          </h3>
-
-          <div class="blog-date">
-            May 12, 2026
-          </div>
-
+          <div class="blog-cat">Science</div>
+          <h3>Pakistani researchers improve solar cell efficiency</h3>
+          <div class="blog-meta">May 12, 2026</div>
         </div>
-
       </div>
-
-      <div class="blog-card reveal">
-
-        <div class="blog-image"
-          style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop');">
-        </div>
-
+      <div class="blog-card reveal reveal-delay-2">
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop');"></div>
         <div class="blog-body">
-
-          <div class="blog-tag">
-            Community
-          </div>
-
-          <h3>
-            Pakistani diaspora raises major flood relief funding
-          </h3>
-
-          <div class="blog-date">
-            May 8, 2026
-          </div>
-
+          <div class="blog-cat">Community</div>
+          <h3>Pakistani diaspora raises major flood relief funding</h3>
+          <div class="blog-meta">May 8, 2026</div>
         </div>
-
       </div>
-
     </div>
-
   </div>
+</section>
 
+<!-- TOP STORIES -->
+<section class="top-stories-section">
+  <div class="section-wrap">
+    <div class="section-header-row reveal">
+      <div>
+        <div class="section-eyebrow"><div class="line"></div><span>Trending</span></div>
+        <h2 class="section-h2">Top Stories</h2>
+      </div>
+      <a href="#" class="view-all">All stories →</a>
+    </div>
+    <div class="top-stories-grid">
+      <div class="ts-card reveal reveal-delay-1">
+        <div class="ts-num">01</div>
+        <div class="ts-info">
+          <div class="ts-cat">Finance</div>
+          <h5>HSBC Islamabad Digital Finance Innovation Summit</h5>
+          <span>May 28, 2026</span>
+        </div>
+      </div>
+      <div class="ts-card reveal reveal-delay-2">
+        <div class="ts-num">02</div>
+        <div class="ts-info">
+          <div class="ts-cat">Diaspora</div>
+          <h5>Pakistani-American doctors pioneer new treatment in New York</h5>
+          <span>May 24, 2026</span>
+        </div>
+      </div>
+      <div class="ts-card reveal reveal-delay-3">
+        <div class="ts-num">03</div>
+        <div class="ts-info">
+          <div class="ts-cat">Education</div>
+          <h5>Pakistani student wins Rhodes Scholarship to Oxford</h5>
+          <span>May 21, 2026</span>
+        </div>
+      </div>
+      <div class="ts-card reveal reveal-delay-1">
+        <div class="ts-num">04</div>
+        <div class="ts-info">
+          <div class="ts-cat">Science</div>
+          <h5>Lahore University researchers breakthrough in AI diagnostics</h5>
+          <span>May 19, 2026</span>
+        </div>
+      </div>
+      <div class="ts-card reveal reveal-delay-2">
+        <div class="ts-num">05</div>
+        <div class="ts-info">
+          <div class="ts-cat">Culture</div>
+          <h5>Pakistani fashion week draws international designers to Karachi</h5>
+          <span>May 15, 2026</span>
+        </div>
+      </div>
+      <div class="ts-card reveal reveal-delay-3">
+        <div class="ts-num">06</div>
+        <div class="ts-info">
+          <div class="ts-cat">Sports</div>
+          <h5>Pakistani squash player ranks world #3 for the first time</h5>
+          <span>May 10, 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- NEWSLETTER -->
-
-<section class="newsletter">
-
+<section class="newsletter-section">
   <div class="newsletter-inner reveal">
-
-    <h2>
-      Stay connected to the pride.
-    </h2>
-
-    <p>
-      Get monthly updates featuring inspiring Pakistanis, major achievements, and upcoming events.
-    </p>
-
-    <div class="newsletter-form">
-
-      <input type="email" placeholder="Enter your email address">
-
-      <button>
-        Subscribe
-      </button>
-
+    <div class="section-eyebrow" style="justify-content:center; margin-bottom:1rem;">
+      <div class="line"></div><span>Stay Connected</span>
     </div>
-
+    <h2>Stay connected to the pride.</h2>
+    <p>Get monthly updates featuring inspiring Pakistanis, major achievements, upcoming events and brand new profiles.</p>
+    <div class="nl-form">
+      <input type="email" placeholder="Enter your email address">
+      <button>Subscribe</button>
+    </div>
   </div>
-
 </section>
 
 <!-- FOOTER -->
-
 <footer>
-
   <div class="footer-grid">
-
     <div>
-
-      <h4>Pride of Pakistan</h4>
-
-      <p>
-        Showcasing the achievements of Pakistanis worldwide since 2008 through stories of resilience, innovation, and pride.
-      </p>
-
+      <div class="footer-brand-logo">
+        <div class="footer-brand-icon">🇵🇰</div>
+        <span class="footer-brand-text">Pride of Pakistan</span>
+      </div>
+      <p>Showcasing the achievements of Pakistanis worldwide since 2008 — through stories of resilience, innovation, and national pride.</p>
     </div>
-
     <div>
-
       <h4>Explore</h4>
-
-      <a href="#">Who Is Who</a>
-      <a href="#">Our Pakistan</a>
-      <a href="#">Products</a>
-      <a href="#">Cities</a>
-
+      <a href="#who">Who Is Who</a>
+      <a href="#ourpak">Our Pakistan</a>
+      <a href="#products">Products</a>
+      <a href="#cities">Cities</a>
     </div>
-
     <div>
-
       <h4>Participate</h4>
-
-      <a href="#">Submit Profile</a>
-      <a href="#">Nominate</a>
-      <a href="#">List Business</a>
+      <a href="#submit">Submit Profile</a>
+      <a href="#awards">Nominate</a>
+      <a href="#biz">List Business</a>
       <a href="#">Join Team</a>
-
     </div>
-
     <div>
-
       <h4>Organisation</h4>
-
-      <a href="#">About</a>
+      <a href="#">About Us</a>
       <a href="#">Contact</a>
       <a href="#">Advertise</a>
-      <a href="#">Privacy</a>
-
+      <a href="#">Privacy Policy</a>
     </div>
-
   </div>
-
   <div class="footer-bottom">
-
-    <p>
-      © 2026 Pride of Pakistan. All rights reserved.
-    </p>
-
-    <p>
-      Facebook · LinkedIn · YouTube
-    </p>
-
+    <p>© 2026 Pride of Pakistan. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="#" class="social-pill">Facebook</a>
+      <a href="#" class="social-pill">LinkedIn</a>
+      <a href="#" class="social-pill">YouTube</a>
+      <a href="#" class="social-pill">Instagram</a>
+    </div>
   </div>
-
 </footer>
 
-<!-- REVEAL JS -->
-
 <script>
-
-const observer = new IntersectionObserver((entries)=>{
-
-  entries.forEach(entry=>{
-
-    if(entry.isIntersecting){
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
       entry.target.classList.add('show');
     }
-
   });
+}, { threshold: 0.08 });
 
-},{
-  threshold:0.1
-});
-
-document.querySelectorAll('.reveal').forEach((el)=>{
-  observer.observe(el);
-});
-
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
