@@ -1,0 +1,692 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── ENUMS ───────────────────────────────────────────────────────────────────
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum Role {
+  ADMIN
+}
+
+// ─── AUTH ────────────────────────────────────────────────────────────────────
+
+model LegacyAdmin {
+  adminid  Int     @id @default(autoincrement())
+  username String? @db.VarChar(50)
+  password String? @db.VarChar(255)
+  status   Int?
+
+  @@map("admin")
+}
+
+model LegacyUser {
+  id         Int     @id @default(autoincrement())
+  username   String? @db.VarChar(255)
+  email      String? @db.VarChar(255)
+  password   String? @db.VarChar(255)
+  name       String? @db.VarChar(255)
+  status     Int?
+  created_on String? @db.VarChar(50)
+  country    String? @db.VarChar(100)
+  city       String? @db.VarChar(100)
+
+  @@map("users")
+}
+
+model LegacyAdminLog {
+  id        Int    @id @default(autoincrement())
+  username  String @db.VarChar(250)
+  entrydate String @db.VarChar(250)
+  dept      String @db.VarChar(250)
+  ip        String @db.VarChar(250)
+
+  @@map("adminlog")
+}
+
+model User {
+  id       String  @id @default(cuid())
+  email    String  @unique
+  password String?
+  role     Role    @default(ADMIN)
+
+  sessions Session[]
+  accounts Account[]
+}
+
+model Account {
+  id                String @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+// ─── NEWSLETTER ──────────────────────────────────────────────────────────────
+
+model Newsletter {
+  id           Int    @id @default(autoincrement())
+  email        String @db.VarChar(255)
+  email_status Int
+  status       Int
+
+  @@map("newsletter")
+}
+
+// ─── NEWS ────────────────────────────────────────────────────────────────────
+
+model News {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  description String @db.Text
+  shortdesc   String @db.Text
+  smallimage  String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+  status      Int
+  imageurl    String @db.VarChar(255)
+
+  @@map("news")
+}
+
+model LatestNews {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  shortdesc   String   @db.Text
+  smallimage  String   @db.VarChar(255)
+  org_img     String   @db.VarChar(250)
+  status      Int
+  date_time   DateTime @default(now())
+  post_by     Int
+
+  @@map("latestnews")
+}
+
+// ─── HALL OF FAME ─────────────────────────────────────────────────────────────
+
+model HallOfFame {
+  id             Int     @id @default(autoincrement())
+  title          String? @db.VarChar(255)
+  categoryid     Int?
+  description    String? @db.Text
+  status         Int?
+  feature        Int?
+  thumb_img      String? @db.VarChar(200)
+  image          String? @db.VarChar(255)
+  org_img        String? @db.VarChar(250)
+  Profession     String? @db.VarChar(255)
+  d              String  @db.VarChar(255)
+  m              String  @db.VarChar(255)
+  y              Int
+  address        String? @db.VarChar(255)
+  City           String? @db.VarChar(255)
+  Country        String? @db.VarChar(255)
+  Email          String? @db.VarChar(255)
+  Telephone      String? @db.VarChar(255)
+  Mobile         String? @db.VarChar(255)
+  Interests      String? @db.VarChar(255)
+  shortdesc      String? @db.Text
+  user_id        Int
+  meta_title     String? @db.VarChar(255)
+  meta_desc      String? @db.VarChar(255)
+  meta_keyword   String? @db.VarChar(255)
+  cat            Int     @default(1)
+  claim          Int     @default(0)
+  phonenumber    String? @db.VarChar(20)
+  claim_comments String? @db.Text
+  claim_by       Int?
+  facebook       String  @db.Text
+  linkedin       String  @db.Text
+  twitter        String  @db.Text
+  video_intro    String  @db.Text
+  edu_degree     String  @db.VarChar(255)
+  edu_year       String  @db.VarChar(5)
+  edu_institute  String  @db.VarChar(500)
+  edu_desc       String  @db.Text
+  contact_allow  Int
+  comments_alow  Int
+  allow_fb_page  Int
+
+  @@map("halloffame")
+}
+
+model HallCategory {
+  categoryid   Int    @id @default(autoincrement())
+  categoryname String @db.VarChar(255)
+  status       Int
+
+  @@map("hallcategory")
+}
+
+model HallOfFameRating {
+  i          Int    @id @default(autoincrement())
+  id         Int
+  rating     Int
+  ip         String @db.VarChar(50)
+  dateposted String @db.VarChar(100)
+  timestamp  Int
+
+  @@map("ratings")
+}
+
+// ─── BUSINESS DIRECTORY ───────────────────────────────────────────────────────
+
+model Business {
+  id                  Int    @id @default(autoincrement())
+  user_id             Int
+  busniss_id          Int
+  title               String @db.VarChar(255)
+  name                String @db.VarChar(255)
+  l_name              String @db.VarChar(255)
+  email               String @db.VarChar(255)
+  company_name        String @db.VarChar(255)
+  description         String @db.Text
+  shortdesc           String @db.VarChar(255)
+  country             String @db.VarChar(255)
+  city                String @db.VarChar(255)
+  address             String @db.VarChar(255)
+  phone               String @db.VarChar(255)
+  site_url            String @db.VarChar(255)
+  no_of_emplys        String @db.VarChar(255)
+  company_description String @db.Text
+  keywords            String @db.Text
+  status              Int
+  feature             Int
+  image               String @db.VarChar(255)
+  org_img             String @db.VarChar(300)
+  lng                 String @db.VarChar(255)
+  lat                 String @db.VarChar(255)
+
+  @@map("busniss")
+}
+
+model BusinessCategory {
+  id           Int      @id @default(autoincrement())
+  busniss_name String   @db.VarChar(255)
+  shortdesc    String   @db.VarChar(255)
+  image        String   @db.VarChar(255)
+  org_img      String   @db.VarChar(300)
+  date         DateTime @default(now())
+  status       String   @db.VarChar(20)
+
+  @@map("busniss_category")
+}
+// ─── OUR PAKISTAN ─────────────────────────────────────────────────────────────
+
+model OurPakistan {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  description String @db.Text
+  status      Int
+  feature     Int
+  image       String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+
+  @@map("ourpakistan")
+}
+
+model OurPakistanCategory {
+  categoryid   Int    @id @default(autoincrement())
+  categoryname String @db.VarChar(255)
+  status       Int
+
+  @@map("pakcategoy")
+}
+
+// ─── PAKISTANIS ABROAD ────────────────────────────────────────────────────────
+
+model PakAbroad {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  categoryid  Int
+  description String @db.Text
+  shortdesc   String @db.Text
+  status      Int
+  feature     Int
+  image       String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+  Profession  String @db.VarChar(255)
+  d           String @db.VarChar(255)
+  m           String @db.VarChar(255)
+  y           Int
+  address     String @db.VarChar(255)
+  City        String @db.VarChar(255)
+  Country     String @db.VarChar(255)
+  email       String @db.VarChar(255)
+  phone       String @db.VarChar(255)
+  interests   String @db.VarChar(255)
+  user_id     Int
+
+  @@map("pakabroad")
+}
+
+model PakAbroadCategory {
+  categoryid   Int    @id @default(autoincrement())
+  categoryname String @db.VarChar(255)
+  status       Int
+
+  @@map("pak_prod_categoy")
+}
+
+model PakAbroadRating {
+  i          Int    @id @default(autoincrement())
+  id         Int
+  rating     Int
+  ip         String @db.VarChar(50)
+  dateposted String @db.VarChar(100)
+  timestamp  Int
+
+  @@map("pkabroadratings")
+}
+
+// ─── PAKISTANI PRODUCTS ───────────────────────────────────────────────────────
+
+model PakProduct {
+  id           Int    @id @default(autoincrement())
+  title        String @db.VarChar(255)
+  categoryid   Int
+  description  String @db.Text
+  status       Int
+  feature      Int
+  image        String @db.VarChar(255)
+  org_img      String @db.VarChar(250)
+  shortdesc    String @db.Text
+  Profession   String @db.VarChar(255)
+  d            String @db.VarChar(255)
+  m            String @db.VarChar(255)
+  y            Int
+  address      String @db.VarChar(255)
+  City         String @db.VarChar(255)
+  Country      Int
+  email        String @db.VarChar(255)
+  phone        String @db.VarChar(255)
+  interests    String @db.VarChar(255)
+  user_id      Int
+  meta_title   String @db.VarChar(255)
+  meta_desc    String @db.VarChar(255)
+  meta_keyword String @db.VarChar(255)
+
+  @@map("pakproducts")
+}
+
+// ─── WOMEN SECTION ────────────────────────────────────────────────────────────
+
+model Women {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  categoryid  Int
+  description String @db.Text
+  shortdesc   String @db.Text
+  status      Int
+  feature     Int
+  image       String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+  Profession  String @db.VarChar(255)
+  d           String @db.VarChar(255)
+  m           String @db.VarChar(255)
+  y           Int
+  address     String @db.VarChar(255)
+  City        String @db.VarChar(255)
+  Country     Int
+  email       String @db.VarChar(255)
+  phone       String @db.VarChar(255)
+  interests   String @db.VarChar(255)
+  user_id     Int
+
+  @@map("women")
+}
+
+model WomenCorner {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  categoryid  Int
+  description String @db.Text
+  shortdesc   String @db.Text
+  status      Int
+  feature     Int
+  image       String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+  Profession  String @db.VarChar(255)
+  d           String @db.VarChar(255)
+  m           String @db.VarChar(255)
+  y           Int
+  address     String @db.VarChar(255)
+  City        String @db.VarChar(255)
+  Country     Int
+  email       String @db.VarChar(255)
+  phone       String @db.VarChar(255)
+  interests   String @db.VarChar(255)
+  user_id     Int
+  cat         Int    @default(4)
+
+  @@map("women_corner")
+}
+
+model WomenCategory {
+  categoryid   Int    @id @default(autoincrement())
+  categoryname String @db.VarChar(255)
+  status       Int
+
+  @@map("womencat")
+}
+
+model WomenCornerCategory {
+  categoryid   Int    @id @default(autoincrement())
+  categoryname String @db.VarChar(255)
+  status       Int
+
+  @@map("womencat_corner")
+}
+// ─── RATINGS ────────────────────────────────────────────────────────────────
+
+model WomenRating {
+  i          Int    @id @default(autoincrement())
+  id         Int
+  rating     Int
+  ip         String @db.VarChar(50)
+  dateposted String @db.VarChar(100)
+  timestamp  Int
+
+  @@map("pkwomenratings")
+}
+
+model WomenCornerRating {
+  i          Int    @id @default(autoincrement())
+  id         Int
+  rating     Int
+  ip         String @db.VarChar(50)
+  dateposted String @db.VarChar(100)
+  timestamp  Int
+
+  @@map("crwomenratings")
+}
+
+// ─── VIDEOS ──────────────────────────────────────────────────────────────────
+
+model FfmpegVideo {
+  id            Int    @id @default(autoincrement())
+  vid_cat_id    Int
+  vid_user      String @db.VarChar(255)
+  vid_title     String @db.VarChar(255)
+  vid_desc      String @db.VarChar(255)
+  vid_file_name String @db.VarChar(255)
+  image_file    String @db.VarChar(255)
+  vid_usr_ip    String @db.VarChar(255)
+  status        String @db.VarChar(20)
+  feature       Int
+  thumb_up      String @db.Text
+
+  @@map("ffmpeg_videos")
+}
+
+model Video {
+  video_id         BigInt   @id @default(autoincrement())
+  title            String   @db.VarChar(150)
+  description      String   @db.Text
+  tags             String   @db.VarChar(255)
+  category         Int
+  video_embed_code String   @db.Text
+  ads_embed_code   String   @db.Text
+  status           String   @db.VarChar(10)
+  featured         String   @db.VarChar(10)
+  datetime         DateTime @default(now())
+  seo_title        String   @db.VarChar(150)
+  seo_keywords     String   @db.VarChar(255)
+  seo_description  String   @db.VarChar(255)
+  views            BigInt
+  server           String   @db.VarChar(15)
+  thumb_url        String   @db.VarChar(150)
+
+  @@map("videos")
+}
+
+model VideoCategory {
+  categoryid   Int     @id @default(autoincrement())
+  categoryname String? @db.VarChar(50)
+  status       Int?
+  photoimage   String  @db.VarChar(255)
+  description  String  @db.Text
+
+  @@map("video_catregories")
+}
+
+// ─── LIVE TV ─────────────────────────────────────────────────────────────────
+
+model LiveTvCategory {
+  categoryid   Int     @id @default(autoincrement())
+  categoryname String? @db.VarChar(50)
+  status       Int?
+  photoimage   String  @db.VarChar(255)
+  description  String  @db.Text
+  catid        Int
+  temp         Int
+
+  @@map("livetvcat")
+}
+
+model LiveTvEpisode {
+  livetvid     Int     @id @default(autoincrement())
+  categoryid   Int
+  categoryname String? @db.VarChar(50)
+  status       Int?
+  photoimage   String  @db.VarChar(255)
+  video        String  @db.VarChar(300)
+  url          String  @db.Text
+  description  String  @db.Text
+
+  @@map("livetvcatdetails")
+}
+
+model LiveTv {
+  id       Int    @id @default(autoincrement())
+  imageurl String @db.Text
+  name     String @db.VarChar(255)
+  title    String @db.VarChar(255)
+  status   Int
+
+  @@map("live_tv")
+}
+
+// ─── BLOG ─────────────────────────────────────────────────────────────────────
+
+model Blog {
+  id          Int      @id @default(autoincrement())
+  blg_id      Int
+  title       String   @db.VarChar(255)
+  topic       String   @db.VarChar(255)
+  description String   @db.Text
+  shortdesc   String   @db.Text
+  image       String   @db.VarChar(255)
+  date        DateTime @default(now())
+  status      String   @db.VarChar(20)
+
+  @@map("blog")
+}
+
+model BlogCategory {
+  id            Int    @id @default(autoincrement())
+  category_name String @db.VarChar(255)
+  description   String @db.Text
+  status        String @db.VarChar(20)
+  image         String @db.VarChar(255)
+
+  @@map("blog_cat")
+}
+// ─── PHOTOS ───────────────────────────────────────────────────────────────────
+
+model PhotoAlbum {
+  id          Int    @id @default(autoincrement())
+  programid   Int
+  photoimage  String @db.Text
+  title       String @db.VarChar(255)
+  description String @db.Text
+  categoryid  Int
+  status      Int
+  fstatus     Int
+  mainstatus  Int
+  day         Int
+  month       Int
+  year        Int
+  date        String @db.VarChar(255)
+  user_id     Int
+
+  @@map("photoalbum")
+}
+
+model Photo {
+  photoid Int    @id @default(autoincrement())
+  title   String @db.VarChar(255)
+  albumid Int
+  image   String @db.Text
+  date    String @db.VarChar(255)
+  status  Int
+  hstatus Int
+
+  @@map("photos")
+}
+
+// ─── NATIONAL HEROES ──────────────────────────────────────────────────────────
+
+model NationalHero {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  categoryid  Int
+  description String @db.Text
+  shortdesc   String @db.Text
+  status      Int
+  feature     Int
+  image       String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+  cat         Int    @default(2)
+
+  @@map("nationalheroes")
+}
+
+// ─── STUDENT CORNER ───────────────────────────────────────────────────────────
+
+model StudentCorner {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  categoryid  Int
+  description String @db.Text
+  shortdesc   String @db.Text
+  status      Int
+  feature     Int
+  image       String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+  url         String @db.VarChar(255)
+  user_id     Int
+
+  @@map("studentcornerdetail")
+}
+
+model StudentCategory {
+  categoryid   Int    @id @default(autoincrement())
+  categoryname String @db.VarChar(255)
+  name         String @db.VarChar(255)
+  org_img      String @db.VarChar(250)
+  status       Int
+
+  @@map("studentcategory")
+}
+
+// ─── SPONSORS / TEAM ─────────────────────────────────────────────────────────
+
+model Sponsor {
+  id         Int    @id @default(autoincrement())
+  title      String @db.VarChar(255)
+  shortdesc  String @db.Text
+  smallimage String @db.VarChar(255)
+  status     Int
+
+  @@map("sponsors")
+}
+
+model PrideTeam {
+  id          Int    @id @default(autoincrement())
+  fullname    String @db.VarChar(50)
+  designation String @db.VarChar(255)
+  city        String @db.VarChar(100)
+  country     String @db.VarChar(100)
+  phone       String @db.VarChar(50)
+  email       String @db.VarChar(200)
+  image       String @db.VarChar(200)
+  status      Int
+  description String @db.Text
+
+  @@map("prideteam")
+}
+
+model PrideAwardTestimonial {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  description String @db.Text
+  smallimage  String @db.VarChar(255)
+  org_img     String @db.VarChar(250)
+  status      Int
+
+  @@map("pride_aword_testimonial")
+}
+
+// ─── SITE CONTENT ─────────────────────────────────────────────────────────────
+
+model SiteContent {
+  content_id  Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  des         String @db.Text
+  seotitle    String @db.VarChar(255)
+  seokeywords String @db.Text
+  seodesc     String @db.Text
+
+  @@map("site_contents")
+}
+
+model CompanyInfo {
+  id     Int    @id @default(autoincrement())
+  video  String @db.VarChar(255)
+  status String @db.VarChar(10)
+
+  @@map("company_info")
+}
+
+// ─── GEOGRAPHY ────────────────────────────────────────────────────────────────
+
+model Country {
+  id        Int    @id @default(autoincrement())
+  sortname  String @db.VarChar(3)
+  name      String @db.VarChar(150)
+  phonecode Int
+
+  @@map("countrylist")
+}
+
+model City {
+  id         Int    @id @default(autoincrement())
+  name       String @db.VarChar(255)
+  country_id Int
+
+  @@map("cities")
+}
