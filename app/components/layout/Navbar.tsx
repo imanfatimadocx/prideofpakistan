@@ -24,20 +24,20 @@ export default function Navbar() {
         {/* Logo */}
       <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 flex-shrink-0" onClick={() => setOpen(false)}>
   <Image
-    src="/logo5.png"
+    src="/logo-new1.jpeg"
     alt="Pride of Pakistan"
     className="flex-shrink-0 object-cover"
-    width={180}
-    height={180}
+    width={140}
+    height={140}
   />
-  <div className="flex flex-col leading-tight">
+  {/* <div className="flex flex-col leading-tight">
     <span className="font-display text-base lg:text-lg font-bold text-green -tracking-[0.01em]">
       Pride of Pakistan
     </span>
     <span className="text-[9px] lg:text-[10px] text-gold tracking-[.14em] uppercase font-semibold font-body">
       Celebrating Our Nation
     </span>
-  </div>
+  </div> */}
 </Link>
 
         {/* Desktop links */}
