@@ -23,7 +23,6 @@ export default function Footer() {
             <p className="text-[13px] text-white/50 leading-relaxed max-w-[260px] font-body">
               Celebrating the people, places, businesses, and culture that make Pakistan extraordinary.
             </p>
-            <p className="font-urdu text-xl text-white/[.22] [direction:rtl] mt-4">فخرِ پاکستان</p>
           </div>
 
           {/* Discover */}

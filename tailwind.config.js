@@ -26,7 +26,6 @@ module.exports = {
       fontFamily: {
         display: ["Playfair Display", "serif"],
         body: ["DM Sans", "sans-serif"],
-        urdu: ["Noto Nastaliq Urdu", "serif"],
       },
       keyframes: {
         fadeUp: {

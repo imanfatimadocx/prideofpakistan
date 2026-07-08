@@ -1,5 +1,9 @@
+'use client'
+
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+
 export interface ProfileCard {
   id: number
   title: string
@@ -8,83 +12,345 @@ export interface ProfileCard {
   Country?: string | null
   image?: string | null
   shortdesc?: string | null
-  categoryname?: string
+  categoryid?: number | null
+  categoryname?: string | null
+}
+
+export interface CategoryCard {
+  categoryid: number
+  categoryname: string
+  count: number
+}
+
+const ICON_MAP: [string, string][] = [
+  ['politi',       '🏛️'],
+  ['government',   '🏛️'],
+  ['business',     '💼'],
+  ['finance',      '💼'],
+  ['entrepreneur', '💼'],
+  ['art',          '🎨'],
+  ['culture',      '🎭'],
+  ['music',        '🎵'],
+  ['film',         '🎬'],
+  ['sport',        '🏏'],
+  ['cricket',      '🏏'],
+  ['athlete',      '🏆'],
+  ['science',      '🔬'],
+  ['tech',         '💻'],
+  ['engineer',     '⚙️'],
+  ['doctor',       '🩺'],
+  ['health',       '🩺'],
+  ['media',        '📺'],
+  ['journal',      '📰'],
+  ['education',    '🎓'],
+  ['academ',       '🎓'],
+  ['military',     '🎖️'],
+  ['defence',      '🎖️'],
+  ['army',         '🎖️'],
+  ['law',          '⚖️'],
+  ['legal',        '⚖️'],
+  ['social',       '🤝'],
+  ['philanthrop',  '❤️'],
+  ['religion',     '🕌'],
+  ['scholar',      '📚'],
+  ['women',        '👩'],
+  ['youth',        '🌟'],
+]
+
+function getCategoryIcon(name: string): string {
+  const lower = name.toLowerCase()
+  for (const [key, icon] of ICON_MAP) {
+    if (lower.includes(key)) return icon
+  }
+  return '🌟'
+}
+
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+
+function ProfileListModal({
+  category,
+  profiles,
+  onClose,
+}: {
+  category: CategoryCard
+  profiles: ProfileCard[]
+  onClose: () => void
+}) {
+  const [search, setSearch] = useState('')
+  const [activeLetter, setActiveLetter] = useState<string | null>(null)
+
+  const availableLetters = useMemo(() => {
+    const set = new Set(profiles.map((p) => p.title.charAt(0).toUpperCase()))
+    return set
+  }, [profiles])
+
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim()
+    return profiles
+      .filter((p) => {
+        const matchesSearch =
+          !q ||
+          p.title.toLowerCase().includes(q) ||
+          p.Profession?.toLowerCase().includes(q) ||
+          p.City?.toLowerCase().includes(q)
+        const matchesLetter =
+          !activeLetter || p.title.charAt(0).toUpperCase() === activeLetter
+        return matchesSearch && matchesLetter
+      })
+      .sort((a, b) => a.title.localeCompare(b.title))
+  }, [profiles, search, activeLetter])
+
+  const grouped = useMemo(() => {
+    const map: Record<string, ProfileCard[]> = {}
+    for (const p of filtered) {
+      const letter = p.title.charAt(0).toUpperCase()
+      if (!map[letter]) map[letter] = []
+      map[letter].push(p)
+    }
+    return map
+  }, [filtered])
+
+  const groupedLetters = Object.keys(grouped).sort()
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-12 pb-12 overflow-y-auto bg-black/60 backdrop-blur-sm"
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <div className="bg-white rounded-2xl w-full max-w-[960px] shadow-2xl flex flex-col max-h-[90vh]">
+
+        {/* Header */}
+        <div className="flex items-center justify-between flex-shrink-0 px-6 py-5 bg-white border-b border-border rounded-t-2xl">
+          <div>
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-1 font-body">Hall of Fame</p>
+            <h3 className="text-xl font-bold leading-tight font-display sm:text-2xl text-green">
+              {getCategoryIcon(category.categoryname)}&nbsp;{category.categoryname}
+            </h3>
+            <p className="text-xs text-ink-muted font-body mt-0.5">
+              {category.count} {category.count === 1 ? 'profile' : 'profiles'}
+            </p>
+          </div>
+          <button onClick={onClose} className="flex items-center justify-center text-2xl leading-none transition-colors rounded-full w-9 h-9 hover:bg-gray-100 text-ink-muted hover:text-ink-dark" aria-label="Close">×</button>
+        </div>
+
+        {/* Search */}
+        <div className="flex-shrink-0 px-6 py-4 border-b border-border">
+          <div className="relative">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted text-base select-none">🔍</span>
+            <input
+              type="text"
+              placeholder="Search by name, profession, or city…"
+              value={search}
+              onChange={(e) => { setSearch(e.target.value); setActiveLetter(null) }}
+              className="w-full border border-border rounded-lg pl-9 pr-9 py-2.5 text-sm font-body text-ink-dark placeholder:text-ink-muted focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+            />
+            {search && (
+              <button onClick={() => setSearch('')} className="absolute text-lg -translate-y-1/2 right-3 top-1/2 text-ink-muted hover:text-ink-dark">×</button>
+            )}
+          </div>
+        </div>
+
+        {/* Alphabet bar */}
+        {!search && (
+          <div className="flex-shrink-0 px-6 py-3 overflow-x-auto border-b border-border">
+            <div className="flex gap-1 min-w-max">
+              <button
+                onClick={() => setActiveLetter(null)}
+                className={`text-[11px] font-bold font-body px-2.5 py-1 rounded transition-colors ${activeLetter === null ? 'bg-green text-white' : 'text-ink-muted hover:text-green'}`}
+              >ALL</button>
+              {ALPHABET.map((letter) => {
+                const available = availableLetters.has(letter)
+                return (
+                  <button
+                    key={letter}
+                    onClick={() => available && setActiveLetter(letter === activeLetter ? null : letter)}
+                    disabled={!available}
+                    className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${
+                      activeLetter === letter ? 'bg-gold text-white'
+                      : available ? 'text-ink-dark hover:bg-gold-pale hover:text-gold'
+                      : 'text-ink-muted/30 cursor-not-allowed'
+                    }`}
+                  >{letter}</button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Results */}
+        <div className="flex-1 px-6 py-5 overflow-y-auto">
+          {filtered.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <span className="mb-3 text-4xl">🔍</span>
+              <p className="text-sm text-ink-muted font-body">No profiles match your search.</p>
+              <button onClick={() => { setSearch(''); setActiveLetter(null) }} className="mt-3 text-sm font-semibold text-gold font-body hover:underline">Clear filters</button>
+            </div>
+          ) : (
+            <div className="space-y-7">
+              {groupedLetters.map((letter) => (
+                <div key={letter}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="flex-shrink-0 text-lg font-bold font-display text-green w-7">{letter}</span>
+                    <div className="flex-1 h-px bg-border" />
+                    <span className="text-[11px] text-ink-muted font-body flex-shrink-0">{grouped[letter].length}</span>
+                  </div>
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    {grouped[letter].map((p) => (
+                      <Link
+                        key={p.id}
+                        href={`/who-is-who/${p.id}`}
+                        onClick={onClose}
+                        className="flex items-center gap-3.5 p-3.5 rounded-xl border border-border hover:border-gold hover:shadow-md transition-all group no-underline"
+                      >
+                        {/* Square avatar */}
+                        {p.image ? (
+                          <Image src={p.image} alt={p.title} width={52} height={52}
+                            className="flex-shrink-0 object-cover object-top w-12 h-12 transition-all rounded-lg ring-2 ring-border group-hover:ring-gold" />
+                        ) : (
+                          <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white transition-all rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-gold">
+                            {p.title.charAt(0).toUpperCase()}
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold leading-tight truncate transition-colors text-ink-dark font-display group-hover:text-green">{p.title}</p>
+                          {p.Profession && <p className="text-xs text-ink-muted font-body truncate mt-0.5">{p.Profession}</p>}
+                          {(p.City || p.Country) && (
+                            <p className="text-[11px] text-ink-muted font-body mt-0.5">📍 {[p.City, p.Country].filter(Boolean).join(', ')}</p>
+                          )}
+                        </div>
+                        <span className="flex-shrink-0 text-sm transition-opacity opacity-0 text-gold group-hover:opacity-100">→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="flex items-center justify-between flex-shrink-0 px-6 py-4 border-t border-border bg-cream rounded-b-2xl">
+          <p className="text-xs text-ink-muted font-body">
+            Showing <span className="font-semibold text-ink-dark">{filtered.length}</span> of{" "}
+            <span className="font-semibold text-ink-dark">{category.count}</span> profiles
+          </p>
+          <Link href={`/who-is-who?category=${category.categoryid}`} onClick={onClose} className="text-xs font-semibold text-gold hover:underline font-body">
+            View full page →
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 interface Props {
   profiles: ProfileCard[]
+  categories: CategoryCard[]
 }
 
-export default function WhoIsWhoSection({ profiles }: Props) {
+export default function WhoIsWhoSection({ profiles, categories }: Props) {
+  const [activeCategory, setActiveCategory] = useState<CategoryCard | null>(null)
+
+  // Top 5 categories by count
+  const topCategories = useMemo(
+    () => [...categories].sort((a, b) => b.count - a.count).slice(0, 5),
+    [categories]
+  )
+
+  // First profile image per category
+  const categoryFirstImage = useMemo(() => {
+    const map: Record<number, string | null> = {}
+    for (const cat of topCategories) {
+      const first = profiles.find((p) => p.categoryid === cat.categoryid && p.image)
+      map[cat.categoryid] = first?.image ?? null
+    }
+    return map
+  }, [topCategories, profiles])
+
+  const activeProfiles = useMemo(
+    () => activeCategory ? profiles.filter((p) => p.categoryid === activeCategory.categoryid) : [],
+    [profiles, activeCategory]
+  )
+
   return (
-    <section className="py-12 border-t bg-cream sm:py-16 lg:py-20 border-border" id="who-is-who">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
-        {/* Header */}
-        <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
-          <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
-              Hall of Fame
-            </p>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
-              Who Is Who
-            </h2>
-            <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
-          </div>
-          <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
-            View All →
-          </Link>
-        </div>
+    <>
+      <section className="py-12 border-t bg-cream sm:py-16 lg:py-20 border-border" id="who-is-who">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
 
-        {/* Strip: horizontal scroll on mobile, grid on desktop */}
-        <div className="flex gap-4 px-4 pb-2 -mx-4 overflow-x-auto sm:grid sm:grid-cols-3 lg:grid-cols-5 sm:gap-5 sm:overflow-visible sm:pb-0 sm:mx-0 sm:px-0 snap-x snap-mandatory sm:snap-none">
-          {profiles.slice(0, 5).map((p) => (
-            <Link
-              key={p.id}
-              href={`/who-is-who/${p.id}`}
-              className="bg-white border border-border rounded-xl p-5 sm:p-6 no-underline flex flex-col items-center text-center transition-all hover:border-gold hover:-translate-y-1 hover:shadow-xl flex-shrink-0 w-[200px] sm:w-auto snap-start"
-            >
-              {/* Avatar */}
-              <div className="relative mb-4 group">
-                {p.image ? (
-                  <Image src={p.image} alt={p.title} width={80} height={80} className="block object-cover object-top w-16 h-16 rounded-full sm:w-20 sm:h-20" />
-                ) : (
-                  <div className="flex items-center justify-center w-16 h-16 text-2xl font-bold text-white rounded-full sm:w-20 sm:h-20 bg-green font-display sm:text-3xl">
-                    {p.title.charAt(0).toUpperCase()}
-                  </div>
-                )}
-              </div>
-
-              {/* Info */}
-              {p.categoryname && (
-                <span className="inline-block bg-gold-pale text-gold text-[10px] font-bold px-2.5 py-0.5 rounded mb-2 tracking-[.08em] uppercase font-body">
-                  {p.categoryname}
-                </span>
-              )}
-              <h3 className="mb-1 text-sm font-bold leading-tight font-display sm:text-base text-ink-dark">
-                {p.title}
-              </h3>
-              {p.Profession && (
-                <p className="text-[11px] sm:text-xs text-ink-muted font-body mb-1 line-clamp-1">
-                  {p.Profession}
-                </p>
-              )}
-              {(p.City || p.Country) && (
-                <p className="text-[10px] sm:text-[11px] text-ink-muted font-body mb-2">
-                  📍 {[p.City, p.Country].filter(Boolean).join(', ')}
-                </p>
-              )}
-              {p.shortdesc && (
-                <p className="text-[11px] sm:text-xs text-ink-muted leading-relaxed font-body flex-1 line-clamp-3">
-                  {p.shortdesc.replace(/<[^>]*>/g, '').slice(0, 100)}…
-                </p>
-              )}
-              <span className="mt-3.5 text-[11px] sm:text-xs text-gold font-semibold font-body">
-                Read Profile →
-              </span>
+          {/* Header */}
+          <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
+            <div>
+              <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Hall of Fame</p>
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Who Is Who</h2>
+              <p className="text-sm text-ink-muted font-body mt-2 max-w-[480px]">
+                Browse outstanding Pakistanis by category. Click any category to explore profiles.
+              </p>
+              <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+            </div>
+            <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
+              View All →
             </Link>
-          ))}
+          </div>
+
+          {/* Category cards — top 5, square image of first profile */}
+          {topCategories.length === 0 ? (
+            <p className="text-sm text-ink-muted font-body">No categories available.</p>
+          ) : (
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 sm:gap-4">
+              {topCategories.map((cat) => {
+                const previewImage = categoryFirstImage[cat.categoryid]
+                return (
+                  <button
+                    key={cat.categoryid}
+                    onClick={() => setActiveCategory(cat)}
+                    className="flex flex-col overflow-hidden text-left transition-all duration-200 bg-white border cursor-pointer group rounded-xl border-border hover:border-gold hover:shadow-xl hover:-translate-y-1"
+                  >
+                    {/* Square image area */}
+                    <div className="relative w-full overflow-hidden aspect-square bg-green/10">
+                      {previewImage ? (
+                        <Image
+                          src={previewImage}
+                          alt={cat.categoryname}
+                          fill
+                          className="object-top transition-transform duration-300 object-fit group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center w-full h-full bg-green/10">
+                          <span className="text-8xl sm:text-5xl">{getCategoryIcon(cat.categoryname)}</span>
+                        </div>
+                      )}
+                      {/* Dark overlay with icon on hover */}
+                      <div className="absolute inset-0 flex items-center justify-center transition-colors duration-300 bg-green/0 group-hover:bg-green/40">
+                        <span className="text-3xl transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                          {getCategoryIcon(cat.categoryname)}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Info */}
+                    <div className="px-3.5 py-3 flex flex-col gap-1">
+                      <span className="text-xs sm:text-[13px] font-bold font-display text-ink-dark leading-snug group-hover:text-green transition-colors">
+                        {cat.categoryname}
+                      </span>
+                      <span className="text-[10px] font-semibold font-body text-gold">
+                        {cat.count} {cat.count === 1 ? 'profile' : 'profiles'} →
+                      </span>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+          )}
         </div>
-      </div>
-    </section>
+      </section>
+
+      {activeCategory && (
+        <ProfileListModal
+          category={activeCategory}
+          profiles={activeProfiles}
+          onClose={() => setActiveCategory(null)}
+        />
+      )}
+    </>
   )
 }
