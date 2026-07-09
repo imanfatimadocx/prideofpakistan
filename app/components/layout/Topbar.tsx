@@ -16,9 +16,9 @@ export default function Topbar() {
       </div>
 
       <div className="flex items-center gap-3 sm:gap-6">
-        <a href="#" className="hidden transition-colors text-white/55 hover:text-gold-light md:inline">Contact</a>
-        <a href="#" className="hidden transition-colors text-white/55 hover:text-gold-light md:inline">About</a>
-        <a href="#" className="hidden transition-colors text-white/55 hover:text-gold-light md:inline">Our Mission</a>
+        <a href="./contact" className="hidden transition-colors text-white/55 hover:text-gold-light md:inline">Contact</a>
+        <a href="./about" className="hidden transition-colors text-white/55 hover:text-gold-light md:inline">About</a>
+        <a href="./mission" className="hidden transition-colors text-white/55 hover:text-gold-light md:inline">Our Mission</a>
       </div>
     </div>
   )

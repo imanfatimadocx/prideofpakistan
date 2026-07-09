@@ -24,13 +24,13 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/about-us"
+                href="/about"
                 className="inline-flex items-center justify-center gap-2 bg-gold text-white px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-gold-light hover:text-ink-dark transition-colors"
               >
                 About Us →
               </Link>
               <Link
-                href="/about-us"
+                href="/mission"
                 className="inline-flex items-center justify-center gap-2 bg-white/40 text-gold px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-white/60 hover:text-ink-dark transition-colors"
               >
                 Our Mission →

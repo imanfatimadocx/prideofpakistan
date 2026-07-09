@@ -10,12 +10,18 @@ export default withAuth(
       authorized: ({ token }) => !!token,
     },
     pages: {
-      signIn: '/admin/login',
+      signIn: '/login',
     },
   }
 )
 
 export const config = {
-  // Protect everything under /admin EXCEPT /admin/login itself
-  matcher: ['/admin/((?!login).*)'],
+  matcher: [
+    // Admin routes (except login)
+    '/admin/((?!login).*)',
+    // Protected public routes
+    '/submit-profile',
+    '/list-business',
+    '/membership',
+  ],
 }

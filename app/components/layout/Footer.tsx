@@ -13,11 +13,11 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center flex-shrink-0 mb-4">
               <Image
-                src="/logo-new.jpeg"
+                src="/logo-new1.jpeg"
                 alt="Pride of Pakistan"
                 className="object-contain"
-                width={160}
-                height={160}
+                width={200}
+                height={200}
               />
             </Link>
             <p className="text-[13px] text-white/50 leading-relaxed max-w-[260px] font-body">
