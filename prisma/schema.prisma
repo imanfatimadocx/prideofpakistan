@@ -702,3 +702,15 @@ model PublicUser {
 
   @@map("public_users")
 }
+model Comment {
+  id          Int      @id @default(autoincrement())
+  content     String   @db.Text
+  authorName  String   @db.VarChar(100)
+  authorEmail String   @db.VarChar(255)
+  entityType  String   @db.VarChar(50)  // "business" | "product" | "profile" | "blog"
+  entityId    Int
+  approved    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@map("comments")
+}

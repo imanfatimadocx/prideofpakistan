@@ -75,10 +75,11 @@ export const metadata = {
 export default async function WhoIsWhoPage({
   searchParams,
 }: {
-  searchParams: { category?: string }
+  searchParams: Promise<{ category?: string }>
 }) {
   const { profiles, categories } = await getData()
-  const defaultCategory = searchParams.category ? Number(searchParams.category) : null
+  const { category } = await searchParams
+  const defaultCategory = category ? Number(category) : null
 
   return (
     <>

@@ -4,6 +4,7 @@ import { prisma } from '@/app/lib/prisma'
 import Topbar from '@/app/components/layout/Topbar'
 import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
+import CommentSection from '@/app/components/shared/CommentSection'
 
 export const revalidate = 60
 
@@ -26,18 +27,19 @@ export default async function BusinessDetailPage({ params }: Props) {
       <Topbar />
       <Navbar />
       <main>
+        {/* Hero */}
         <section className="py-12 bg-green sm:py-16">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12">
             <Link href="/business" className="inline-block mb-6 text-sm text-gold-light font-body hover:underline">
-              ← Back to Business Directory
+              Back to Business Directory
             </Link>
             <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-              <div className="flex items-center justify-center flex-shrink-0 w-24 h-24 overflow-hidden text-4xl sm:w-28 sm:h-28 bg-white/10 rounded-xl">
+              <div className="flex items-center justify-center flex-shrink-0 w-24 h-24 overflow-hidden border sm:w-28 sm:h-28 bg-white/10 border-white/20 rounded-xl">
                 {image ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={image} alt={biz.company_name} className="object-cover w-full h-full" />
                 ) : (
-                  <span>🏢</span>
+                  <div className="w-10 h-10 border-2 rounded-sm border-white/30" />
                 )}
               </div>
               <div className="text-center sm:text-left">
@@ -45,7 +47,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   {biz.company_name}
                 </h1>
                 <p className="mb-1 text-sm text-gold-light font-body">
-                  📍 {biz.city}, {biz.country}
+                  {biz.city}, {biz.country}
                 </p>
                 {biz.site_url && (
                   <a
@@ -62,14 +64,14 @@ export default async function BusinessDetailPage({ params }: Props) {
           </div>
         </section>
 
-        <section className="py-12 bg-cream sm:py-16">
+        {/* Body */}
+        <section className="py-12 bg-white sm:py-16">
           <div className="max-w-[900px] mx-auto px-4 sm:px-8 lg:px-12">
             {biz.shortdesc && (
               <p className="mb-6 text-base font-medium leading-relaxed text-ink-mid font-body">
                 {biz.shortdesc}
               </p>
             )}
-
             {biz.company_description && (
               <div
                 className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid"
@@ -77,34 +79,38 @@ export default async function BusinessDetailPage({ params }: Props) {
               />
             )}
 
-            <div className="grid grid-cols-1 gap-4 p-6 mt-10 text-sm bg-white border border-border rounded-xl sm:grid-cols-2 font-body">
+            {/* Contact details */}
+            <div className="grid grid-cols-1 gap-4 p-6 mt-10 text-sm border bg-cream border-border rounded-xl sm:grid-cols-2 font-body">
               {biz.address && (
                 <div>
-                  <p className="mb-1 text-xs tracking-wide uppercase text-ink-muted">Address</p>
+                  <p className="mb-1 text-xs font-semibold tracking-wide uppercase text-ink-muted">Address</p>
                   <p className="text-ink-dark">{biz.address}</p>
                 </div>
               )}
               {biz.phone && (
                 <div>
-                  <p className="mb-1 text-xs tracking-wide uppercase text-ink-muted">Phone</p>
+                  <p className="mb-1 text-xs font-semibold tracking-wide uppercase text-ink-muted">Phone</p>
                   <p className="text-ink-dark">{biz.phone}</p>
                 </div>
               )}
               {biz.email && (
                 <div>
-                  <p className="mb-1 text-xs tracking-wide uppercase text-ink-muted">Email</p>
+                  <p className="mb-1 text-xs font-semibold tracking-wide uppercase text-ink-muted">Email</p>
                   <p className="text-ink-dark">{biz.email}</p>
                 </div>
               )}
               {biz.no_of_emplys && (
                 <div>
-                  <p className="mb-1 text-xs tracking-wide uppercase text-ink-muted">Employees</p>
+                  <p className="mb-1 text-xs font-semibold tracking-wide uppercase text-ink-muted">Employees</p>
                   <p className="text-ink-dark">{biz.no_of_emplys}</p>
                 </div>
               )}
             </div>
           </div>
         </section>
+
+        {/* Comments */}
+        <CommentSection entityType="business" entityId={bizId} />
       </main>
       <Footer />
     </>

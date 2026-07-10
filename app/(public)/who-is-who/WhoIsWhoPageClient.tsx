@@ -8,38 +8,38 @@ import type { Profile, Category } from './page'
 // ─── Icon map ─────────────────────────────────────────────────────────────────
 
 const ICON_MAP: [string, string][] = [
-  ['politics',       '🏛️'],
-  ['government',   '🏛️'],
-  ['business',     '💼'],
-  ['finance',      '💼'],
-  ['entrepreneur', '💼'],
-  ['art',          '🎨'],
-  ['culture',      '🎭'],
-  ['music',        '🎵'],
-  ['film',         '🎬'],
-  ['sport',        '🏏'],
-  ['cricket',      '🏏'],
-  ['athlete',      '🏆'],
-  ['science',      '🔬'],
-  ['tech',         '💻'],
-  ['engineer',     '⚙️'],
-  ['doctor',       '🩺'],
-  ['health',       '🩺'],
-  ['media',        '📺'],
-  ['journal',      '📰'],
-  ['education',    '🎓'],
-  ['academ',       '🎓'],
-  ['military',     '🎖️'],
-  ['defence',      '🎖️'],
-  ['army',         '🎖️'],
-  ['law',          '⚖️'],
-  ['legal',        '⚖️'],
-  ['social',       '🤝'],
-  ['philanthrop',  '❤️'],
-  ['religion',     '🕌'],
-  ['scholar',      '📚'],
-  ['women',        '👩'],
-  ['youth',        '🌟'],
+  ['politics',       ''],
+  ['government',   ''],
+  ['business',     ''],
+  ['finance',      ''],
+  ['entrepreneur', ''],
+  ['art',          ''],
+  ['culture',      ''],
+  ['music',        ''],
+  ['film',         ''],
+  ['sport',        ''],
+  ['cricket',      ''],
+  ['athlete',      ''],
+  ['science',      ''],
+  ['tech',         ''],
+  ['engineer',     ''],
+  ['doctor',       ''],
+  ['health',       ''],
+  ['media',        ''],
+  ['journal',      ''],
+  ['education',    ''],
+  ['academ',       ''],
+  ['military',     ''],
+  ['defence',      ''],
+  ['army',         ''],
+  ['law',          ''],
+  ['legal',        ''],
+  ['social',       ''],
+  ['philanthrop',  ''],
+  ['religion',     ''],
+  ['scholar',      ''],
+  ['women',        ''],
+  ['youth',        ''],
 ]
 
 function getCategoryIcon(name: string): string {
@@ -47,7 +47,7 @@ function getCategoryIcon(name: string): string {
   for (const [key, icon] of ICON_MAP) {
     if (lower.includes(key)) return icon
   }
-  return '🌟'
+  return ''
 }
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -171,7 +171,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
                 }`}
               >
                 <span className="flex items-center gap-2">
-                  <span>🌐</span>
+                  <span></span>
                   <span>All Profiles</span>
                 </span>
                 <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${
@@ -223,7 +223,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
               <span>
                 {activeCategory
                   ? `${getCategoryIcon(activeCategory.categoryname)} ${activeCategory.categoryname}`
-                  : '🌐 All Profiles'}
+                  : 'All Profiles'}
               </span>
               <span className="text-ink-muted">{mobileCatOpen ? '▲' : '▼'}</span>
             </button>
@@ -235,7 +235,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
                     activeCategoryId === null ? 'bg-gold-pale text-gold font-semibold' : 'text-ink-dark hover:bg-gray-50'
                   }`}
                 >
-                  <span>🌐 All Profiles</span>
+                  <span>All Profiles</span>
                   <span className="text-[11px] text-ink-muted">{profiles.length}</span>
                 </button>
                 {categories.map((cat) => (
@@ -265,7 +265,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
               <h2 className="text-xl font-bold font-display sm:text-2xl text-green">
                 {activeCategory
                   ? `${getCategoryIcon(activeCategory.categoryname)} ${activeCategory.categoryname}`
-                  : '🌐 All Profiles'}
+                  : 'All Profiles'}
               </h2>
               <p className="text-xs text-ink-muted font-body mt-0.5">
                 {filtered.length} {filtered.length === 1 ? 'profile' : 'profiles'}
@@ -277,7 +277,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
 
           {/* Search bar */}
           <div className="relative mb-4">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted text-base select-none">🔍</span>
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted text-base select-none"></span>
             <input
               type="text"
               placeholder="Search by name, profession, or city…"
@@ -333,7 +333,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
           {/* Results */}
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center bg-white border rounded-2xl border-border">
-              <span className="mb-4 text-5xl">🔍</span>
+              <span className="mb-4 text-5xl"></span>
               <p className="mb-1 text-lg font-bold text-ink-dark font-display">No profiles found</p>
               <p className="mb-4 text-sm text-ink-muted font-body">
                 Try a different search term or clear your filters.
@@ -394,7 +394,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
                           )}
                           {(p.City || p.Country) && (
                             <p className="text-[11px] text-ink-muted font-body">
-                              📍 {[p.City, p.Country].filter(Boolean).join(', ')}
+                               {[p.City, p.Country].filter(Boolean).join(', ')}
                             </p>
                           )}
                           {p.categoryname && (

@@ -4,6 +4,7 @@ import { prisma } from '@/app/lib/prisma'
 import Topbar from '@/app/components/layout/Topbar'
 import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
+import CommentSection from '@/app/components/shared/CommentSection'
 
 export const revalidate = 60
 
@@ -28,29 +29,22 @@ export default async function ProductDetailPage({ params }: Props) {
       <main>
         <section className="py-12 bg-cream sm:py-16">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12">
-            <Link
-              href="/products"
-              className="inline-block mb-6 text-sm text-gold font-body hover:underline"
-            >
-              ← Back to Products
+            <Link href="/products" className="inline-block mb-6 text-sm text-gold font-body hover:underline">
+              Back to Products
             </Link>
 
             <div className="grid items-start grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-12">
-              <div className="flex items-center justify-center w-full h-64 overflow-hidden sm:h-80 bg-gold-pale rounded-xl">
+              <div className="flex items-center justify-center w-full h-64 overflow-hidden bg-white border sm:h-80 border-border rounded-xl">
                 {image ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={image}
-                    alt={product.title}
-                    className="object-cover w-full h-full"
-                  />
+                  <img src={image} alt={product.title} className="object-cover w-full h-full" />
                 ) : (
-                  <span className="text-6xl">🥭</span>
+                  <div className="w-20 h-20 border-2 rounded-sm border-border" />
                 )}
               </div>
 
               <div>
-                <span className="inline-block bg-gold text-white text-[10px] font-bold tracking-[.12em] uppercase px-3.5 py-1.5 rounded mb-3 font-body">
+                <span className="inline-block bg-gold-pale text-gold text-[10px] font-bold tracking-[.12em] uppercase px-3.5 py-1.5 rounded mb-3 font-body">
                   {product.City}
                 </span>
                 <h1 className="mb-4 text-3xl font-bold leading-tight font-display sm:text-4xl text-green">
@@ -71,6 +65,9 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* Comments */}
+        <CommentSection entityType="product" entityId={productId} />
       </main>
       <Footer />
     </>

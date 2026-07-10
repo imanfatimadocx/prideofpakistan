@@ -1,42 +1,100 @@
-import Link from 'next/link'
 import { prisma } from '@/app/lib/prisma'
 import Topbar from '@/app/components/layout/Topbar'
 import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
-import PageHero from '@/app/components/shared/PageHero'
+import ProductsPageClient from './ProductsPageClient'
 
 export const revalidate = 60
 
-interface Product {
+export interface ProductItem {
   id: number
   title: string
   city: string
   image: string | null
+  shortdesc: string
+  categoryid: number
+  categoryname: string
 }
 
-const PRODUCT_EMOJIS = ['🥭','🌹','⚽','🍵','🔮','🌾','💎','🎨']
+export interface ProductCategory {
+  id: number
+  name: string
+  count: number
+}
 
-async function getProducts(): Promise<Product[]> {
+// Named categories — update these IDs to match what's in your pakproducts table
+// Check Prisma Studio → PakProduct to see which categoryid numbers are used
+const PRODUCT_CATEGORY_NAMES: Record<number, string> = {
+  1: 'Food & Agriculture',
+  2: 'Textiles & Clothing',
+  3: 'Handicrafts',
+  4: 'Sports Goods',
+  5: 'Leather Goods',
+  6: 'Jewellery & Gems',
+  7: 'Surgical Instruments',
+  8: 'Ceramics & Pottery',
+  9: 'Rugs & Carpets',
+  10: 'Technology',
+}
+
+async function getData() {
   const rows = await prisma.pakProduct.findMany({
     where: { status: 1 },
-    orderBy: { id: 'desc' },
-    take: 60,
+    orderBy: { title: 'asc' },
+    select: {
+      id: true,
+      title: true,
+      City: true,
+      image: true,
+      shortdesc: true,
+      categoryid: true,
+    },
   })
 
-  return rows.map((r) => ({
+  const products: ProductItem[] = rows.map((r) => ({
     id: r.id,
     title: r.title,
     city: r.City,
-    image: r.image ? `/uploads/${r.image}` : null,
+    image: r.image && r.image.trim() !== '' ? `/uploads/${r.image}` : null,
+    shortdesc: (r.shortdesc as string) ?? '',
+    categoryid: r.categoryid,
+    categoryname: PRODUCT_CATEGORY_NAMES[r.categoryid] ?? `Category ${r.categoryid}`,
   }))
+
+  // Build category list from actual data
+  const catCountMap = new Map<number, number>()
+  rows.forEach((r) => {
+    catCountMap.set(r.categoryid, (catCountMap.get(r.categoryid) ?? 0) + 1)
+  })
+
+  const categories: ProductCategory[] = Array.from(catCountMap.entries())
+    .sort((a, b) => a[0] - b[0])
+    .map(([id, count]) => ({
+      id,
+      name: PRODUCT_CATEGORY_NAMES[id] ?? `Category ${id}`,
+      count,
+    }))
+
+  return { products, categories }
+}
+
+export const metadata = {
+  title: 'Pakistani Products | Pride of Pakistan',
+  description: 'Discover products and crafts from Pakistan.',
 }
 
 export default async function ProductsPage() {
-  let products: Product[] = []
+  let products: ProductItem[] = []
+  let categories: ProductCategory[] = []
+
   try {
-    products = await getProducts()
-  } catch {
+    const data = await getData()
+    products = data.products
+    categories = data.categories
+  } catch (e) {
+    console.error('Products fetch error:', e)
     products = []
+    categories = []
   }
 
   return (
@@ -44,54 +102,7 @@ export default async function ProductsPage() {
       <Topbar />
       <Navbar />
       <main>
-        <PageHero
-          eyebrow="Made in Pakistan"
-          title="Pakistani Products"
-          subtitle="From world-famous mangoes to handcrafted textiles — explore the goods that carry Pakistan's name across the globe."
-        />
-
-        <section className="py-12 bg-white sm:py-16 lg:py-20">
-          <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
-            {products.length === 0 ? (
-              <p className="py-12 text-center text-ink-muted font-body">
-                No products available yet.
-              </p>
-            ) : (
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 sm:gap-5 lg:gap-6">
-                {products.map((p, i) => (
-                  <Link
-                    key={p.id}
-                    href={`/products/${p.id}`}
-                    className="block overflow-hidden no-underline transition-all duration-300 bg-white border rounded-lg border-border hover:-translate-y-1 hover:shadow-xl hover:border-gold group"
-                  >
-                    <div className="w-full h-32 sm:h-40 lg:h-[180px] bg-gold-pale flex items-center justify-center overflow-hidden">
-                      {p.image ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={p.image}
-                          alt={p.title}
-                          className="object-cover w-full h-full transition-transform duration-400 group-hover:scale-105"
-                        />
-                      ) : (
-                        <span className="text-4xl sm:text-5xl">
-                          {PRODUCT_EMOJIS[i % PRODUCT_EMOJIS.length]}
-                        </span>
-                      )}
-                    </div>
-                    <div className="p-3 sm:p-4">
-                      <h3 className="mb-1 text-sm font-bold leading-snug font-display sm:text-base text-ink-dark">
-                        {p.title}
-                      </h3>
-                      <p className="text-[11px] sm:text-xs text-ink-muted flex items-center gap-1 font-body">
-                        🌿 {p.city}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
+        <ProductsPageClient products={products} categories={categories} />
       </main>
       <Footer />
     </>

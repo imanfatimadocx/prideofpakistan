@@ -23,38 +23,38 @@ export interface CategoryCard {
 }
 
 const ICON_MAP: [string, string][] = [
-  ['politi',       '🏛️'],
-  ['government',   '🏛️'],
-  ['business',     '💼'],
-  ['finance',      '💼'],
-  ['entrepreneur', '💼'],
-  ['art',          '🎨'],
-  ['culture',      '🎭'],
-  ['music',        '🎵'],
-  ['film',         '🎬'],
-  ['sport',        '🏏'],
-  ['cricket',      '🏏'],
-  ['athlete',      '🏆'],
-  ['science',      '🔬'],
-  ['tech',         '💻'],
-  ['engineer',     '⚙️'],
-  ['doctor',       '🩺'],
-  ['health',       '🩺'],
-  ['media',        '📺'],
-  ['journal',      '📰'],
-  ['education',    '🎓'],
-  ['academ',       '🎓'],
-  ['military',     '🎖️'],
-  ['defence',      '🎖️'],
-  ['army',         '🎖️'],
-  ['law',          '⚖️'],
-  ['legal',        '⚖️'],
-  ['social',       '🤝'],
-  ['philanthrop',  '❤️'],
-  ['religion',     '🕌'],
-  ['scholar',      '📚'],
-  ['women',        '👩'],
-  ['youth',        '🌟'],
+  ['politics',     ''],
+  ['government',   ''],
+  ['business',     ''],
+  ['finance',      ''],
+  ['entrepreneur', ''],
+  ['art',          ''],
+  ['culture',      ''],
+  ['music',        ''],
+  ['film',         ''],
+  ['sport',        ''],
+  ['cricket',      ''],
+  ['athlete',      ''],
+  ['science',      ''],
+  ['tech',         ''],
+  ['engineer',     ''],
+  ['doctor',       ''],
+  ['health',       ''],
+  ['media',        ''],
+  ['journal',      ''],
+  ['education',    ''],
+  ['academ',       ''],
+  ['military',     ''],
+  ['defence',      ''],
+  ['army',         ''],
+  ['law',          ''],
+  ['legal',        ''],
+  ['social',       ''],
+  ['philanthrop',  ''],
+  ['religion',     ''],
+  ['scholar',      ''],
+  ['women',        ''],
+  ['youth',        ''],
 ]
 
 function getCategoryIcon(name: string): string {
@@ -62,7 +62,7 @@ function getCategoryIcon(name: string): string {
   for (const [key, icon] of ICON_MAP) {
     if (lower.includes(key)) return icon
   }
-  return '🌟'
+  return ''
 }
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -136,7 +136,7 @@ function ProfileListModal({
         {/* Search */}
         <div className="flex-shrink-0 px-6 py-4 border-b border-border">
           <div className="relative">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted text-base select-none">🔍</span>
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted text-base select-none"></span>
             <input
               type="text"
               placeholder="Search by name, profession, or city…"
@@ -181,7 +181,7 @@ function ProfileListModal({
         <div className="flex-1 px-6 py-5 overflow-y-auto">
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <span className="mb-3 text-4xl">🔍</span>
+              <span className="mb-3 text-4xl"></span>
               <p className="text-sm text-ink-muted font-body">No profiles match your search.</p>
               <button onClick={() => { setSearch(''); setActiveLetter(null) }} className="mt-3 text-sm font-semibold text-gold font-body hover:underline">Clear filters</button>
             </div>
@@ -215,7 +215,7 @@ function ProfileListModal({
                           <p className="text-sm font-bold leading-tight truncate transition-colors text-ink-dark font-display group-hover:text-green">{p.title}</p>
                           {p.Profession && <p className="text-xs text-ink-muted font-body truncate mt-0.5">{p.Profession}</p>}
                           {(p.City || p.Country) && (
-                            <p className="text-[11px] text-ink-muted font-body mt-0.5">📍 {[p.City, p.Country].filter(Boolean).join(', ')}</p>
+                            <p className="text-[11px] text-ink-muted font-body mt-0.5"> {[p.City, p.Country].filter(Boolean).join(', ')}</p>
                           )}
                         </div>
                         <span className="flex-shrink-0 text-sm transition-opacity opacity-0 text-gold group-hover:opacity-100">→</span>
