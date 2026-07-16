@@ -4,12 +4,11 @@ import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 
 const NAV = [
-  { label: 'Dashboard', href: '/admin', icon: '📊' },
-  { label: 'Profiles',  href: '/admin/profiles', icon: '👤' },
-  { label: 'Business',  href: '/admin/business', icon: '🏢' },
-  { label: 'Blog',      href: '/admin/blog', icon: '📝' },
-  { label: 'Stories',   href: '/admin/stories', icon: '📰' },
-  { label: 'Media',     href: '/admin/media', icon: '🎬' },
+  { label: 'Dashboard', href: '/admin', icon: '' },
+  { label: 'Profiles',  href: '/admin/profiles', icon: '' },
+  { label: 'Business',  href: '/admin/business', icon: '' },
+  { label: 'Stories',   href: '/admin/stories', icon: '' },
+  { label: 'Media',     href: '/admin/media', icon: '' },
 ]
 
 export default function AdminNav() {
@@ -59,7 +58,7 @@ export default function AdminNav() {
           onClick={() => signOut({ callbackUrl: '/admin/login' })}
           className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-md text-sm font-medium font-body text-white/60 hover:bg-white/5 hover:text-white transition-colors"
         >
-          <span className="text-base">🚪</span>
+          <span className="text-base"></span>
           Sign Out
         </button>
         <Link

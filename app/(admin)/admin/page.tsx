@@ -29,11 +29,10 @@ async function getStats(): Promise<StatCard[]> {
   ])
 
   return [
-    { label: 'Profiles',   count: profilesTotal, pending: profilesPending, icon: '👤', href: '/admin/profiles' },
-    { label: 'Businesses', count: businessTotal,  pending: businessPending, icon: '🏢', href: '/admin/business' },
-    { label: 'Blog Posts', count: blogTotal,      pending: 0,               icon: '📝', href: '/admin/blog' },
-    { label: 'Stories',    count: storiesTotal,   pending: 0,               icon: '📰', href: '/admin/stories' },
-    { label: 'Videos',     count: videosTotal,    pending: 0,               icon: '🎬', href: '/admin/media' },
+    { label: 'Profiles',   count: profilesTotal, pending: profilesPending, icon: '', href: '/admin/profiles' },
+    { label: 'Businesses', count: businessTotal,  pending: businessPending, icon: '', href: '/admin/business' },
+    { label: 'Stories',    count: storiesTotal,   pending: 0,               icon: '', href: '/admin/stories' },
+    { label: 'Videos',     count: videosTotal,    pending: 0,               icon: '', href: '/admin/media' },
   ]
 }
 
@@ -110,7 +109,7 @@ export default async function AdminDashboardPage() {
                 href="/admin/blog"
                 className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
               >
-                <span className="text-xl">✍️</span>
+                <span className="text-xl"></span>
                 <span className="text-sm font-semibold text-ink-dark font-body">Write a Blog Post</span>
               </a>
               <a

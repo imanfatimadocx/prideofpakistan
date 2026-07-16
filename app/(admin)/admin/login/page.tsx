@@ -1,10 +1,8 @@
 'use client'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 
 export default function AdminLoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -15,7 +13,7 @@ export default function AdminLoginPage() {
     setLoading(true)
     setError(null)
 
-    const res = await signIn('credentials', {
+    const res = await signIn('admin-credentials', {
       email,
       password,
       redirect: false,
@@ -28,14 +26,13 @@ export default function AdminLoginPage() {
       return
     }
 
-    router.push('/admin')
-    router.refresh()
+    // Hard redirect clears stale NextAuth state
+    window.location.href = '/admin'
   }
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4 bg-green">
       <div className="w-full max-w-[400px]">
-        {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="flex items-center justify-center mb-3 rounded-full w-14 h-14 bg-white/10">
             <span className="text-2xl text-white">☽</span>
@@ -46,7 +43,6 @@ export default function AdminLoginPage() {
           </p>
         </div>
 
-        {/* Form */}
         <form
           onSubmit={handleSubmit}
           className="p-6 space-y-5 bg-white shadow-2xl rounded-xl sm:p-8"
