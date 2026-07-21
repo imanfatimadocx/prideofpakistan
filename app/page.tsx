@@ -216,19 +216,19 @@ async function getVideos(): Promise<VideoCard[]> {
   const rows = await prisma.video.findMany({
     where: { status: 'active' },
     orderBy: { views: 'desc' },
-    take: 6,
+    take: 8,
   })
 
   return rows.map((r) => ({
-    video_id: Number(r.video_id),
-    title: r.title,
-    thumb_url: r.thumb_url,
-    featured: r.featured,
-    views: Number(r.views),
-    category: r.category,
+    video_id:         Number(r.video_id),
+    title:            r.title,
+    thumb_url:        r.thumb_url,
+    featured:         r.featured,
+    views:            Number(r.views),
+    video_embed_code: r.video_embed_code,
+    category:         r.category,
   }))
 }
-
 async function getNews(): Promise<NewsItem[]> {
   const rows = await prisma.latestNews.findMany({
     where: { status: 1 },

@@ -116,21 +116,21 @@ export default async function AdminDashboardPage() {
                 href="/admin/stories"
                 className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
               >
-                <span className="text-xl">📰</span>
+                <span className="text-xl"></span>
                 <span className="text-sm font-semibold text-ink-dark font-body">Add a News Story</span>
               </a>
               <a
                 href="/admin/profiles"
                 className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
               >
-                <span className="text-xl">✅</span>
+                <span className="text-xl"></span>
                 <span className="text-sm font-semibold text-ink-dark font-body">Review Pending Profiles</span>
               </a>
               <a
                 href="/admin/media"
                 className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
               >
-                <span className="text-xl">🎬</span>
+                <span className="text-xl"></span>
                 <span className="text-sm font-semibold text-ink-dark font-body">Add a Pride TV Video</span>
               </a>
             </div>
