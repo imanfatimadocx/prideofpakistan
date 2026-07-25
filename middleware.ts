@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
   })
 
   const role = (token as { role?: string } | null)?.role
-
+2
   // Admin routes — must have ADMIN role
   if (pathname.startsWith('/admin')) {
     if (!token || role !== 'ADMIN') {
