@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   const token = await getToken({
@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
   })
 
   const role = (token as { role?: string } | null)?.role
-2
+
   // Admin routes — must have ADMIN role
   if (pathname.startsWith('/admin')) {
     if (!token || role !== 'ADMIN') {
