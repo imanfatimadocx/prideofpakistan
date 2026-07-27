@@ -36,10 +36,10 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-white border-b-[2.5px] border-gold sticky top-0 z-[100] shadow-[0_2px_24px_rgba(13,74,46,0.07)]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between h-18 lg:h-28">
+        <div className="flex items-center justify-between max-w-full px-4 mx-auto sm:px-8 lg:px-16 h-18 lg:h-28">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0">
+          <Link href="/" className="flex items-start flex-shrink-0">
             <Image
               src="/logo-bg.png"
               alt="Pride of Pakistan"
