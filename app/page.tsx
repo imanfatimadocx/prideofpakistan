@@ -94,23 +94,6 @@ async function getFeaturedProfiles(): Promise<{
   return { profiles, categories }
 }
 
-const CITY_META: Record<string, { tag: string; meta: string; bgColor: string; imageUrl: string }> = {
-  Islamabad: { tag: 'Capital',      meta: 'Federal Capital · Population 1.1M', bgColor: '#2d5a3d', imageUrl: '/cities/islamabad.jpg' },
-  Lahore:    { tag: 'Cultural Hub', meta: 'Punjab · 13M population',            bgColor: '#3d5c3a', imageUrl: '/cities/lahore.jpg' },
-  Karachi:   { tag: 'Metropolis',   meta: 'Sindh · Financial Capital',           bgColor: '#2a4a5e', imageUrl: '/cities/karachi.jpg' },
-  Peshawar:  { tag: 'Historic',     meta: 'KPK · Gateway to the North',         bgColor: '#5e3a2a', imageUrl: '/cities/peshawar.jpg' },
-  Quetta:    { tag: 'Gateway',      meta: 'Balochistan · Provincial Capital',    bgColor: '#3a3d5e', imageUrl: '/cities/quetta.jpg' },
-}
-
-async function getCities(): Promise<CityCard[]> {
-  const rows = await prisma.city.findMany({ take: 5, orderBy: { id: 'asc' } })
-
-  return rows.map((r) => ({
-    id: r.id,
-    name: r.name,
-    ...(CITY_META[r.name] ?? { tag: 'City', meta: 'Pakistan', bgColor: '#2d5a3d', imageUrl: '/cities/default.jpg' }),
-  }))
-}
 
 async function getBusinesses(): Promise<{
   businesses: BizCard[]
@@ -247,20 +230,12 @@ async function getNews(): Promise<NewsItem[]> {
 
 // ─── Fallbacks ───────────────────────────────────────────────
 
-const FALLBACK_CITIES: CityCard[] = [
-  { id: 1, name: 'Islamabad', tag: 'Capital',      meta: 'Federal Capital · 1.1M',    bgColor: '#2d5a3d', imageUrl: '/cities/islamabad.jpg' },
-  { id: 2, name: 'Lahore',    tag: 'Cultural Hub', meta: 'Punjab · 13M',              bgColor: '#3d5c3a', imageUrl: '/cities/lahore.jpg' },
-  { id: 3, name: 'Karachi',   tag: 'Metropolis',   meta: 'Sindh · Financial Capital', bgColor: '#2a4a5e', imageUrl: '/cities/karachi.jpg' },
-  { id: 4, name: 'Peshawar',  tag: 'Historic',     meta: 'KPK · Gateway to North',   bgColor: '#5e3a2a', imageUrl: '/cities/peshawar.jpg' },
-  { id: 5, name: 'Quetta',    tag: 'Gateway',      meta: 'Balochistan',              bgColor: '#3a3d5e', imageUrl: '/cities/quetta.jpg' },
-]
 
 // ─── Page ────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [profilesR, citiesR, bizR, productsR, videosR, newsR] = await Promise.allSettled([
+  const [profilesR, bizR, productsR, videosR, newsR] = await Promise.allSettled([
     getFeaturedProfiles(),
-    getCities(),
     getBusinesses(),
     getProducts(),
     getVideos(),
@@ -281,7 +256,6 @@ export default async function HomePage() {
 
   const profiles    = profilesResult.profiles
   const profileCats = profilesResult.categories
-  const cities      = citiesR.status === 'fulfilled' && citiesR.value.length ? citiesR.value : FALLBACK_CITIES
   const bizs        = bizResult.businesses
   const bizCats     = bizResult.categories
   const products    = productsResult.products
@@ -298,7 +272,6 @@ export default async function HomePage() {
         {profiles.length > 0 && (
           <WhoIsWhoSection profiles={profiles} categories={profileCats} />
         )}
-        <CitiesSection cities={cities} />
         <BusinessSection businesses={bizs} categories={bizCats} />
         <ProductsSection products={products} categories={prodCats} />
         {news.length > 0 && <NewsStrip news={news} />}

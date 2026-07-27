@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[520px] sm:h-[580px] lg:h-[640px] overflow-hidden">
+    <section className="relative overflow-hidden h-[100vh] sm:h-[80vh] lg:h-[80vh]">
       <img
         src="bg-wallpaper.jpg"
         alt="Pakistan"
@@ -11,7 +11,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-green/50" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-green/60" />
 
-      <div className="relative z-10 flex items-center h-full">
+      <div className="relative z-10 flex items-center justify-center h-full">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
           <div className="max-w-[680px]">
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] font-black text-white leading-[1.05] mb-5 -tracking-[.02em]">

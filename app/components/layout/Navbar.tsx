@@ -56,7 +56,7 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className={`text-[13px] font-medium px-3 py-2 rounded-md transition-all whitespace-nowrap font-body ${
+                className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all whitespace-nowrap font-body ${
                   pathname === href
                     ? 'text-green font-semibold'
                     : 'text-ink-mid hover:text-green hover:bg-green/5'
@@ -70,7 +70,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2 ml-3">
                 <Link
                   href="/dashboard"
-                  className={`text-[13px] font-medium px-3 py-2 rounded-md transition-all font-body ${
+                  className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all font-body ${
                     pathname === '/dashboard'
                       ? 'text-green font-semibold'
                       : 'text-ink-mid hover:text-green hover:bg-green/5'
@@ -80,7 +80,7 @@ export default function Navbar() {
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: '/' })}
-                  className="text-[13px] font-medium px-3 py-2 rounded-md text-ink-mid hover:text-green hover:bg-green/5 font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-ink-mid hover:text-green hover:bg-green/5 font-body transition-colors"
                 >
                   Sign Out
                 </button>
@@ -89,13 +89,13 @@ export default function Navbar() {
               <div className="flex items-center gap-2 ml-3">
                 <Link
                   href="/login"
-                  className="text-[13px] font-medium px-3 py-2 rounded-md text-ink-mid hover:text-green hover:bg-green/5 font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-ink-mid hover:text-green hover:bg-green/5 font-body transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-gold text-white rounded-md px-4 py-2.5 font-semibold text-[13px] hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
+                  className="bg-gold text-white rounded-md px-4 py-2.5 font-bold text-[13px] hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
                 >
                   Join
                 </Link>
