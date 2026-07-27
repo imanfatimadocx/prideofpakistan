@@ -71,10 +71,10 @@ function ProfileListModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-12 pb-12 overflow-y-auto bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-end justify-center px-4 pt-12 pb-12 overflow-y-auto bg-black/60 backdrop-blur-sm"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="bg-white rounded-2xl w-full max-w-[960px] shadow-2xl flex flex-col max-h-[90vh]">
+      <div className="bg-white rounded-2xl w-full max-w-[960px] shadow-2xl flex flex-col max-h-[70vh]">
 
         {/* Header */}
         <div className="flex items-center justify-between flex-shrink-0 px-6 py-5 bg-white border-b border-border rounded-t-2xl">
@@ -187,7 +187,7 @@ function ProfileListModal({
                             alt={p.title}
                             width={48}
                             height={48}
-                            className="flex-shrink-0 object-cover object-top w-12 h-12 transition-all rounded-lg ring-2 ring-border group-hover:ring-gold"
+                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-fit ring-2 ring-border group-hover:ring-gold"
                           />
                         ) : (
                           <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white transition-all rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-gold">
@@ -285,46 +285,43 @@ export default function WhoIsWhoSection({ profiles, categories }: Props) {
           {topCategories.length === 0 ? (
             <p className="text-sm text-ink-muted font-body">No categories available.</p>
           ) : (
-            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-10 sm:gap-4">
+            <div className="grid grid-cols-4 gap-2 sm:grid-cols-3 lg:grid-cols-10 sm:gap-4">
               {topCategories.map((cat, index) => {
                 const previewImage = categoryFirstImage[cat.categoryid]
                 return (
-                  <button
-                    key={cat.categoryid}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`flex-col overflow-hidden text-left transition-all duration-200 bg-white border cursor-pointer group rounded-xl border-border hover:border-gold hover:shadow-xl hover:-translate-y-1 ${
-                      index >= 4 ? 'hidden sm:flex' : 'flex'
-                    }`}
-                  >
-                    {/* Square image area */}
-                    <div className="relative w-full overflow-hidden aspect-square bg-green/10">
-                      {previewImage ? (
-                        <Image
-                          src={previewImage}
-                          alt={cat.categoryname}
-                          fill
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 10vw"
-                          className="object-top transition-transform duration-300 object-fit group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center w-full h-full bg-green/10">
-                          <span className="text-5xl">{(cat.categoryname)}</span>
-                        </div>
-                      )}
-                      <div className="absolute inset-0 flex items-center justify-center transition-colors duration-300 bg-green/0 group-hover:bg-green/40">
-                        <span className="text-3xl transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                          {(cat.categoryname)}
-                        </span>
-                      </div>
-                    </div>
+                 <button
+  key={cat.categoryid}
+  onClick={() => setActiveCategory(cat)}
+  className={`flex-col overflow-hidden text-left transition-all duration-200 bg-white border cursor-pointer group rounded-xl border-border hover:border-gold hover:shadow-xl hover:-translate-y-1 ${
+    index >= 4 ? 'hidden sm:flex' : 'flex'
+  }`}
+>
+  {/* Square image area */}
+  <div className="relative w-full overflow-hidden aspect-square bg-green/10">
+    {previewImage ? (
+      <Image
+        src={previewImage}
+        alt={cat.categoryname}
+        fill
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 10vw"
+        className="object-top transition-transform duration-300 object-fit group-hover:scale-105"
+      />
+    ) : (
+      <div className="flex items-center justify-center w-full h-full bg-green/10">
+        <span className="text-4xl font-black select-none font-display text-green/20">
+          {cat.categoryname.charAt(0)}
+        </span>
+      </div>
+    )}
+  </div>
 
-                    {/* Info — count removed */}
-                    <div className="px-3.5 py-3 flex flex-col gap-1">
-                      <span className="text-xs sm:text-[13px] font-bold font-display text-ink-dark leading-snug group-hover:text-green transition-colors">
-                        {cat.categoryname}
-                      </span>
-                    </div>
-                  </button>
+  {/* Info */}
+  <div className="px-3.5 py-3">
+    <span className="text-xs sm:text-[13px] font-bold font-display text-ink-dark leading-snug group-hover:text-green transition-colors">
+      {cat.categoryname}
+    </span>
+  </div>
+</button>
                 )
               })}
             </div>
