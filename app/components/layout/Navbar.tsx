@@ -36,14 +36,14 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-white border-b-[2.5px] border-gold sticky top-0 z-[100] shadow-[0_2px_24px_rgba(13,74,46,0.07)]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between h-16 lg:h-28">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between h-18 lg:h-28">
 
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src="/logo-bg.png"
               alt="Pride of Pakistan"
-              className="object-contain w-auto h-10 lg:h-36"
+              className="object-contain w-auto h-24 lg:h-36"
               width={460}
               height={460}
               priority
@@ -156,9 +156,9 @@ export default function Navbar() {
             <Image
               src="/logo-bg.png"
               alt="Pride of Pakistan"
-              className="object-contain w-auto h-8"
-              width={120}
-              height={120}
+              className="object-contain h-24 w-36"
+              width={240}
+              height={240}
             />
           </Link>
           <button
