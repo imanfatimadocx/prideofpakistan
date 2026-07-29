@@ -31,7 +31,7 @@ export default function Footer() {
             <ul className="space-y-2.5 list-none">
               {[
                 { label: 'Who Is Who',        href: '/who-is-who' },
-                { label: 'Cities & Towns',     href: '/cities' },
+                // { label: 'Cities & Towns',     href: '/cities' },
                 { label: 'Pakistani Products', href: '/products' },
                 { label: 'Pride Blog',         href: '/pride-blog' },
                 { label: 'Top Stories',        href: '/top-stories' },

@@ -9,7 +9,7 @@ const NAV = [
   { label: 'Home',               href: '/' },
   { label: 'Who Is Who',         href: '/who-is-who' },
   { label: 'Pakistani Products', href: '/products' },
-  { label: 'Cities',             href: '/cities' },
+  // { label: 'Cities',             href: '/cities' },
   { label: 'Your Stories',       href: '/your-stories' },
   { label: 'Business Directory', href: '/business' },
   { label: 'Pride TV',           href: '/pride-tv' },
