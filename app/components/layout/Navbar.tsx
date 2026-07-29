@@ -41,7 +41,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-start flex-shrink-0">
             <Image
-              src="/logo-bg.png"
+              src="/final-logo.png"
               alt="Pride of Pakistan"
               className="object-contain w-auto h-24 lg:h-36"
               width={460}
@@ -154,7 +154,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between flex-shrink-0 px-5 py-4 border-b border-border">
           <Link href="/" onClick={() => setOpen(false)}>
             <Image
-              src="/logo-bg.png"
+              src="/final-logo.png"
               alt="Pride of Pakistan"
               className="object-contain h-24 w-36"
               width={240}

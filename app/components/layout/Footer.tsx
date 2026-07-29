@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center flex-shrink-0 mb-4">
               <Image
-                src="/logo-new1.jpeg"
+                src="/logo-new.jpeg"
                 alt="Pride of Pakistan"
                 className="object-contain"
                 width={200}
