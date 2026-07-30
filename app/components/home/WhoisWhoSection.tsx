@@ -308,7 +308,7 @@ export default function WhoIsWhoSection({ profiles, categories }: Props) {
       />
     ) : (
       <div className="flex items-center justify-center w-full h-full bg-green/10">
-        <span className="text-4xl font-black select-none font-display text-green/20">
+        <span className="text-2xl font-black select-none lg:text-4xl font-display text-green/20">
           {cat.categoryname.charAt(0)}
         </span>
       </div>
