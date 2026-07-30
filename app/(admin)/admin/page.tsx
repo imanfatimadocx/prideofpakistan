@@ -29,8 +29,8 @@ async function getStats(): Promise<StatCard[]> {
   ])
 
   return [
-    { label: 'Profiles',   count: profilesTotal, pending: profilesPending, icon: '', href: '/admin/profiles' },
-    { label: 'Businesses', count: businessTotal,  pending: businessPending, icon: '', href: '/admin/business' },
+    { label: 'Profiles',   count: profilesTotal, pending: profilesPending, icon: '', href: '/profiles' },
+    { label: 'Businesses', count: businessTotal,  pending: businessPending, icon: '', href: '/business' },
     { label: 'Stories',    count: storiesTotal,   pending: 0,               icon: '', href: '/admin/stories' },
     { label: 'Videos',     count: videosTotal,    pending: 0,               icon: '', href: '/admin/media' },
   ]
@@ -52,7 +52,7 @@ export default async function AdminDashboardPage() {
     <div className="flex min-h-screen bg-cream">
       <AdminNav />
 
-      <main className="flex-1 p-8 ml-64">
+      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
         <div className="max-w-[1100px]">
           <h1 className="mb-1 text-2xl font-bold font-display sm:text-3xl text-green">
             Dashboard
@@ -63,7 +63,7 @@ export default async function AdminDashboardPage() {
 
           {dbError && (
             <div className="p-4 mb-6 text-sm text-red-600 border border-red-200 rounded-lg bg-red-50 font-body">
-              Couldn't load stats — check your database connection.
+              Couldn't load stats â€” check your database connection.
             </div>
           )}
 
@@ -75,7 +75,7 @@ export default async function AdminDashboardPage() {
               <span className="font-semibold text-gold">
                 {totalPending} item{totalPending === 1 ? '' : 's'}
               </span>
-              <span className="text-ink-mid"> waiting for review →</span>
+              <span className="text-ink-mid"> waiting for review</span>
             </a>
           )}
 
