@@ -29,8 +29,8 @@ async function getStats(): Promise<StatCard[]> {
   ])
 
   return [
-    { label: 'Profiles',   count: profilesTotal, pending: profilesPending, icon: '', href: '/profiles' },
-    { label: 'Businesses', count: businessTotal,  pending: businessPending, icon: '', href: '/business' },
+    { label: 'Profiles',   count: profilesTotal, pending: profilesPending, icon: '', href: '/admin/profiles' },
+    { label: 'Businesses', count: businessTotal,  pending: businessPending, icon: '', href: '/admin/business' },
     { label: 'Stories',    count: storiesTotal,   pending: 0,               icon: '', href: '/admin/stories' },
     { label: 'Videos',     count: videosTotal,    pending: 0,               icon: '', href: '/admin/media' },
   ]
