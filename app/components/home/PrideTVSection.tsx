@@ -17,6 +17,57 @@ interface Props {
   comingSoon?: boolean
 }
 
+function getEmbedSrc(embedCode: string): string {
+  if (!embedCode) return ''
+
+  const code = embedCode.trim()
+
+  // Already a full embed URL
+  if (code.includes('youtube.com/embed/')) return code
+
+  // Full watch URL
+  const watchMatch = code.match(/youtube\.com\/watch\?v=([^&\s]+)/)
+  if (watchMatch?.[1]) return `https://www.youtube.com/embed/${watchMatch[1]}?rel=0`
+
+  // youtu.be short URL
+  const shortMatch = code.match(/youtu\.be\/([^?&\s]+)/)
+  if (shortMatch?.[1]) return `https://www.youtube.com/embed/${shortMatch[1]}?rel=0`
+
+  // Extract src from full iframe HTML
+  const srcMatch = code.match(/src=["']([^"']+)["']/)
+  if (srcMatch?.[1]) return srcMatch[1]
+
+  // Plain 11-char YouTube video ID (what your DB contains)
+  if (/^[a-zA-Z0-9_-]{11}$/.test(code)) {
+    return `https://www.youtube.com/embed/${code}?rel=0`
+  }
+
+  return code
+}
+
+function getThumbnail(embedCode: string, existingThumb: string): string {
+  if (existingThumb) return existingThumb
+
+  const code = embedCode.trim()
+
+  // Plain ID
+  if (/^[a-zA-Z0-9_-]{11}$/.test(code)) {
+    return `https://img.youtube.com/vi/${code}/hqdefault.jpg`
+  }
+
+  const patterns = [
+    /youtube\.com\/embed\/([^"?&/\s]+)/,
+    /youtu\.be\/([^"?&/\s]+)/,
+    /youtube\.com\/watch\?v=([^"?&/\s]+)/,
+  ]
+  for (const p of patterns) {
+    const m = code.match(p)
+    if (m?.[1]) return `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`
+  }
+
+  return ''
+}
+
 export default function PrideTVSection({ videos, comingSoon }: Props) {
   const [activeId, setActiveId] = useState<number | null>(
     videos.find((v) => v.featured === 'feature')?.video_id ?? videos[0]?.video_id ?? null
@@ -64,7 +115,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
             <div className="relative w-full overflow-hidden bg-black aspect-video rounded-xl">
               <iframe
                 key={activeId}
-                src={activeVideo?.video_embed_code}
+                src={getEmbedSrc(activeVideo?.video_embed_code ?? '')}
                 title={activeVideo?.title}
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -94,18 +145,21 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                 className={`w-full flex items-start gap-3 p-2.5 rounded-lg text-left transition-all ${
                   activeId === v.video_id
                     ? 'bg-white/15 border border-white/20'
-                    : 'hover:bg-white/8 border border-transparent'
+                    : 'hover:bg-white/[.08] border border-transparent'
                 }`}
               >
                 {/* Thumb */}
                 <div className="relative flex-shrink-0 w-24 overflow-hidden rounded-md h-14 bg-white/10">
-                  {v.thumb_url ? (
+                  {(v.thumb_url || v.video_embed_code) ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={v.thumb_url} alt={v.title} className="object-cover w-full h-full" />
+                    <img
+                      src={getThumbnail(v.video_embed_code, v.thumb_url)}
+                      alt={v.title}
+                      className="object-cover w-full h-full"
+                    />
                   ) : (
                     <div className="w-full h-full bg-white/10" />
                   )}
-                  {/* Play indicator */}
                   {activeId === v.video_id && (
                     <div className="absolute inset-0 flex items-center justify-center bg-green/60">
                       <div className="flex items-center justify-center w-5 h-5 rounded-full bg-gold">
