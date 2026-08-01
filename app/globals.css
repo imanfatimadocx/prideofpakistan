@@ -55,3 +55,49 @@ body {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
 }
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 8px 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror p {
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid #C9992A;
+  padding-left: 1rem;
+  color: #7A6B50;
+  font-style: italic;
+  margin: 1rem 0;
+}

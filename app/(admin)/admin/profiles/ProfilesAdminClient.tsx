@@ -25,6 +25,13 @@ const STATUS_STYLES: Record<number, string> = {
 
 const STATUS_LABELS: Record<number, string> = { 0: 'Pending', 1: 'Approved', 2: 'Rejected' }
 
+function resolveImage(image: string | null): string | null {
+  if (!image) return null
+  if (image.startsWith('http')) return image
+  if (image.startsWith('/')) return image
+  return `/uploads/${image}`
+}
+
 export default function ProfilesAdminClient({ profiles: initial }: { profiles: Profile[] }) {
   const [profiles, setProfiles] = useState(initial)
   const [editing, setEditing] = useState<Profile | null>(null)
@@ -41,7 +48,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
   function openEdit(p: Profile) {
     setEditing({ ...p })
     setImageFile(null)
-    setImagePreview(p.image)
+    setImagePreview(resolveImage(p.image))
     setError(null)
   }
 
@@ -58,21 +65,25 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
     setError(null)
     try {
       let imagePath = editing.image
+
       if (imageFile) {
         const formData = new FormData()
         formData.append('file', imageFile)
         const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData })
         if (uploadRes.ok) {
           const uploadJson = await uploadRes.json()
-          imagePath = uploadJson.path ?? imagePath
+          imagePath = uploadJson.url ?? uploadJson.path ?? imagePath
         }
       }
+
       const res = await fetch(`/api/admin/profiles/${editing.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...editing, image: imagePath }),
       })
+
       if (!res.ok) { setError('Failed to save.'); return }
+
       setProfiles((prev) => prev.map((p) =>
         p.id === editing.id ? { ...editing, image: imagePath } : p
       ))
@@ -137,9 +148,13 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 editing?.id === p.id ? 'border-gold shadow-md' : 'border-border'
               }`}
             >
-              {p.image ? (
+              {resolveImage(p.image) ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={p.image} alt={p.title} className="flex-shrink-0 object-top w-10 h-10 rounded-full object-fit" />
+                <img
+                  src={resolveImage(p.image)!}
+                  alt={p.title}
+                  className="flex-shrink-0 object-top w-10 h-10 rounded-full object-fit"
+                />
               ) : (
                 <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-white rounded-full bg-green font-display">
                   {p.title.charAt(0)}
@@ -196,7 +211,11 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <div className="flex items-center gap-3">
               {imagePreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={imagePreview} alt="Preview" className="object-top w-16 h-16 border rounded-lg object-fit border-border" />
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="object-top w-16 h-16 border rounded-lg object-fit border-border"
+                />
               ) : (
                 <div className="flex items-center justify-center w-16 h-16 text-2xl font-bold border rounded-lg bg-cream border-border text-green font-display">
                   {editing.title.charAt(0)}
@@ -225,14 +244,14 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
 
           {/* Text fields */}
           {[
-            { label: 'Full Name',     key: 'title' },
-            { label: 'Profession',    key: 'Profession' },
-            { label: 'City',          key: 'City' },
-            { label: 'Country',       key: 'Country' },
-            { label: 'Email',         key: 'Email' },
-            { label: 'Facebook URL',  key: 'facebook' },
-            { label: 'Twitter URL',   key: 'twitter' },
-            { label: 'LinkedIn URL',  key: 'linkedin' },
+            { label: 'Full Name',    key: 'title' },
+            { label: 'Profession',   key: 'Profession' },
+            { label: 'City',         key: 'City' },
+            { label: 'Country',      key: 'Country' },
+            { label: 'Email',        key: 'Email' },
+            { label: 'Facebook URL', key: 'facebook' },
+            { label: 'Twitter URL',  key: 'twitter' },
+            { label: 'LinkedIn URL', key: 'linkedin' },
           ].map(({ label, key }) => (
             <div key={key}>
               <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">{label}</label>
@@ -269,13 +288,8 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
               onChange={(e) => setEditing({ ...editing, description: e.target.value })}
               rows={10}
               className="w-full px-3 py-2 text-sm leading-relaxed transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-gold"
-              placeholder="Full profile description — supports plain text, will be saved as-is"
+              placeholder="Full profile description"
             />
-            {editing.description && editing.description.includes('<') && (
-              <p className="text-[11px] text-ink-muted font-body mt-1">
-                HTML tags stripped for editing. Saved as plain text.
-              </p>
-            )}
           </div>
 
           {error && <p className="text-sm text-red-500 font-body">{error}</p>}
