@@ -38,6 +38,7 @@ export default async function ProfileEditPage({ params }: Props) {
     meta_title: profile.meta_title ?? '',
     meta_keywords: profile.meta_keyword ?? '',
     meta_description: profile.meta_desc ?? '',
+    threads: profile.threads ?? '',
   }
 
   const cats = categories.map((c) => ({

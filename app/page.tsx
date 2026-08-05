@@ -4,7 +4,6 @@ import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
 import HeroSection from '@/app/components/home/HeroCarousel'
 import WhoIsWhoSection, { ProfileCard, CategoryCard } from '@/app/components/home/WhoisWhoSection'
-import CitiesSection, { CityCard } from '@/app/components/home/CitiesSection'
 import BusinessSection, { BizCard } from '@/app/components/home/BusinessSection'
 import ProductsSection, { ProductCard } from '@/app/components/home/ProductsSection'
 import PrideTVSection, { VideoCard } from '@/app/components/home/PrideTVSection'
@@ -26,46 +25,79 @@ const BUSINESS_CATEGORY_NAMES: Record<number, string> = {
   14: 'Charities', 15: 'Driving Schools', 16: 'Education', 17: 'Hospitals',
 }
 
-// Daily rotating featured profile
-async function getFeaturedProfile(): Promise<ProfileCard | null> {
+function resolveImage(image: string | null): string | null {
+  if (!image) return null
+  if (image.startsWith('http')) return image
+  if (image.startsWith('/')) return image
+  if (image.startsWith('uploads/')) return `/${image}`
+  return `/uploads/${image}`
+}
+
+async function getProfileOfTheDay(): Promise<ProfileCard | null> {
   const featured = await prisma.hallOfFame.findMany({
     where: { feature: 1, status: 1 },
+    orderBy: { id: 'asc' },
     select: {
-      id: true,
-      title: true,
-      Profession: true,
-      City: true,
-      Country: true,
-      image: true,
-      shortdesc: true,
-      categoryid: true,
+      id: true, title: true, Profession: true,
+      City: true, Country: true, image: true,
+      shortdesc: true, categoryid: true,
     },
   })
 
   if (featured.length === 0) return null
 
-  // Pick based on day of year — rotates daily
   const now = new Date()
   const start = new Date(now.getFullYear(), 0, 0)
   const dayOfYear = Math.floor((now.getTime() - start.getTime()) / 86400000)
-  const index = dayOfYear % featured.length
-  const r = featured[index]
+  const r = featured[dayOfYear % featured.length]
 
   return {
     id: r.id,
-    title: r.title ?? 'Unknown',
+    title: r.title ?? '',
     Profession: r.Profession,
     City: r.City,
     Country: r.Country,
-    image: r.image
-      ? r.image.startsWith('http') ? r.image
-        : r.image.startsWith('uploads/') ? `/${r.image}`
-        : `/uploads/${r.image}`
-      : null,
+    image: resolveImage(r.image),
     shortdesc: r.shortdesc ?? '',
     categoryid: r.categoryid ?? null,
     categoryname: null,
   }
+}
+
+async function getFeatured6(): Promise<ProfileCard[]> {
+  const featured = await prisma.hallOfFame.findMany({
+    where: { feature: 1, status: 1 },
+    orderBy: { id: 'asc' },
+    select: {
+      id: true, title: true, Profession: true,
+      City: true, Country: true, image: true,
+      shortdesc: true, categoryid: true,
+    },
+  })
+
+  if (featured.length === 0) return []
+
+  const now = new Date()
+  const start = new Date(now.getFullYear(), 0, 0)
+  const dayOfYear = Math.floor((now.getTime() - start.getTime()) / 86400000)
+
+  const startIdx = (dayOfYear * 6) % featured.length
+  const picked: typeof featured = []
+  for (let i = 0; i < Math.min(6, featured.length); i++) {
+    picked.push(featured[(startIdx + i) % featured.length])
+  }
+
+  return picked.map((r) => ({
+    id: r.id,
+    title: r.title ?? '',
+    Profession: r.Profession,
+    City: r.City,
+    Country: r.Country,
+    image: resolveImage(r.image),
+    shortdesc: r.shortdesc ?? '',
+    categoryid: r.categoryid ?? null,
+    categoryname: null,
+  }))
 }
 
 async function getProfilesAndCategories(): Promise<{
@@ -79,14 +111,9 @@ async function getProfilesAndCategories(): Promise<{
     orderBy: { id: 'desc' },
     take: 100,
     select: {
-      id: true,
-      title: true,
-      Profession: true,
-      City: true,
-      Country: true,
-      image: true,
-      shortdesc: true,
-      categoryid: true,
+      id: true, title: true, Profession: true,
+      City: true, Country: true, image: true,
+      shortdesc: true, categoryid: true,
     },
   })
 
@@ -96,11 +123,7 @@ async function getProfilesAndCategories(): Promise<{
     Profession: r.Profession,
     City: r.City,
     Country: r.Country,
-    image: r.image
-      ? r.image.startsWith('http') ? r.image
-        : r.image.startsWith('uploads/') ? `/${r.image}`
-        : `/uploads/${r.image}`
-      : null,
+    image: resolveImage(r.image),
     shortdesc: r.shortdesc ?? '',
     categoryid: r.categoryid ?? null,
     categoryname: null,
@@ -126,7 +149,10 @@ async function getBusinesses(): Promise<{
       where: { status: 1, feature: 1 },
       orderBy: { id: 'desc' },
       take: 6,
-      select: { id: true, company_name: true, shortdesc: true, city: true, country: true, image: true, busniss_id: true },
+      select: {
+        id: true, company_name: true, shortdesc: true,
+        city: true, country: true, image: true, busniss_id: true,
+      },
     }),
     prisma.business.findMany({ where: { status: 1 }, select: { busniss_id: true } }),
   ])
@@ -143,7 +169,7 @@ async function getBusinesses(): Promise<{
     shortdesc: r.shortdesc,
     city: r.city,
     country: r.country,
-    image: r.image ? `/uploads/${r.image}` : null,
+    image: r.image ? resolveImage(r.image) : null,
     categoryid: r.busniss_id && r.busniss_id > 0 ? r.busniss_id : undefined,
     category: r.busniss_id && r.busniss_id > 0 ? BUSINESS_CATEGORY_NAMES[r.busniss_id] : undefined,
   }))
@@ -174,7 +200,7 @@ async function getProducts(): Promise<{
     id: r.id,
     title: r.title,
     city: r.City,
-    image: r.image && r.image.trim() !== '' ? `/uploads/${r.image}` : null,
+    image: r.image && r.image.trim() !== '' ? resolveImage(r.image) : null,
     shortdesc: (r.shortdesc as string) ?? '',
     categoryid: r.categoryid,
     category: PRODUCT_CATEGORY_NAMES[r.categoryid],
@@ -215,34 +241,36 @@ async function getNews(): Promise<NewsItem[]> {
     id: r.id,
     title: r.title,
     shortdesc: r.shortdesc,
-    smallimage: r.smallimage ? `/uploads/${r.smallimage}` : null,
+    smallimage: r.smallimage ? resolveImage(r.smallimage) : null,
     date_time: r.date_time,
   }))
 }
 
 export default async function HomePage() {
-  const [profilesR, bizR, productsR, videosR, newsR, featuredR] = await Promise.allSettled([
+  const [profilesR, bizR, productsR, videosR, newsR, potdR, featured6R] = await Promise.allSettled([
     getProfilesAndCategories(),
     getBusinesses(),
     getProducts(),
     getVideos(),
     getNews(),
-    getFeaturedProfile(),
+    getProfileOfTheDay(),
+    getFeatured6(),
   ])
 
   const profilesResult = profilesR.status === 'fulfilled' ? profilesR.value : { profiles: [], categories: [] }
   const bizResult      = bizR.status      === 'fulfilled' ? bizR.value      : { businesses: [], categories: [] }
   const productsResult = productsR.status === 'fulfilled' ? productsR.value : { products: [], categories: [] }
 
-  const profiles      = profilesResult.profiles
-  const profileCats   = profilesResult.categories
-  const bizs          = bizResult.businesses
-  const bizCats       = bizResult.categories
-  const products      = productsResult.products
-  const prodCats      = productsResult.categories
-  const videos        = videosR.status  === 'fulfilled' ? videosR.value  : []
-  const news          = newsR.status    === 'fulfilled' ? newsR.value    : []
-  const featuredProfile = featuredR.status === 'fulfilled' ? featuredR.value : null
+  const profiles        = profilesResult.profiles
+  const profileCats     = profilesResult.categories
+  const bizs            = bizResult.businesses
+  const bizCats         = bizResult.categories
+  const products        = productsResult.products
+  const prodCats        = productsResult.categories
+  const videos          = videosR.status    === 'fulfilled' ? videosR.value    : []
+  const news            = newsR.status      === 'fulfilled' ? newsR.value      : []
+  const profileOfTheDay = potdR.status      === 'fulfilled' ? potdR.value      : null
+  const featuredProfiles = featured6R.status === 'fulfilled' ? featured6R.value : []
 
   return (
     <>
@@ -254,7 +282,8 @@ export default async function HomePage() {
           <WhoIsWhoSection
             profiles={profiles}
             categories={profileCats}
-            featuredProfile={featuredProfile}
+            featuredProfiles={featuredProfiles}
+            profileOfTheDay={profileOfTheDay}
           />
         )}
         <BusinessSection businesses={bizs} categories={bizCats} />

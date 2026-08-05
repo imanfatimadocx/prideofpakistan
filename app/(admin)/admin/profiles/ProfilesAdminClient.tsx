@@ -15,6 +15,7 @@ interface Profile {
   facebook?: string
   twitter?: string
   linkedin?: string
+
 }
 
 const STATUS_STYLES: Record<number, string> = {
@@ -252,6 +253,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             { label: 'Facebook URL', key: 'facebook' },
             { label: 'Twitter URL',  key: 'twitter' },
             { label: 'LinkedIn URL', key: 'linkedin' },
+            { label: 'Threads URL', key: 'threads'},
           ].map(({ label, key }) => (
             <div key={key}>
               <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">{label}</label>

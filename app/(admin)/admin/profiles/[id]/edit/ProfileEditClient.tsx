@@ -43,9 +43,11 @@ function resolveImage(image: string | null): string | null {
 export default function ProfileEditClient({
   profile: initial,
   categories,
+  isNew = false,
 }: {
   profile: Profile
   categories: Category[]
+  isNew?: boolean
 }) {
   const router = useRouter()
   const [form, setForm] = useState(initial)
@@ -122,44 +124,56 @@ export default function ProfileEditClient({
     }))
   }
 
-  async function handleSave() {
-    if (!form.title.trim()) { setError('Name is required.'); return }
-    setSaving(true)
-    setError(null)
+async function handleSave() {
+  if (!form.title.trim()) { setError('Name is required.'); return }
+  setSaving(true)
+  setError(null)
 
-    try {
-      let imagePath = form.image
+  try {
+    let imagePath = form.image
 
-      if (imageFile) {
-        const formData = new FormData()
-        formData.append('file', imageFile)
-        const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData })
-        if (uploadRes.ok) {
-          const json = await uploadRes.json()
-          imagePath = json.url ?? json.path ?? imagePath
-        }
+    if (imageFile) {
+      const formData = new FormData()
+      formData.append('file', imageFile)
+      const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData })
+      if (uploadRes.ok) {
+        const json = await uploadRes.json()
+        imagePath = json.url ?? json.path ?? imagePath
       }
+    }
 
-      const description = editor?.getHTML() ?? form.description
+    const description = editor?.getHTML() ?? form.description
 
-      const res = await fetch(`/api/admin/profiles/${form.id}`, {
-        method: 'PATCH',
+    if (isNew) {
+      const res = await fetch('/api/admin/profiles', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, image: imagePath, description }),
       })
-
-      if (!res.ok) { setError('Failed to save.'); return }
-
-      setForm((f) => ({ ...f, image: imagePath }))
-      setImageFile(null)
-      setSaved(true)
-      setTimeout(() => setSaved(false), 3000)
-    } catch {
-      setError('Something went wrong.')
-    } finally {
-      setSaving(false)
+      if (!res.ok) { setError('Failed to create profile.'); return }
+      const json = await res.json()
+      router.push(`/admin/profiles/${json.id}/edit`)
+      return
     }
+
+    const res = await fetch(`/api/admin/profiles/${form.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form, image: imagePath, description }),
+    })
+
+    if (!res.ok) { setError('Failed to save.'); return }
+
+    setForm((f) => ({ ...f, image: imagePath }))
+    setImageFile(null)
+    setSaved(true)
+    setTimeout(() => setSaved(false), 3000)
+  } catch {
+    setError('Something went wrong.')
+  } finally {
+    setSaving(false)
   }
+}
 
   async function handleDelete() {
     if (!confirm('Delete this profile permanently? This cannot be undone.')) return
@@ -174,25 +188,36 @@ export default function ProfileEditClient({
 
   return (
     <div className="max-w-[900px]">
-
-      {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <div className="flex items-center gap-3">
-          <NextLink href="/admin/profiles" className="text-sm no-underline text-gold font-body hover:underline">
-            ← Profiles
-          </NextLink>
-          <span className="text-ink-muted">/</span>
-          <h1 className="text-xl font-bold font-display text-green">{form.title || 'Edit Profile'}</h1>
-        </div>
-        <div className="flex gap-3">
-          <button onClick={handleSave} disabled={saving} className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50">
-            {saving ? 'Saving...' : 'Save Changes'}
-          </button>
-          <button onClick={handleDelete} disabled={deleting} className="bg-red-50 text-red-700 border border-red-200 px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-red-100 transition-colors disabled:opacity-50">
-            {deleting ? '...' : 'Delete'}
-          </button>
-        </div>
-      </div>
+     {/* Header */}
+<div className="flex flex-wrap items-center justify-between gap-3 m-6">
+  <div className="flex items-center gap-3">
+    <NextLink href="/admin/profiles" className="text-sm no-underline text-gold font-body hover:underline">
+      ← Profiles
+    </NextLink>
+    <span className="text-ink-muted">/</span>
+    <h1 className="text-xl font-bold font-display text-green">
+      {isNew ? 'Add New Profile' : (form.title || 'Edit Profile')}
+    </h1>
+  </div>
+  <div className="flex gap-3">
+    <button
+      onClick={handleSave}
+      disabled={saving}
+      className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+    >
+      {saving ? 'Saving...' : isNew ? 'Create Profile' : 'Save Changes'}
+    </button>
+    {!isNew && (
+      <button
+        onClick={handleDelete}
+        disabled={deleting}
+        className="bg-red-50 text-red-700 border border-red-200 px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-red-100 transition-colors disabled:opacity-50"
+      >
+        {deleting ? '...' : 'Delete'}
+      </button>
+    )}
+  </div>
+</div>
 
       {saved && (
         <div className="px-4 py-3 mb-5 text-sm font-semibold border rounded-lg bg-green/10 border-green/20 text-green font-body">
@@ -349,6 +374,7 @@ export default function ProfileEditClient({
               { label: 'Facebook URL', key: 'facebook', placeholder: 'https://facebook.com/...' },
               { label: 'Twitter / X URL', key: 'twitter', placeholder: 'https://twitter.com/...' },
               { label: 'LinkedIn URL', key: 'linkedin', placeholder: 'https://linkedin.com/in/...' },
+              { label: 'Threads URL', key: 'threads', placeholder: 'https://www.threads.net/@username' },
             ].map(({ label, key, placeholder }) => (
               <div key={key}>
                 <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">{label}</label>
@@ -425,7 +451,7 @@ export default function ProfileEditClient({
             >
               {imagePreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={imagePreview} alt="Preview" className="object-cover object-top w-full h-full" />
+                <img src={imagePreview} alt="Preview" className="object-top w-full h-full object-fit" />
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-sm text-ink-muted font-body">
                   No photo
@@ -482,22 +508,25 @@ export default function ProfileEditClient({
           </div>
 
           {/* Save / Delete */}
-          <div className="space-y-2">
-            <button
-              onClick={handleSave}
-              disabled={saving}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
-            >
-              {saving ? 'Saving...' : 'Save Changes'}
-            </button>
-            <button
-              onClick={handleDelete}
-              disabled={deleting}
-              className="w-full py-3 text-sm font-semibold text-red-700 transition-colors border border-red-200 rounded-md bg-red-50 font-body hover:bg-red-100 disabled:opacity-50"
-            >
-              {deleting ? 'Deleting...' : 'Delete Profile'}
-            </button>
-          </div>
+         {/* Save / Delete */}
+<div className="space-y-2">
+  <button
+    onClick={handleSave}
+    disabled={saving}
+    className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+  >
+    {saving ? 'Saving...' : isNew ? 'Create Profile' : 'Save Changes'}
+  </button>
+  {!isNew && (
+    <button
+      onClick={handleDelete}
+      disabled={deleting}
+      className="w-full py-3 text-sm font-semibold text-red-700 transition-colors border border-red-200 rounded-md bg-red-50 font-body hover:bg-red-100 disabled:opacity-50"
+    >
+      {deleting ? 'Deleting...' : 'Delete Profile'}
+    </button>
+  )}
+</div>
         </div>
       </div>
     </div>

@@ -47,6 +47,7 @@ export async function PATCH(
         ...(body.facebook    !== undefined && { facebook: body.facebook }),
         ...(body.twitter     !== undefined && { twitter: body.twitter }),
         ...(body.linkedin    !== undefined && { linkedin: body.linkedin }),
+        ...(body.threads !== undefined && { threads: body.threads }),
       },
     })
     return NextResponse.json({ success: true, updated })
