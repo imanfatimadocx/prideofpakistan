@@ -2,13 +2,12 @@
 import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import Topbar from '@/app/components/layout/Topbar'
 import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
 
 function LoginForm() {
-  const router = useRouter()
   const params = useSearchParams()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -40,8 +39,9 @@ function LoginForm() {
       return
     }
 
-    router.push('/')
-    router.refresh()
+    // Hard redirect — ensures cookie is set before navigation
+    const redirectTo = params.get('redirect') ?? '/'
+    window.location.href = redirectTo
   }
 
   return (
@@ -88,7 +88,7 @@ function LoginForm() {
       </button>
 
       <p className="text-sm text-center text-ink-muted font-body">
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <Link href="/register" className="font-semibold text-gold hover:underline">
           Create one
         </Link>
@@ -110,7 +110,11 @@ export default function LoginPage() {
               Sign in to your Pride of Pakistan account.
             </p>
           </div>
-          <Suspense fallback={<div className="p-8 text-sm text-center bg-white border border-border rounded-xl text-ink-muted font-body">Loading…</div>}>
+          <Suspense fallback={
+            <div className="p-8 text-sm text-center bg-white border border-border rounded-xl text-ink-muted font-body">
+              Loading…
+            </div>
+          }>
             <LoginForm />
           </Suspense>
         </div>

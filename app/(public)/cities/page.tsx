@@ -24,12 +24,12 @@ const CITY_IMAGES: Record<string, string> = {
 const PALETTES = ['#2d5a3d', '#3d5c3a', '#2a4a5e', '#5e3a2a', '#3a3d5e', '#5e4a2a']
 
 async function getCities(): Promise<City[]> {
-  const rows = await prisma.city.findMany({ orderBy: { name: 'asc' } })
+  const rows = await prisma.ourPakistan.findMany({ orderBy: { name: 'asc' } })
 
   return rows.map((r) => ({
     id: r.id,
-    name: r.name,
-    imageUrl: CITY_IMAGES[r.name] ?? '/cities/default.jpg',
+    name: r.title,
+    imageUrl: CITY_IMAGES[r.title] ?? '/cities/default.jpg',
   }))
 }
 
@@ -49,7 +49,7 @@ export default async function CitiesPage() {
         <PageHero
           eyebrow="Explore Pakistan"
           title="Cities, Towns & Villages"
-          subtitle="From bustling metropolises to historic mountain towns — discover the places that shape Pakistan's identity."
+          subtitle="From bustling metropolises to historic mountain towns Ã¢â‚¬â€ discover the places that shape Pakistan's identity."
         />
 
         <section className="py-12 bg-cream sm:py-16 lg:py-20">
@@ -76,7 +76,7 @@ export default async function CitiesPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-green/[.88] via-green/[.15] to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
                       <div className="text-base font-bold leading-tight text-white font-display sm:text-lg">
-                        {city.name}
+                        {city.title}
                       </div>
                     </div>
                   </Link>

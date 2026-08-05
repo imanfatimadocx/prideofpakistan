@@ -24,16 +24,16 @@ export default async function CityDetailPage({ params }: Props) {
   const cityId = Number(id)
   if (Number.isNaN(cityId)) notFound()
 
-  const city = await prisma.city.findUnique({ where: { id: cityId } })
+  const city = await prisma.ourPakistan.findUnique({ where: { id: cityId } })
   if (!city) notFound()
 
   const [profiles, businesses, products] = await Promise.all([
-    prisma.hallOfFame.findMany({ where: { status: 1, City: city.name }, take: 6 }),
-    prisma.business.findMany({ where: { status: 1, city: city.name }, take: 6 }),
-    prisma.pakProduct.findMany({ where: { status: 1, City: city.name }, take: 6 }),
+    prisma.hallOfFame.findMany({ where: { status: 1, City: city.title }, take: 6 }),
+    prisma.business.findMany({ where: { status: 1, city: city.title }, take: 6 }),
+    prisma.pakProduct.findMany({ where: { status: 1, City: city.title }, take: 6 }),
   ])
 
-  const imageUrl = CITY_IMAGES[city.name] ?? '/cities/default.jpg'
+  const imageUrl = CITY_IMAGES[city.title] ?? '/cities/default.jpg'
 
   return (
     <>
@@ -49,10 +49,10 @@ export default async function CityDetailPage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-t from-green/90 to-green/20" />
           <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 h-full flex flex-col justify-end pb-8">
             <Link href="/cities" className="inline-block mb-3 text-sm text-gold-light font-body hover:underline">
-              ← Back to Cities
+              Ã¢â€ Â Back to Cities
             </Link>
             <h1 className="text-3xl font-black leading-tight text-white font-display sm:text-5xl">
-              {city.name}
+              {city.title}
             </h1>
           </div>
         </section>
@@ -62,7 +62,7 @@ export default async function CityDetailPage({ params }: Props) {
           <section className="py-12 bg-cream sm:py-16">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
               <h2 className="mb-6 text-2xl font-bold font-display sm:text-3xl text-green">
-                Notable People from {city.name}
+                Notable People from {city.title}
               </h2>
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                 {profiles.map((p) => (
@@ -93,7 +93,7 @@ export default async function CityDetailPage({ params }: Props) {
           <section className="py-12 bg-green sm:py-16">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
               <h2 className="mb-6 text-2xl font-bold text-white font-display sm:text-3xl">
-                Businesses in {city.name}
+                Businesses in {city.title}
               </h2>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {businesses.map((b) => (
@@ -116,7 +116,7 @@ export default async function CityDetailPage({ params }: Props) {
           <section className="py-12 bg-white sm:py-16">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
               <h2 className="mb-6 text-2xl font-bold font-display sm:text-3xl text-green">
-                Products from {city.name}
+                Products from {city.title}
               </h2>
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 {products.map((p) => (
@@ -137,7 +137,7 @@ export default async function CityDetailPage({ params }: Props) {
           <section className="py-16 bg-cream">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
               <p className="text-ink-muted font-body">
-                No content has been added for {city.name} yet.
+                No content has been added for {city.title} yet.
               </p>
             </div>
           </section>

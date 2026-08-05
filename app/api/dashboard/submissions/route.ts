@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
         select: { id: true, title: true, status: true, createdAt: true },
         orderBy: { createdAt: 'desc' },
       }),
-      prisma.citySubmission.findMany({
+      prisma.citySubmissionSubmission.findMany({
         where: { authorEmail: email },
         select: { id: true, name: true, status: true, createdAt: true },
         orderBy: { createdAt: 'desc' },
