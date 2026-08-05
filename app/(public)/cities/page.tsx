@@ -24,7 +24,7 @@ const CITY_IMAGES: Record<string, string> = {
 const PALETTES = ['#2d5a3d', '#3d5c3a', '#2a4a5e', '#5e3a2a', '#3a3d5e', '#5e4a2a']
 
 async function getCities(): Promise<City[]> {
-  const rows = await prisma.ourPakistan.findMany({ orderBy: { name: 'asc' } })
+  const rows = await prisma.ourPakistan.findMany({ orderBy: { title: 'asc' } })
 
   return rows.map((r) => ({
     id: r.id,
@@ -49,7 +49,7 @@ export default async function CitiesPage() {
         <PageHero
           eyebrow="Explore Pakistan"
           title="Cities, Towns & Villages"
-          subtitle="From bustling metropolises to historic mountain towns Ã¢â‚¬â€ discover the places that shape Pakistan's identity."
+          subtitle="From bustling metropolises to historic mountain towns ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â discover the places that shape Pakistan's identity."
         />
 
         <section className="py-12 bg-cream sm:py-16 lg:py-20">
