@@ -72,7 +72,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                     <img
                       src={image}
                       alt={profile.title ?? 'Profile'}
-                      className="object-cover object-top w-full h-full"
+                      className="object-top w-full h-full object-fit"
                     />
                   ) : (
                     <div className="flex items-center justify-center w-full h-full bg-green">
