@@ -22,8 +22,15 @@ export interface Category {
   count: number
 }
 
+function resolveImage(img: string | null): string | null {
+  if (!img) return null
+  if (img.startsWith('http')) return img
+  if (img.startsWith('/')) return img
+  if (img.startsWith('uploads/')) return `/${img}`
+  return `/uploads/${img}`
+}
+
 async function getData(): Promise<{ profiles: Profile[]; categories: Category[] }> {
-  // Sequential — avoids connection pool exhaustion on Supabase free tier
   const cats = await prisma.hallCategory.findMany({
     where: { status: 1 },
     orderBy: { categoryname: "asc" },
@@ -52,7 +59,7 @@ async function getData(): Promise<{ profiles: Profile[]; categories: Category[] 
     Profession: r.Profession,
     City: r.City,
     Country: r.Country,
-    image: r.image ? `/uploads/${r.image}` : null,
+    image: resolveImage(r.image),
     shortdesc: r.shortdesc,
     categoryid: r.categoryid,
     categoryname: r.categoryid ? (catMap.get(r.categoryid) ?? null) : null,
