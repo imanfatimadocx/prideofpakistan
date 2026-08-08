@@ -1,140 +1,177 @@
 import { prisma } from '@/app/lib/prisma'
 import AdminNav from '@/app/components/admin/AdminNav'
+import Link from 'next/link'
 
 export const revalidate = 0
 
-interface StatCard {
-  label: string
-  count: number
-  pending: number
-  icon: string
-  href: string
-}
-
-async function getStats(): Promise<StatCard[]> {
+export default async function AdminDashboard() {
   const [
-    profilesTotal, profilesPending,
-    businessTotal, businessPending,
-    blogTotal,
-    storiesTotal,
-    videosTotal,
+    totalProfiles,
+    pendingProfiles,
+    featuredProfiles,
+    totalBusinesses,
+    pendingBusinesses,
+    totalStories,
+    pendingStories,
+    totalVideos,
   ] = await Promise.all([
     prisma.hallOfFame.count(),
     prisma.hallOfFame.count({ where: { status: 0 } }),
+    prisma.hallOfFame.count({ where: { feature: 1 } }),
     prisma.business.count(),
     prisma.business.count({ where: { status: 0 } }),
-    prisma.blog.count(),
-    prisma.latestNews.count(),
-    prisma.video.count(),
+    prisma.story.count(),
+    prisma.story.count({ where: { status: 'pending' } }),
+    prisma.video.count({ where: { status: 'active' } }),
   ])
 
-  return [
-    { label: 'Profiles',   count: profilesTotal, pending: profilesPending, icon: '', href: '/admin/profiles' },
-    { label: 'Businesses', count: businessTotal,  pending: businessPending, icon: '', href: '/admin/business' },
-    { label: 'Stories',    count: storiesTotal,   pending: 0,               icon: '', href: '/admin/stories' },
-    { label: 'Videos',     count: videosTotal,    pending: 0,               icon: '', href: '/admin/media' },
+  const SECTIONS = [
+    {
+      label: 'Hall of Fame',
+      color: 'border-green',
+      stats: [
+        { label: 'Total Profiles',   value: totalProfiles },
+        { label: 'Pending Approval', value: pendingProfiles,  alert: pendingProfiles > 0 },
+        { label: 'Featured',         value: featuredProfiles },
+      ],
+      actions: [
+        { label: 'Manage Profiles',    href: '/admin/profiles' },
+        { label: 'Add New Profile',    href: '/admin/profiles/new' },
+        { label: 'Manage Categories',  href: '/admin/categories' },
+      ],
+    },
+    {
+      label: 'Business Directory',
+      color: 'border-gold',
+      stats: [
+        { label: 'Total Businesses',  value: totalBusinesses },
+        { label: 'Pending Approval',  value: pendingBusinesses, alert: pendingBusinesses > 0 },
+      ],
+      actions: [
+        { label: 'Manage Businesses',  href: '/admin/business' },
+      ],
+    },
+    {
+      label: 'Stories & Blog',
+      color: 'border-blue-400',
+      stats: [
+        { label: 'Total Stories',   value: totalStories },
+        { label: 'Pending Review',  value: pendingStories, alert: pendingStories > 0 },
+      ],
+      actions: [
+        { label: 'Manage Stories',   href: '/admin/stories' },
+        { label: 'Write Blog Post',  href: '/admin/blog' },
+      ],
+    },
+    {
+      label: 'Pride TV',
+      color: 'border-red-400',
+      stats: [
+        { label: 'Active Videos', value: totalVideos },
+      ],
+      actions: [
+        { label: 'Manage Videos',   href: '/admin/media' },
+      ],
+    },
   ]
-}
 
-export default async function AdminDashboardPage() {
-  let stats: StatCard[] = []
-  let dbError = false
-
-  try {
-    stats = await getStats()
-  } catch {
-    dbError = true
-  }
-
-  const totalPending = stats.reduce((sum, s) => sum + s.pending, 0)
+  const totalPending = pendingProfiles + pendingBusinesses + pendingStories
 
   return (
     <div className="flex min-h-screen bg-cream">
       <AdminNav />
-
-      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
+      <main className="flex-1 lg:ml-64 pt-14 lg:pt-12 p-4 lg:p-8">
         <div className="max-w-[1100px]">
-          <h1 className="mb-1 text-2xl font-bold font-display sm:text-3xl text-green">
-            Dashboard
-          </h1>
-          <p className="mb-8 text-sm text-ink-muted font-body">
-            Overview of all content across Pride of Pakistan.
-          </p>
 
-          {dbError && (
-            <div className="p-4 mb-6 text-sm text-red-600 border border-red-200 rounded-lg bg-red-50 font-body">
-              Couldn't load stats â€” check your database connection.
-            </div>
-          )}
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="font-display text-2xl font-bold text-green mb-1">Dashboard</h1>
+            <p className="text-sm text-ink-muted font-body">
+              Welcome back.{' '}
+              {totalPending > 0 ? (
+                <span className="text-amber-600 font-semibold">
+                  {totalPending} item{totalPending !== 1 ? 's' : ''} pending review.
+                </span>
+              ) : (
+                <span>Everything is up to date.</span>
+              )}
+            </p>
+          </div>
 
-          {totalPending > 0 && (
-            <a
-              href="/admin/profiles"
-              className="block p-4 mb-6 text-sm no-underline transition-colors border rounded-lg bg-gold-pale border-gold/30 font-body hover:border-gold"
-            >
-              <span className="font-semibold text-gold">
-                {totalPending} item{totalPending === 1 ? '' : 's'}
-              </span>
-              <span className="text-ink-mid"> waiting for review</span>
-            </a>
-          )}
-
-          {/* Stat cards */}
-          <div className="grid grid-cols-2 gap-4 mb-10 sm:grid-cols-3 lg:grid-cols-5">
-            {stats.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                className="bg-white border border-border rounded-xl p-5 no-underline hover:border-gold hover:-translate-y-0.5 transition-all"
+          {/* Section cards */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {SECTIONS.map((section) => (
+              <div
+                key={section.label}
+                className={`bg-white border-l-4 ${section.color} border border-border rounded-xl overflow-hidden`}
               >
-                <div className="mb-3 text-2xl">{s.icon}</div>
-                <div className="font-display text-2xl font-bold text-ink-dark mb-0.5">
-                  {s.count}
+                {/* Section header */}
+                <div className="px-5 py-4 border-b border-border">
+                  <h2 className="font-display text-base font-bold text-green">{section.label}</h2>
                 </div>
-                <div className="mb-2 text-xs text-ink-muted font-body">{s.label}</div>
-                {s.pending > 0 && (
-                  <span className="inline-block bg-gold text-white text-[10px] font-bold px-2 py-0.5 rounded font-body">
-                    {s.pending} pending
-                  </span>
-                )}
-              </a>
+
+                {/* Stats */}
+                <div className="px-5 py-4 flex gap-6 border-b border-border">
+                  {section.stats.map((stat) => (
+                    <div key={stat.label}>
+                      <p className={`text-2xl font-black font-display ${stat.alert ? 'text-amber-500' : 'text-green'}`}>
+                        {stat.value}
+                      </p>
+                      <p className="text-[11px] text-ink-muted font-body mt-0.5">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Quick actions */}
+                <div className="px-5 py-3 flex flex-wrap gap-2">
+                  {section.actions.map((action) => (
+                    <Link
+                      key={action.href}
+                      href={action.href}
+                      className="text-xs font-semibold text-gold font-body hover:underline no-underline border border-gold/20 bg-gold-pale px-3 py-1.5 rounded-md hover:bg-gold/10 transition-colors"
+                    >
+                      {action.label} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
 
-          {/* Quick actions */}
-          <div className="p-6 bg-white border border-border rounded-xl">
-            <h2 className="mb-4 text-lg font-bold font-display text-green">Quick Actions</h2>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <a
-                href="/admin/blog"
-                className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
-              >
-                <span className="text-xl"></span>
-                <span className="text-sm font-semibold text-ink-dark font-body">Write a Blog Post</span>
-              </a>
-              <a
-                href="/admin/stories"
-                className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
-              >
-                <span className="text-xl"></span>
-                <span className="text-sm font-semibold text-ink-dark font-body">Add a News Story</span>
-              </a>
-              <a
-                href="/admin/profiles"
-                className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
-              >
-                <span className="text-xl"></span>
-                <span className="text-sm font-semibold text-ink-dark font-body">Review Pending Profiles</span>
-              </a>
-              <a
-                href="/admin/media"
-                className="flex items-center gap-3 px-4 py-3 no-underline transition-colors border rounded-lg border-border hover:border-gold"
-              >
-                <span className="text-xl"></span>
-                <span className="text-sm font-semibold text-ink-dark font-body">Add a Pride TV Video</span>
-              </a>
+          {/* Pending alert banner */}
+          {totalPending > 0 && (
+            <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl px-5 py-4">
+              <p className="text-sm font-semibold text-amber-800 font-body mb-3">
+                Items requiring attention:
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {pendingProfiles > 0 && (
+                  <Link
+                    href="/admin/profiles?status=0"
+                    className="text-xs font-semibold text-amber-700 border border-amber-300 bg-amber-100 px-3 py-1.5 rounded-md hover:bg-amber-200 transition-colors no-underline font-body"
+                  >
+                    {pendingProfiles} profile{pendingProfiles !== 1 ? 's' : ''} pending →
+                  </Link>
+                )}
+                {pendingBusinesses > 0 && (
+                  <Link
+                    href="/admin/business"
+                    className="text-xs font-semibold text-amber-700 border border-amber-300 bg-amber-100 px-3 py-1.5 rounded-md hover:bg-amber-200 transition-colors no-underline font-body"
+                  >
+                    {pendingBusinesses} business{pendingBusinesses !== 1 ? 'es' : ''} pending →
+                  </Link>
+                )}
+                {pendingStories > 0 && (
+                  <Link
+                    href="/admin/stories"
+                    className="text-xs font-semibold text-amber-700 border border-amber-300 bg-amber-100 px-3 py-1.5 rounded-md hover:bg-amber-200 transition-colors no-underline font-body"
+                  >
+                    {pendingStories} stor{pendingStories !== 1 ? 'ies' : 'y'} pending →
+                  </Link>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </main>
     </div>
