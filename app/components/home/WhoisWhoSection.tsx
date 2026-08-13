@@ -200,12 +200,14 @@ export default function WhoIsWhoSection({ profiles, categories, featuredProfiles
           <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
             <div>
               <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Hall of Fame</p>
-              <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Who Is Who</h2>
-              <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
-            </div>
-            <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
+              <h2 className="font-display pb-4 text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Who Is Who</h2>
+              <span className="text-lg sm:text-lg text-green leading-tight">These are the people who are proud of what they have done and we, in highlighting what they have done, are proud of them and want to ensure their activities are recognized.</span>
+               <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center justify-end gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
               View All →
             </Link>
+              <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+            </div>
+            
           </div>
 
           {/* ── Featured section ── */}
@@ -225,7 +227,7 @@ export default function WhoIsWhoSection({ profiles, categories, featuredProfiles
                             alt={profileOfTheDay.title}
                             width={600}
                             height={350}
-                            className="object-top w-full h-full transition-transform duration-500 object-fit group-hover:scale-105"
+                            className="object-center w-full h-full transition-transform duration-500 object-fit group-hover:scale-102"
                           />
                         ) : (
                           <div className="flex items-center justify-center w-full h-full bg-green">
@@ -264,49 +266,51 @@ export default function WhoIsWhoSection({ profiles, categories, featuredProfiles
                 </Link>
               )}
 
-              {/* 6 featured profiles grid */}
-              {featuredProfiles.length > 0 && (
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                  {featuredProfiles.map((p) => (
-                    <Link
-                      key={p.id}
-                      href={`/who-is-who/${p.id}`}
-                      className="no-underline group"
-                    >
-                      <div className="overflow-hidden transition-all bg-white border border-border rounded-xl hover:border-gold hover:shadow-lg">
-                        {/* Portrait image */}
-                        <div className="w-full overflow-hidden bg-green/10" style={{ aspectRatio: '350/300' }}>
-                          {p.image ? (
-                            <Image
-                              src={p.image}
-                              alt={p.title}
-                              width={300}
-                              height={350}
-                              className="object-top w-full h-full transition-transform duration-300 object-fit group-hover:scale-105"
-                            />
-                          ) : (
-                            <div className="flex items-center justify-center w-full h-full bg-green">
-                              <span className="text-4xl font-black text-white font-display">{p.title.charAt(0)}</span>
-                            </div>
-                          )}
-                        </div>
-                        {/* Name + profession */}
-                        <div className="p-3">
-                          <p className="text-xs font-bold leading-snug transition-colors font-display text-ink-dark group-hover:text-green line-clamp-2">
-                            {p.title}
-                          </p>
-                          {p.Profession && (
-                            <p className="text-[10px] text-ink-muted font-body mt-0.5 line-clamp-1">{p.Profession}</p>
-                          )}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
+             
+{/* 6 featured profiles grid */}
+{featuredProfiles.length > 0 && (
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+    {featuredProfiles.map((p) => (
+      <Link
+        key={p.id}
+        href={`/who-is-who/${p.id}`}
+        className="no-underline group"
+      >
+        {/* Plain image — no card */}
+        <div className="w-full overflow-hidden" style={{ aspectRatio: '600/550' }}>
+          {p.image ? (
+            <Image
+              src={p.image}
+              alt={p.title}
+              width={600}
+              height={350}
+              className="w-full h-full object-fit rounded-lg object-top group-hover:scale-102 transition-transform duration-300"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-green">
+              <span className="font-display text-3xl font-black text-white">
+                {p.title.charAt(0)}
+              </span>
             </div>
           )}
         </div>
+        {/* Caption */}
+        <div className="mt-2">
+          <p className="text-sm font-bold font-display text-ink-dark leading-snug group-hover:text-green transition-colors line-clamp-1">
+            {p.title}
+          </p>
+          <p className="text-[11px] font-semibold text-gold font-body mt-0.5">
+            View Profile →
+          </p>
+        </div>
+      </Link>
+    ))}
+  </div>
+)}
+            </div>
+          )}
+        </div>
+        
       </section>
 
       {activeCategory && (

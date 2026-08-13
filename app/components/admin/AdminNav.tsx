@@ -16,13 +16,20 @@ const NAV_GROUPS = [
     items: [
       { label: 'Manage Profiles', href: '/admin/profiles' },
       { label: 'Add Profile',     href: '/admin/profiles/new' },
-      { label: 'Categories',      href: '/admin/categories' },
+      { label: 'Profile Categories',      href: '/admin/categories' },
+      { label: 'Claim Profile',      href: '/admin/claim' },
     ],
   },
   {
     label: 'Business Directory',
     items: [
       { label: 'Manage Businesses', href: '/admin/business' },
+    ],
+  },
+  {
+    label: 'Pakistani Products',
+    items: [
+      { label: 'Manage Products', href: '/admin/products' },
     ],
   },
   {
