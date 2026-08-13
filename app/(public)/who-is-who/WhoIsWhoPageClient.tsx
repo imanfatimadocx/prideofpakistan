@@ -327,38 +327,39 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
                           </button>
                         )}
                       </div>
-
                       {/* Grid — 3 cols mobile, 7 cols desktop */}
-                      <div className="grid grid-cols-3 gap-2 lg:grid-cols-7 sm:gap-3">
-                        {shown.map((p) => (
-                          <Link
-                            key={p.id}
-                            href={`/who-is-who/${p.id}`}
-                            className="flex flex-col overflow-hidden no-underline transition-all bg-white border rounded-xl border-border hover:border-gold hover:shadow-lg group"
-                          >
-                            <div className="w-full overflow-hidden bg-gray-100" style={{ aspectRatio: '650/600' }}>
-                              {p.image ? (
-                                <Image
-                                  src={p.image}
-                                  alt={p.title}
-                                  width={300}
-                                  height={650}
-                                  className="object-top w-full h-full transition-transform duration-300 object-fit group-hover:scale-105"
-                                />
-                              ) : (
-                                <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-green font-display">
-                                  {p.title.charAt(0).toUpperCase()}
-                                </div>
-                              )}
-                            </div>
-                            <div className="p-2">
-                              <p className="text-[11px] font-bold leading-snug text-ink-dark font-display group-hover:text-green transition-colors line-clamp-2">
-                                {p.title}
-                              </p>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
+<div className="grid grid-cols-3 gap-2 lg:grid-cols-7 sm:gap-3">
+  {shown.map((p) => (
+    <Link
+      key={p.id}
+      href={`/who-is-who/${p.id}`}
+      className="no-underline group"
+    >
+      {/* Plain image — no card, no border */}
+      <div className="w-full overflow-hidden" style={{ aspectRatio: '650/500' }}>
+        {p.image ? (
+          <Image
+            src={p.image}
+            alt={p.title}
+            width={650}
+            height={300}
+            className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-green font-display">
+            {p.title.charAt(0).toUpperCase()}
+          </div>
+        )}
+      </div>
+      {/* Caption */}
+      <div className="mt-2">
+        <p className="text-[11px] font-bold leading-snug text-ink-dark font-display group-hover:text-green transition-colors line-clamp-2">
+          {p.title}
+        </p>
+      </div>
+    </Link>
+  ))}
+</div>
                     </div>
                   )
                 })}
