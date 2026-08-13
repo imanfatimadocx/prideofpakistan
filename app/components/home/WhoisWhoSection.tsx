@@ -93,19 +93,31 @@ function ProfileListModal({
               onChange={(e) => { setSearch(e.target.value); setActiveLetter(null) }}
               className="w-full border border-border rounded-lg px-4 pr-9 py-2.5 text-sm font-body text-ink-dark placeholder:text-ink-muted focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
             />
-            {search && <button onClick={() => setSearch('')} className="absolute text-lg -translate-y-1/2 right-3 top-1/2 text-ink-muted hover:text-ink-dark">×</button>}
+            {search && (
+              <button onClick={() => setSearch('')} className="absolute text-lg -translate-y-1/2 right-3 top-1/2 text-ink-muted hover:text-ink-dark">×</button>
+            )}
           </div>
         </div>
 
         {!search && (
           <div className="flex-shrink-0 px-6 py-3 overflow-x-auto border-b border-border">
             <div className="flex gap-1 min-w-max">
-              <button onClick={() => setActiveLetter(null)} className={`text-[11px] font-bold font-body px-2.5 py-1 rounded transition-colors ${activeLetter === null ? 'bg-green text-white' : 'text-ink-muted hover:text-green'}`}>ALL</button>
+              <button
+                onClick={() => setActiveLetter(null)}
+                className={`text-[11px] font-bold font-body px-2.5 py-1 rounded transition-colors ${activeLetter === null ? 'bg-green text-white' : 'text-ink-muted hover:text-green'}`}
+              >ALL</button>
               {ALPHABET.map((letter) => {
                 const available = availableLetters.has(letter)
                 return (
-                  <button key={letter} onClick={() => available && setActiveLetter(letter === activeLetter ? null : letter)} disabled={!available}
-                    className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${activeLetter === letter ? 'bg-gold text-white' : available ? 'text-ink-dark hover:bg-gold-pale hover:text-gold' : 'text-ink-muted/30 cursor-not-allowed'}`}
+                  <button
+                    key={letter}
+                    onClick={() => available && setActiveLetter(letter === activeLetter ? null : letter)}
+                    disabled={!available}
+                    className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${
+                      activeLetter === letter ? 'bg-gold text-white'
+                      : available ? 'text-ink-dark hover:bg-gold-pale hover:text-gold'
+                      : 'text-ink-muted/30 cursor-not-allowed'
+                    }`}
                   >{letter}</button>
                 )
               })}
@@ -130,16 +142,26 @@ function ProfileListModal({
                   </div>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {grouped[letter].map((p) => (
-                      <Link key={p.id} href={`/who-is-who/${p.id}`} onClick={onClose} className="flex items-center gap-3.5 p-3.5 rounded-xl border border-border hover:border-gold hover:shadow-md transition-all group no-underline">
+                      <Link
+                        key={p.id}
+                        href={`/who-is-who/${p.id}`}
+                        onClick={onClose}
+                        className="flex items-center gap-3.5 p-3.5 rounded-xl border border-border hover:border-gold hover:shadow-md transition-all group no-underline"
+                      >
                         {p.image ? (
-                          <Image src={p.image} alt={p.title} width={48} height={48} className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-fit ring-2 ring-border group-hover:ring-gold" />
+                          <Image src={p.image} alt={p.title} width={48} height={48}
+                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-fit ring-2 ring-border group-hover:ring-gold" />
                         ) : (
-                          <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-gold">{p.title.charAt(0).toUpperCase()}</div>
+                          <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-gold">
+                            {p.title.charAt(0).toUpperCase()}
+                          </div>
                         )}
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-bold leading-tight truncate transition-colors text-ink-dark font-display group-hover:text-green">{p.title}</p>
                           {p.Profession && <p className="text-xs text-ink-muted font-body truncate mt-0.5">{p.Profession}</p>}
-                          {(p.City || p.Country) && <p className="text-[11px] text-ink-muted font-body mt-0.5">{[p.City, p.Country].filter(Boolean).join(', ')}</p>}
+                          {(p.City || p.Country) && (
+                            <p className="text-[11px] text-ink-muted font-body mt-0.5">{[p.City, p.Country].filter(Boolean).join(', ')}</p>
+                          )}
                         </div>
                         <span className="flex-shrink-0 text-sm transition-opacity opacity-0 text-gold group-hover:opacity-100">→</span>
                       </Link>
@@ -152,8 +174,13 @@ function ProfileListModal({
         </div>
 
         <div className="flex items-center justify-between flex-shrink-0 px-6 py-4 border-t border-border bg-cream rounded-b-2xl">
-          <p className="text-xs text-ink-muted font-body">Showing <span className="font-semibold text-ink-dark">{filtered.length}</span> of <span className="font-semibold text-ink-dark">{category.count}</span> profiles</p>
-          <Link href={`/who-is-who?category=${category.categoryid}`} onClick={onClose} className="text-xs font-semibold text-gold hover:underline font-body">View full page →</Link>
+          <p className="text-xs text-ink-muted font-body">
+            Showing <span className="font-semibold text-ink-dark">{filtered.length}</span> of{' '}
+            <span className="font-semibold text-ink-dark">{category.count}</span> profiles
+          </p>
+          <Link href={`/who-is-who?category=${category.categoryid}`} onClick={onClose} className="text-xs font-semibold text-gold hover:underline font-body">
+            View full page →
+          </Link>
         </div>
       </div>
     </div>
@@ -167,29 +194,21 @@ interface Props {
   profileOfTheDay?: ProfileCard | null
 }
 
-export default function WhoIsWhoSection({ profiles, categories, featuredProfiles = [], profileOfTheDay }: Props) {
+export default function WhoIsWhoSection({
+  profiles,
+  categories,
+  featuredProfiles = [],
+  profileOfTheDay = null,
+}: Props) {
   const [activeCategory, setActiveCategory] = useState<CategoryCard | null>(null)
-
-  const topCategories = useMemo(
-    () => [...categories].sort((a, b) => b.count - a.count).slice(2, 12),
-    [categories]
-  )
-
-  const categoryFirstImage = useMemo(() => {
-    const map: Record<number, string | null> = {}
-    for (const cat of topCategories) {
-      const first = profiles.find((p) => p.categoryid === cat.categoryid && p.image)
-      map[cat.categoryid] = first?.image ?? null
-    }
-    return map
-  }, [topCategories, profiles])
 
   const activeProfiles = useMemo(
     () => activeCategory ? profiles.filter((p) => p.categoryid === activeCategory.categoryid) : [],
     [profiles, activeCategory]
   )
 
-  const hasFeatured = featuredProfiles.length > 0 || profileOfTheDay
+  const validFeatured = featuredProfiles.filter(Boolean)
+  const hasFeatured = validFeatured.length > 0 || (profileOfTheDay && profileOfTheDay.id)
 
   return (
     <>
@@ -200,117 +219,119 @@ export default function WhoIsWhoSection({ profiles, categories, featuredProfiles
           <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
             <div>
               <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Hall of Fame</p>
-              <h2 className="font-display pb-4 text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Who Is Who</h2>
-              <span className="text-lg sm:text-lg text-green leading-tight">These are the people who are proud of what they have done and we, in highlighting what they have done, are proud of them and want to ensure their activities are recognized.</span>
-               <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center justify-end gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
-              View All →
-            </Link>
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Who Is Who</h2>
+              <span className="text-green">These are the people who are proud of what they have done and we, in highlighting what they have done, are proud of them and want to ensure their activities are recognized.</span>
               <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
             </div>
-            
+            <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
+              View All →
+            </Link>
           </div>
 
-          {/* ── Featured section ── */}
           {hasFeatured && (
-            <div className="mb-10 space-y-5">
+            <div className="mb-10 space-y-8">
 
-              {/* Profile of the Day — full width */}
-              {profileOfTheDay && (
-                <Link href={`/who-is-who/${profileOfTheDay.id}`} className="block no-underline group">
-                  <div className="overflow-hidden transition-all bg-white border shadow-md border-gold/40 rounded-2xl hover:shadow-xl">
-                    <div className="flex flex-col items-stretch sm:flex-row">
-                      {/* Image */}
-                      <div className="w-full sm:w-[260px] flex-shrink-0 overflow-hidden bg-green/10" style={{ aspectRatio: '600/350' }}>
-                        {profileOfTheDay.image ? (
+              {/* ── Profile of the Day — plain image + caption, no card ── */}
+             {/* ── Profile of the Day — flex, no background ── */}
+{profileOfTheDay && profileOfTheDay.id && (
+  <div>
+    <p className="text-[16px] font-bold uppercase tracking-[.16em] text-gold font-body mb-4">
+      Profile of the Day
+    </p>
+    <Link
+      href={`/who-is-who/${profileOfTheDay.id}`}
+      className="flex flex-col items-start gap-6 no-underline group sm:flex-row"
+    >
+      {/* Image */}
+      <div className="w-full sm:w-[320px] flex-shrink-0 overflow-hidden" style={{ aspectRatio: '600/350' }}>
+        {profileOfTheDay.image ? (
+          <Image
+            src={profileOfTheDay.image}
+            alt={profileOfTheDay.title}
+            width={600}
+            height={350}
+            className="object-top w-full h-full rounded-lg on-500 bordertransition-transform object-fit group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex items-center justify-center w-full h-full bg-green">
+            <span className="text-6xl font-black text-white font-display">
+              {profileOfTheDay.title.charAt(0)}
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Text — no background */}
+      <div className="flex-1 min-w-0 py-2">
+        <h3 className="mb-1 text-2xl font-bold leading-tight transition-colors font-display sm:text-3xl text-green group-hover:text-gold">
+          {profileOfTheDay.title}
+        </h3>
+        {profileOfTheDay.Profession && (
+          <p className="mb-2 text-sm font-semibold text-ink-mid font-body">
+            {profileOfTheDay.Profession}
+          </p>
+        )}
+        {(profileOfTheDay.City || profileOfTheDay.Country) && (
+          <p className="mb-3 text-xs text-ink-muted font-body">
+            {[profileOfTheDay.City, profileOfTheDay.Country].filter(Boolean).join(', ')}
+          </p>
+        )}
+        {profileOfTheDay.shortdesc && (
+          <p className="text-sm leading-relaxed text-ink-mid font-body line-clamp-4">
+            {profileOfTheDay.shortdesc.replace(/<[^>]*>/g, '')}
+          </p>
+        )}
+        <p className="mt-4 text-sm font-semibold text-gold font-body">
+          View Profile →
+        </p>
+      </div>
+    </Link>
+  </div>
+)}
+
+              {/* ── 6 featured profiles — plain image + caption, no card ── */}
+              {validFeatured.length > 0 && (
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+                  {validFeatured.map((p) => (
+                    <Link
+                      key={p.id}
+                      href={`/who-is-who/${p.id}`}
+                      className="no-underline group"
+                    >
+                      {/* Plain image — no card, no border */}
+                      <div className="w-full overflow-hidden" style={{ aspectRatio: '600/350' }}>
+                        {p.image ? (
                           <Image
-                            src={profileOfTheDay.image}
-                            alt={profileOfTheDay.title}
+                            src={p.image}
+                            alt={p.title}
                             width={600}
                             height={350}
-                            className="object-center w-full h-full transition-transform duration-500 object-fit group-hover:scale-102"
+                            className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
                           />
                         ) : (
                           <div className="flex items-center justify-center w-full h-full bg-green">
-                            <span className="text-6xl font-black text-white font-display">{profileOfTheDay.title.charAt(0)}</span>
+                            <span className="text-3xl font-black text-white font-display">
+                              {p.title.charAt(0)}
+                            </span>
                           </div>
                         )}
                       </div>
-                      {/* Info */}
-                      <div className="flex flex-col justify-center flex-1 px-6 py-5">
-                        <span className="inline-block text-[16px] font-bold uppercase text-gold font-body py-1 rounded-full mb-3 w-fit">
-                          Profile of the Day
-                        </span>
-                        <h3 className="mb-1 text-xl font-bold leading-tight transition-colors font-display sm:text-2xl text-green group-hover:text-gold">
-                          {profileOfTheDay.title}
-                        </h3>
-                        {profileOfTheDay.Profession && (
-                          <p className="mb-1 text-sm text-ink-mid font-body">{profileOfTheDay.Profession}</p>
-                        )}
-                        {(profileOfTheDay.City || profileOfTheDay.Country) && (
-                          <p className="mb-3 text-xs text-ink-muted font-body">
-                            {[profileOfTheDay.City, profileOfTheDay.Country].filter(Boolean).join(', ')}
-                          </p>
-                        )}
-                        {profileOfTheDay.shortdesc && (
-                          <p className="text-sm leading-relaxed text-ink-mid font-body line-clamp-2">
-                            {profileOfTheDay.shortdesc.replace(/<[^>]*>/g, '')}
-                          </p>
-                        )}
-                        <div className="mt-4 flex items-center gap-1.5 text-gold text-sm font-semibold font-body">
-                          View Profile
-                          <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
-                        </div>
+                      {/* Caption */}
+                      <div className="mt-2">
+                        <p className="text-sm font-bold leading-snug transition-colors font-display text-ink-dark group-hover:text-green line-clamp-1">
+                          {p.title}
+                        </p>
+                        <p className="text-[11px] font-semibold text-gold font-body mt-0.5">
+                          View Profile →
+                        </p>
                       </div>
-                    </div>
-                  </div>
-                </Link>
+                    </Link>
+                  ))}
+                </div>
               )}
-
-             
-{/* 6 featured profiles grid */}
-{featuredProfiles.length > 0 && (
-  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-    {featuredProfiles.map((p) => (
-      <Link
-        key={p.id}
-        href={`/who-is-who/${p.id}`}
-        className="no-underline group"
-      >
-        {/* Plain image — no card */}
-        <div className="w-full overflow-hidden" style={{ aspectRatio: '600/550' }}>
-          {p.image ? (
-            <Image
-              src={p.image}
-              alt={p.title}
-              width={600}
-              height={350}
-              className="w-full h-full object-fit rounded-lg object-top group-hover:scale-102 transition-transform duration-300"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-green">
-              <span className="font-display text-3xl font-black text-white">
-                {p.title.charAt(0)}
-              </span>
             </div>
           )}
         </div>
-        {/* Caption */}
-        <div className="mt-2">
-          <p className="text-sm font-bold font-display text-ink-dark leading-snug group-hover:text-green transition-colors line-clamp-1">
-            {p.title}
-          </p>
-          <p className="text-[11px] font-semibold text-gold font-body mt-0.5">
-            View Profile →
-          </p>
-        </div>
-      </Link>
-    ))}
-  </div>
-)}
-            </div>
-          )}
-        </div>
-        
       </section>
 
       {activeCategory && (
