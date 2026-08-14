@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-green text-white/[.68] py-12 sm:py-16 lg:pb-8">
+    <footer className="bg-green/95 text-white/[.68] py-12 sm:py-16 lg:pb-8">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-14 mb-10 sm:mb-13">
 
@@ -87,7 +87,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/[.32] font-body text-center sm:text-left">
           <span>© {year} Pride of Pakistan. All rights reserved.</span>
-          <span>Powered by rasekh.pk</span>
+          <Link href="/terms-of-use" className="text-xs no-underline transition-colors text-ink-muted hover:text-gold font-body">Terms of Use</Link>
+<Link href="/privacy-policy" className="text-xs no-underline transition-colors text-ink-muted hover:text-gold font-body">Privacy Policy</Link>
+<Link href="/disclaimer" className="text-xs no-underline transition-colors text-ink-muted hover:text-gold font-body">Disclaimer</Link>
+          <span>Powered by <a href="https://rasekh.pk">rasekh.pk</a></span>
         </div>
       </div>
     </footer>
