@@ -9,6 +9,8 @@ import ProductsSection, { ProductCard } from '@/app/components/home/ProductsSect
 import PrideTVSection, { VideoCard } from '@/app/components/home/PrideTVSection'
 import NewsStrip, { NewsItem } from '@/app/components/home/NewsStrip'
 
+export const revalidate = 86400 // 24 hours for rotation, but purged on delete
+
 const PRODUCT_CATEGORY_NAMES: Record<number, string> = {
   1: 'Food & Agriculture', 2: 'Textiles & Clothing', 3: 'Handicrafts',
   4: 'Sports Goods', 5: 'Leather Goods', 6: 'Jewellery & Gems',
