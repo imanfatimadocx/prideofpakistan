@@ -103,7 +103,7 @@ async function getFeatured6(): Promise<ProfileCard[]> {
     const start = new Date(now.getFullYear(), 0, 0)
     const dayOfYear = Math.floor((now.getTime() - start.getTime()) / 86400000)
 
-    // Profile of the day is at potdIndex — skip it, take next 6
+    // Profile of the day is at potdIndex - skip it, take next 6
     const potdIndex = dayOfYear % featured.length
     const picked: typeof featured = []
 

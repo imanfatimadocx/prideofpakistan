@@ -30,7 +30,7 @@ export default async function AdminProfilesPage() {
 
   const serialized = profiles.map((p) => ({
     id: p.id,
-    title: p.title ?? '—',
+    title: p.title ?? '-',
     Profession: p.Profession ?? '',
     status: p.status ?? 0,
     image: p.image

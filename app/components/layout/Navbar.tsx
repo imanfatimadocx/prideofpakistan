@@ -95,7 +95,7 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile — right side: auth shortcut + hamburger */}
+          {/* Mobile - right side: auth shortcut + hamburger */}
           <div className="flex items-center gap-3 lg:hidden">
             {session ? (
               <Link
@@ -112,7 +112,7 @@ export default function Navbar() {
                 Sign In
               </Link>
             )}
-            {/* Hamburger — white lines, visible on green */}
+            {/* Hamburger - white lines, visible on green */}
             <button
               className="flex flex-col gap-1.5 p-2"
               onClick={() => setOpen(!open)}
@@ -134,7 +134,7 @@ export default function Navbar() {
         onClick={() => setOpen(false)}
       />
 
-      {/* Mobile drawer — green to match navbar */}
+      {/* Mobile drawer - green to match navbar */}
       <div
         className={`fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-green z-[210] lg:hidden shadow-2xl flex flex-col transition-transform duration-300 ease-[cubic-bezier(.77,0,.175,1)] ${
           open ? 'translate-x-0' : 'translate-x-full'
@@ -201,7 +201,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Drawer footer — auth */}
+        {/* Drawer footer - auth */}
         <div className="flex-shrink-0 px-4 py-5 border-t border-white/10">
           {session ? (
             <div className="space-y-3">

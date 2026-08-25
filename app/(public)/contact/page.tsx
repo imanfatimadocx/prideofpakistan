@@ -85,7 +85,7 @@ export default function ContactPage() {
             </h1>
             <div className="w-12 h-[3px] bg-gold mx-auto mb-5 rounded" />
             <p className="max-w-xl mx-auto leading-relaxed text-white/70 font-body">
-              Whether you want to share your story, explore partnership opportunities, or simply learn more about the movement — we'd love to hear from you.
+              Whether you want to share your story, explore partnership opportunities, or simply learn more about the movement - we'd love to hear from you.
             </p>
           </div>
         </section>
@@ -162,7 +162,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Right — form */}
+              {/* Right - form */}
               <div className="p-6 bg-white border border-border rounded-2xl sm:p-8">
                 <h2 className="mb-1 text-2xl font-bold font-display text-green">Send a Message</h2>
                 <p className="mb-6 text-sm text-ink-muted font-body">We aim to respond within 2 working days.</p>

@@ -29,7 +29,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
   const [page, setPage] = useState(1)
   const [expandedLetters, setExpandedLetters] = useState<Set<string>>(new Set())
 
-  // Responsive initial limit — read once on mount
+  // Responsive initial limit - read once on mount
   const [initialLimit] = useState(() => {
     if (typeof window === 'undefined') return INITIAL_ROWS * COLS_MOBILE
     return window.innerWidth >= 1024
@@ -327,7 +327,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
                           </button>
                         )}
                       </div>
-                      {/* Grid — 3 cols mobile, 7 cols desktop */}
+                      {/* Grid - 3 cols mobile, 7 cols desktop */}
 <div className="grid grid-cols-3 gap-2 lg:grid-cols-7 sm:gap-3">
   {shown.map((p) => (
     <Link
@@ -335,7 +335,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
       href={`/who-is-who/${p.id}`}
       className="no-underline group"
     >
-      {/* Plain image — no card, no border */}
+      {/* Plain image - no card, no border */}
       <div className="w-full overflow-hidden" style={{ aspectRatio: '650/500' }}>
         {p.image ? (
           <Image

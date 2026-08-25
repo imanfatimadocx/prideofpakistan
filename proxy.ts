@@ -11,7 +11,7 @@ export async function proxy(req: NextRequest) {
 
   const role = (token as { role?: string } | null)?.role
 
-  // Admin routes — must have ADMIN role
+  // Admin routes - must have ADMIN role
   if (pathname.startsWith('/admin')) {
     if (!token || role !== 'ADMIN') {
       return NextResponse.redirect(new URL('/admin/login', req.url))
@@ -19,7 +19,7 @@ export async function proxy(req: NextRequest) {
     return NextResponse.next()
   }
 
-  // Protected public routes — any logged-in user
+  // Protected public routes - any logged-in user
   const protectedRoutes = [
     '/submit-profile',
     '/list-business',

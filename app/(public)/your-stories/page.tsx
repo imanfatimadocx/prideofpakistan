@@ -42,7 +42,7 @@ export default async function YourStoriesPage() {
         <PageHero
           eyebrow="Community Stories"
           title="Your Stories"
-          subtitle="Real stories from Pakistanis at home and around the world — in their own words."
+          subtitle="Real stories from Pakistanis at home and around the world - in their own words."
         />
 
         <section className="py-12 bg-white sm:py-16 lg:py-20">

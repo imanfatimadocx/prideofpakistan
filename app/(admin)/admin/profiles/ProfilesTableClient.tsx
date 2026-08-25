@@ -168,7 +168,7 @@ export default function ProfilesTableClient({
 
                   {/* Category */}
                   <td className="hidden px-4 py-3 sm:table-cell">
-                    <span className="text-xs text-ink-muted">{p.categoryname ?? '—'}</span>
+                    <span className="text-xs text-ink-muted">{p.categoryname ?? '-'}</span>
                   </td>
 
                   {/* Status */}
@@ -183,7 +183,7 @@ export default function ProfilesTableClient({
                     {p.feature === 1 ? (
                       <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-gold-pale text-gold font-body">Featured</span>
                     ) : (
-                      <span className="text-[11px] text-ink-muted font-body">—</span>
+                      <span className="text-[11px] text-ink-muted font-body">-</span>
                     )}
                   </td>
 

@@ -22,7 +22,7 @@ export interface ProductCategory {
   count: number
 }
 
-// Named categories — update these IDs to match what's in your pakproducts table
+// Named categories - update these IDs to match what's in your pakproducts table
 // Check Prisma Studio → PakProduct to see which categoryid numbers are used
 const PRODUCT_CATEGORY_NAMES: Record<number, string> = {
   1: 'Food & Agriculture',

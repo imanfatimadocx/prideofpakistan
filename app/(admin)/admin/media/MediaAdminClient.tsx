@@ -52,7 +52,7 @@ export default function MediaAdminClient({ videos: initial }: { videos: Video[] 
   const [error, setError] = useState<string | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
 
-  // When URL changes — show thumbnail preview
+  // When URL changes - show thumbnail preview
   function handleUrlChange(val: string) {
     setForm((f) => ({ ...f, url: val }))
     const thumb = getThumbnail(val)
@@ -211,7 +211,7 @@ export default function MediaAdminClient({ videos: initial }: { videos: Video[] 
             placeholder="https://www.youtube.com/watch?v=..."
           />
           <p className="text-xs text-ink-muted font-body mt-1.5">
-            Paste any YouTube URL — watch page, short, or share link. Thumbnail is auto-extracted.
+            Paste any YouTube URL - watch page, short, or share link. Thumbnail is auto-extracted.
           </p>
         </div>
 

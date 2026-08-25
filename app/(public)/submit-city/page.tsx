@@ -79,7 +79,7 @@ export default function SubmitCityPage() {
 
           <div>
             <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">Description</label>
-            <textarea name="description" rows={5} className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors resize-none" placeholder="Tell us about this city — its history, significance, what makes it special..." />
+            <textarea name="description" rows={5} className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors resize-none" placeholder="Tell us about this city - its history, significance, what makes it special..." />
           </div>
 
           {error && <p className="text-sm text-red-500 font-body">{error}</p>}

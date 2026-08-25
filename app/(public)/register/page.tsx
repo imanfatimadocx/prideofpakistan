@@ -67,7 +67,7 @@ export default function RegisterPage() {
           <div className="mb-8 text-center">
             <h1 className="mb-2 text-3xl font-bold font-display text-green">Create Account</h1>
             <p className="text-sm text-ink-muted font-body">
-              Join Pride of Pakistan — submit your profile, list your business, and more.
+              Join Pride of Pakistan - submit your profile, list your business, and more.
             </p>
           </div>
 

@@ -263,7 +263,7 @@ async function handleSave() {
                   onChange={(e) => setForm((f) => ({ ...f, categoryid: e.target.value ? Number(e.target.value) : null }))}
                   className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
                 >
-                  <option value="">— Select category —</option>
+                  <option value="">- Select category -</option>
                   {categories.map((c) => (
                     <option key={c.categoryid} value={c.categoryid}>{c.categoryname}</option>
                   ))}
@@ -285,7 +285,7 @@ async function handleSave() {
             />
           </div>
 
-          {/* Full description — TipTap */}
+          {/* Full description - TipTap */}
           <div className="p-6 space-y-3 bg-white border border-border rounded-xl">
             <h2 className="text-base font-bold font-display text-green">Full Description</h2>
             <p className="text-xs text-ink-muted font-body">

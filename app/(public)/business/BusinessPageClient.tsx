@@ -63,7 +63,7 @@ export default function BusinessPageClient({ businesses, categories }: Props) {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="flex items-start gap-8">
 
-            {/* Left sidebar — categories */}
+            {/* Left sidebar - categories */}
             {categories.length > 0 && (
               <aside className="sticky flex-shrink-0 hidden w-56 lg:block top-24">
                 <h3 className="mb-3 text-sm font-bold tracking-wide uppercase font-display text-green">

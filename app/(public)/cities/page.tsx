@@ -48,7 +48,7 @@ export default async function CitiesPage() {
         <PageHero
           eyebrow="Explore Pakistan"
           title="Cities, Towns & Villages"
-          subtitle="From bustling metropolises to historic mountain towns — discover the places that shape Pakistan's identity."
+          subtitle="From bustling metropolises to historic mountain towns - discover the places that shape Pakistan's identity."
         />
 
         <section className="py-12 bg-cream sm:py-16 lg:py-20">

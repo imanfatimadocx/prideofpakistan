@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         site_url,
         shortdesc,
         company_description,
-        status:      0,   // pending review — admin approves to make 1
+        status:      0,   // pending review - admin approves to make 1
         feature:     0,
         user_id:     0,
         busniss_id:  0,

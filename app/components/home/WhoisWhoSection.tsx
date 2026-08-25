@@ -231,8 +231,8 @@ export default function WhoIsWhoSection({
           {hasFeatured && (
             <div className="mb-10 space-y-8">
 
-              {/* ── Profile of the Day — plain image + caption, no card ── */}
-             {/* ── Profile of the Day — flex, no background ── */}
+              {/* ── Profile of the Day - plain image + caption, no card ── */}
+             {/* ── Profile of the Day - flex, no background ── */}
 {profileOfTheDay && profileOfTheDay.id && (
   <div>
     <p className="text-[16px] font-bold uppercase tracking-[.16em] text-gold font-body mb-4">
@@ -261,7 +261,7 @@ export default function WhoIsWhoSection({
         )}
       </div>
 
-      {/* Text — no background */}
+      {/* Text - no background */}
       <div className="flex-1 min-w-0 py-2">
         <h3 className="mb-1 text-2xl font-bold leading-tight transition-colors font-display sm:text-3xl text-green group-hover:text-gold">
           {profileOfTheDay.title}
@@ -289,7 +289,7 @@ export default function WhoIsWhoSection({
   </div>
 )}
 
-              {/* ── 6 featured profiles — plain image + caption, no card ── */}
+              {/* ── 6 featured profiles - plain image + caption, no card ── */}
               {validFeatured.length > 0 && (
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
                   {validFeatured.map((p) => (
@@ -298,7 +298,7 @@ export default function WhoIsWhoSection({
                       href={`/who-is-who/${p.id}`}
                       className="no-underline group"
                     >
-                      {/* Plain image — no card, no border */}
+                      {/* Plain image - no card, no border */}
                       <div className="w-full overflow-hidden" style={{ aspectRatio: '600/350' }}>
                         {p.image ? (
                           <Image

@@ -10,10 +10,10 @@ const MISSION_IMAGES = [
 ]
 
 const PILLARS = [
-  { icon: '', title: 'Global Representation', desc: 'Highlighting Pakistanis who have made their mark across the world — in business, arts, science, sport, and public service.' },
+  { icon: '', title: 'Global Representation', desc: 'Highlighting Pakistanis who have made their mark across the world - in business, arts, science, sport, and public service.' },
   { icon: '', title: 'Unity & Understanding', desc: 'Building bridges between Pakistan, its diaspora, and the international community through shared stories of achievement.' },
   { icon: '', title: 'Challenging Misconceptions', desc: 'Countering negative narratives about Pakistan with real, verifiable stories of progress, talent, and contribution.' },
-  { icon: '', title: 'National Pride', desc: 'Fostering a sense of pride in Pakistani identity — one rooted in diversity, resilience, hospitality, and hard work.' },
+  { icon: '', title: 'National Pride', desc: 'Fostering a sense of pride in Pakistani identity - one rooted in diversity, resilience, hospitality, and hard work.' },
 ]
 
 export default function MissionPage() {
@@ -39,7 +39,7 @@ export default function MissionPage() {
               Exploring the Very Best Pakistan Has Given the World
             </h1>
             <p className="max-w-2xl text-base leading-relaxed text-white/75 font-body sm:text-lg">
-              Pride is a term which we should cherish. Pride in the achievements of a people, their actions, and their views — when those activities are enhancing and benefiting the world.
+              Pride is a term which we should cherish. Pride in the achievements of a people, their actions, and their views - when those activities are enhancing and benefiting the world.
             </p>
           </div>
         </section>
@@ -48,7 +48,7 @@ export default function MissionPage() {
         <section className="py-16 bg-white sm:py-20 lg:py-24">
           <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
 
-            {/* Section 1 — text left, image right */}
+            {/* Section 1 - text left, image right */}
             <div className="grid items-center grid-cols-1 gap-12 mb-20 lg:grid-cols-2 lg:gap-20 lg:mb-28">
               <div className="space-y-5">
                 <h2 className="text-3xl font-bold leading-tight font-display sm:text-4xl text-green">
@@ -56,7 +56,7 @@ export default function MissionPage() {
                 </h2>
                 <div className="w-12 h-[3px] bg-gold rounded" />
                 <p className="text-base leading-relaxed text-ink-mid font-body">
-                  Pride of Pakistan seeks to highlight those individuals who have become celebrated in their respective fields and made successes of them across the globe. Having pride in such achievements is worthwhile — it is a useful way of Exploring the many good, law-abiding, talented, and hard-working individuals who have taken what it means to be a Pakistani and shown the world the best parts of what Pakistan stands for.
+                  Pride of Pakistan seeks to highlight those individuals who have become celebrated in their respective fields and made successes of them across the globe. Having pride in such achievements is worthwhile - it is a useful way of Exploring the many good, law-abiding, talented, and hard-working individuals who have taken what it means to be a Pakistani and shown the world the best parts of what Pakistan stands for.
                 </p>
                 <p className="text-base leading-relaxed text-ink-mid font-body">
                   We want to highlight and recognize these individuals so that others can see the diverse range of abilities and characters that have gone to represent Pakistan. We want to emphasize those who have done well, have established businesses for themselves and others, and have created wealth and developed enterprise wherever they are.
@@ -73,7 +73,7 @@ export default function MissionPage() {
               </div>
             </div>
 
-            {/* Section 2 — image left, text right */}
+            {/* Section 2 - image left, text right */}
             <div className="grid items-center grid-cols-1 gap-12 mb-20 lg:grid-cols-2 lg:gap-20 lg:mb-28">
               <div className="relative overflow-hidden rounded-2xl aspect-[4/3] bg-cream lg:order-1 order-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -85,14 +85,14 @@ export default function MissionPage() {
               </div>
               <div className="order-1 space-y-5 lg:order-2">
                 <h2 className="text-3xl font-bold leading-tight font-display sm:text-4xl text-green">
-                  Not Self-Promotion — Genuine Recognition
+                  Not Self-Promotion - Genuine Recognition
                 </h2>
                 <div className="w-12 h-[3px] bg-gold rounded" />
                 <p className="text-base leading-relaxed text-ink-mid font-body">
                   This is not about meaningless self-promotion but about highlighting the very best that Pakistanis have given the world and showing a positive side to what we do, and what we give to the communities in which we settle.
                 </p>
                 <p className="text-base leading-relaxed text-ink-mid font-body">
-                  This website is intended to reflect these developments by highlighting the achievements of those individuals who have enhanced life wherever they are through their work, their actions and their lives. These are the people who are proud of what they have done — and we, in highlighting what they have done, are proud of them.
+                  This website is intended to reflect these developments by highlighting the achievements of those individuals who have enhanced life wherever they are through their work, their actions and their lives. These are the people who are proud of what they have done - and we, in highlighting what they have done, are proud of them.
                 </p>
                 <blockquote className="py-2 pl-5 border-l-4 border-gold">
                   <p className="text-lg leading-snug font-display text-green">
@@ -140,7 +140,7 @@ export default function MissionPage() {
                   From Pakistan to Every Corner of the World
                 </h2>
                 <p className="leading-relaxed text-white/70 font-body">
-                  Equally those who have become renowned figures in their chosen field — wherever in the world they may be. Pride of Pakistan recognises achievement without borders, Exploring Pakistanis at home and across the global diaspora.
+                  Equally those who have become renowned figures in their chosen field - wherever in the world they may be. Pride of Pakistan recognises achievement without borders, Exploring Pakistanis at home and across the global diaspora.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">

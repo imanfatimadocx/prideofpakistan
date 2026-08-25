@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
         Country,
         Email,
         shortdesc,
-        status:        0,   // pending review — admin approves to make 1
+        status:        0,   // pending review - admin approves to make 1
         feature:       0,
         d:             String(now.getDate()),
         m:             String(now.getMonth() + 1),

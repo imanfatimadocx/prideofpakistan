@@ -63,7 +63,7 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
   return (
     <div className="min-h-screen bg-green">
 
-      {/* Hero — active player */}
+      {/* Hero - active player */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pt-8 pb-6">
         <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-2 font-body">Pride TV</p>
         <h1 className="mb-6 text-2xl font-bold text-white font-display sm:text-3xl">Watch Pakistan</h1>
@@ -102,7 +102,7 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
           <div className="bg-white/[.06] rounded-xl overflow-hidden">
             <div className="px-4 py-3 border-b border-white/10">
               <p className="text-xs font-bold tracking-wide uppercase text-white/60 font-body">
-                Up Next — {videos.length} videos
+                Up Next - {videos.length} videos
               </p>
             </div>
             <div className="overflow-y-auto max-h-[480px] divide-y divide-white/[.06]">

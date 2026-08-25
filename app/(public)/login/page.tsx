@@ -39,7 +39,7 @@ function LoginForm() {
       return
     }
 
-    // Hard redirect — ensures cookie is set before navigation
+    // Hard redirect - ensures cookie is set before navigation
     const redirectTo = params.get('redirect') ?? '/'
     window.location.href = redirectTo
   }

@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
 
   pages: {
-    signIn: '/login',  // ← was /admin/login — this was breaking public users
+    signIn: '/login',  // ← was /admin/login - this was breaking public users
     error:  '/login',
   },
 

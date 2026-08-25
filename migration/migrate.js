@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PrideOfPakistan.com — MySQL → Supabase Migration Script
+ * PrideOfPakistan.com - MySQL → Supabase Migration Script
  * =========================================================
  * Reads:  imtiaz_prid_db_2026-06-07_19-16-13.sql  (MariaDB 5.5 dump)
  * Writes: Supabase PostgreSQL (connection string in DATABASE_URL)
@@ -13,7 +13,7 @@
  *  5. Re-encodes latin1 column values to UTF-8
  *  6. Inserts in foreign-key-safe order
  *  7. Skips obvious spam/bot user accounts (status=0, 0000-00-00 date, SEO-spam names)
- *     — they can be imported separately if needed
+ *     - they can be imported separately if needed
  *
  * Usage:
  *   npm install pg bcrypt dotenv
@@ -41,12 +41,16 @@ const INCLUDE_SPAM = args.includes("--include-spam");
 const sqlFlagIdx = args.indexOf("--sql");
 const SQL_FILE = sqlFlagIdx !== -1 ? args[sqlFlagIdx + 1] : null;
 const onlyIdx = args.indexOf("--only-tables");
-const ONLY_TABLES = onlyIdx !== -1 ? new Set(args[onlyIdx + 1].split(",")) : null;
+const ONLY_TABLES =
+  onlyIdx !== -1 ? new Set(args[onlyIdx + 1].split(",")) : null;
 const skipIdx = args.indexOf("--skip-tables");
-const SKIP_TABLES = skipIdx !== -1 ? new Set(args[skipIdx + 1].split(",")) : new Set();
+const SKIP_TABLES =
+  skipIdx !== -1 ? new Set(args[skipIdx + 1].split(",")) : new Set();
 
 if (!SQL_FILE) {
-  console.error("Usage: node migrate.js --sql <path-to-sql-file> [--dry-run] [--include-spam]");
+  console.error(
+    "Usage: node migrate.js --sql <path-to-sql-file> [--dry-run] [--include-spam]",
+  );
   process.exit(1);
 }
 
@@ -71,7 +75,12 @@ const MD5_PASSWORD_TABLES = new Set(["admin"]);
 
 /** Convert MySQL 0000-00-00 or 0000-00-00 00:00:00 dates to NULL */
 function fixDate(val) {
-  if (!val || val === "0000-00-00" || val === "0000-00-00 00:00:00" || val === "NULL") {
+  if (
+    !val ||
+    val === "0000-00-00" ||
+    val === "0000-00-00 00:00:00" ||
+    val === "NULL"
+  ) {
     return null;
   }
   return val;
@@ -85,7 +94,7 @@ function fixEncoding(str) {
     .replace(/â€™/g, "'")
     .replace(/â€œ/g, '"')
     .replace(/â€/g, '"')
-    .replace(/â€"/g, "—")
+    .replace(/â€"/g, "-")
     .replace(/â€¦/g, "…")
     .replace(/Ã©/g, "é")
     .replace(/Ã /g, "à")
@@ -104,7 +113,8 @@ function fixEncoding(str) {
 function isSpamUser(row) {
   if (INCLUDE_SPAM) return false;
   // Keep status=1 accounts with valid creation dates (the real users)
-  if (row.status === 1 && row.created_on && row.created_on !== "0000-00-00") return false;
+  if (row.status === 1 && row.created_on && row.created_on !== "0000-00-00")
+    return false;
   // Keep explicitly-known admins/moderators regardless of status
   const knownAdmins = new Set([
     "imtiaz@prideofpakistan.com",
@@ -113,7 +123,8 @@ function isSpamUser(row) {
   ]);
   if (knownAdmins.has(row.email)) return false;
   // Everything else with status=0 and no creation date is spam
-  if (row.status === 0 && (!row.created_on || row.created_on === "0000-00-00")) return true;
+  if (row.status === 0 && (!row.created_on || row.created_on === "0000-00-00"))
+    return true;
   return false;
 }
 
@@ -151,7 +162,8 @@ function parseDump(sqlText) {
         trimmed.startsWith("INDEX") ||
         trimmed.startsWith("CONSTRAINT") ||
         trimmed.startsWith("FULLTEXT")
-      ) continue;
+      )
+        continue;
       const colMatch = trimmed.match(/^`(\w+)`/);
       if (colMatch) columns.push(colMatch[1]);
     }
@@ -166,7 +178,7 @@ function parseDump(sqlText) {
     const valuesBlock = m[2].trim();
     if (!tables[tableName]) continue;
 
-    // Parse each row tuple — handles nested parentheses in strings
+    // Parse each row tuple - handles nested parentheses in strings
     const rows = parseValueTuples(valuesBlock);
     tables[tableName].rows.push(...rows);
   }
@@ -184,16 +196,29 @@ function parseValueTuples(block) {
 
   while (i < block.length) {
     // Skip whitespace and commas between tuples
-    while (i < block.length && (block[i] === "," || block[i] === " " || block[i] === "\n" || block[i] === "\r")) i++;
+    while (
+      i < block.length &&
+      (block[i] === "," ||
+        block[i] === " " ||
+        block[i] === "\n" ||
+        block[i] === "\r")
+    )
+      i++;
     if (i >= block.length) break;
-    if (block[i] !== "(") { i++; continue; }
+    if (block[i] !== "(") {
+      i++;
+      continue;
+    }
     i++; // skip (
 
     const row = [];
     while (i < block.length && block[i] !== ")") {
       // Skip whitespace
       while (i < block.length && block[i] === " ") i++;
-      if (block[i] === ",") { i++; continue; }
+      if (block[i] === ",") {
+        i++;
+        continue;
+      }
 
       if (block[i] === "'" || block[i] === '"') {
         // String value
@@ -244,7 +269,9 @@ async function hashPasswords(rows, columns, isMd5 = false) {
   const pwIdx = columns.indexOf("password");
   if (pwIdx === -1) return rows;
 
-  console.log(`  → Hashing ${rows.length} passwords (bcrypt, cost ${BCRYPT_ROUNDS})…`);
+  console.log(
+    `  → Hashing ${rows.length} passwords (bcrypt, cost ${BCRYPT_ROUNDS})…`,
+  );
 
   const result = [];
   for (const row of rows) {
@@ -252,10 +279,13 @@ async function hashPasswords(rows, columns, isMd5 = false) {
     const raw = row[pwIdx];
     if (raw && raw.length > 0) {
       // For MD5: the hash IS the stored value, we hash that string with bcrypt
-      // (users will need to reset password — that's fine, add a force-reset flag)
+      // (users will need to reset password - that's fine, add a force-reset flag)
       newRow[pwIdx] = await bcrypt.hash(raw, BCRYPT_ROUNDS);
     } else {
-      newRow[pwIdx] = await bcrypt.hash("RESET_REQUIRED_" + Date.now(), BCRYPT_ROUNDS);
+      newRow[pwIdx] = await bcrypt.hash(
+        "RESET_REQUIRED_" + Date.now(),
+        BCRYPT_ROUNDS,
+      );
     }
     result.push(newRow);
   }
@@ -280,7 +310,10 @@ function pgValue(val, colName) {
   }
 
   // Timestamp-like strings
-  if (typeof val === "string" && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(val)) {
+  if (
+    typeof val === "string" &&
+    /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(val)
+  ) {
     return fixDate(val);
   }
 
@@ -297,41 +330,79 @@ function pgValue(val, colName) {
 /** Table import order: parents before children */
 const IMPORT_ORDER = [
   // Geo / reference
-  "countrylist", "cities",
+  "countrylist",
+  "cities",
   // Auth
-  "admin", "users", "adminlog",
+  "admin",
+  "users",
+  "adminlog",
   // Newsletter
   "newsletter",
   // News
-  "news", "latestnews", "news_body",
+  "news",
+  "latestnews",
+  "news_body",
   // Categories (independent)
-  "category", "category_temp", "blog_cat",
-  "busniss_category", "pak_prod_categoy", "pakcategoy",
-  "hallcategory", "video_catregories", "livetvcat",
-  "womencat", "womencat_corner", "studentcategory",
+  "category",
+  "category_temp",
+  "blog_cat",
+  "busniss_category",
+  "pak_prod_categoy",
+  "pakcategoy",
+  "hallcategory",
+  "video_catregories",
+  "livetvcat",
+  "womencat",
+  "womencat_corner",
+  "studentcategory",
   // Content
-  "nationalheroes", "halloffame", "ourpakistan",
-  "pakproducts", "pakabroad", "pkabroadcontent",
-  "women", "pkwomencontent", "crwomencontent",
+  "nationalheroes",
+  "halloffame",
+  "ourpakistan",
+  "pakproducts",
+  "pakabroad",
+  "pkabroadcontent",
+  "women",
+  "pkwomencontent",
+  "crwomencontent",
   "studentcornerdetail",
   // Business
   "busniss",
   // Media
-  "photoalbum", "photos", "ffmpeg_videos",
-  "video_catregories", "videos",
-  "livetvcat", "livetvcatdetails", "live_tv",
+  "photoalbum",
+  "photos",
+  "ffmpeg_videos",
+  "video_catregories",
+  "videos",
+  "livetvcat",
+  "livetvcatdetails",
+  "live_tv",
   // Blog
   "blog",
   // Ads / promo
-  "advertisement", "advertis_foot", "sponsors",
-  "pride_aword_testimonial", "prideteam",
-  "about_images", "awardsimages", "headerimages", "footer_img", "home_busines_images",
+  "advertisement",
+  "advertis_foot",
+  "sponsors",
+  "pride_aword_testimonial",
+  "prideteam",
+  "about_images",
+  "awardsimages",
+  "headerimages",
+  "footer_img",
+  "home_busines_images",
   // Ratings / engagement
-  "rating", "ratings",
-  "pkabroadratings", "pkwomenratings", "crwomenratings",
-  "comments", "user_comment", "poll",
+  "rating",
+  "ratings",
+  "pkabroadratings",
+  "pkwomenratings",
+  "crwomenratings",
+  "comments",
+  "user_comment",
+  "poll",
   // Misc
-  "content", "site_contents", "company_info",
+  "content",
+  "site_contents",
+  "company_info",
 ];
 
 async function importTable(client, tableName, table, stats) {
@@ -365,7 +436,9 @@ async function importTable(client, tableName, table, stats) {
       const obj = Object.fromEntries(columns.map((c, i) => [c, row[i]]));
       return !isSpamUser(obj);
     });
-    console.log(`  USERS: kept ${rows.length}/${before} (${before - rows.length} spam filtered)`);
+    console.log(
+      `  USERS: kept ${rows.length}/${before} (${before - rows.length} spam filtered)`,
+    );
     // Hash passwords
     rows = await hashPasswords(rows, columns, false);
   }
@@ -375,21 +448,25 @@ async function importTable(client, tableName, table, stats) {
   }
 
   // Apply pg value conversion to all rows
-  rows = rows.map((row) =>
-    row.map((val, i) => pgValue(val, columns[i]))
-  );
+  rows = rows.map((row) => row.map((val, i) => pgValue(val, columns[i])));
 
   if (DRY_RUN) {
-    console.log(`  DRY-RUN: ${tableName} — ${rows.length} rows (${columns.length} cols)`);
+    console.log(
+      `  DRY-RUN: ${tableName} - ${rows.length} rows (${columns.length} cols)`,
+    );
     stats.dryRun += rows.length;
     return;
   }
 
   // Truncate target table before insert (idempotent re-runs)
-  await client.query(`TRUNCATE TABLE "${tableName}" RESTART IDENTITY CASCADE`).catch(() => {
-    // Table may not exist yet if schema not pushed — warn, don't crash
-    console.warn(`    WARNING: Could not TRUNCATE ${tableName} — table may not exist. Run prisma db push first.`);
-  });
+  await client
+    .query(`TRUNCATE TABLE "${tableName}" RESTART IDENTITY CASCADE`)
+    .catch(() => {
+      // Table may not exist yet if schema not pushed - warn, don't crash
+      console.warn(
+        `    WARNING: Could not TRUNCATE ${tableName} - table may not exist. Run prisma db push first.`,
+      );
+    });
 
   // Batch INSERT
   let inserted = 0;
@@ -399,8 +476,10 @@ async function importTable(client, tableName, table, stats) {
       .map(
         (_, rowIdx) =>
           "(" +
-          columns.map((_, colIdx) => `$${rowIdx * columns.length + colIdx + 1}`).join(", ") +
-          ")"
+          columns
+            .map((_, colIdx) => `$${rowIdx * columns.length + colIdx + 1}`)
+            .join(", ") +
+          ")",
       )
       .join(", ");
 
@@ -412,8 +491,12 @@ async function importTable(client, tableName, table, stats) {
       await client.query(sql, values);
       inserted += batch.length;
     } catch (err) {
-      console.error(`    ERROR in ${tableName} batch ${offset}–${offset + batch.length}: ${err.message}`);
-      console.error(`    First row of failing batch: ${JSON.stringify(batch[0])}`);
+      console.error(
+        `    ERROR in ${tableName} batch ${offset}–${offset + batch.length}: ${err.message}`,
+      );
+      console.error(
+        `    First row of failing batch: ${JSON.stringify(batch[0])}`,
+      );
       stats.errors++;
     }
   }
@@ -445,7 +528,10 @@ async function main() {
   // 3. Connect
   let client;
   if (!DRY_RUN) {
-    const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+    const pool = new pg.Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+    });
     client = await pool.connect();
     console.log("Connected to Supabase.\n");
     // Disable FK checks during import
@@ -453,18 +539,29 @@ async function main() {
   }
 
   // 4. Import in order
-  const stats = { inserted: 0, tables: 0, skipped: 0, empty: 0, errors: 0, dryRun: 0 };
+  const stats = {
+    inserted: 0,
+    tables: 0,
+    skipped: 0,
+    empty: 0,
+    errors: 0,
+    dryRun: 0,
+  };
 
   // First pass: tables in our preferred order
   const ordered = IMPORT_ORDER.filter((t) => tables[t]);
   // Second pass: any tables in the dump not in our order list
-  const remaining = tableOrder.filter((t) => !IMPORT_ORDER.includes(t) && tables[t]);
+  const remaining = tableOrder.filter(
+    (t) => !IMPORT_ORDER.includes(t) && tables[t],
+  );
   const allOrdered = [...ordered, ...remaining];
 
   for (const tableName of allOrdered) {
     const table = tables[tableName];
     if (!table) continue;
-    process.stdout.write(`Processing: ${tableName} (${table.rows.length} rows)\n`);
+    process.stdout.write(
+      `Processing: ${tableName} (${table.rows.length} rows)\n`,
+    );
     await importTable(client, tableName, table, stats);
   }
 
