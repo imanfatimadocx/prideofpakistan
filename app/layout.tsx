@@ -4,7 +4,7 @@ import AuthProvider from '@/app/components/admin/AuthProvider'
 
 export const metadata: Metadata = {
   title: 'Pride of Pakistan',
-  description: 'Celebrating the people, places, businesses, and culture that make Pakistan extraordinary.',
+  description: 'Exploring the people, places, businesses, and culture that make Pakistan extraordinary.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

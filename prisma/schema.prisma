@@ -115,7 +115,7 @@ model HallCategory {
   @@map("hallcategory")
 }
 
-// ─── BUSINESS DIRECTORY ───────────────────────────────────────────────────────
+// ─── Pakistani Businesses ───────────────────────────────────────────────────────
 
 model Business {
   id                  Int     @id @default(autoincrement())

@@ -36,7 +36,7 @@ export default function MissionPage() {
               Our Mission
             </p>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[56px] font-black text-white leading-tight max-w-3xl mb-6 -tracking-[.02em]">
-              Celebrating the Very Best Pakistan Has Given the World
+              Exploring the Very Best Pakistan Has Given the World
             </h1>
             <p className="max-w-2xl text-base leading-relaxed text-white/75 font-body sm:text-lg">
               Pride is a term which we should cherish. Pride in the achievements of a people, their actions, and their views — when those activities are enhancing and benefiting the world.
@@ -56,7 +56,7 @@ export default function MissionPage() {
                 </h2>
                 <div className="w-12 h-[3px] bg-gold rounded" />
                 <p className="text-base leading-relaxed text-ink-mid font-body">
-                  Pride of Pakistan seeks to highlight those individuals who have become celebrated in their respective fields and made successes of them across the globe. Having pride in such achievements is worthwhile — it is a useful way of celebrating the many good, law-abiding, talented, and hard-working individuals who have taken what it means to be a Pakistani and shown the world the best parts of what Pakistan stands for.
+                  Pride of Pakistan seeks to highlight those individuals who have become celebrated in their respective fields and made successes of them across the globe. Having pride in such achievements is worthwhile — it is a useful way of Exploring the many good, law-abiding, talented, and hard-working individuals who have taken what it means to be a Pakistani and shown the world the best parts of what Pakistan stands for.
                 </p>
                 <p className="text-base leading-relaxed text-ink-mid font-body">
                   We want to highlight and recognize these individuals so that others can see the diverse range of abilities and characters that have gone to represent Pakistan. We want to emphasize those who have done well, have established businesses for themselves and others, and have created wealth and developed enterprise wherever they are.
@@ -140,7 +140,7 @@ export default function MissionPage() {
                   From Pakistan to Every Corner of the World
                 </h2>
                 <p className="leading-relaxed text-white/70 font-body">
-                  Equally those who have become renowned figures in their chosen field — wherever in the world they may be. Pride of Pakistan recognises achievement without borders, celebrating Pakistanis at home and across the global diaspora.
+                  Equally those who have become renowned figures in their chosen field — wherever in the world they may be. Pride of Pakistan recognises achievement without borders, Exploring Pakistanis at home and across the global diaspora.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">

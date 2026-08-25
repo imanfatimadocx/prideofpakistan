@@ -30,7 +30,7 @@ export default function BusinessPageClient({ businesses, categories }: Props) {
       <section className="py-12 bg-green sm:py-16">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-3 font-body">
-            Business Directory
+            Pakistani Businesses
           </p>
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>

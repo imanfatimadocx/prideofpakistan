@@ -41,7 +41,7 @@ export default async function AdminDashboard() {
       ],
     },
     {
-      label: 'Business Directory',
+      label: 'Pakistani Businesses',
       color: 'border-gold',
       stats: [
         { label: 'Total Businesses',  value: totalBusinesses },

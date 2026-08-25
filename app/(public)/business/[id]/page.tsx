@@ -31,7 +31,7 @@ export default async function BusinessDetailPage({ params }: Props) {
         <section className="py-12 bg-green sm:py-16">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12">
             <Link href="/business" className="inline-block mb-6 text-sm text-gold-light font-body hover:underline">
-              Back to Business Directory
+              Back to Pakistani Businesses
             </Link>
             <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
               <div className="flex items-center justify-center flex-shrink-0 w-24 h-24 overflow-hidden border sm:w-28 sm:h-28 bg-white/10 border-white/20 rounded-xl">

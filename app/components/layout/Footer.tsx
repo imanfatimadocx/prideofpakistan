@@ -13,16 +13,15 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center flex-shrink-0 mb-4">
               <Image
-                src="/logo-new.jpeg"
+                src="/final-logo-1.png"
                 alt="Pride of Pakistan"
                 className="object-contain"
-                width={200}
-                height={200}
+                width={240}
+                height={240}
               />
             </Link>
-            <p className="text-[13px] text-white/50 leading-relaxed max-w-[260px] font-body">
-              Celebrating the people, places, businesses, and culture that make Pakistan extraordinary.
-            </p>
+            <p className="text-[13px] text-white/50 leading-relaxed max-w-[300px] font-body">
+             All content on this website is copyrighted material of prideofpakistan.com. Please seek the written permission of site owner before copying anything from the website. If you find any problems/mistakes please contact the Webmaster by clicking <a href="/contact" className="text-gold">here</a>. Our staff will try to fix the problem as soon as possible.            </p>
           </div>
 
           {/* Discover */}
@@ -50,10 +49,10 @@ export default function Footer() {
             <h4 className="mb-4 text-sm font-bold text-white font-display">Business</h4>
             <ul className="space-y-2.5 list-none">
               {[
-                { label: 'Business Directory', href: '/business' },
+                { label: 'Pakistani Businesses', href: '/business' },
                 { label: 'List Your Business',  href: '/list-business' },
-                { label: 'Advertise',           href: '#' },
-                { label: 'Partnerships',        href: '#' },
+                { label: 'Advertise',           href: '/advertise' },
+                { label: 'Our Sponsors',        href: '/our-sponsors' },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href} className="text-white/[.48] no-underline text-[13px] hover:text-gold-light transition-colors font-body">
@@ -71,8 +70,8 @@ export default function Footer() {
               {[
                 { label: 'Submit Your Profile', href: '/submit-profile' },
                 { label: 'Pride TV',            href: '/pride-tv' },
-                { label: 'Contact Us',          href: '#' },
-                { label: 'About',               href: '#' },
+                { label: 'Contact Us',          href: '/contact' },
+                { label: 'About',               href: '/about' },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href} className="text-white/[.48] no-underline text-[13px] hover:text-gold-light transition-colors font-body">

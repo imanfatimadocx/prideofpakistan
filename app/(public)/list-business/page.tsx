@@ -41,7 +41,7 @@ export default function ListBusinessPage() {
         <PageHero
           eyebrow="Grow Your Reach"
           title="List Your Business"
-          subtitle="Join Pakistan's premier business directory and connect with customers across the country and abroad."
+          subtitle="Join Pakistan's premier Pakistani Businesses and connect with customers across the country and abroad."
         />
 
         <section className="py-12 bg-cream sm:py-16 lg:py-20">

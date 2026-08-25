@@ -46,7 +46,7 @@ export default function BusinessSection({ businesses, categories }: Props) {
         <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
             <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-2 font-body">
-              Business Directory
+              Pakistani Businesses
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-white leading-tight">
               Pakistani Businesses

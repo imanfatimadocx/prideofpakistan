@@ -83,7 +83,7 @@ async function getData() {
 }
 
 export const metadata = {
-  title: 'Business Directory | Pride of Pakistan',
+  title: 'Pakistani Businesses | Pride of Pakistan',
   description: 'Discover Pakistani businesses at home and around the world.',
 }
 
