@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden h-[100vh] sm:h-[80vh] lg:h-[80vh]">
       <img
-        src="bg-wallpaper-3.jpg"
+        src="hero-bg-2.png"
         alt="Pakistan"
         className="absolute inset-0 object-cover object-top w-full h-full"
       />
