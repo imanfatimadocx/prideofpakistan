@@ -6,7 +6,7 @@ interface Props {
 
 export default function PageHero({ eyebrow, title, subtitle }: Props) {
   return (
-    <section className="py-12 bg-white sm:py-16 lg:py-20">
+    <section className="flex justify-center py-12 bg-white sm:py-16 lg:py-20">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
         <h1 className="font-display text-3xl sm:text-4xl lg:text-[48px] font-bold text-green leading-tight">
           {title}

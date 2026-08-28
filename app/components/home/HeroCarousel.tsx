@@ -6,7 +6,7 @@ export default function HeroSection() {
       <img
         src="hero-bg-2.png"
         alt="Pakistan"
-        className="absolute inset-0 object-cover object-top w-full h-full"
+        className="absolute inset-0 object-cover object-bottom w-full h-full"
       />
       <div className="absolute inset-0 bg-black/65" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-green/60" />
