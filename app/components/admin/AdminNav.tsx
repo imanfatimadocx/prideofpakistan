@@ -120,6 +120,12 @@ export default function AdminNav() {
           >
             ← View Site
           </Link>
+          <Link
+  href="/admin/settings"
+  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-body text-white/65 hover:bg-white/10 hover:text-white transition-colors no-underline mb-1"
+>
+  Settings
+</Link>
           <button
             onClick={() => signOut({ callbackUrl: '/admin/login' })}
             className="w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-body text-white/65 hover:bg-white/10 hover:text-white transition-colors text-left"
