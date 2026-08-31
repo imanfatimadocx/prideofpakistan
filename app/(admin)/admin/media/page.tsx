@@ -39,7 +39,7 @@ export default async function AdminMediaPage() {
       <AdminNav />
       <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 p-4 lg:p-8">
         <div className="max-w-[900px]">
-          <h1 className="mb-1 text-2xl font-bold font-display text-green">Pride TV â€” Media</h1>
+          <h1 className="mb-1 text-2xl font-bold font-display text-green">Pride TV Media</h1>
           <p className="mb-8 text-sm text-ink-muted font-body">
             Add YouTube videos with a custom caption. They appear as embedded players on the homepage and Pride TV page.
           </p>

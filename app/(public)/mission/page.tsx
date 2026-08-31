@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from "react";
 import Topbar from '@/app/components/layout/Topbar'
 import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
@@ -7,10 +7,14 @@ import PageHero from '@/app/components/shared/PageHero'
 import Link from 'next/link'
 
 const ALL_IMAGES = [
-  '/mission-bg-1.jpg',
-  '/mission-2.jfif',
-  '/mission-3.jpg',
-]
+  {
+    src: "/mission1.jpeg",
+    caption: "Abdul Sattar Edhi, Founder of Edhi Foundation",
+  },
+  { src: "/mission2.jpeg", caption: "Dr. Abdul Qadeer Khan, Founder of KRL" },
+  { src: "/mission3.jpeg", caption: "Sadiq Khan, Mayor of London" },
+  { src: "/mission4.jpeg", caption: "Dr. Saud Anwar, state Senator USA" },
+];
 
 const PILLARS = [
   {
@@ -51,59 +55,103 @@ const PILLARS = [
   },
 ]
 
-function Carousel({ images }: { images: string[] }) {
-  const [current, setCurrent] = useState(0)
+function Carousel({ images }: { images: { src: string; caption: string }[] }) {
+  const [current, setCurrent] = useState(0);
+
+  // Auto-rotate every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [images.length]);
 
   function prev() {
-    setCurrent((c) => (c === 0 ? images.length - 1 : c - 1))
+    setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
   }
 
   function next() {
-    setCurrent((c) => (c === images.length - 1 ? 0 : c + 1))
+    setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
   }
 
   return (
     <div className="relative w-full group">
-      <div className="w-full overflow-hidden rounded-xl" style={{ aspectRatio: '600/350' }}>
+      {/* Image */}
+      <div
+        className="relative w-full overflow-hidden rounded-xl"
+        style={{ aspectRatio: "600/350" }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={images[current]}
-          alt={`Image ${current + 1}`}
-          className="object-cover object-top w-full h-full transition-all duration-500"
+          src={images[current].src}
+          alt={images[current].caption}
+          className="w-full h-full object-cover object-top transition-all duration-700"
         />
+        {/* Caption overlay */}
+        <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
+          <p className="text-sm font-body text-white/90 leading-snug">
+            {images[current].caption}
+          </p>
+        </div>
       </div>
+
+      {/* Prev */}
       <button
         onClick={prev}
-        className="absolute flex items-center justify-center text-white transition-colors -translate-y-1/2 rounded-full opacity-0 left-3 top-1/2 w-9 h-9 bg-black/40 hover:bg-black/60 group-hover:opacity-100"
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors opacity-0 group-hover:opacity-100"
         aria-label="Previous"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m15 18-6-6 6-6"/>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m15 18-6-6 6-6" />
         </svg>
       </button>
+
+      {/* Next */}
       <button
         onClick={next}
-        className="absolute flex items-center justify-center text-white transition-colors -translate-y-1/2 rounded-full opacity-0 right-3 top-1/2 w-9 h-9 bg-black/40 hover:bg-black/60 group-hover:opacity-100"
+        className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors opacity-0 group-hover:opacity-100"
         aria-label="Next"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m9 18 6-6-6-6"/>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m9 18 6-6-6-6" />
         </svg>
       </button>
+
+      {/* Dots */}
       <div className="flex items-center justify-center gap-2 mt-3">
         {images.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
             className={`rounded-full transition-all ${
-              i === current ? 'w-5 h-1.5 bg-gold' : 'w-1.5 h-1.5 bg-border hover:bg-gold/50'
+              i === current
+                ? "w-5 h-1.5 bg-gold"
+                : "w-1.5 h-1.5 bg-border hover:bg-gold/50"
             }`}
             aria-label={`Go to image ${i + 1}`}
           />
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default function MissionPage() {
