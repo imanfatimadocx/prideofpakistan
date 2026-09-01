@@ -57,9 +57,9 @@ export default async function AdminAboutPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-cream">
+    <div className="flex min-h-screen bg-cream pt-14">
       <AdminNav />
-      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
+      <main className="flex-1 p-4 lg:ml-64 lg:pt-0 lg:p-8">
         <div className="max-w-[700px]">
           <h1 className="mb-1 text-2xl font-bold font-display text-green">
             About Us Page

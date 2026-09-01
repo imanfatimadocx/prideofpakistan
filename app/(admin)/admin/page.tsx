@@ -80,16 +80,16 @@ export default async function AdminDashboard() {
   return (
     <div className="flex min-h-screen bg-cream">
       <AdminNav />
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-12 p-4 lg:p-8">
+      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-12 lg:p-8">
         <div className="max-w-[1100px]">
 
           {/* Header */}
           <div className="mb-8">
-            <h1 className="font-display text-2xl font-bold text-green mb-1">Dashboard</h1>
+            <h1 className="mb-1 text-2xl font-bold font-display text-green">Dashboard</h1>
             <p className="text-sm text-ink-muted font-body">
               Welcome back.{' '}
               {totalPending > 0 ? (
-                <span className="text-amber-600 font-semibold">
+                <span className="font-semibold text-amber-600">
                   {totalPending} item{totalPending !== 1 ? 's' : ''} pending review.
                 </span>
               ) : (
@@ -107,11 +107,11 @@ export default async function AdminDashboard() {
               >
                 {/* Section header */}
                 <div className="px-5 py-4 border-b border-border">
-                  <h2 className="font-display text-base font-bold text-green">{section.label}</h2>
+                  <h2 className="text-base font-bold font-display text-green">{section.label}</h2>
                 </div>
 
                 {/* Stats */}
-                <div className="px-5 py-4 flex gap-6 border-b border-border">
+                <div className="flex gap-6 px-5 py-4 border-b border-border">
                   {section.stats.map((stat) => (
                     <div key={stat.label}>
                       <p className={`text-2xl font-black font-display ${stat.alert ? 'text-amber-500' : 'text-green'}`}>
@@ -123,7 +123,7 @@ export default async function AdminDashboard() {
                 </div>
 
                 {/* Quick actions */}
-                <div className="px-5 py-3 flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 px-5 py-3">
                   {section.actions.map((action) => (
                     <Link
                       key={action.href}
@@ -140,8 +140,8 @@ export default async function AdminDashboard() {
 
           {/* Pending alert banner */}
           {totalPending > 0 && (
-            <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl px-5 py-4">
-              <p className="text-sm font-semibold text-amber-800 font-body mb-3">
+            <div className="px-5 py-4 mt-6 border bg-amber-50 border-amber-200 rounded-xl">
+              <p className="mb-3 text-sm font-semibold text-amber-800 font-body">
                 Items requiring attention:
               </p>
               <div className="flex flex-wrap gap-3">

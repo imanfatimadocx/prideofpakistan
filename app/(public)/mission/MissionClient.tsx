@@ -84,7 +84,11 @@ const PILLARS = [
   },
 ];
 
-function Carousel({ images }: { images: { src: string; caption: string }[] }) {
+function Carousel({
+  images,
+}: {
+  images: { src: string; caption: string; href?: string | null }[];
+}) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -103,22 +107,33 @@ function Carousel({ images }: { images: { src: string; caption: string }[] }) {
 
   return (
     <div className="relative w-full group">
-      <div
-        className="relative w-full overflow-hidden rounded-xl"
-        style={{ aspectRatio: "600/350" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={images[current].src}
-          alt={images[current].caption}
-          className="object-cover object-top w-full h-full transition-all duration-700"
-        />
-        <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
-          <p className="text-sm leading-snug font-body text-white/90">
-            {images[current].caption}
-          </p>
-        </div>
-      </div>
+    <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "600/350" }}>
+  {images[current].href ? (
+    <a href={images[current].href} className="block w-full h-full">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={images[current].src}
+        alt={images[current].caption}
+        className="object-cover object-top w-full h-full transition-all duration-700 hover:scale-105"
+      />
+    </a>
+  ) : (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={images[current].src}
+      alt={images[current].caption}
+      className="object-cover object-top w-full h-full transition-all duration-700"
+    />
+  )}
+  <div className="absolute bottom-0 left-0 right-0 px-4 py-3 pointer-events-none bg-gradient-to-t from-black/70 to-transparent">
+    <p className="text-sm leading-snug font-body text-white/90">
+      {images[current].caption}
+    </p>
+    {images[current].href && (
+      <p className="text-[11px] text-gold font-body mt-0.5">View Profile →</p>
+    )}
+  </div>
+</div>
       <button
         onClick={prev}
         className="absolute flex items-center justify-center text-white transition-colors -translate-y-1/2 rounded-full opacity-0 left-3 top-1/2 w-9 h-9 bg-black/40 hover:bg-black/60 group-hover:opacity-100"

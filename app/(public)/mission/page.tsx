@@ -11,10 +11,19 @@ const DEFAULT_IMAGES = [
   {
     src: "/mission1.jpeg",
     caption: "Abdul Sattar Edhi, Founder of Edhi Foundation",
+    href: '/who-is-who/',
   },
-  { src: "/mission2.jpeg", caption: "Dr. Abdul Qadeer Khan, Founder of KRL" },
-  { src: "/mission3.jpeg", caption: "Sadiq Khan, Mayor of London" },
-  { src: "/mission4.jpeg", caption: "Dr. Saud Anwar, State Senator USA" },
+  {
+    src: "/mission2.jpeg",
+    caption: "Dr. Abdul Qadeer Khan, Founder of KRL",
+    href: null,
+  },
+  { src: "/mission3.jpeg", caption: "Sadiq Khan, Mayor of London", href: null },
+  {
+    src: "/mission4.jpeg",
+    caption: "Dr. Saud Anwar, State Senator USA",
+    href: null,
+  },
 ];
 
 export default async function MissionPage() {

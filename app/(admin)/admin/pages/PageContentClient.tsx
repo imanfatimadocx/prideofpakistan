@@ -8,8 +8,9 @@ interface Field {
 }
 
 interface ImageItem {
-  src: string
-  caption: string
+  src: string;
+  caption: string;
+  href?: string | null;
 }
 
 export default function PageContentClient({
@@ -53,7 +54,11 @@ export default function PageContentClient({
   function updateCaption(index: number, caption: string) {
     setImages((prev) => prev.map((img, i) => i === index ? { ...img, caption } : img))
   }
-
+  function updateHref(index: number, href: string | null) {
+    setImages((prev) =>
+      prev.map((img, i) => (i === index ? { ...img, href } : img)),
+    );
+  }
   function removeImage(index: number) {
     setImages((prev) => prev.filter((_, i) => i !== index))
   }
@@ -110,24 +115,30 @@ export default function PageContentClient({
 
       {/* Text fields */}
       <div className="p-6 space-y-5 bg-white border border-border rounded-xl">
-        <h2 className="text-base font-bold font-display text-green">Page Text</h2>
+        <h2 className="text-base font-bold font-display text-green">
+          Page Text
+        </h2>
         {fields.map(({ key, label, type }) => (
           <div key={key}>
             <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
               {label}
             </label>
-            {type === 'textarea' ? (
+            {type === "textarea" ? (
               <textarea
-                value={form[key] ?? ''}
-                onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
+                value={form[key] ?? ""}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, [key]: e.target.value }))
+                }
                 rows={5}
                 className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors resize-none"
               />
             ) : (
               <input
                 type="text"
-                value={form[key] ?? ''}
-                onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
+                value={form[key] ?? ""}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, [key]: e.target.value }))
+                }
                 className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
               />
             )}
@@ -138,9 +149,13 @@ export default function PageContentClient({
       {/* Image management */}
       <div className="p-6 space-y-5 bg-white border border-border rounded-xl">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold font-display text-green">Carousel Images</h2>
-          <label className={`cursor-pointer bg-gold text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
-            {uploading ? 'Uploading…' : '+ Add Image'}
+          <h2 className="text-base font-bold font-display text-green">
+            Carousel Images
+          </h2>
+          <label
+            className={`cursor-pointer bg-gold text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+          >
+            {uploading ? "Uploading…" : "+ Add Image"}
             <input
               type="file"
               accept="image/*"
@@ -153,16 +168,28 @@ export default function PageContentClient({
 
         {images.length === 0 ? (
           <div className="py-10 text-center border-2 border-dashed border-border rounded-xl">
-            <p className="text-sm text-ink-muted font-body">No images yet. Click "Add Image" to upload.</p>
+            <p className="text-sm text-ink-muted font-body">
+              No images yet. Click "Add Image" to upload.
+            </p>
           </div>
         ) : (
           <div className="space-y-4">
             {images.map((img, i) => (
-              <div key={i} className="flex items-start gap-4 p-4 border border-border rounded-xl bg-cream">
+              <div
+                key={i}
+                className="flex items-start gap-4 p-4 border border-border rounded-xl bg-cream"
+              >
                 {/* Preview */}
-                <div className="flex-shrink-0 w-32 overflow-hidden border rounded-lg border-border" style={{ aspectRatio: '600/350' }}>
+                <div
+                  className="flex-shrink-0 w-32 overflow-hidden border rounded-lg border-border"
+                  style={{ aspectRatio: "600/350" }}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={img.src} alt={img.caption} className="object-cover object-top w-full h-full" />
+                  <img
+                    src={img.src}
+                    alt={img.caption}
+                    className="object-cover object-top w-full h-full"
+                  />
                 </div>
 
                 {/* Caption + controls */}
@@ -176,6 +203,13 @@ export default function PageContentClient({
                     onChange={(e) => updateCaption(i, e.target.value)}
                     placeholder="Enter image caption…"
                     className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                  />
+                  <input
+                    type="text"
+                    value={img.href ?? ""}
+                    onChange={(e) => updateHref(i, e.target.value || null)}
+                    placeholder="/who-is-who/123 (optional)"
+                    className="w-full px-3 py-2 mt-1 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
                   />
                   <div className="flex items-center gap-2 pt-1">
                     <button
@@ -206,7 +240,10 @@ export default function PageContentClient({
             ))}
           </div>
         )}
-        <p className="text-[11px] text-ink-muted font-body">Images appear in the carousel on the public page. Best size: 600 × 350px.</p>
+        <p className="text-[11px] text-ink-muted font-body">
+          Images appear in the carousel on the public page. Best size: 600 ×
+          350px.
+        </p>
       </div>
 
       <button
@@ -214,8 +251,8 @@ export default function PageContentClient({
         disabled={saving}
         className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
       >
-        {saving ? 'Saving…' : 'Save All Changes'}
+        {saving ? "Saving…" : "Save All Changes"}
       </button>
     </div>
-  )
+  );
 }

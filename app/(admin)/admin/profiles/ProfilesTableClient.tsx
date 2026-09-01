@@ -73,19 +73,24 @@ export default function ProfilesTableClient({
 
   return (
     <div className="space-y-4">
-
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3 p-4 bg-white border border-border rounded-xl">
         <input
           type="text"
           placeholder="Search name or profession…"
           value={search}
-          onChange={(e) => { setSearch(e.target.value); resetPage() }}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            resetPage();
+          }}
           className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold flex-1 min-w-[180px]"
         />
         <select
           value={filterStatus}
-          onChange={(e) => { setFilterStatus(e.target.value); resetPage() }}
+          onChange={(e) => {
+            setFilterStatus(e.target.value);
+            resetPage();
+          }}
           className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
         >
           <option value="all">All Statuses</option>
@@ -95,7 +100,10 @@ export default function ProfilesTableClient({
         </select>
         <select
           value={filterFeatured}
-          onChange={(e) => { setFilterFeatured(e.target.value); resetPage() }}
+          onChange={(e) => {
+            setFilterFeatured(e.target.value);
+            resetPage();
+          }}
           className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
         >
           <option value="all">All Profiles</option>
@@ -104,24 +112,38 @@ export default function ProfilesTableClient({
         </select>
         <select
           value={filterCategory}
-          onChange={(e) => { setFilterCategory(e.target.value); resetPage() }}
+          onChange={(e) => {
+            setFilterCategory(e.target.value);
+            resetPage();
+          }}
           className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
         >
           <option value="all">All Categories</option>
           {categories.map((c) => (
-            <option key={c.categoryid} value={c.categoryid}>{c.categoryname}</option>
+            <option key={c.categoryid} value={c.categoryid}>
+              {c.categoryname}
+            </option>
           ))}
         </select>
-        {(filterStatus !== 'all' || filterFeatured !== 'all' || filterCategory !== 'all' || search) && (
+        {(filterStatus !== "all" ||
+          filterFeatured !== "all" ||
+          filterCategory !== "all" ||
+          search) && (
           <button
-            onClick={() => { setFilterStatus('all'); setFilterFeatured('all'); setFilterCategory('all'); setSearch(''); resetPage() }}
+            onClick={() => {
+              setFilterStatus("all");
+              setFilterFeatured("all");
+              setFilterCategory("all");
+              setSearch("");
+              resetPage();
+            }}
             className="text-xs font-semibold text-gold font-body hover:underline"
           >
             Clear filters
           </button>
         )}
         <span className="ml-auto text-xs text-ink-muted font-body">
-          {filtered.length} profile{filtered.length !== 1 ? 's' : ''}
+          {filtered.length} profile{filtered.length !== 1 ? "s" : ""}
         </span>
       </div>
 
@@ -131,89 +153,134 @@ export default function ProfilesTableClient({
           <table className="w-full text-sm font-body">
             <thead>
               <tr className="border-b border-border bg-cream">
-                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">Profile</th>
-                <th className="hidden px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted sm:table-cell">Category</th>
-                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">Status</th>
-                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">Featured</th>
-                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">Actions</th>
+                <th className="w-12 px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
+                  #
+                </th>
+                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
+                  Profile
+                </th>
+                <th className="hidden px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted sm:table-cell">
+                  Category
+                </th>
+                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
+                  Status
+                </th>
+                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
+                  Featured
+                </th>
+                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {paginated.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-4 py-10 text-sm text-center text-ink-muted font-body">
+                  <td
+                    colSpan={6}
+                    className="px-4 py-10 text-sm text-center text-ink-muted font-body"
+                  >
                     No profiles found.
                   </td>
                 </tr>
-              ) : paginated.map((p) => (
-                <tr key={p.id} className="transition-colors hover:bg-cream/50">
+              ) : (
+                paginated.map((p, idx) => (
+                  <tr
+                    key={p.id}
+                    className="transition-colors hover:bg-cream/50"
+                  >
+                    {/* Index */}
+                    <td className="w-12 px-4 py-3">
+                      <span className="text-xs text-ink-muted font-body tabular-nums">
+                        {(page - 1) * PAGE_SIZE + idx + 1}
+                      </span>
+                    </td>
 
-                  {/* Profile */}
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      {p.image ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={p.image} alt={p.title} className="flex-shrink-0 object-top w-16 h-16 rounded-lg object-fit" />
-                      ) : (
-                        <div className="flex items-center justify-center flex-shrink-0 text-sm font-bold text-white rounded-full w-9 h-9 bg-green font-display">
-                          {p.title.charAt(0)}
+                    {/* Profile */}
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        {p.image ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={p.image}
+                            alt={p.title}
+                            className="flex-shrink-0 object-top w-16 h-16 rounded-lg object-fit"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-bold text-white rounded-full bg-green font-display">
+                            {p.title.charAt(0)}
+                          </div>
+                        )}
+                        <div className="min-w-0">
+                          <p className="font-semibold text-ink-dark truncate max-w-[200px]">
+                            {p.title}
+                          </p>
+                          {p.Profession && (
+                            <p className="text-xs text-ink-muted truncate max-w-[200px]">
+                              {p.Profession}
+                            </p>
+                          )}
                         </div>
-                      )}
-                      <div className="min-w-0">
-                        <p className="font-semibold text-ink-dark truncate max-w-[200px]">{p.title}</p>
-                        {p.Profession && <p className="text-xs text-ink-muted truncate max-w-[200px]">{p.Profession}</p>}
                       </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  {/* Category */}
-                  <td className="hidden px-4 py-3 sm:table-cell">
-                    <span className="text-xs text-ink-muted">{p.categoryname ?? '-'}</span>
-                  </td>
+                    {/* Category */}
+                    <td className="hidden px-4 py-3 sm:table-cell">
+                      <span className="text-xs text-ink-muted">
+                        {p.categoryname ?? "—"}
+                      </span>
+                    </td>
 
-                  {/* Status */}
-                  <td className="px-4 py-3">
-                    <span className={`text-[11px] font-bold px-2 py-0.5 rounded font-body ${STATUS_STYLES[p.status]}`}>
-                      {STATUS_LABELS[p.status]}
-                    </span>
-                  </td>
-
-                  {/* Featured */}
-                  <td className="px-4 py-3">
-                    {p.feature === 1 ? (
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-gold-pale text-gold font-body">Featured</span>
-                    ) : (
-                      <span className="text-[11px] text-ink-muted font-body">-</span>
-                    )}
-                  </td>
-
-                  {/* Actions */}
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      <Link
-                        href={`/who-is-who/${p.id}`}
-                        target="_blank"
-                        className="text-xs no-underline transition-colors text-ink-muted font-body hover:text-green"
+                    {/* Status */}
+                    <td className="px-4 py-3">
+                      <span
+                        className={`text-[11px] font-bold px-2 py-0.5 rounded font-body ${STATUS_STYLES[p.status]}`}
                       >
-                        View
-                      </Link>
-                      <Link
-                        href={`/admin/profiles/${p.id}/edit`}
-                        className="text-xs font-semibold no-underline text-gold font-body hover:underline"
-                      >
-                        Edit
-                      </Link>
-                      <button
-                        onClick={() => handleDelete(p.id)}
-                        disabled={deleting === p.id}
-                        className="text-xs text-red-500 font-body hover:underline disabled:opacity-50"
-                      >
-                        {deleting === p.id ? '...' : 'Delete'}
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        {STATUS_LABELS[p.status]}
+                      </span>
+                    </td>
+
+                    {/* Featured */}
+                    <td className="px-4 py-3">
+                      {p.feature === 1 ? (
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-gold-pale text-gold font-body">
+                          Featured
+                        </span>
+                      ) : (
+                        <span className="text-[11px] text-ink-muted font-body">
+                          —
+                        </span>
+                      )}
+                    </td>
+
+                    {/* Actions */}
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        <Link
+                          href={`/who-is-who/${p.id}`}
+                          target="_blank"
+                          className="text-xs no-underline transition-colors text-ink-muted font-body hover:text-green"
+                        >
+                          View
+                        </Link>
+                        <Link
+                          href={`/admin/profiles/${p.id}/edit`}
+                          className="text-xs font-semibold no-underline text-gold font-body hover:underline"
+                        >
+                          Edit
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(p.id)}
+                          disabled={deleting === p.id}
+                          className="text-xs text-red-500 font-body hover:underline disabled:opacity-50"
+                        >
+                          {deleting === p.id ? "..." : "Delete"}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -223,7 +290,8 @@ export default function ProfilesTableClient({
       {totalPages > 1 && (
         <div className="flex items-center justify-between">
           <p className="text-xs text-ink-muted font-body">
-            Page {page} of {totalPages} · showing {((page - 1) * PAGE_SIZE) + 1}–{Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length}
+            Page {page} of {totalPages} · showing {(page - 1) * PAGE_SIZE + 1}–
+            {Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length}
           </p>
           <div className="flex items-center gap-2">
             <button
@@ -234,22 +302,30 @@ export default function ProfilesTableClient({
               Previous
             </button>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => {
-              const show = p === 1 || p === totalPages || Math.abs(p - page) <= 1
-              const ellipsisBefore = p === page - 2 && page - 2 > 1
-              const ellipsisAfter  = p === page + 2 && page + 2 < totalPages
-              if (ellipsisBefore || ellipsisAfter) return <span key={p} className="text-sm text-ink-muted">…</span>
-              if (!show) return null
+              const show =
+                p === 1 || p === totalPages || Math.abs(p - page) <= 1;
+              const ellipsisBefore = p === page - 2 && page - 2 > 1;
+              const ellipsisAfter = p === page + 2 && page + 2 < totalPages;
+              if (ellipsisBefore || ellipsisAfter)
+                return (
+                  <span key={p} className="text-sm text-ink-muted">
+                    …
+                  </span>
+                );
+              if (!show) return null;
               return (
                 <button
                   key={p}
                   onClick={() => setPage(p)}
                   className={`w-9 h-9 rounded-lg text-sm font-semibold font-body border transition-colors ${
-                    page === p ? 'bg-green text-white border-green' : 'border-border text-ink-mid hover:border-green hover:text-green'
+                    page === p
+                      ? "bg-green text-white border-green"
+                      : "border-border text-ink-mid hover:border-green hover:text-green"
                   }`}
                 >
                   {p}
                 </button>
-              )
+              );
             })}
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
@@ -262,5 +338,5 @@ export default function ProfilesTableClient({
         </div>
       )}
     </div>
-  )
+  );
 }
