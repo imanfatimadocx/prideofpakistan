@@ -425,3 +425,11 @@ model CitySubmission {
 
   @@map("city_submissions")
 }
+model PageContent {
+  id        Int      @id @default(autoincrement())
+  page      String   @unique @db.VarChar(50)
+  content   Json
+  updatedAt DateTime @updatedAt
+
+  @@map("page_content")
+}
