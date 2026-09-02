@@ -27,7 +27,11 @@ const NAV_GROUPS = [
   },
   {
     label: "Pakistani Businesses",
-    items: [{ label: "Manage Businesses", href: "/admin/business" }],
+    items: [
+      { label: "Manage Businesses", href: "/admin/business" },
+      { label: "Add Business", href: "/admin/business/new" },
+      { label: "Business Categories", href: "/admin/business-categories" },
+    ],
   },
   {
     label: "Pakistani Products",

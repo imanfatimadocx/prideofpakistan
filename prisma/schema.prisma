@@ -115,47 +115,46 @@ model HallCategory {
   @@map("hallcategory")
 }
 
-// ─── Pakistani Businesses ───────────────────────────────────────────────────────
-
-model Business {
-  id                  Int     @id @default(autoincrement())
-  user_id             Int     @default(0)
-  busniss_id          Int     @default(0)
-  name                String  @default("") @db.VarChar(255)
-  l_name              String  @default("") @db.VarChar(255)
-  email               String  @default("") @db.VarChar(255)
-  company_name        String  @default("") @db.VarChar(255)
-  shortdesc           String  @default("") @db.VarChar(255)
-  description         String  @default("") @db.Text
-  company_description String  @default("") @db.Text
-  country             String  @default("") @db.VarChar(255)
-  city                String  @default("") @db.VarChar(255)
-  address             String  @default("") @db.VarChar(255)
-  phone               String  @default("") @db.VarChar(255)
-  site_url            String  @default("") @db.VarChar(255)
-  no_of_emplys        String  @default("") @db.VarChar(255)
-  keywords            String  @default("") @db.Text
-  status              Int     @default(0)
-  feature             Int     @default(0)
-  image               String  @default("") @db.VarChar(255)
-  org_img             String  @default("") @db.VarChar(300)
-  lng                 String  @default("") @db.VarChar(255)
-  lat                 String  @default("") @db.VarChar(255)
-  title               String  @default("") @db.VarChar(255)
-
-  @@map("busniss")
-}
+// ─── Pakistani Businesses ─────────────────────────────────────────────────────
 
 model BusinessCategory {
-  id           Int      @id @default(autoincrement())
-  busniss_name String   @db.VarChar(255)
-  shortdesc    String   @db.VarChar(255)
-  image        String   @db.VarChar(255)
-  org_img      String   @db.VarChar(300)
-  date         DateTime @default(now())
-  status       String   @db.VarChar(20)
+  id         Int        @id @default(autoincrement())
+  name       String     @db.VarChar(255)
+  status     Int        @default(1)
+  businesses Business[]
 
-  @@map("busniss_category")
+  @@map("business_categories")
+}
+
+model Business {
+  id                  Int               @id @default(autoincrement())
+  user_id             Int               @default(0)
+  busniss_id          Int               @default(0)
+  category_id         Int?
+  name                String            @default("") @db.VarChar(255)
+  l_name              String            @default("") @db.VarChar(255)
+  email               String            @default("") @db.VarChar(255)
+  company_name        String            @default("") @db.VarChar(255)
+  shortdesc           String            @default("") @db.VarChar(255)
+  description         String            @default("") @db.Text
+  company_description String            @default("") @db.Text
+  country             String            @default("") @db.VarChar(255)
+  city                String            @default("") @db.VarChar(255)
+  address             String            @default("") @db.VarChar(255)
+  phone               String            @default("") @db.VarChar(255)
+  site_url            String            @default("") @db.VarChar(255)
+  no_of_emplys        String            @default("") @db.VarChar(255)
+  keywords            String            @default("") @db.Text
+  status              Int               @default(0)
+  feature             Int               @default(0)
+  image               String            @default("") @db.VarChar(255)
+  org_img             String            @default("") @db.VarChar(300)
+  lng                 String            @default("") @db.VarChar(255)
+  lat                 String            @default("") @db.VarChar(255)
+  title               String            @default("") @db.VarChar(255)
+  category            BusinessCategory? @relation(fields: [category_id], references: [id])
+
+  @@map("busniss")
 }
 
 // ─── PAKISTANI PRODUCTS ───────────────────────────────────────────────────────
