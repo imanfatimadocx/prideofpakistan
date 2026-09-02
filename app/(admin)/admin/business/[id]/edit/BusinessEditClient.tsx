@@ -16,6 +16,8 @@ interface Business {
   site_url: string;
   shortdesc: string;
   description: string;
+  no_of_emplys: string; 
+  keywords: string; 
   status: number;
   feature: number;
   category_id: number | null;
@@ -214,6 +216,8 @@ export default function BusinessEditClient({
                 { label: "Email", key: "email" },
                 { label: "Phone", key: "phone" },
                 { label: "Website URL", key: "site_url" },
+                { label: "No. of Employees", key: "no_of_emplys" },
+                { label: "Products / Services", key: "keywords" },
                 { label: "City", key: "city" },
                 { label: "Country", key: "country" },
                 { label: "Address", key: "address" },

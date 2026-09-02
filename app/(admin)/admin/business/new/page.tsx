@@ -17,6 +17,8 @@ export default async function NewBusinessPage() {
     country: "",
     address: "",
     site_url: "",
+    no_of_emplys: "",
+    keywords: "",
     shortdesc: "",
     description: "",
     status: 0,

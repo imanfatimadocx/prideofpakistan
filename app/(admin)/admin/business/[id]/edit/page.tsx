@@ -28,6 +28,8 @@ export default async function BusinessEditPage({ params }: Props) {
     country: biz.country || "",
     address: biz.address || "",
     site_url: biz.site_url || "",
+    no_of_emplys: biz.no_of_emplys || "",
+    keywords: biz.keywords || "",
     shortdesc: biz.shortdesc || "",
     description: biz.description || "",
     status: biz.status ?? 0,
