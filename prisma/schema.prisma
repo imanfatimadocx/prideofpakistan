@@ -159,34 +159,57 @@ model Business {
 
 // ─── PAKISTANI PRODUCTS ───────────────────────────────────────────────────────
 
+model ProductCategory {
+  id       Int          @id @default(autoincrement())
+  name     String       @db.VarChar(255)
+  status   Int          @default(1)
+  products PakProduct[]
+
+  @@map("product_categories")
+}
+
 model PakProduct {
-  id           Int    @id @default(autoincrement())
-  title        String @db.VarChar(255)
-  categoryid   Int    @default(0)
-  description  String @default("") @db.Text
-  shortdesc    String @default("") @db.Text
-  status       Int    @default(0)
-  feature      Int    @default(0)
-  image        String @default("") @db.VarChar(255)
-  org_img      String @default("") @db.VarChar(250)
-  Profession   String @default("") @db.VarChar(255)
-  City         String @default("") @db.VarChar(255)
-  Country      Int    @default(0)
-  email        String @default("") @db.VarChar(255)
-  phone        String @default("") @db.VarChar(255)
-  interests    String @default("") @db.VarChar(255)
-  user_id      Int    @default(0)
-  meta_title   String @default("") @db.VarChar(255)
-  meta_desc    String @default("") @db.VarChar(255)
-  meta_keyword String @default("") @db.VarChar(255)
-  d            String @default("") @db.VarChar(255)
-  m            String @default("") @db.VarChar(255)
-  y            Int    @default(0)
-  address      String @default("") @db.VarChar(255)
+  id           Int              @id @default(autoincrement())
+  title        String           @db.VarChar(255)
+  categoryid   Int              @default(0)
+  category     ProductCategory? @relation(fields: [categoryid], references: [id])
+  description  String           @default("") @db.Text
+  shortdesc    String           @default("") @db.Text
+  status       Int              @default(0)
+  feature      Int              @default(0)
+  image        String           @default("") @db.VarChar(255)
+  org_img      String           @default("") @db.VarChar(250)
+  Profession   String           @default("") @db.VarChar(255)
+  City         String           @default("") @db.VarChar(255)
+  Country      Int              @default(0)
+  email        String           @default("") @db.VarChar(255)
+  phone        String           @default("") @db.VarChar(255)
+  interests    String           @default("") @db.VarChar(255)
+  user_id      Int              @default(0)
+  meta_title   String           @default("") @db.VarChar(255)
+  meta_desc    String           @default("") @db.VarChar(255)
+  meta_keyword String           @default("") @db.VarChar(255)
+  d            String           @default("") @db.VarChar(255)
+  m            String           @default("") @db.VarChar(255)
+  y            Int              @default(0)
+  address      String           @default("") @db.VarChar(255)
+  inquiries    ProductInquiry[]
 
   @@map("pakproducts")
 }
 
+model ProductInquiry {
+  id         Int        @id @default(autoincrement())
+  productId  Int
+  product    PakProduct @relation(fields: [productId], references: [id])
+  name       String     @db.VarChar(100)
+  email      String     @db.VarChar(255)
+  message    String     @db.Text
+  read       Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+
+  @@map("product_inquiries")
+}
 // ─── OUR PAKISTAN (CITIES) ────────────────────────────────────────────────────
 
 model OurPakistan {

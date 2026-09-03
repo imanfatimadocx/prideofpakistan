@@ -20,7 +20,7 @@ export default function ProductsSection({ products }: Props) {
 
   return (
     <section
-      className="py-12 border-t bg-cream sm:py-16 lg:py-20 border-border"
+      className="py-12 border-t bg-white sm:py-16 lg:py-20 border-border"
       id="products"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
@@ -52,7 +52,7 @@ export default function ProductsSection({ products }: Props) {
               className="no-underline group"
             >
               <div
-                className="w-full overflow-hidden"
+                className="w-full overflow-hidden rounded-lg"
                 style={{ aspectRatio: "600/350" }}
               >
                 {p.image ? (
@@ -61,7 +61,7 @@ export default function ProductsSection({ products }: Props) {
                     alt={p.title}
                     width={600}
                     height={350}
-                    className="object-cover object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top  rounded-lg w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">

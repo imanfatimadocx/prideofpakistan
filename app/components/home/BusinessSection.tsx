@@ -20,7 +20,7 @@ export default function BusinessSection({ businesses }: Props) {
 
   return (
     <section
-      className="py-12 bg-white border-t sm:py-16 lg:py-20 border-border"
+      className="py-12 bg-cream border-t sm:py-16 lg:py-20 border-border"
       id="business"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
@@ -52,7 +52,7 @@ export default function BusinessSection({ businesses }: Props) {
               className="no-underline group"
             >
               <div
-                className="w-full overflow-hidden"
+                className="w-full overflow-hidden rounded-lg"
                 style={{ aspectRatio: "600/350" }}
               >
                 {b.image ? (
@@ -61,7 +61,7 @@ export default function BusinessSection({ businesses }: Props) {
                     alt={b.company_name}
                     width={600}
                     height={350}
-                    className="object-cover object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top w-full h-full transition-transform duration-300 group-hover:scale-105 rounded-lg"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">

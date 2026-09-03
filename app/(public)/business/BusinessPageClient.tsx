@@ -334,7 +334,7 @@ export default function BusinessPageClient({ businesses, categories }: Props) {
                             className="no-underline group"
                           >
                             <div
-                              className="w-full overflow-hidden"
+                              className="w-full overflow-hidden rounded-lg"
                               style={{ aspectRatio: "600/350" }}
                             >
                               {b.image ? (
@@ -343,7 +343,7 @@ export default function BusinessPageClient({ businesses, categories }: Props) {
                                   alt={b.company_name}
                                   width={600}
                                   height={350}
-                                  className="object-cover object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
+                                  className="object-fit rounded-lg object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
                                 />
                               ) : (
                                 <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-green font-display">

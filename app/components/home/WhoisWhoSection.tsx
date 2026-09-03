@@ -243,7 +243,7 @@ export default function WhoIsWhoSection({
       className="flex flex-col items-start gap-6 no-underline group sm:flex-row"
     >
       {/* Image */}
-      <div className="w-full sm:w-[320px] flex-shrink-0 overflow-hidden" style={{ aspectRatio: '600/350' }}>
+      <div className="w-full sm:w-[320px] flex-shrink-0 overflow-hidden rounded-lg" style={{ aspectRatio: '600/350' }}>
         {profileOfTheDay.image ? (
           <Image
             src={profileOfTheDay.image}
@@ -299,7 +299,7 @@ export default function WhoIsWhoSection({
                       className="no-underline group"
                     >
                       {/* Plain image - no card, no border */}
-                      <div className="w-full overflow-hidden" style={{ aspectRatio: '600/350' }}>
+                      <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: '600/350' }}>
                         {p.image ? (
                           <Image
                             src={p.image}

@@ -35,7 +35,11 @@ const NAV_GROUPS = [
   },
   {
     label: "Pakistani Products",
-    items: [{ label: "Manage Products", href: "/admin/products" }],
+    items: [
+      { label: "Manage Products", href: "/admin/products" },
+      { label: "Add Product", href: "/admin/products/new" },
+      { label: "Product Categories", href: "/admin/product-categories" },
+    ],
   },
   {
     label: "Stories & Blog",

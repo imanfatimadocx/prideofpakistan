@@ -336,7 +336,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
       className="no-underline group"
     >
       {/* Plain image - no card, no border */}
-      <div className="w-full overflow-hidden" style={{ aspectRatio: '650/500' }}>
+      <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: '650/500' }}>
         {p.image ? (
           <Image
             src={p.image}
