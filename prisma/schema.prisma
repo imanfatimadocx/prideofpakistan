@@ -343,23 +343,6 @@ model Video {
 
   @@map("videos")
 }
-
-// ─── NEWS ────────────────────────────────────────────────────────────────────
-
-model LatestNews {
-  id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar(255)
-  description String   @db.Text
-  shortdesc   String   @db.Text
-  smallimage  String   @db.VarChar(255)
-  org_img     String   @db.VarChar(250)
-  status      Int      @default(0)
-  date_time   DateTime @default(now())
-  post_by     Int      @default(0)
-
-  @@map("latestnews")
-}
-
 // ─── BLOG ─────────────────────────────────────────────────────────────────────
 
 model Blog {
@@ -419,19 +402,36 @@ model Comment {
   @@map("comments")
 }
 
-model Story {
+model LatestNews {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  shortdesc   String   @db.Text
+  smallimage  String   @db.VarChar(255)
+  org_img     String   @db.VarChar(250)
+  status      Int      @default(0)
+  date_time   DateTime @default(now())
+  post_by     Int      @default(0)
+  images      Json?    // ← new: array of { src, caption }
+
+  @@map("latestnews")
+}
+
+model UserStory {
   id         Int      @id @default(autoincrement())
   title      String   @db.VarChar(255)
   content    String   @db.Text
-  shortdesc  String   @db.Text
+  shortdesc  String   @default("") @db.Text
   image      String?  @db.VarChar(255)
-  authorId   String
+  images     Json?    // ← multiple images
+  authorId   String   @db.VarChar(255)
   authorName String   @db.VarChar(100)
-  status     String   @default("pending")
+  authorEmail String  @db.VarChar(255)
+  status     String   @default("pending") // pending, approved, rejected
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@map("stories")
+  @@map("user_stories")
 }
 
 model CitySubmission {

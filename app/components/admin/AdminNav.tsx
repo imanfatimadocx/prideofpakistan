@@ -44,8 +44,9 @@ const NAV_GROUPS = [
   {
     label: "Stories & Blog",
     items: [
-      { label: "Manage Stories", href: "/admin/stories" },
-      { label: "Blog Posts", href: "/admin/blog" },
+      { label: "Latest News", href: "/admin/news" },
+      { label: "Write News", href: "/admin/news/new" },
+      { label: "User Stories", href: "/admin/user-stories" },
     ],
   },
   {
