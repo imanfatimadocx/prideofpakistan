@@ -20,8 +20,8 @@ export default async function AdminDashboard() {
     prisma.hallOfFame.count({ where: { feature: 1 } }),
     prisma.business.count(),
     prisma.business.count({ where: { status: 0 } }),
-    prisma.story.count(),
-    prisma.story.count({ where: { status: 'pending' } }),
+    prisma.userStory.count(),
+    prisma.userStory.count({ where: { status: 'pending' } }),
     prisma.video.count({ where: { status: 'active' } }),
   ])
 
