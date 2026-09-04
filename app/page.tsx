@@ -278,7 +278,7 @@ async function getFeatured6Products(): Promise<ProductCard[]> {
   }
 }
 
-async function getLatestNews3(): Promise<NewsItem[]> {
+async function getLatestNews3(): Promise<{ id: number; title: string; shortdesc: string; smallimage: string | null; date_time: Date }[]> {
   try {
     const rows = await prisma.latestNews.findMany({
       where: { status: 1 },
@@ -574,3 +574,4 @@ export default async function HomePage() {
     </>
   );
 }
+
