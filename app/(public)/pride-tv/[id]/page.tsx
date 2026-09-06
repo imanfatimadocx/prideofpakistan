@@ -1,63 +1,67 @@
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { prisma } from '@/app/lib/prisma'
-import Topbar from '@/app/components/layout/Topbar'
-import Navbar from '@/app/components/layout/Navbar'
-import Footer from '@/app/components/layout/Footer'
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { prisma } from "@/app/lib/prisma";
+import Topbar from "@/app/components/layout/Topbar";
+import Navbar from "@/app/components/layout/Navbar";
+import Footer from "@/app/components/layout/Footer";
 
-export const revalidate = 60
+export const revalidate = 60;
 
 interface Props {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }
 
 function getEmbedSrc(embedCode: string): string {
-  if (!embedCode) return ''
-  const code = embedCode.trim()
-  if (code.includes('youtube.com/embed/')) return code
-  const watchMatch = code.match(/youtube\.com\/watch\?v=([^&\s]+)/)
-  if (watchMatch?.[1]) return `https://www.youtube.com/embed/${watchMatch[1]}?rel=0`
-  const shortMatch = code.match(/youtu\.be\/([^?&\s]+)/)
-  if (shortMatch?.[1]) return `https://www.youtube.com/embed/${shortMatch[1]}?rel=0`
-  const srcMatch = code.match(/src=["']([^"']+)["']/)
-  if (srcMatch?.[1]) return srcMatch[1]
-  if (/^[a-zA-Z0-9_-]{11}$/.test(code)) return `https://www.youtube.com/embed/${code}?rel=0`
-  return code
+  if (!embedCode) return "";
+  const code = embedCode.trim();
+  if (code.includes("youtube.com/embed/")) return code;
+  const watchMatch = code.match(/youtube\.com\/watch\?v=([^&\s]+)/);
+  if (watchMatch?.[1])
+    return `https://www.youtube.com/embed/${watchMatch[1]}?rel=0`;
+  const shortMatch = code.match(/youtu\.be\/([^?&\s]+)/);
+  if (shortMatch?.[1])
+    return `https://www.youtube.com/embed/${shortMatch[1]}?rel=0`;
+  const srcMatch = code.match(/src=["']([^"']+)["']/);
+  if (srcMatch?.[1]) return srcMatch[1];
+  if (/^[a-zA-Z0-9_-]{11}$/.test(code))
+    return `https://www.youtube.com/embed/${code}?rel=0`;
+  return code;
 }
 
 function getThumbnail(embedCode: string, existingThumb: string): string {
-  if (existingThumb) return existingThumb
-  const code = embedCode.trim()
-  if (/^[a-zA-Z0-9_-]{11}$/.test(code)) return `https://img.youtube.com/vi/${code}/hqdefault.jpg`
+  if (existingThumb) return existingThumb;
+  const code = embedCode.trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(code))
+    return `https://img.youtube.com/vi/${code}/hqdefault.jpg`;
   const patterns = [
     /youtube\.com\/embed\/([^"?&/\s]+)/,
     /youtu\.be\/([^"?&/\s]+)/,
     /youtube\.com\/watch\?v=([^"?&/\s]+)/,
-  ]
+  ];
   for (const p of patterns) {
-    const m = code.match(p)
-    if (m?.[1]) return `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`
+    const m = code.match(p);
+    if (m?.[1]) return `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`;
   }
-  return ''
+  return "";
 }
 
 export default async function PrideTVVideoPage({ params }: Props) {
-  const { id } = await params
-  const videoId = Number(id)
-  if (Number.isNaN(videoId)) notFound()
+  const { id } = await params;
+  const videoId = Number(id);
+  if (Number.isNaN(videoId)) notFound();
 
   const [video, related] = await Promise.all([
     prisma.video.findUnique({ where: { video_id: BigInt(videoId) } }),
     prisma.video.findMany({
-      where: { status: 'active', NOT: { video_id: BigInt(videoId) } },
-      orderBy: [{ featured: 'desc' }, { views: 'desc' }],
+      where: { status: "active", NOT: { video_id: BigInt(videoId) } },
+      orderBy: [{ featured: "desc" }, { views: "desc" }],
       take: 8,
     }),
-  ])
+  ]);
 
-  if (!video || video.status !== 'active') notFound()
+  if (!video || video.status !== "active") notFound();
 
-  const embedSrc = getEmbedSrc(video.video_embed_code)
+  const embedSrc = getEmbedSrc(video.video_embed_code);
 
   return (
     <>
@@ -65,7 +69,6 @@ export default async function PrideTVVideoPage({ params }: Props) {
       <Navbar />
       <main className="min-h-screen bg-green">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-8">
-
           {/* Back link */}
           <Link
             href="/pride-tv"
@@ -75,7 +78,6 @@ export default async function PrideTVVideoPage({ params }: Props) {
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
-
             {/* Player */}
             <div>
               <div className="relative w-full overflow-hidden bg-black shadow-2xl aspect-video rounded-xl">
@@ -90,7 +92,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
 
               {/* Video info */}
               <div className="mt-5">
-                {video.featured === 'feature' && (
+                {video.featured === "feature" && (
                   <span className="inline-block bg-gold text-white text-[10px] font-bold tracking-[.12em] uppercase px-3 py-1 rounded mb-3 font-body">
                     Featured
                   </span>
@@ -103,8 +105,10 @@ export default async function PrideTVVideoPage({ params }: Props) {
                     <span>{Number(video.views).toLocaleString()} views</span>
                   )}
                   <span>
-                    {new Date(video.datetime).toLocaleDateString('en-GB', {
-                      day: 'numeric', month: 'long', year: 'numeric',
+                    {new Date(video.datetime).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
                     })}
                   </span>
                 </div>
@@ -138,7 +142,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
                         <img
                           src={getThumbnail(v.video_embed_code, v.thumb_url)}
                           alt={v.title}
-                          className="object-cover w-full h-full"
+                          className="object-fit w-full h-full"
                         />
                         {/* Play overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
@@ -158,7 +162,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
                             {Number(v.views).toLocaleString()} views
                           </p>
                         )}
-                        {v.featured === 'feature' && (
+                        {v.featured === "feature" && (
                           <span className="text-[9px] font-bold text-gold font-body uppercase tracking-wide mt-0.5 block">
                             Featured
                           </span>
@@ -182,5 +186,5 @@ export default async function PrideTVVideoPage({ params }: Props) {
       </main>
       <Footer />
     </>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -6,7 +6,7 @@ export default function HeroSection() {
       <img
         src="test-bg.jpeg"
         alt="Pakistan"
-        className="absolute inset-0 object-cover object-center w-full h-full"
+        className="absolute inset-0 object-fit object-center w-full h-full"
       />
       <div className="absolute inset-0 bg-black/65" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-green/60" />
@@ -18,9 +18,10 @@ export default function HeroSection() {
               The Pride of Pakistan
             </h1>
             <p className="text-base sm:text-lg text-white/75 font-body leading-relaxed mb-8 max-w-[520px]">
-              We honour the achievements of outstanding Pakistanis around the world, visionaries,
-              entrepreneurs, innovators, and leaders whose talent, dedication, and integrity have
-              made a lasting impact on their communities and beyond.
+              We honour the achievements of outstanding Pakistanis around the
+              world, visionaries, entrepreneurs, innovators, and leaders whose
+              talent, dedication, and integrity have made a lasting impact on
+              their communities and beyond.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
@@ -40,5 +41,5 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

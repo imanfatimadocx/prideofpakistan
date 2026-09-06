@@ -27,9 +27,9 @@ export default async function NewsPage() {
       <Navbar />
       <main className="min-h-screen bg-cream">
         <PageHero
-          eyebrow="Latest News"
-          title="Latest News"
-          subtitle="Stay up to date with the latest news and updates from Pride of Pakistan."
+          eyebrow="Discussion Forum"
+          title="Discussion Forum"
+          subtitle="Stay up to date with the Discussion Forum and updates from Pride of Pakistan."
         />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
           {news.length === 0 ? (
@@ -56,7 +56,7 @@ export default async function NewsPage() {
                         <img
                           src={image}
                           alt={item.title}
-                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-fit object-top group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
                         <div className="w-full h-full bg-green/10 flex items-center justify-center">

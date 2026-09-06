@@ -4,6 +4,7 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
+import CommentSection from "@/app/components/shared/CommentSection";
 
 export const revalidate = 3600;
 
@@ -54,9 +55,8 @@ export default async function NewsDetailPage({ params }: Props) {
             >
               <path d="m15 18-6-6 6-6" />
             </svg>
-            Back to Latest News
+            Back to Discussion Forum
           </Link>
-
           {/* Date */}
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
             {new Date(item.date_time).toLocaleDateString("en-GB", {
@@ -65,19 +65,16 @@ export default async function NewsDetailPage({ params }: Props) {
               year: "numeric",
             })}
           </p>
-
           {/* Title */}
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-green leading-tight mb-4">
             {item.title}
           </h1>
-
           {/* Short desc */}
           {item.shortdesc && (
             <p className="text-base text-ink-mid font-body leading-relaxed mb-6 pb-6 border-b border-border">
               {item.shortdesc}
             </p>
           )}
-
           {/* Cover image */}
           {coverImage && images.length === 0 && (
             <div
@@ -92,7 +89,6 @@ export default async function NewsDetailPage({ params }: Props) {
               />
             </div>
           )}
-
           {/* Article body — images float right */}
           <div className="relative">
             {/* Float images */}
@@ -108,7 +104,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-fit object-top"
                       />
                     </div>
                     {img.caption && (
@@ -129,7 +125,6 @@ export default async function NewsDetailPage({ params }: Props) {
 
             <div className="clear-both" />
           </div>
-
           {/* Share */}
           <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-border">
             <a
@@ -165,6 +160,7 @@ export default async function NewsDetailPage({ params }: Props) {
               WhatsApp
             </a>
           </div>
+          <CommentSection entityType="news" entityId={newsId} />;
         </div>
       </main>
       <Footer />

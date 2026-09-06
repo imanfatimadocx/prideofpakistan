@@ -4,6 +4,8 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
+import CommentSection from "@/app/components/shared/CommentSection";
+
 
 export const revalidate = 3600;
 
@@ -54,7 +56,6 @@ export default async function StoryDetailPage({ params }: Props) {
             </svg>
             Back to Your Stories
           </Link>
-
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
             By {story.authorName} ·{" "}
             {new Date(story.createdAt).toLocaleDateString("en-GB", {
@@ -63,17 +64,14 @@ export default async function StoryDetailPage({ params }: Props) {
               year: "numeric",
             })}
           </p>
-
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-green leading-tight mb-4">
             {story.title}
           </h1>
-
           {story.shortdesc && (
             <p className="text-base text-ink-mid font-body leading-relaxed mb-6 pb-6 border-b border-border">
               {story.shortdesc}
             </p>
           )}
-
           {coverImage && images.length === 0 && (
             <div
               className="w-full overflow-hidden rounded-xl mb-8"
@@ -83,11 +81,10 @@ export default async function StoryDetailPage({ params }: Props) {
               <img
                 src={coverImage}
                 alt={story.title}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-fit object-top"
               />
             </div>
           )}
-
           <div className="relative">
             {images.length > 0 && (
               <div className="float-right w-full sm:w-[340px] ml-0 sm:ml-8 mb-6 space-y-4">
@@ -101,7 +98,7 @@ export default async function StoryDetailPage({ params }: Props) {
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-fit object-top"
                       />
                     </div>
                     {img.caption && (
@@ -120,7 +117,6 @@ export default async function StoryDetailPage({ params }: Props) {
 
             <div className="clear-both" />
           </div>
-
           <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-border">
             <a
               href={`https://wa.me/?text=${encodeURIComponent(`${story.title} — https://prideofpakistan.com/your-stories/${storyId}`)}`}
@@ -131,6 +127,7 @@ export default async function StoryDetailPage({ params }: Props) {
               WhatsApp Share
             </a>
           </div>
+          <CommentSection entityType="story" entityId={storyId} />;
         </div>
       </main>
       <Footer />

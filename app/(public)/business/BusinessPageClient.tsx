@@ -128,7 +128,7 @@ export default function BusinessPageClient({ businesses, categories }: Props) {
       <div className="px-4 py-10 bg-green sm:px-8 lg:px-12 sm:py-14">
         <div className="max-w-[1280px] mx-auto">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
-            Directory
+            Pakistani Businesses That We Take Pride In
           </p>
           <h1 className="mb-3 text-3xl font-black leading-tight text-white font-display sm:text-4xl lg:text-5xl">
             Pakistani Businesses

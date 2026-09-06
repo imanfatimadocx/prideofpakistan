@@ -61,7 +61,7 @@ export default function ProductsSection({ products }: Props) {
                     alt={p.title}
                     width={600}
                     height={350}
-                    className="object-cover object-top  rounded-lg w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-fit object-top  rounded-lg w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">

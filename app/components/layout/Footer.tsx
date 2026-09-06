@@ -42,7 +42,7 @@ export default function Footer() {
                 // { label: 'Cities & Towns',     href: '/cities' },
                 { label: "Pakistani Products", href: "/products" },
                 { label: "Pride Blog", href: "/pride-blog" },
-                { label: "Latest News", href: "/latest-news" },
+                { label: "Discussion Forum", href: "/latest-news" },
               ].map(({ label, href }) => (
                 <li key={href}>
                   <Link

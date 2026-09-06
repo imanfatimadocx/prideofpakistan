@@ -167,7 +167,7 @@ export default function NewsEditClient({
   }
 
   return (
-    <div className="max-w-[900px]">
+    <div className="max-w-[900px] pt-14">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-3">
@@ -350,7 +350,7 @@ export default function NewsEditClient({
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-fit object-top"
                       />
                     </div>
                     <div className="flex-1 min-w-0 space-y-2">
@@ -407,7 +407,7 @@ export default function NewsEditClient({
                 <img
                   src={coverPreview}
                   alt="Cover"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-fit object-top"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-ink-muted text-sm font-body">

@@ -28,7 +28,7 @@ export default function BusinessSection({ businesses }: Props) {
         <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
             <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
-              Directory
+              Businesses That We Take Pride In
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
               Pakistani Businesses
@@ -61,7 +61,7 @@ export default function BusinessSection({ businesses }: Props) {
                     alt={b.company_name}
                     width={600}
                     height={350}
-                    className="object-cover object-top w-full h-full transition-transform duration-300 group-hover:scale-105 rounded-lg"
+                    className="object-fit object-top w-full h-full transition-transform duration-300 group-hover:scale-105 rounded-lg"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">

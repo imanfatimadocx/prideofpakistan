@@ -1,75 +1,89 @@
-'use client'
-import { useState } from 'react'
+"use client";
+import { useState } from "react";
 
 interface Video {
-  video_id: number
-  title: string
-  thumb_url: string
-  featured: string
-  views: number
-  video_embed_code: string
-  category: number
+  video_id: number;
+  title: string;
+  thumb_url: string;
+  featured: string;
+  views: number;
+  video_embed_code: string;
+  category: number;
 }
 
 function getEmbedSrc(embedCode: string): string {
-  if (!embedCode) return ''
-  const code = embedCode.trim()
-  if (code.includes('youtube.com/embed/')) return code
-  const watchMatch = code.match(/youtube\.com\/watch\?v=([^&\s]+)/)
-  if (watchMatch?.[1]) return `https://www.youtube.com/embed/${watchMatch[1]}?rel=0`
-  const shortMatch = code.match(/youtu\.be\/([^?&\s]+)/)
-  if (shortMatch?.[1]) return `https://www.youtube.com/embed/${shortMatch[1]}?rel=0`
-  const srcMatch = code.match(/src=["']([^"']+)["']/)
-  if (srcMatch?.[1]) return srcMatch[1]
-  if (/^[a-zA-Z0-9_-]{11}$/.test(code)) return `https://www.youtube.com/embed/${code}?rel=0`
-  return code
+  if (!embedCode) return "";
+  const code = embedCode.trim();
+  if (code.includes("youtube.com/embed/")) return code;
+  const watchMatch = code.match(/youtube\.com\/watch\?v=([^&\s]+)/);
+  if (watchMatch?.[1])
+    return `https://www.youtube.com/embed/${watchMatch[1]}?rel=0`;
+  const shortMatch = code.match(/youtu\.be\/([^?&\s]+)/);
+  if (shortMatch?.[1])
+    return `https://www.youtube.com/embed/${shortMatch[1]}?rel=0`;
+  const srcMatch = code.match(/src=["']([^"']+)["']/);
+  if (srcMatch?.[1]) return srcMatch[1];
+  if (/^[a-zA-Z0-9_-]{11}$/.test(code))
+    return `https://www.youtube.com/embed/${code}?rel=0`;
+  return code;
 }
 
 function getThumbnail(embedCode: string, existingThumb: string): string {
-  if (existingThumb) return existingThumb
-  const code = embedCode.trim()
-  if (/^[a-zA-Z0-9_-]{11}$/.test(code)) return `https://img.youtube.com/vi/${code}/hqdefault.jpg`
+  if (existingThumb) return existingThumb;
+  const code = embedCode.trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(code))
+    return `https://img.youtube.com/vi/${code}/hqdefault.jpg`;
   const patterns = [
     /youtube\.com\/embed\/([^"?&/\s]+)/,
     /youtu\.be\/([^"?&/\s]+)/,
     /youtube\.com\/watch\?v=([^"?&/\s]+)/,
-  ]
+  ];
   for (const p of patterns) {
-    const m = code.match(p)
-    if (m?.[1]) return `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`
+    const m = code.match(p);
+    if (m?.[1]) return `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`;
   }
-  return ''
+  return "";
 }
 
 export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
   const [activeId, setActiveId] = useState<number | null>(
-    videos.find((v) => v.featured === 'feature')?.video_id ?? videos[0]?.video_id ?? null
-  )
+    videos.find((v) => v.featured === "feature")?.video_id ??
+      videos[0]?.video_id ??
+      null,
+  );
 
-  const activeVideo = videos.find((v) => v.video_id === activeId) ?? videos[0]
+  const activeVideo = videos.find((v) => v.video_id === activeId) ?? videos[0];
 
   if (videos.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen px-4 text-center bg-green">
         <div>
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-3 font-body">Pride TV</p>
-          <h1 className="mb-3 text-3xl font-bold text-white font-display">Coming Soon</h1>
-          <p className="text-sm text-white/60 font-body">Video content is being added. Check back soon.</p>
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-3 font-body">
+            Pride TV
+          </p>
+          <h1 className="mb-3 text-3xl font-bold text-white font-display">
+            Coming Soon
+          </h1>
+          <p className="text-sm text-white/60 font-body">
+            Video content is being added. Check back soon.
+          </p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="min-h-screen bg-green">
-
       {/* Hero - active player */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pt-8 pb-6">
-        <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-2 font-body">Pride TV</p>
-        <h1 className="mb-6 text-2xl font-bold text-white font-display sm:text-3xl">Watch Pakistan</h1>
+        <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-2 font-body">
+          Pride TV
+        </p>
+        <h1 className="mb-6 text-2xl font-bold text-white font-display sm:text-3xl">
+          Watch Pakistan
+        </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
-
           {/* Main player */}
           <div>
             <div className="relative w-full overflow-hidden bg-black shadow-2xl aspect-video rounded-xl">
@@ -111,7 +125,9 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
                   key={v.video_id}
                   onClick={() => setActiveId(v.video_id)}
                   className={`w-full flex items-start gap-3 p-3 text-left transition-all ${
-                    activeId === v.video_id ? 'bg-white/15' : 'hover:bg-white/[.08]'
+                    activeId === v.video_id
+                      ? "bg-white/15"
+                      : "hover:bg-white/[.08]"
                   }`}
                 >
                   {/* Thumbnail */}
@@ -120,7 +136,7 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
                     <img
                       src={getThumbnail(v.video_embed_code, v.thumb_url)}
                       alt={v.title}
-                      className="object-cover w-full h-full"
+                      className="object-fit w-full h-full"
                     />
                     {activeId === v.video_id && (
                       <div className="absolute inset-0 flex items-center justify-center bg-green/60">
@@ -133,13 +149,15 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
-                    <p className={`text-xs font-semibold font-body leading-snug line-clamp-2 ${
-                      activeId === v.video_id ? 'text-white' : 'text-white/65'
-                    }`}>
+                    <p
+                      className={`text-xs font-semibold font-body leading-snug line-clamp-2 ${
+                        activeId === v.video_id ? "text-white" : "text-white/65"
+                      }`}
+                    >
                       {v.title}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
-                      {v.featured === 'feature' && (
+                      {v.featured === "feature" && (
                         <span className="text-[9px] font-bold text-gold font-body uppercase tracking-wide">
                           Featured
                         </span>
@@ -161,14 +179,16 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
       {/* All videos grid below */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pb-16">
         <div className="pt-10 mt-4 border-t border-white/10">
-          <h2 className="mb-6 text-xl font-bold text-white font-display">All Videos</h2>
+          <h2 className="mb-6 text-xl font-bold text-white font-display">
+            All Videos
+          </h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {videos.map((v) => (
               <button
                 key={v.video_id}
                 onClick={() => {
-                  setActiveId(v.video_id)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                  setActiveId(v.video_id);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
                 className="text-left group"
               >
@@ -177,7 +197,7 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
                   <img
                     src={getThumbnail(v.video_embed_code, v.thumb_url)}
                     alt={v.title}
-                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-fit w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
                   {/* Play button overlay */}
                   <div className="absolute inset-0 flex items-center justify-center transition-colors bg-black/0 group-hover:bg-black/30">
@@ -190,7 +210,7 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
                       Playing
                     </div>
                   )}
-                  {v.featured === 'feature' && activeId !== v.video_id && (
+                  {v.featured === "feature" && activeId !== v.video_id && (
                     <div className="absolute top-2 left-2 bg-green text-white text-[9px] font-bold px-2 py-0.5 rounded font-body uppercase">
                       Featured
                     </div>
@@ -210,5 +230,5 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

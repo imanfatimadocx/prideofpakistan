@@ -1,30 +1,43 @@
-'use client'
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useSession, signOut } from 'next-auth/react'
+"use client";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 const NAV = [
-  { label: 'Home',               href: '/' },
-  { label: 'Who Is Who',         href: '/who-is-who' },
-  { label: 'Pakistani Products', href: '/products' },
-  { label: 'Your Stories',       href: '/your-stories' },
-  { label: 'Pakistani Businesses', href: '/business' },
-  { label: 'Pride TV',           href: '/pride-tv' },
-]
+  { label: "Home", href: "/" },
+  { label: "Who Is Who", href: "/who-is-who" },
+  { label: "Pakistani Products", href: "/products" },
+  { label: "Pakistani Businesses", href: "/business" },
+  { label: "Discussion Forum", href: "/news" },
+  { label: "Your Stories", href: "/your-stories" },
+  { label: "Pride TV", href: "/pride-tv" },
+];
 
 export default function Navbar() {
-  const pathname = usePathname()
-  const [open, setOpen] = useState(false)
-  const { data: session } = useSession()
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
+
+  const isAdmin = (session?.user as { role?: string })?.role === "ADMIN";
+  const dashboardHref = isAdmin ? "/admin" : "/dashboard";
+  const dashboardLabel = isAdmin ? "Admin Panel" : "My Dashboard";
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [open])
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
-  useEffect(() => { setOpen(false) }, [pathname])
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const isActiveDashboard = isAdmin
+    ? pathname.startsWith("/admin")
+    : pathname === "/dashboard";
 
   return (
     <>
@@ -60,14 +73,14 @@ export default function Navbar() {
             {session ? (
               <div className="flex items-center gap-2 ml-3">
                 <Link
-                  href="/dashboard"
+                  href={dashboardHref}
                   className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all font-body ${
-                    pathname === "/dashboard"
+                    isActiveDashboard
                       ? "text-gold font-semibold"
                       : "text-white hover:text-gold hover:bg-gold/5"
                   }`}
                 >
-                  My Dashboard
+                  {dashboardLabel}
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
@@ -98,10 +111,10 @@ export default function Navbar() {
           <div className="flex items-center gap-3 lg:hidden">
             {session ? (
               <Link
-                href="/dashboard"
+                href={dashboardHref}
                 className="text-xs font-semibold text-white font-body border border-white/30 px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition-colors"
               >
-                Dashboard
+                {isAdmin ? "Admin" : "Dashboard"}
               </Link>
             ) : (
               <Link
@@ -111,7 +124,7 @@ export default function Navbar() {
                 Sign In
               </Link>
             )}
-            {/* Hamburger - white lines, visible on green */}
+            {/* Hamburger */}
             <button
               className="flex flex-col gap-1.5 p-2"
               onClick={() => setOpen(!open)}
@@ -141,7 +154,7 @@ export default function Navbar() {
         onClick={() => setOpen(false)}
       />
 
-      {/* Mobile drawer - green to match navbar */}
+      {/* Mobile drawer */}
       <div
         className={`fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-green z-[210] lg:hidden shadow-2xl flex flex-col transition-transform duration-300 ease-[cubic-bezier(.77,0,.175,1)] ${
           open ? "translate-x-0" : "translate-x-full"
@@ -196,16 +209,16 @@ export default function Navbar() {
             ))}
             {session && (
               <Link
-                href="/dashboard"
+                href={dashboardHref}
                 onClick={() => setOpen(false)}
                 className={`flex items-center justify-between px-3 py-3 rounded-lg text-sm font-medium font-body transition-colors ${
-                  pathname === "/dashboard"
+                  isActiveDashboard
                     ? "bg-white/10 text-gold font-semibold"
                     : "text-white/80 hover:bg-white/10 hover:text-white"
                 }`}
               >
-                My Dashboard
-                {pathname === "/dashboard" && (
+                {dashboardLabel}
+                {isActiveDashboard && (
                   <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
                 )}
               </Link>
@@ -213,7 +226,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Drawer footer - auth */}
+        {/* Drawer footer */}
         <div className="flex-shrink-0 px-4 py-5 border-t border-white/10">
           {session ? (
             <div className="space-y-3">
@@ -230,6 +243,11 @@ export default function Navbar() {
                   <p className="text-xs truncate text-white/60 font-body">
                     {session.user?.email}
                   </p>
+                  {isAdmin && (
+                    <p className="text-[10px] font-bold text-gold uppercase tracking-wide font-body">
+                      Administrator
+                    </p>
+                  )}
                 </div>
               </div>
               <button

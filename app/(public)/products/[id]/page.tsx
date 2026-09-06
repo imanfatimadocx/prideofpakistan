@@ -79,7 +79,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   <img
                     src={image}
                     alt={product.title}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-fit object-top"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-green">

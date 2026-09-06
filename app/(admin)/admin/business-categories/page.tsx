@@ -18,7 +18,7 @@ export default async function BizCategoriesPage() {
             Business Categories
           </h1>
           <p className="mb-8 text-sm text-ink-muted font-body">
-            Manage business directory categories.
+            Manage business categories.
           </p>
           <BizCategoriesClient
             categories={categories.map((c) => ({

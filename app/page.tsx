@@ -278,7 +278,15 @@ async function getFeatured6Products(): Promise<ProductCard[]> {
   }
 }
 
-async function getLatestNews3(): Promise<{ id: number; title: string; shortdesc: string; smallimage: string | null; date_time: Date }[]> {
+async function getLatestNews3(): Promise<
+  {
+    id: number;
+    title: string;
+    shortdesc: string;
+    smallimage: string | null;
+    date_time: Date;
+  }[]
+> {
   try {
     const rows = await prisma.latestNews.findMany({
       where: { status: 1 },
@@ -406,7 +414,7 @@ export default async function HomePage() {
         )}
         <ProductsSection products={products} />
         <BusinessSection businesses={bizs} />
-        {/* Latest News */}
+        {/* Discussion Forum */}
         {news.length > 0 && (
           <section className="py-12 border-t bg-white sm:py-16 lg:py-20 border-border">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
@@ -416,7 +424,7 @@ export default async function HomePage() {
                     Updates
                   </p>
                   <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
-                    Latest News
+                    Discussion Forum
                   </h2>
                   <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
                 </div>
@@ -574,4 +582,3 @@ export default async function HomePage() {
     </>
   );
 }
-

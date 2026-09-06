@@ -84,7 +84,7 @@ export default async function YourStoriesPage() {
                         <img
                           src={image}
                           alt={story.title}
-                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-fit object-top group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
                         <div className="w-full h-full bg-green/10 flex items-center justify-center">

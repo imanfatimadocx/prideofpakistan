@@ -16,8 +16,8 @@ interface Business {
   site_url: string;
   shortdesc: string;
   description: string;
-  no_of_emplys: string; 
-  keywords: string; 
+  no_of_emplys: string;
+  keywords: string;
   status: number;
   feature: number;
   category_id: number | null;
@@ -343,7 +343,7 @@ export default function BusinessEditClient({
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="object-cover object-top w-full h-full"
+                  className="object-fit object-top w-full h-full"
                 />
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-sm text-ink-muted font-body">

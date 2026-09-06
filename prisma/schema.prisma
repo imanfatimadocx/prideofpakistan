@@ -103,10 +103,21 @@ model HallOfFame {
   allow_fb_page  Int     @default(0)
   thumb_img      String? @db.VarChar(200)
   org_img        String? @db.VarChar(250)
+  submitterEmail String? @db.VarChar(255)
 
   @@map("halloffame")
 }
+model ContactQuery {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(100)
+  email     String   @db.VarChar(255)
+  subject   String   @db.VarChar(255)
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
 
+  @@map("contact_queries")
+}
 model HallCategory {
   categoryid   Int    @id @default(autoincrement())
   categoryname String @db.VarChar(255)
@@ -389,15 +400,20 @@ model Sponsor {
 // ─── USER GENERATED CONTENT ───────────────────────────────────────────────────
 
 model Comment {
-  id          Int      @id @default(autoincrement())
-  content     String   @db.Text
-  authorName  String   @db.VarChar(100)
-  authorEmail String   @db.VarChar(255)
-  userId      String?  @db.VarChar(255)
-  entityType  String   @db.VarChar(50)
+  id          Int       @id @default(autoincrement())
+  content     String    @db.Text
+  authorName  String    @db.VarChar(100)
+  authorEmail String    @db.VarChar(255)
+  userId      String?   @db.VarChar(255)
+  entityType  String    @db.VarChar(50)
   entityId    Int
-  approved    Boolean  @default(true)
-  createdAt   DateTime @default(now())
+  approved    Boolean   @default(true)
+  parentId    Int?
+  parent      Comment?  @relation("replies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     Comment[] @relation("replies")
+  likes       Int       @default(0)
+  likedBy     Json      @default("[]")
+  createdAt   DateTime  @default(now())
 
   @@map("comments")
 }

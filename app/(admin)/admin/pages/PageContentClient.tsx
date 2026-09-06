@@ -1,10 +1,10 @@
-'use client'
-import { useState } from 'react'
+"use client";
+import { useState } from "react";
 
 interface Field {
-  key: string
-  label: string
-  type: 'text' | 'textarea'
+  key: string;
+  label: string;
+  type: "text" | "textarea";
 }
 
 interface ImageItem {
@@ -19,40 +19,48 @@ export default function PageContentClient({
   fields,
   initialImages = [],
 }: {
-  page: string
-  initial: Record<string, string>
-  fields: Field[]
-  initialImages?: ImageItem[]
+  page: string;
+  initial: Record<string, string>;
+  fields: Field[];
+  initialImages?: ImageItem[];
 }) {
-  const [form, setForm]       = useState(initial)
-  const [images, setImages]   = useState<ImageItem[]>(initialImages)
-  const [saving, setSaving]   = useState(false)
-  const [saved, setSaved]     = useState(false)
-  const [error, setError]     = useState<string | null>(null)
-  const [uploading, setUploading] = useState(false)
+  const [form, setForm] = useState(initial);
+  const [images, setImages] = useState<ImageItem[]>(initialImages);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
 
   async function handleAddImage(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file) return
-    setUploading(true)
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
     try {
-      const formData = new FormData()
-      formData.append('file', file)
-      const res = await fetch('/api/upload', { method: 'POST', body: formData })
-      if (!res.ok) { setError('Upload failed.'); return }
-      const json = await res.json()
-      const url = json.url ?? json.path
-      setImages((prev) => [...prev, { src: url, caption: '' }])
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) {
+        setError("Upload failed.");
+        return;
+      }
+      const json = await res.json();
+      const url = json.url ?? json.path;
+      setImages((prev) => [...prev, { src: url, caption: "" }]);
     } catch {
-      setError('Upload failed.')
+      setError("Upload failed.");
     } finally {
-      setUploading(false)
-      e.target.value = ''
+      setUploading(false);
+      e.target.value = "";
     }
   }
 
   function updateCaption(index: number, caption: string) {
-    setImages((prev) => prev.map((img, i) => i === index ? { ...img, caption } : img))
+    setImages((prev) =>
+      prev.map((img, i) => (i === index ? { ...img, caption } : img)),
+    );
   }
   function updateHref(index: number, href: string | null) {
     setImages((prev) =>
@@ -60,43 +68,46 @@ export default function PageContentClient({
     );
   }
   function removeImage(index: number) {
-    setImages((prev) => prev.filter((_, i) => i !== index))
+    setImages((prev) => prev.filter((_, i) => i !== index));
   }
 
   function moveUp(index: number) {
-    if (index === 0) return
+    if (index === 0) return;
     setImages((prev) => {
-      const next = [...prev]
-      ;[next[index - 1], next[index]] = [next[index], next[index - 1]]
-      return next
-    })
+      const next = [...prev];
+      [next[index - 1], next[index]] = [next[index], next[index - 1]];
+      return next;
+    });
   }
 
   function moveDown(index: number) {
     setImages((prev) => {
-      if (index === prev.length - 1) return prev
-      const next = [...prev]
-      ;[next[index], next[index + 1]] = [next[index + 1], next[index]]
-      return next
-    })
+      if (index === prev.length - 1) return prev;
+      const next = [...prev];
+      [next[index], next[index + 1]] = [next[index + 1], next[index]];
+      return next;
+    });
   }
 
   async function handleSave() {
-    setSaving(true)
-    setError(null)
+    setSaving(true);
+    setError(null);
     try {
       const res = await fetch(`/api/admin/pages/${page}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, _images: images }),
-      })
-      if (!res.ok) { setError('Failed to save.'); return }
-      setSaved(true)
-      setTimeout(() => setSaved(false), 3000)
+      });
+      if (!res.ok) {
+        setError("Failed to save.");
+        return;
+      }
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
     } catch {
-      setError('Something went wrong.')
+      setError("Something went wrong.");
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
   }
 
@@ -188,7 +199,7 @@ export default function PageContentClient({
                   <img
                     src={img.src}
                     alt={img.caption}
-                    className="object-cover object-top w-full h-full"
+                    className="object-fit object-top w-full h-full"
                   />
                 </div>
 

@@ -7,7 +7,11 @@ import { signOut } from "next-auth/react";
 const NAV_GROUPS = [
   {
     label: "Overview",
-    items: [{ label: "Dashboard", href: "/admin" }],
+    items: [
+      { label: "Dashboard", href: "/admin" },
+      { label: "Comments", href: "/admin/comments" },
+      { label: "Contact Queries", href: "/admin/contact" },
+    ],
   },
   {
     label: "Hall of Fame",
@@ -44,7 +48,7 @@ const NAV_GROUPS = [
   {
     label: "Stories & Blog",
     items: [
-      { label: "Latest News", href: "/admin/news" },
+      { label: "Discussion Forum", href: "/admin/news" },
       { label: "Write News", href: "/admin/news/new" },
       { label: "User Stories", href: "/admin/user-stories" },
     ],

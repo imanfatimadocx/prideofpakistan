@@ -166,7 +166,7 @@ export default function SubmitStoryForm() {
             <img
               src={coverPreview}
               alt="Cover preview"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-fit object-top"
             />
           </div>
         )}
@@ -229,7 +229,7 @@ export default function SubmitStoryForm() {
                   <img
                     src={img.src}
                     alt={img.caption}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fit"
                   />
                 </div>
                 <div className="flex-1 space-y-2">

@@ -217,7 +217,7 @@ export default function BusinessTableClient({
                           <img
                             src={b.image}
                             alt={b.company_name}
-                            className="flex-shrink-0 object-cover object-top rounded-full w-9 h-9"
+                            className="flex-shrink-0 object-fit object-top rounded-lg w-20 h-16"
                           />
                         ) : (
                           <div className="flex items-center justify-center flex-shrink-0 text-sm font-bold text-white rounded-full w-9 h-9 bg-green font-display">

@@ -26,14 +26,14 @@ export default async function AdminNewsPage() {
   }));
 
   return (
-    <div className="flex min-h-screen bg-cream">
+    <div className="flex min-h-screen bg-cream pt-14">
       <AdminNav />
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 p-4 lg:p-8">
+      <main className="flex-1 lg:ml-64 lg:pt-0 p-4 lg:p-8">
         <div className="max-w-[1100px]">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="font-display text-2xl font-bold text-green mb-1">
-                Latest News
+                Discussion Forum
               </h1>
               <p className="text-sm text-ink-muted font-body">
                 {news.filter((n) => n.status === 0).length} draft ·{" "}

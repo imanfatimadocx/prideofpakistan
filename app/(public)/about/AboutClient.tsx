@@ -29,7 +29,7 @@ function Carousel({ images }: { images: { src: string; caption: string }[] }) {
         <img
           src={images[current].src}
           alt={images[current].caption}
-          className="object-cover object-top w-full h-full transition-all duration-700"
+          className="object-fit object-top w-full h-full transition-all duration-700"
         />
         <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
           <p className="text-sm leading-snug font-body text-white/90">
