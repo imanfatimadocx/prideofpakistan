@@ -7,7 +7,7 @@ import PageHero from "@/app/components/shared/PageHero";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function ListBusinessPage() {
+export default async function ListBusinessPage() {
   const { data: session } = useSession();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -46,17 +46,17 @@ export default function ListBusinessPage() {
       <>
         <Topbar />
         <Navbar />
-        <main className="min-h-screen bg-cream flex items-center justify-center">
-          <div className="text-center px-4">
-            <h2 className="font-display text-2xl font-bold text-green mb-3">
+        <main className="flex items-center justify-center min-h-screen bg-cream">
+          <div className="px-4 text-center">
+            <h2 className="mb-3 text-2xl font-bold font-display text-green">
               Login Required
             </h2>
-            <p className="text-sm text-ink-muted font-body mb-6">
+            <p className="mb-6 text-sm text-ink-muted font-body">
               You need to be logged in to list a business.
             </p>
             <Link
               href="/login?redirect=/list-business"
-              className="bg-gold text-white px-6 py-3 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
+              className="px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
             >
               Log In
             </Link>
@@ -81,7 +81,7 @@ export default function ListBusinessPage() {
           <div className="max-w-[700px] mx-auto px-4 sm:px-8 lg:px-12">
             {submitted ? (
               <div className="p-8 text-center bg-white border border-border rounded-xl">
-                <div className="w-14 h-14 rounded-full bg-green/10 flex items-center justify-center mx-auto mb-4">
+                <div className="flex items-center justify-center mx-auto mb-4 rounded-full w-14 h-14 bg-green/10">
                   <svg
                     width="24"
                     height="24"
@@ -97,7 +97,7 @@ export default function ListBusinessPage() {
                 <h2 className="mb-2 text-2xl font-bold font-display text-green">
                   Thank You!
                 </h2>
-                <p className="leading-relaxed text-ink-muted font-body mb-6">
+                <p className="mb-6 leading-relaxed text-ink-muted font-body">
                   Your business has been submitted for review. You can track its
                   status in your dashboard.
                 </p>
@@ -244,14 +244,14 @@ export default function ListBusinessPage() {
                   </label>
                   {preview && (
                     <div
-                      className="mb-3 w-full overflow-hidden rounded-lg border border-border"
+                      className="w-full mb-3 overflow-hidden border rounded-lg border-border"
                       style={{ aspectRatio: "600/350" }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={preview}
                         alt="Preview"
-                        className="w-full h-full object-cover object-top"
+                        className="object-cover object-top w-full h-full"
                       />
                     </div>
                   )}
@@ -265,7 +265,7 @@ export default function ListBusinessPage() {
                     }}
                     className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors file:bg-gold-pale file:text-gold file:border-0 file:rounded file:px-3 file:py-1 file:mr-3 file:text-xs file:font-semibold file:cursor-pointer"
                   />
-                  <p className="text-xs text-ink-muted font-body mt-1">
+                  <p className="mt-1 text-xs text-ink-muted font-body">
                     Best size: 600 × 350px.
                   </p>
                 </div>

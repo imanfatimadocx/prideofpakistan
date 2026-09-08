@@ -7,11 +7,16 @@ import MissionClient from "./MissionClient";
 
 export const revalidate = 3600;
 
-const DEFAULT_IMAGES = [
+const DEFAULT_IMAGES: {
+  src: string;
+  caption: string;
+  href?: string | null;
+  hidden?: boolean;
+}[] = [
   {
     src: "/mission1.jpeg",
     caption: "Abdul Sattar Edhi, Founder of Edhi Foundation",
-    href: '/who-is-who/',
+    href: "/who-is-who/",
   },
   {
     src: "/mission2.jpeg",
@@ -32,9 +37,17 @@ export default async function MissionPage() {
   });
 
   const content = (record?.content as Record<string, unknown> | null) ?? {};
-  const images =
-    (content._images as { src: string; caption: string }[] | undefined) ??
-    DEFAULT_IMAGES;
+  const allImages =
+    (content._images as
+      | {
+          src: string;
+          caption: string;
+          href?: string | null;
+          hidden?: boolean;
+        }[]
+      | undefined) ?? DEFAULT_IMAGES;
+
+  const images = allImages.filter((img) => !img.hidden);
 
   const data = {
     heading1:

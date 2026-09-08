@@ -7,11 +7,17 @@ export default function SubmitStoryForm() {
   const [form, setForm] = useState({ title: "", shortdesc: "", content: "" });
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
-  const [images, setImages] = useState<{ src: string; caption: string }[]>([]);
+  const [images, setImages] = useState<ImageItem[]>([]);
   const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Add this interface at the top of SubmitStoryForm.tsx
+  interface ImageItem {
+    src: string;
+    caption: string;
+    hidden?: boolean;
+  }
 
   function handleCoverChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -35,7 +41,11 @@ export default function SubmitStoryForm() {
     setUploading(true);
     try {
       const url = await uploadFile(file);
-      if (url) setImages((prev) => [...prev, { src: url, caption: "" }]);
+      if (url)
+        setImages((prev) => [
+          ...prev,
+          { src: url, caption: "", hidden: false },
+        ]);
     } finally {
       setUploading(false);
       e.target.value = "";
@@ -84,8 +94,8 @@ export default function SubmitStoryForm() {
 
   if (submitted) {
     return (
-      <div className="bg-white border border-border rounded-xl p-10 text-center">
-        <div className="w-12 h-12 rounded-full bg-green/10 flex items-center justify-center mx-auto mb-4">
+      <div className="p-10 text-center bg-white border border-border rounded-xl">
+        <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-green/10">
           <svg
             width="24"
             height="24"
@@ -98,10 +108,10 @@ export default function SubmitStoryForm() {
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
-        <h2 className="font-display text-xl font-bold text-green mb-2">
+        <h2 className="mb-2 text-xl font-bold font-display text-green">
           Story Submitted!
         </h2>
-        <p className="text-sm text-ink-muted font-body mb-6">
+        <p className="mb-6 text-sm text-ink-muted font-body">
           Your story is under review and will appear once approved.
         </p>
         <button
@@ -117,13 +127,13 @@ export default function SubmitStoryForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-600 font-body">
+        <div className="px-4 py-3 text-sm text-red-600 border border-red-200 rounded-lg bg-red-50 font-body">
           {error}
         </div>
       )}
 
       {/* Title */}
-      <div className="bg-white border border-border rounded-xl p-5 space-y-3">
+      <div className="p-5 space-y-3 bg-white border border-border rounded-xl">
         <div>
           <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
             Story Title *
@@ -153,8 +163,8 @@ export default function SubmitStoryForm() {
       </div>
 
       {/* Cover image */}
-      <div className="bg-white border border-border rounded-xl p-5 space-y-3">
-        <h2 className="font-display text-base font-bold text-green">
+      <div className="p-5 space-y-3 bg-white border border-border rounded-xl">
+        <h2 className="text-base font-bold font-display text-green">
           Cover Image
         </h2>
         {coverPreview && (
@@ -166,7 +176,7 @@ export default function SubmitStoryForm() {
             <img
               src={coverPreview}
               alt="Cover preview"
-              className="w-full h-full object-fit object-top"
+              className="object-top w-full h-full object-fit"
             />
           </div>
         )}
@@ -182,8 +192,8 @@ export default function SubmitStoryForm() {
       </div>
 
       {/* Story content */}
-      <div className="bg-white border border-border rounded-xl p-5 space-y-3">
-        <h2 className="font-display text-base font-bold text-green">
+      <div className="p-5 space-y-3 bg-white border border-border rounded-xl">
+        <h2 className="text-base font-bold font-display text-green">
           Your Story *
         </h2>
         <textarea
@@ -196,9 +206,9 @@ export default function SubmitStoryForm() {
       </div>
 
       {/* Additional images */}
-      <div className="bg-white border border-border rounded-xl p-5 space-y-4">
+      <div className="p-5 space-y-4 bg-white border border-border rounded-xl">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-base font-bold text-green">
+          <h2 className="text-base font-bold font-display text-green">
             Additional Images
           </h2>
           <label
@@ -219,7 +229,7 @@ export default function SubmitStoryForm() {
             {images.map((img, i) => (
               <div
                 key={i}
-                className="flex gap-3 items-start p-3 border border-border rounded-xl bg-cream"
+                className={`flex gap-3 items-start p-3 border rounded-xl ${img.hidden ? "border-border bg-gray-50" : "border-border bg-cream"}`}
               >
                 <div
                   className="flex-shrink-0 w-24 overflow-hidden rounded-lg"
@@ -229,7 +239,7 @@ export default function SubmitStoryForm() {
                   <img
                     src={img.src}
                     alt={img.caption}
-                    className="w-full h-full object-fit"
+                    className={`w-full h-full object-cover ${img.hidden ? "grayscale opacity-40" : ""}`}
                   />
                 </div>
                 <div className="flex-1 space-y-2">
@@ -238,15 +248,34 @@ export default function SubmitStoryForm() {
                     value={img.caption}
                     onChange={(e) => updateCaption(i, e.target.value)}
                     placeholder="Caption…"
-                    className="w-full px-3 py-2 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+                    className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
                   />
-                  <button
-                    type="button"
-                    onClick={() => removeImage(i)}
-                    className="text-xs text-red-500 font-body hover:underline"
-                  >
-                    Remove
-                  </button>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setImages((prev) =>
+                          prev.map((img, idx) =>
+                            idx === i ? { ...img, hidden: !img.hidden } : img,
+                          ),
+                        )
+                      }
+                      className={`text-[11px] font-bold px-2.5 py-1 rounded-md border font-body transition-colors ${
+                        img.hidden
+                          ? "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
+                          : "bg-green/10 text-green border-green/20 hover:bg-green/20"
+                      }`}
+                    >
+                      {img.hidden ? "● Hidden" : "● Live"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => removeImage(i)}
+                      className="text-xs text-red-500 font-body hover:underline"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -257,7 +286,7 @@ export default function SubmitStoryForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full bg-gold text-white rounded-md py-3 text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
       >
         {submitting ? "Submitting…" : "Submit Story for Review"}
       </button>

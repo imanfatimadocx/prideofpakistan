@@ -3,6 +3,8 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { BusinessCard, BizCategory } from "./page";
+import PageHero from "@/app/components/shared/PageHero";
+import type { PageHeroContent } from "@/app/lib/pageContent";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const LETTERS_PER_PAGE = 5;
@@ -13,9 +15,10 @@ const COLS_DESKTOP = 7;
 interface Props {
   businesses: BusinessCard[];
   categories: BizCategory[];
+  hero: PageHeroContent;
 }
 
-export default function BusinessPageClient({ businesses, categories }: Props) {
+export default function BusinessPageClient({ businesses, categories, hero }: Props) {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
   const [search, setSearch] = useState("");
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
@@ -128,15 +131,16 @@ export default function BusinessPageClient({ businesses, categories }: Props) {
       <div className="px-4 py-10 bg-green sm:px-8 lg:px-12 sm:py-14">
         <div className="max-w-[1280px] mx-auto">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
-            Pakistani Businesses That We Take Pride In
+            {hero.eyebrow}
           </p>
           <h1 className="mb-3 text-3xl font-black leading-tight text-white font-display sm:text-4xl lg:text-5xl">
-            Pakistani Businesses
+            {hero.heading}
           </h1>
-          <p className="text-white/65 font-body text-sm sm:text-base max-w-[560px]">
-            Discover Pakistani businesses across the globe. List your business
-            or find trusted services in your community.
-          </p>
+          {hero.subtext && (
+            <p className="text-white/65 font-body text-sm sm:text-base max-w-[560px]">
+              {hero.subtext}
+            </p>
+          )}
         </div>
       </div>
 
@@ -343,7 +347,7 @@ export default function BusinessPageClient({ businesses, categories }: Props) {
                                   alt={b.company_name}
                                   width={600}
                                   height={350}
-                                  className="object-fit rounded-lg object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
+                                  className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
                                 />
                               ) : (
                                 <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-green font-display">

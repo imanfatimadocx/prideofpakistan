@@ -3,6 +3,7 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import BusinessPageClient from "./BusinessPageClient";
+import { getPageContent } from "@/app/lib/pageContent";
 
 export const revalidate = 3600;
 
@@ -32,7 +33,7 @@ export interface BizCategory {
 }
 
 export default async function BusinessPage() {
-  const [cats, rows] = await Promise.all([
+  const [cats, rows, hero] = await Promise.all([
     prisma.businessCategory.findMany({
       where: { status: 1 },
       orderBy: { name: "asc" },
@@ -51,6 +52,7 @@ export default async function BusinessPage() {
         category: { select: { name: true } },
       },
     }),
+    getPageContent("page_businesses"),
   ]);
 
   const businesses: BusinessCard[] = rows.map((r) => ({
@@ -77,7 +79,11 @@ export default async function BusinessPage() {
       <Topbar />
       <Navbar />
       <main>
-        <BusinessPageClient businesses={businesses} categories={categories} />
+        <BusinessPageClient
+          businesses={businesses}
+          categories={categories}
+          hero={hero}
+        />
       </main>
       <Footer />
     </>

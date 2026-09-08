@@ -3,6 +3,7 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import ProductsPageClient from "./ProductsPageClient";
+import { getPageContent } from "@/app/lib/pageContent";
 
 export const revalidate = 3600;
 
@@ -11,7 +12,7 @@ function resolveImage(img: string | null): string | null {
   if (img.startsWith("http")) return img;
   if (img.startsWith("/")) return img;
   if (img.startsWith("uploads/")) return `/${img}`;
-  if (img.startsWith("pakproduct/")) return `/uploads/${img}`; // ← fix
+  if (img.startsWith("pakproduct/")) return `/uploads/${img}`;
   return `/uploads/${img}`;
 }
 
@@ -31,7 +32,7 @@ export interface ProdCategory {
 }
 
 export default async function ProductsPage() {
-  const [cats, rows] = await Promise.all([
+  const [cats, rows, hero] = await Promise.all([
     prisma.productCategory.findMany({
       where: { status: 1 },
       orderBy: { name: "asc" },
@@ -48,6 +49,7 @@ export default async function ProductsPage() {
         category: { select: { name: true } },
       },
     }),
+    getPageContent("page_products"),
   ]);
 
   const products: ProductCard[] = rows.map((r) => ({
@@ -72,7 +74,11 @@ export default async function ProductsPage() {
       <Topbar />
       <Navbar />
       <main>
-        <ProductsPageClient products={products} categories={categories} />
+        <ProductsPageClient
+          products={products}
+          categories={categories}
+          hero={hero}
+        />
       </main>
       <Footer />
     </>

@@ -3,6 +3,8 @@ import Topbar from '@/app/components/layout/Topbar'
 import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
 import PrideTVPageClient from './PrideTVPageClient'
+import { getPageContent } from '@/app/lib/pageContent'
+import PageHero from '@/app/components/shared/PageHero'
 
 export const revalidate = 60
 
@@ -34,15 +36,21 @@ export default async function PrideTVPage() {
   } catch {
     videos = []
   }
+  const hero = await getPageContent('page_pridetv')
 
   return (
     <>
       <Topbar />
       <Navbar />
       <main>
+        <PageHero
+          eyebrow={hero.eyebrow}
+          title={hero.heading}
+          subtitle={hero.subtext}
+        />
         <PrideTVPageClient videos={videos} />
       </main>
       <Footer />
     </>
-  )
+  );
 }

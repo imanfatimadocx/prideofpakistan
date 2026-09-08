@@ -1,40 +1,44 @@
-import { prisma } from "@/app/lib/prisma"
-import Topbar from "@/app/components/layout/Topbar"
-import Navbar from "@/app/components/layout/Navbar"
-import Footer from "@/app/components/layout/Footer"
-import WhoIsWhoPageClient from "./WhoIsWhoPageClient"
+import { prisma } from "@/app/lib/prisma";
+import Topbar from "@/app/components/layout/Topbar";
+import Navbar from "@/app/components/layout/Navbar";
+import Footer from "@/app/components/layout/Footer";
+import WhoIsWhoPageClient from "./WhoIsWhoPageClient";
+import { getPageContent } from "@/app/lib/pageContent";
 
 export interface Profile {
-  id: number
-  title: string
-  Profession: string | null
-  City: string | null
-  Country: string | null
-  image: string | null
-  shortdesc: string | null
-  categoryid: number | null
-  categoryname: string | null
+  id: number;
+  title: string;
+  Profession: string | null;
+  City: string | null;
+  Country: string | null;
+  image: string | null;
+  shortdesc: string | null;
+  categoryid: number | null;
+  categoryname: string | null;
 }
 
 export interface Category {
-  categoryid: number
-  categoryname: string
-  count: number
+  categoryid: number;
+  categoryname: string;
+  count: number;
 }
 
 function resolveImage(img: string | null): string | null {
-  if (!img) return null
-  if (img.startsWith('http')) return img
-  if (img.startsWith('/')) return img
-  if (img.startsWith('uploads/')) return `/${img}`
-  return `/uploads/${img}`
+  if (!img) return null;
+  if (img.startsWith("http")) return img;
+  if (img.startsWith("/")) return img;
+  if (img.startsWith("uploads/")) return `/${img}`;
+  return `/uploads/${img}`;
 }
 
-async function getData(): Promise<{ profiles: Profile[]; categories: Category[] }> {
+async function getData(): Promise<{
+  profiles: Profile[];
+  categories: Category[];
+}> {
   const cats = await prisma.hallCategory.findMany({
     where: { status: 1 },
     orderBy: { categoryname: "asc" },
-  })
+  });
 
   const rows = await prisma.hallOfFame.findMany({
     where: { status: 1 },
@@ -49,9 +53,9 @@ async function getData(): Promise<{ profiles: Profile[]; categories: Category[] 
       shortdesc: true,
       categoryid: true,
     },
-  })
+  });
 
-  const catMap = new Map(cats.map((c) => [c.categoryid, c.categoryname]))
+  const catMap = new Map(cats.map((c) => [c.categoryid, c.categoryname]));
 
   const profiles: Profile[] = rows.map((r) => ({
     id: r.id,
@@ -63,30 +67,34 @@ async function getData(): Promise<{ profiles: Profile[]; categories: Category[] 
     shortdesc: r.shortdesc,
     categoryid: r.categoryid,
     categoryname: r.categoryid ? (catMap.get(r.categoryid) ?? null) : null,
-  }))
+  }));
 
   const categories: Category[] = cats.map((c) => ({
     categoryid: c.categoryid,
     categoryname: c.categoryname,
     count: rows.filter((r) => r.categoryid === c.categoryid).length,
-  }))
+  }));
 
-  return { profiles, categories }
+  return { profiles, categories };
 }
 
 export const metadata = {
   title: "Who Is Who | Pride of Pakistan",
   description: "Browse outstanding Pakistanis across all fields.",
-}
+};
 
 export default async function WhoIsWhoPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>
+  searchParams: Promise<{ category?: string }>;
 }) {
-  const { profiles, categories } = await getData()
-  const { category } = await searchParams
-  const defaultCategory = category ? Number(category) : null
+  const [{ profiles, categories }, hero, { category }] = await Promise.all([
+    getData(),
+    getPageContent("page_whoiswho"),
+    searchParams,
+  ]);
+
+  const defaultCategory = category ? Number(category) : null;
 
   return (
     <>
@@ -97,9 +105,10 @@ export default async function WhoIsWhoPage({
           profiles={profiles}
           categories={categories}
           defaultCategoryId={defaultCategory}
+          hero={hero}
         />
       </main>
       <Footer />
     </>
-  )
+  );
 }

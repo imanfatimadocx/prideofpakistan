@@ -45,11 +45,11 @@ export default async function AdminProductsPage() {
   return (
     <div className="flex min-h-screen bg-cream pt-14">
       <AdminNav />
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 p-4 lg:p-8">
+      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
         <div className="max-w-[1200px]">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="font-display text-2xl font-bold text-green mb-1">
+              <h1 className="mb-1 text-2xl font-bold font-display text-green">
                 Pakistani Products
               </h1>
               <p className="text-sm text-ink-muted font-body">

@@ -7,7 +7,12 @@ import AboutClient from "./AboutClient";
 
 export const revalidate = 3600;
 
-const DEFAULT_IMAGES = [
+const DEFAULT_IMAGES: {
+  src: string;
+  caption: string;
+  href?: string | null;
+  hidden?: boolean;
+}[] = [
   {
     src: "/5.jpeg",
     caption:
@@ -43,10 +48,17 @@ export default async function AboutPage() {
   });
 
   const content = (record?.content as Record<string, unknown> | null) ?? {};
-  const images =
-    (content._images as { src: string; caption: string }[] | undefined) ??
-    DEFAULT_IMAGES;
+  const allImages =
+    (content._images as
+      | {
+          src: string;
+          caption: string;
+          href?: string | null;
+          hidden?: boolean;
+        }[]
+      | undefined) ?? DEFAULT_IMAGES;
 
+  const images = allImages.filter((img) => !img.hidden);
   const data = {
     heading1: (content.heading1 as string) || "About the Founder",
     body1a:

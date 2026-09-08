@@ -4,6 +4,7 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import PageHero from "@/app/components/shared/PageHero";
+import { getPageContent } from "@/app/lib/pageContent";
 
 export const revalidate = 3600;
 
@@ -20,31 +21,31 @@ export default async function NewsPage() {
     where: { status: 1 },
     orderBy: { date_time: "desc" },
   });
-
+  const hero = await getPageContent("page_news");
   return (
     <>
       <Topbar />
       <Navbar />
       <main className="min-h-screen bg-cream">
         <PageHero
-          eyebrow="Discussion Forum"
-          title="Discussion Forum"
-          subtitle="Stay up to date with the Discussion Forum and updates from Pride of Pakistan."
+          eyebrow={hero.eyebrow}
+          title={hero.heading}
+          subtitle={hero.subtext}
         />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
           {news.length === 0 ? (
-            <div className="text-center py-20">
+            <div className="py-20 text-center">
               <p className="text-ink-muted font-body">No news published yet.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {news.map((item) => {
                 const image = resolveImage(item.smallimage);
                 return (
                   <Link
                     key={item.id}
                     href={`/news/${item.id}`}
-                    className="no-underline group bg-white border border-border rounded-xl overflow-hidden hover:border-gold hover:-translate-y-1 hover:shadow-lg transition-all"
+                    className="overflow-hidden no-underline transition-all bg-white border group border-border rounded-xl hover:border-gold hover:-translate-y-1 hover:shadow-lg"
                   >
                     {/* Cover */}
                     <div
@@ -56,10 +57,10 @@ export default async function NewsPage() {
                         <img
                           src={image}
                           alt={item.title}
-                          className="w-full h-full object-fit object-top group-hover:scale-105 transition-transform duration-300"
+                          className="object-top w-full h-full transition-transform duration-300 object-fit group-hover:scale-105"
                         />
                       ) : (
-                        <div className="w-full h-full bg-green/10 flex items-center justify-center">
+                        <div className="flex items-center justify-center w-full h-full bg-green/10">
                           <svg
                             width="32"
                             height="32"
@@ -83,15 +84,15 @@ export default async function NewsPage() {
                           year: "numeric",
                         })}
                       </p>
-                      <h2 className="font-display text-base font-bold text-green leading-snug mb-2 group-hover:text-gold transition-colors line-clamp-2">
+                      <h2 className="mb-2 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">
                         {item.title}
                       </h2>
                       {item.shortdesc && (
-                        <p className="text-sm text-ink-muted font-body leading-relaxed line-clamp-3">
+                        <p className="text-sm leading-relaxed text-ink-muted font-body line-clamp-3">
                           {item.shortdesc}
                         </p>
                       )}
-                      <p className="text-xs font-semibold text-gold font-body mt-3">
+                      <p className="mt-3 text-xs font-semibold text-gold font-body">
                         Read more →
                       </p>
                     </div>

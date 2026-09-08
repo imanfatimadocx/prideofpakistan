@@ -29,9 +29,11 @@ export default async function NewsDetailPage({ params }: Props) {
   if (!item || item.status !== 1) notFound();
 
   const coverImage = resolveImage(item.smallimage);
-  const images =
-    (item.images as { src: string; caption: string }[] | null) ?? [];
-
+  const images = (
+    (item.images as
+      | { src: string; caption: string; hidden?: boolean }[]
+      | null) ?? []
+  ).filter((img) => !img.hidden);
   return (
     <>
       <Topbar />
@@ -41,7 +43,7 @@ export default async function NewsDetailPage({ params }: Props) {
           {/* Back */}
           <Link
             href="/news"
-            className="flex items-center gap-2 text-sm font-semibold no-underline text-gold font-body hover:underline mb-8"
+            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-gold font-body hover:underline"
           >
             <svg
               width="16"
@@ -66,26 +68,26 @@ export default async function NewsDetailPage({ params }: Props) {
             })}
           </p>
           {/* Title */}
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-green leading-tight mb-4">
+          <h1 className="mb-4 text-3xl font-bold leading-tight font-display sm:text-4xl text-green">
             {item.title}
           </h1>
           {/* Short desc */}
           {item.shortdesc && (
-            <p className="text-base text-ink-mid font-body leading-relaxed mb-6 pb-6 border-b border-border">
+            <p className="pb-6 mb-6 text-base leading-relaxed border-b text-ink-mid font-body border-border">
               {item.shortdesc}
             </p>
           )}
           {/* Cover image */}
           {coverImage && images.length === 0 && (
             <div
-              className="w-full overflow-hidden rounded-xl mb-8"
+              className="w-full mb-8 overflow-hidden rounded-xl"
               style={{ aspectRatio: "600/350" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={coverImage}
                 alt={item.title}
-                className="w-full h-full object-fit object-top"
+                className="object-top w-full h-full object-fit"
               />
             </div>
           )}
@@ -104,7 +106,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="w-full h-full object-fit object-top"
+                        className="object-top w-full h-full object-fit"
                       />
                     </div>
                     {img.caption && (
@@ -119,14 +121,14 @@ export default async function NewsDetailPage({ params }: Props) {
 
             {/* Article text */}
             <div
-              className="prose prose-neutral max-w-none font-body text-ink-mid leading-relaxed prose-headings:font-display prose-headings:text-green prose-a:text-gold prose-strong:text-ink-dark"
+              className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-gold prose-strong:text-ink-dark"
               dangerouslySetInnerHTML={{ __html: item.description }}
             />
 
             <div className="clear-both" />
           </div>
           {/* Share */}
-          <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-border">
+          <div className="flex flex-wrap gap-2 pt-6 mt-10 border-t border-border">
             <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://prideofpakistan.com/news/${newsId}`)}`}
               target="_blank"

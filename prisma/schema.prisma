@@ -118,6 +118,30 @@ model ContactQuery {
 
   @@map("contact_queries")
 }
+model HomepageContent {
+  id        Int      @id @default(autoincrement())
+  section   String   @unique @db.VarChar(50)
+  content   Json
+  updatedAt DateTime @updatedAt
+
+  @@map("homepage_content")
+}
+model EventBanner {
+  id        Int      @id @default(autoincrement())
+  type      String   @db.VarChar(20)  // 'modal' or 'strip'
+  title     String?  @db.VarChar(255)
+  message   String   @db.Text
+  image     String?  @db.VarChar(500)
+  ctaLabel  String?  @db.VarChar(100)
+  ctaLink   String?  @db.VarChar(500)
+  color     String   @default("green") @db.VarChar(20) // green, gold, red
+  active    Boolean  @default(true)
+  startDate DateTime
+  endDate   DateTime
+  createdAt DateTime @default(now())
+
+  @@map("event_banners")
+}
 model HallCategory {
   categoryid   Int    @id @default(autoincrement())
   categoryname String @db.VarChar(255)

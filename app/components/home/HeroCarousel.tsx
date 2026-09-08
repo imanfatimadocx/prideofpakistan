@@ -1,12 +1,21 @@
 import Link from "next/link";
 
-export default function HeroSection() {
+interface Props {
+  heading?: string;
+  subtext?: string;
+  image?: string | null;
+}
+
+export default function HeroSection({ heading, subtext, image }: Props) {
+  const bgImage = image && image.trim() !== "" ? image : "/test-bg.jpeg";
+
   return (
     <section className="relative overflow-hidden h-[100vh] sm:h-[80vh] lg:h-[80vh]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="test-bg.jpeg"
+        src={bgImage}
         alt="Pakistan"
-        className="absolute inset-0 object-fit object-center w-full h-full"
+        className="absolute inset-0 object-cover object-center w-full h-full"
       />
       <div className="absolute inset-0 bg-black/65" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-green/60" />
@@ -15,13 +24,14 @@ export default function HeroSection() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
           <div className="max-w-[680px]">
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] font-black text-white leading-[1.05] mb-5 -tracking-[.02em]">
-              The Pride of Pakistan
+              {heading && heading.trim() !== ""
+                ? heading
+                : "The Pride of Pakistan"}
             </h1>
             <p className="text-base sm:text-lg text-white/75 font-body leading-relaxed mb-8 max-w-[520px]">
-              We honour the achievements of outstanding Pakistanis around the
-              world, visionaries, entrepreneurs, innovators, and leaders whose
-              talent, dedication, and integrity have made a lasting impact on
-              their communities and beyond.
+              {subtext && subtext.trim() !== ""
+                ? subtext
+                : "We honour the achievements of outstanding Pakistanis around the world, visionaries, entrepreneurs, innovators, and leaders whose talent, dedication, and integrity have made a lasting impact on their communities and beyond."}
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link

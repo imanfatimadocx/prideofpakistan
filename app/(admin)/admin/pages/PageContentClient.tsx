@@ -11,6 +11,7 @@ interface ImageItem {
   src: string;
   caption: string;
   href?: string | null;
+  hidden?: boolean;
 }
 
 export default function PageContentClient({
@@ -48,7 +49,7 @@ export default function PageContentClient({
       }
       const json = await res.json();
       const url = json.url ?? json.path;
-      setImages((prev) => [...prev, { src: url, caption: "" }]);
+      setImages((prev) => [...prev, { src: url, caption: "", hidden: false }]);
     } catch {
       setError("Upload failed.");
     } finally {
@@ -62,11 +63,21 @@ export default function PageContentClient({
       prev.map((img, i) => (i === index ? { ...img, caption } : img)),
     );
   }
+
   function updateHref(index: number, href: string | null) {
     setImages((prev) =>
       prev.map((img, i) => (i === index ? { ...img, href } : img)),
     );
   }
+
+  function toggleHidden(index: number) {
+    setImages((prev) =>
+      prev.map((img, i) =>
+        i === index ? { ...img, hidden: !img.hidden } : img,
+      ),
+    );
+  }
+
   function removeImage(index: number) {
     setImages((prev) => prev.filter((_, i) => i !== index));
   }
@@ -188,7 +199,11 @@ export default function PageContentClient({
             {images.map((img, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 p-4 border border-border rounded-xl bg-cream"
+                className={`flex items-start gap-4 p-4 border rounded-xl transition-all ${
+                  img.hidden
+                    ? "border-border bg-gray-50"
+                    : "border-border bg-cream"
+                }`}
               >
                 {/* Preview */}
                 <div
@@ -199,11 +214,11 @@ export default function PageContentClient({
                   <img
                     src={img.src}
                     alt={img.caption}
-                    className="object-fit object-top w-full h-full"
+                    className={`object-cover object-top w-full h-full transition-all ${img.hidden ? "grayscale opacity-40" : ""}`}
                   />
                 </div>
 
-                {/* Caption + controls */}
+                {/* Controls */}
                 <div className="flex-1 min-w-0 space-y-2">
                   <label className="block text-xs font-semibold tracking-wide uppercase text-ink-muted font-body">
                     Caption
@@ -219,15 +234,14 @@ export default function PageContentClient({
                     type="text"
                     value={img.href ?? ""}
                     onChange={(e) => updateHref(i, e.target.value || null)}
-                    placeholder="/who-is-who/123 (optional)"
-                    className="w-full px-3 py-2 mt-1 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                    placeholder="/who-is-who/123 (optional link)"
+                    className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
                   />
-                  <div className="flex items-center gap-2 pt-1">
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
                     <button
                       onClick={() => moveUp(i)}
                       disabled={i === 0}
                       className="text-xs transition-colors text-ink-muted font-body hover:text-green disabled:opacity-30"
-                      title="Move up"
                     >
                       ↑ Up
                     </button>
@@ -235,16 +249,28 @@ export default function PageContentClient({
                       onClick={() => moveDown(i)}
                       disabled={i === images.length - 1}
                       className="text-xs transition-colors text-ink-muted font-body hover:text-green disabled:opacity-30"
-                      title="Move down"
                     >
                       ↓ Down
                     </button>
-                    <button
-                      onClick={() => removeImage(i)}
-                      className="ml-auto text-xs text-red-500 transition-colors font-body hover:text-red-700"
-                    >
-                      Remove
-                    </button>
+                    <div className="flex items-center gap-2 ml-auto">
+                      <button
+                        type="button"
+                        onClick={() => toggleHidden(i)}
+                        className={`text-[11px] font-bold px-2.5 py-1 rounded-md border font-body transition-colors ${
+                          img.hidden
+                            ? "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
+                            : "bg-green/10 text-green border-green/20 hover:bg-green/20"
+                        }`}
+                      >
+                        {img.hidden ? "● Hidden" : "● Live"}
+                      </button>
+                      <button
+                        onClick={() => removeImage(i)}
+                        className="text-xs text-red-500 transition-colors font-body hover:text-red-700"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

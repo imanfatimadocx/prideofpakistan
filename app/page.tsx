@@ -18,7 +18,7 @@ import PrideTVSection, {
   VideoCard,
 } from "@/app/components/home/PrideTVSection";
 
-export const revalidate = 86400;
+export const revalidate = 3600;
 
 const PRODUCT_CATEGORY_NAMES: Record<number, string> = {
   1: "Food & Agriculture",
@@ -39,6 +39,18 @@ function resolveImage(image: string | null | undefined): string | null {
   if (image.startsWith("/")) return image;
   if (image.startsWith("uploads/")) return `/${image}`;
   return `/uploads/${image}`;
+}
+async function getHomepageContent() {
+  try {
+    const sections = await prisma.homepageContent.findMany();
+    const map: Record<string, Record<string, string>> = {};
+    for (const s of sections) {
+      map[s.section] = s.content as Record<string, string>;
+    }
+    return map;
+  } catch {
+    return {};
+  }
 }
 
 function mapToProfileCard(r: {
@@ -368,6 +380,7 @@ export default async function HomePage() {
     potdR,
     featured6R,
     userStoriesR,
+    hpContentR,
   ] = await Promise.allSettled([
     getProfilesAndCategories(),
     getFeatured6Businesses(),
@@ -376,9 +389,15 @@ export default async function HomePage() {
     getLatestNews3(),
     getProfileOfTheDay(),
     getFeatured6(),
-    getLatestUserStories(), // ← new
-  ]);
-
+    getLatestUserStories(),
+    getHomepageContent(),
+  ])
+  
+  const content = hpContentR.status === 'fulfilled' ? hpContentR.value : {}
+  
+  function hp(section: string, key: string, fallback: string): string {
+    return content[section]?.[key] ?? fallback
+  }
   const userStories =
     userStoriesR.status === "fulfilled" ? userStoriesR.value : [];
 
@@ -403,7 +422,11 @@ export default async function HomePage() {
       <Topbar />
       <Navbar />
       <main>
-        <HeroSection />
+      <HeroSection
+  heading={hp('hero', 'heading', '')}
+  subtext={hp('hero', 'subtext', '')}
+  image={hp('hero', 'image', '')}
+/>
         {profiles.length > 0 && (
           <WhoIsWhoSection
             profiles={profiles}
@@ -416,7 +439,7 @@ export default async function HomePage() {
         <BusinessSection businesses={bizs} />
         {/* Discussion Forum */}
         {news.length > 0 && (
-          <section className="py-12 border-t bg-white sm:py-16 lg:py-20 border-border">
+          <section className="py-12 bg-white border-t sm:py-16 lg:py-20 border-border">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
               <div className="flex items-end justify-between gap-4 mb-8">
                 <div>
@@ -436,7 +459,7 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {news.map((item) => (
                   <Link
                     key={item.id}
@@ -453,10 +476,10 @@ export default async function HomePage() {
                         <img
                           src={item.smallimage}
                           alt={item.title}
-                          className="w-full h-full object-fit rounded-lg object-top group-hover:scale-105 transition-transform duration-300"
+                          className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
                         />
                       ) : (
-                        <div className="w-full h-full bg-green/10 flex items-center justify-center">
+                        <div className="flex items-center justify-center w-full h-full bg-green/10">
                           <svg
                             width="32"
                             height="32"
@@ -480,11 +503,11 @@ export default async function HomePage() {
                           year: "numeric",
                         })}
                       </p>
-                      <h3 className="font-display text-base font-bold text-green leading-snug group-hover:text-gold transition-colors line-clamp-2 mb-1">
+                      <h3 className="mb-1 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">
                         {item.title}
                       </h3>
                       {item.shortdesc && (
-                        <p className="text-xs text-ink-muted font-body leading-relaxed line-clamp-2">
+                        <p className="text-xs leading-relaxed text-ink-muted font-body line-clamp-2">
                           {item.shortdesc}
                         </p>
                       )}
@@ -521,7 +544,7 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {userStories.map((story) => (
                   <Link
                     key={story.id}
@@ -538,11 +561,11 @@ export default async function HomePage() {
                         <img
                           src={story.image}
                           alt={story.title}
-                          className="w-full h-full object-fit rounded-lg object-top group-hover:scale-105 transition-transform duration-300"
+                          className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
                         />
                       ) : (
-                        <div className="w-full h-full bg-green/10 flex items-center justify-center">
-                          <span className="font-display text-4xl font-bold text-green/30">
+                        <div className="flex items-center justify-center w-full h-full bg-green/10">
+                          <span className="text-4xl font-bold font-display text-green/30">
                             {story.title.charAt(0)}
                           </span>
                         </div>
@@ -558,11 +581,11 @@ export default async function HomePage() {
                           year: "numeric",
                         })}
                       </p>
-                      <h3 className="font-display text-base font-bold text-green leading-snug group-hover:text-gold transition-colors line-clamp-2 mb-1">
+                      <h3 className="mb-1 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">
                         {story.title}
                       </h3>
                       {story.shortdesc && (
-                        <p className="text-xs text-ink-muted font-body leading-relaxed line-clamp-2">
+                        <p className="text-xs leading-relaxed text-ink-muted font-body line-clamp-2">
                           {story.shortdesc}
                         </p>
                       )}

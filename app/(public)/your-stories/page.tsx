@@ -6,6 +6,7 @@ import PageHero from "@/app/components/shared/PageHero";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
+import { getPageContent } from "@/app/lib/pageContent";
 
 export const revalidate = 3600;
 
@@ -24,6 +25,7 @@ export default async function YourStoriesPage() {
     }),
     getServerSession(authOptions),
   ]);
+  const hero = await getPageContent("page_stories");
 
   return (
     <>
@@ -31,9 +33,9 @@ export default async function YourStoriesPage() {
       <Navbar />
       <main className="min-h-screen bg-cream">
         <PageHero
-          eyebrow="Community"
-          title="Your Stories"
-          subtitle="Stories shared by Pakistanis from around the world."
+          eyebrow={hero.eyebrow}
+          title={hero.heading}
+          subtitle={hero.subtext}
         />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
           {/* Submit CTA */}
@@ -59,21 +61,21 @@ export default async function YourStoriesPage() {
           </div>
 
           {stories.length === 0 ? (
-            <div className="text-center py-20 bg-white border border-border rounded-2xl">
-              <p className="text-ink-muted font-body mb-2">No stories yet.</p>
+            <div className="py-20 text-center bg-white border border-border rounded-2xl">
+              <p className="mb-2 text-ink-muted font-body">No stories yet.</p>
               <p className="text-sm text-ink-muted font-body">
                 Be the first to share your story.
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {stories.map((story) => {
                 const image = resolveImage(story.image);
                 return (
                   <Link
                     key={story.id}
                     href={`/your-stories/${story.id}`}
-                    className="no-underline group bg-white border border-border rounded-xl overflow-hidden hover:border-gold hover:-translate-y-1 hover:shadow-lg transition-all"
+                    className="overflow-hidden no-underline transition-all bg-white border group border-border rounded-xl hover:border-gold hover:-translate-y-1 hover:shadow-lg"
                   >
                     <div
                       className="w-full overflow-hidden"
@@ -84,11 +86,11 @@ export default async function YourStoriesPage() {
                         <img
                           src={image}
                           alt={story.title}
-                          className="w-full h-full object-fit object-top group-hover:scale-105 transition-transform duration-300"
+                          className="object-top w-full h-full transition-transform duration-300 object-fit group-hover:scale-105"
                         />
                       ) : (
-                        <div className="w-full h-full bg-green/10 flex items-center justify-center">
-                          <span className="font-display text-4xl font-bold text-green/30">
+                        <div className="flex items-center justify-center w-full h-full bg-green/10">
+                          <span className="text-4xl font-bold font-display text-green/30">
                             {story.title.charAt(0)}
                           </span>
                         </div>
@@ -103,15 +105,15 @@ export default async function YourStoriesPage() {
                           year: "numeric",
                         })}
                       </p>
-                      <h2 className="font-display text-base font-bold text-green leading-snug mb-2 group-hover:text-gold transition-colors line-clamp-2">
+                      <h2 className="mb-2 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">
                         {story.title}
                       </h2>
                       {story.shortdesc && (
-                        <p className="text-sm text-ink-muted font-body leading-relaxed line-clamp-3">
+                        <p className="text-sm leading-relaxed text-ink-muted font-body line-clamp-3">
                           {story.shortdesc}
                         </p>
                       )}
-                      <p className="text-xs font-semibold text-gold font-body mt-3">
+                      <p className="mt-3 text-xs font-semibold text-gold font-body">
                         Read more →
                       </p>
                     </div>

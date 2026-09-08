@@ -3,43 +3,34 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { ProductCard, ProdCategory } from "./page";
+import type { PageHeroContent } from "@/app/lib/pageContent";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const LETTERS_PER_PAGE = 5;
 const INITIAL_ROWS = 2;
-const COLS_MOBILE = 3;
 const COLS_DESKTOP = 7;
 
 interface Props {
   products: ProductCard[];
   categories: ProdCategory[];
+  hero: PageHeroContent;
 }
 
-export default function ProductsPageClient({ products, categories }: Props) {
+export default function ProductsPageClient({ products, categories, hero }: Props) {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
   const [search, setSearch] = useState("");
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
   const [mobileCatOpen, setMobileCatOpen] = useState(false);
   const [page, setPage] = useState(1);
-  const [expandedLetters, setExpandedLetters] = useState<Set<string>>(
-    new Set(),
-  );
+  const [expandedLetters, setExpandedLetters] = useState<Set<string>>(new Set());
+  const [initialLimit] = useState(INITIAL_ROWS * COLS_DESKTOP);
 
-  const [initialLimit] = useState(() => {
-    if (typeof window === "undefined") return INITIAL_ROWS * COLS_MOBILE;
-    return window.innerWidth >= 1024
-      ? INITIAL_ROWS * COLS_DESKTOP
-      : INITIAL_ROWS * COLS_MOBILE;
-  });
-
-  const activeCategory =
-    categories.find((c) => c.id === activeCategoryId) ?? null;
+  const activeCategory = categories.find((c) => c.id === activeCategoryId) ?? null;
 
   const categoryProducts = useMemo(
-    () =>
-      activeCategoryId !== null
-        ? products.filter((p) => p.categoryid === activeCategoryId)
-        : products,
+    () => activeCategoryId !== null
+      ? products.filter((p) => p.categoryid === activeCategoryId)
+      : products,
     [products, activeCategoryId],
   );
 
@@ -52,12 +43,8 @@ export default function ProductsPageClient({ products, categories }: Props) {
     const q = search.toLowerCase().trim();
     return categoryProducts
       .filter((p) => {
-        const matchSearch =
-          !q ||
-          p.title.toLowerCase().includes(q) ||
-          p.shortdesc?.toLowerCase().includes(q);
-        const matchLetter =
-          !activeLetter || p.title.charAt(0).toUpperCase() === activeLetter;
+        const matchSearch = !q || p.title.toLowerCase().includes(q) || p.shortdesc?.toLowerCase().includes(q);
+        const matchLetter = !activeLetter || p.title.charAt(0).toUpperCase() === activeLetter;
         return matchSearch && matchLetter;
       })
       .sort((a, b) => a.title.localeCompare(b.title));
@@ -75,10 +62,7 @@ export default function ProductsPageClient({ products, categories }: Props) {
 
   const allLetters = Object.keys(allGrouped).sort();
   const totalPages = Math.ceil(allLetters.length / LETTERS_PER_PAGE);
-  const pageLetters = allLetters.slice(
-    (page - 1) * LETTERS_PER_PAGE,
-    page * LETTERS_PER_PAGE,
-  );
+  const pageLetters = allLetters.slice((page - 1) * LETTERS_PER_PAGE, page * LETTERS_PER_PAGE);
 
   function toggleExpand(letter: string) {
     setExpandedLetters((prev) => {
@@ -119,19 +103,21 @@ export default function ProductsPageClient({ products, categories }: Props) {
 
   return (
     <div className="min-h-screen bg-cream">
+
       {/* Hero */}
       <div className="px-4 py-10 bg-green sm:px-8 lg:px-12 sm:py-14">
         <div className="max-w-[1280px] mx-auto">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
-            Made in Pakistan
+            {hero.eyebrow}
           </p>
           <h1 className="mb-3 text-3xl font-black leading-tight text-white font-display sm:text-4xl lg:text-5xl">
-            Pakistani Products
+            {hero.heading}
           </h1>
-          <p className="text-white/65 font-body text-sm sm:text-base max-w-[560px]">
-            Discover the finest products Pakistan has to offer — from
-            agriculture to technology.
-          </p>
+          {hero.subtext && (
+            <p className="text-white/65 font-body text-sm sm:text-base max-w-[560px]">
+              {hero.subtext}
+            </p>
+          )}
         </div>
       </div>
 
@@ -173,12 +159,8 @@ export default function ProductsPageClient({ products, categories }: Props) {
               onClick={() => setMobileCatOpen(!mobileCatOpen)}
               className="flex items-center justify-between w-full px-4 py-3 text-sm font-semibold bg-white border border-border rounded-xl font-body text-ink-dark"
             >
-              <span>
-                {activeCategory ? activeCategory.name : "All Products"}
-              </span>
-              <span className="text-ink-muted">
-                {mobileCatOpen ? "▲" : "▼"}
-              </span>
+              <span>{activeCategory ? activeCategory.name : "All Products"}</span>
+              <span className="text-ink-muted">{mobileCatOpen ? "▲" : "▼"}</span>
             </button>
             {mobileCatOpen && (
               <div className="mt-1 overflow-hidden bg-white border shadow-lg border-border rounded-xl">
@@ -241,10 +223,7 @@ export default function ProductsPageClient({ products, categories }: Props) {
                   return (
                     <button
                       key={letter}
-                      onClick={() =>
-                        available &&
-                        handleLetter(letter === activeLetter ? null : letter)
-                      }
+                      onClick={() => available && handleLetter(letter === activeLetter ? null : letter)}
                       disabled={!available}
                       className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${activeLetter === letter ? "bg-gold text-white" : available ? "text-ink-dark hover:bg-gold-pale hover:text-gold" : "text-ink-muted/25 cursor-not-allowed"}`}
                     >
@@ -259,15 +238,10 @@ export default function ProductsPageClient({ products, categories }: Props) {
           {/* Results */}
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center bg-white border rounded-2xl border-border">
-              <p className="mb-1 text-lg font-bold text-ink-dark font-display">
-                No products found
-              </p>
+              <p className="mb-1 text-lg font-bold text-ink-dark font-display">No products found</p>
               <button
-                onClick={() => {
-                  handleSearch("");
-                  handleLetter(null);
-                }}
-                className="text-sm font-semibold text-gold font-body hover:underline mt-4"
+                onClick={() => { handleSearch(""); handleLetter(null); }}
+                className="mt-4 text-sm font-semibold text-gold font-body hover:underline"
               >
                 Clear filters
               </button>
@@ -279,16 +253,12 @@ export default function ProductsPageClient({ products, categories }: Props) {
                   const group = allGrouped[letter];
                   const isExpanded = expandedLetters.has(letter);
                   const hasMore = group.length > initialLimit;
-                  const shown = isExpanded
-                    ? group
-                    : group.slice(0, initialLimit);
+                  const shown = isExpanded ? group : group.slice(0, initialLimit);
                   return (
                     <div key={letter}>
                       <div className="flex items-center gap-3 mb-4">
                         <div className="flex items-center justify-center flex-shrink-0 rounded-lg w-9 h-9 bg-green">
-                          <span className="text-base font-bold text-white font-display">
-                            {letter}
-                          </span>
+                          <span className="text-base font-bold text-white font-display">{letter}</span>
                         </div>
                         <div className="flex-1 h-px bg-border" />
                         {hasMore && (
@@ -296,30 +266,21 @@ export default function ProductsPageClient({ products, categories }: Props) {
                             onClick={() => toggleExpand(letter)}
                             className="flex-shrink-0 text-xs font-semibold text-gold font-body hover:underline"
                           >
-                            {isExpanded
-                              ? "Show less"
-                              : `+${group.length - initialLimit} more`}
+                            {isExpanded ? "Show less" : `+${group.length - initialLimit} more`}
                           </button>
                         )}
                       </div>
                       <div className="grid grid-cols-3 gap-2 lg:grid-cols-7 sm:gap-3">
                         {shown.map((p) => (
-                          <Link
-                            key={p.id}
-                            href={`/products/${p.id}`}
-                            className="no-underline group"
-                          >
-                            <div
-                              className="w-full overflow-hidden rounded-lg"
-                              style={{ aspectRatio: "600/350" }}
-                            >
+                          <Link key={p.id} href={`/products/${p.id}`} className="no-underline group">
+                            <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: "600/350" }}>
                               {p.image ? (
                                 <Image
                                   src={p.image}
                                   alt={p.title}
                                   width={600}
                                   height={350}
-                                  className="object-fit rounded-lg object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
+                                  className="object-cover object-top w-full h-full transition-transform duration-300 rounded-lg group-hover:scale-105"
                                 />
                               ) : (
                                 <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-green font-display">
@@ -342,46 +303,21 @@ export default function ProductsPageClient({ products, categories }: Props) {
 
               {totalPages > 1 && (
                 <div className="flex flex-wrap items-center justify-center gap-2 mt-10">
-                  <button
-                    onClick={() => changePage(Math.max(1, page - 1))}
-                    disabled={page === 1}
-                    className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
-                  >
+                  <button onClick={() => changePage(Math.max(1, page - 1))} disabled={page === 1} className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-ink-mid hover:border-green hover:text-green disabled:opacity-40">
                     Previous
                   </button>
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                    (p) => {
-                      const show =
-                        p === 1 || p === totalPages || Math.abs(p - page) <= 1;
-                      if (p === page - 2 && page - 2 > 1)
-                        return (
-                          <span key={p} className="text-ink-muted text-sm">
-                            …
-                          </span>
-                        );
-                      if (p === page + 2 && page + 2 < totalPages)
-                        return (
-                          <span key={p} className="text-ink-muted text-sm">
-                            …
-                          </span>
-                        );
-                      if (!show) return null;
-                      return (
-                        <button
-                          key={p}
-                          onClick={() => changePage(p)}
-                          className={`w-9 h-9 rounded-lg text-sm font-semibold font-body border transition-colors ${page === p ? "bg-green text-white border-green" : "border-border text-ink-mid hover:border-green hover:text-green"}`}
-                        >
-                          {p}
-                        </button>
-                      );
-                    },
-                  )}
-                  <button
-                    onClick={() => changePage(Math.min(totalPages, page + 1))}
-                    disabled={page === totalPages}
-                    className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
-                  >
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => {
+                    const show = p === 1 || p === totalPages || Math.abs(p - page) <= 1;
+                    if (p === page - 2 && page - 2 > 1) return <span key={p} className="text-sm text-ink-muted">…</span>;
+                    if (p === page + 2 && page + 2 < totalPages) return <span key={p} className="text-sm text-ink-muted">…</span>;
+                    if (!show) return null;
+                    return (
+                      <button key={p} onClick={() => changePage(p)} className={`w-9 h-9 rounded-lg text-sm font-semibold font-body border transition-colors ${page === p ? "bg-green text-white border-green" : "border-border text-ink-mid hover:border-green hover:text-green"}`}>
+                        {p}
+                      </button>
+                    );
+                  })}
+                  <button onClick={() => changePage(Math.min(totalPages, page + 1))} disabled={page === totalPages} className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-ink-mid hover:border-green hover:text-green disabled:opacity-40">
                     Next
                   </button>
                 </div>
