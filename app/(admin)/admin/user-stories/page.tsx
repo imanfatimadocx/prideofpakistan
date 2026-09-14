@@ -33,7 +33,7 @@ export default async function AdminUserStoriesPage() {
         <div className="max-w-[1100px]">
           <div className="mb-6">
             <h1 className="mb-1 text-2xl font-bold font-display text-green">
-              User Stories
+              Your Stories
             </h1>
             <p className="text-sm text-ink-muted font-body">
               {stories.filter((s) => s.status === "pending").length} pending ·{" "}

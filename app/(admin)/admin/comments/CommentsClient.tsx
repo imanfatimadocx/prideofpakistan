@@ -98,7 +98,7 @@ export default function CommentsClient({
           <option value="profile">Profiles</option>
           <option value="business">Businesses</option>
           <option value="news">Discussion Forum</option>
-          <option value="story">User Stories</option>
+          <option value="story">Your Stories</option>
         </select>
         <span className="ml-auto text-xs text-ink-muted font-body">
           {filtered.length} comments

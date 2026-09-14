@@ -42,7 +42,7 @@ export default async function AdminUserStoryDetailPage({ params }: Props) {
                 href="/admin/user-stories"
                 className="text-sm no-underline text-gold font-body hover:underline"
               >
-                ← User Stories
+                ← Your Stories
               </Link>
               <span className="text-ink-muted">/</span>
               <h1 className="font-display text-xl font-bold text-green line-clamp-1">
