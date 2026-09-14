@@ -20,7 +20,6 @@ interface Profile {
   featured: number
   categoryid: number | null
   facebook: string
-  twitter: string
   linkedin: string
   meta_title: string
   meta_keywords: string
@@ -372,7 +371,6 @@ async function handleSave() {
             <h2 className="text-base font-bold font-display text-green">Social Links</h2>
             {[
               { label: 'Facebook URL', key: 'facebook', placeholder: 'https://facebook.com/...' },
-              { label: 'Twitter / X URL', key: 'twitter', placeholder: 'https://twitter.com/...' },
               { label: 'LinkedIn URL', key: 'linkedin', placeholder: 'https://linkedin.com/in/...' },
               { label: 'Threads URL', key: 'threads', placeholder: 'https://www.threads.net/@username' },
             ].map(({ label, key, placeholder }) => (

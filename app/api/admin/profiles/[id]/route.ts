@@ -49,7 +49,6 @@ export async function PATCH(
         ...(body.status           !== undefined && { status: Number(body.status) }),
         ...(body.image            !== undefined && { image: body.image }),
         ...(body.facebook         !== undefined && { facebook: body.facebook }),
-        ...(body.twitter          !== undefined && { twitter: body.twitter }),
         ...(body.linkedin         !== undefined && { linkedin: body.linkedin }),
         ...(body.threads          !== undefined && { threads: body.threads }),
         ...(body.featured         !== undefined && { feature: Number(body.featured) }),

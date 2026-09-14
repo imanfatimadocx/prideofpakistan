@@ -26,7 +26,6 @@ export async function POST(req: NextRequest) {
         feature:        Number(body.featured ?? 0),
         categoryid:     body.categoryid ? Number(body.categoryid) : null,
         facebook:       body.facebook?.trim() ?? '',
-        twitter:        body.twitter?.trim() ?? '',
         linkedin:       body.linkedin?.trim() ?? '',
         threads:        body.threads?.trim() ?? '',
         meta_title:     body.meta_title?.trim() ?? '',

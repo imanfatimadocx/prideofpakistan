@@ -39,9 +39,8 @@ export default function Footer() {
             <ul className="space-y-2.5 list-none">
               {[
                 { label: "Who Is Who", href: "/who-is-who" },
-                // { label: 'Cities & Towns',     href: '/cities' },
                 { label: "Pakistani Products", href: "/products" },
-                { label: "Pride Blog", href: "/pride-blog" },
+                { label: "Your Stories", href: "/your-stories" },
                 { label: "Discussion Forum", href: "/latest-news" },
               ].map(({ label, href }) => (
                 <li key={href}>
@@ -65,7 +64,6 @@ export default function Footer() {
               {[
                 { label: "Pakistani Businesses", href: "/business" },
                 { label: "List Your Business", href: "/list-business" },
-                { label: "Advertise", href: "/advertise" },
                 { label: "Our Sponsors", href: "/our-sponsors" },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -90,7 +88,7 @@ export default function Footer() {
                 { label: "Submit Your Profile", href: "/submit-profile" },
                 { label: "Pride TV", href: "/pride-tv" },
                 { label: "Contact Us", href: "/contact" },
-                { label: "About", href: "/about" },
+                { label: "About Us", href: "/about" },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link
@@ -126,9 +124,9 @@ export default function Footer() {
           >
             Disclaimer
           </Link>
-          <span>
+          {/* <span>
             Powered by <a href="https://rasekh.pk">rasekh.pk</a>
-          </span>
+          </span> */}
         </div>
       </div>
     </footer>

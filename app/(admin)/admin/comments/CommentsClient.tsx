@@ -21,7 +21,7 @@ const PAGE_SIZE = 20;
 const ENTITY_LABELS: Record<string, string> = {
   profile: "Profile",
   business: "Business",
-  news: "News",
+  news: "Discussion Forum",
   story: "Story",
 };
 
@@ -75,7 +75,7 @@ export default function CommentsClient({
   return (
     <div className="space-y-4">
       {/* Filters */}
-      <div className="bg-white border border-border rounded-xl p-4 flex flex-wrap gap-3 items-center">
+      <div className="flex flex-wrap items-center gap-3 p-4 bg-white border border-border rounded-xl">
         <input
           type="text"
           placeholder="Search comments or authors…"
@@ -92,15 +92,15 @@ export default function CommentsClient({
             setFilterType(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
         >
           <option value="all">All Types</option>
           <option value="profile">Profiles</option>
           <option value="business">Businesses</option>
-          <option value="news">News</option>
-          <option value="story">Stories</option>
+          <option value="news">Discussion Forum</option>
+          <option value="story">User Stories</option>
         </select>
-        <span className="text-xs text-ink-muted font-body ml-auto">
+        <span className="ml-auto text-xs text-ink-muted font-body">
           {filtered.length} comments
         </span>
       </div>
@@ -108,7 +108,7 @@ export default function CommentsClient({
       {/* Comments list */}
       <div className="space-y-3">
         {paginated.length === 0 ? (
-          <div className="bg-white border border-border rounded-xl p-10 text-center">
+          <div className="p-10 text-center bg-white border border-border rounded-xl">
             <p className="text-sm text-ink-muted font-body">
               No comments found.
             </p>
@@ -134,11 +134,11 @@ export default function CommentsClient({
                     <Link
                       href={ENTITY_LINKS[c.entityType]?.(c.entityId) ?? "#"}
                       target="_blank"
-                      className="text-xs text-ink-muted no-underline hover:text-gold font-body"
+                      className="text-xs no-underline text-ink-muted hover:text-gold font-body"
                     >
                       View #{c.entityId} →
                     </Link>
-                    <span className="text-xs text-ink-muted font-body ml-auto">
+                    <span className="ml-auto text-xs text-ink-muted font-body">
                       {new Date(c.createdAt).toLocaleDateString("en-GB", {
                         day: "numeric",
                         month: "short",
@@ -157,14 +157,14 @@ export default function CommentsClient({
                     </p>
                     <a
                       href={`mailto:${c.authorEmail}`}
-                      className="text-xs text-gold hover:underline no-underline font-body"
+                      className="text-xs no-underline text-gold hover:underline font-body"
                     >
                       {c.authorEmail}
                     </a>
                   </div>
 
                   {/* Content */}
-                  <p className="text-sm text-ink-mid font-body leading-relaxed">
+                  <p className="text-sm leading-relaxed text-ink-mid font-body">
                     {c.content}
                   </p>
 
@@ -184,7 +184,7 @@ export default function CommentsClient({
                 </div>
 
                 {/* Index + Delete */}
-                <div className="flex flex-col items-end gap-3 flex-shrink-0">
+                <div className="flex flex-col items-end flex-shrink-0 gap-3">
                   <span className="text-xs text-ink-muted font-body tabular-nums">
                     {(page - 1) * PAGE_SIZE + idx + 1}
                   </span>
@@ -211,14 +211,14 @@ export default function CommentsClient({
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="px-4 py-2 text-sm font-semibold border border-border rounded-lg font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
+              className="px-4 py-2 text-sm font-semibold border rounded-lg border-border font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
             >
               Previous
             </button>
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="px-4 py-2 text-sm font-semibold border border-border rounded-lg font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
+              className="px-4 py-2 text-sm font-semibold border rounded-lg border-border font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
             >
               Next
             </button>

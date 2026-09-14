@@ -4,41 +4,20 @@ import HomepageEditorClient from "./HomepageEditorClient";
 
 export const revalidate = 0;
 
-const SECTION_LABELS: Record<string, string> = {
-  hero: "Homepage Hero",
-  page_whoiswho: "Who Is Who Page",
-  page_products: "Pakistani Products Page",
-  page_businesses: "Pakistani Businesses Page",
-  page_news: "Latest News Page",
-  page_stories: "Your Stories Page",
-  page_contact: "Contact Page",
-  page_pridetv: "Pride TV Page",
-};
-
-const ORDER = [
-  "hero",
-  "page_whoiswho",
-  "page_products",
-  "page_businesses",
-  "page_news",
-  "page_stories",
-  "page_contact",
-  "page_pridetv",
-];
-
 export default async function AdminHomepagePage() {
-  const allSections = await prisma.homepageContent.findMany({
-    orderBy: { section: "asc" },
+  const hero = await prisma.homepageContent.findUnique({
+    where: { section: "hero" },
   });
 
-  // Filter to only sections we want to show
-  const filtered = allSections.filter((s) => ORDER.includes(s.section));
-
-  const serialized = filtered.map((s) => ({
-    section: s.section,
-    label: SECTION_LABELS[s.section] ?? s.section,
-    content: s.content as Record<string, string>,
-  }));
+  const serialized = hero
+    ? [
+        {
+          section: "hero",
+          label: "Homepage Hero",
+          content: hero.content as Record<string, string>,
+        },
+      ]
+    : [];
 
   return (
     <div className="flex min-h-screen bg-cream">
@@ -47,11 +26,15 @@ export default async function AdminHomepagePage() {
         <div className="max-w-[860px]">
           <div className="mb-6">
             <h1 className="mb-1 text-2xl font-bold font-display text-green">
-              Page Content
+              Homepage Hero
             </h1>
             <p className="text-sm text-ink-muted font-body">
-              Edit the eyebrow, heading and subtext for each page. Changes are
-              live instantly.
+              Edit the hero section shown at the top of the homepage. To edit
+              other pages go to{" "}
+              <a href="/admin/pages" className="text-gold hover:underline">
+                Pages
+              </a>
+              .
             </p>
           </div>
           <HomepageEditorClient sections={serialized} />

@@ -5,7 +5,7 @@ import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import MissionClient from "./MissionClient";
 
-export const revalidate = 3600;
+export const revalidate = 30;
 
 const DEFAULT_IMAGES: {
   src: string;
@@ -84,7 +84,7 @@ export default async function MissionPage() {
       <main>
         <PageHero
           eyebrow="Our Mission"
-          title="Exploring the Very Best Pakistan Has Given the World"
+          title="The Very Best of Pakistan"
           subtitle="Pride in the achievements of a people, their actions, and their views."
         />
         <MissionClient data={data} />

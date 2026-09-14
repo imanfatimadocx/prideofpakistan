@@ -2,13 +2,12 @@ import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
-import PageHero from "@/app/components/shared/PageHero";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { getPageContent } from "@/app/lib/pageContent";
 
-export const revalidate = 3600;
+export const revalidate = 30;
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;
@@ -18,25 +17,37 @@ function resolveImage(img: string | null): string | null {
 }
 
 export default async function YourStoriesPage() {
-  const [stories, session] = await Promise.all([
+  const [stories, session, hero] = await Promise.all([
     prisma.userStory.findMany({
       where: { status: "approved" },
       orderBy: { createdAt: "desc" },
     }),
     getServerSession(authOptions),
+    getPageContent("page_stories"),
   ]);
-  const hero = await getPageContent("page_stories");
 
   return (
     <>
       <Topbar />
       <Navbar />
       <main className="min-h-screen bg-cream">
-        <PageHero
-          eyebrow={hero.eyebrow}
-          title={hero.heading}
-          subtitle={hero.subtext}
-        />
+        {/* Left-aligned hero — matches other pages */}
+        <div className="px-4 py-10 bg-green sm:px-8 lg:px-12 sm:py-14">
+          <div className="max-w-[1280px] mx-auto">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+              {hero.eyebrow}
+            </p>
+            <h1 className="mb-3 text-3xl font-black leading-tight text-white font-display sm:text-4xl lg:text-5xl">
+              {hero.heading}
+            </h1>
+            {hero.subtext && (
+              <p className="text-white/65 font-body text-sm sm:text-base max-w-[560px]">
+                {hero.subtext}
+              </p>
+            )}
+          </div>
+        </div>
+
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
           {/* Submit CTA */}
           <div className="flex items-center justify-between mb-8">
@@ -62,23 +73,26 @@ export default async function YourStoriesPage() {
 
           {stories.length === 0 ? (
             <div className="py-20 text-center bg-white border border-border rounded-2xl">
-              <p className="mb-2 text-ink-muted font-body">No stories yet.</p>
-              <p className="text-sm text-ink-muted font-body">
+              <p className="px-4 mb-2 text-ink-muted font-body">
+                No stories yet.
+              </p>
+              <p className="px-4 text-sm text-ink-muted font-body">
                 Be the first to share your story.
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {stories.map((story) => {
                 const image = resolveImage(story.image);
                 return (
                   <Link
                     key={story.id}
                     href={`/your-stories/${story.id}`}
-                    className="overflow-hidden no-underline transition-all bg-white border group border-border rounded-xl hover:border-gold hover:-translate-y-1 hover:shadow-lg"
+                    className="no-underline group"
                   >
+                    {/* Plain image — no card, matches homepage style */}
                     <div
-                      className="w-full overflow-hidden"
+                      className="w-full overflow-hidden rounded-lg"
                       style={{ aspectRatio: "600/350" }}
                     >
                       {image ? (
@@ -86,7 +100,7 @@ export default async function YourStoriesPage() {
                         <img
                           src={image}
                           alt={story.title}
-                          className="object-top w-full h-full transition-transform duration-300 object-fit group-hover:scale-105"
+                          className="object-cover object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
                         />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full bg-green/10">
@@ -96,8 +110,9 @@ export default async function YourStoriesPage() {
                         </div>
                       )}
                     </div>
-                    <div className="p-5">
-                      <p className="text-[11px] font-bold tracking-[.12em] uppercase text-gold font-body mb-2">
+                    {/* Caption */}
+                    <div className="mt-3">
+                      <p className="text-[10px] font-bold tracking-[.12em] uppercase text-gold font-body mb-1.5">
                         By {story.authorName} ·{" "}
                         {new Date(story.createdAt).toLocaleDateString("en-GB", {
                           day: "numeric",
@@ -105,15 +120,15 @@ export default async function YourStoriesPage() {
                           year: "numeric",
                         })}
                       </p>
-                      <h2 className="mb-2 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">
+                      <h2 className="mb-1 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">
                         {story.title}
                       </h2>
                       {story.shortdesc && (
-                        <p className="text-sm leading-relaxed text-ink-muted font-body line-clamp-3">
+                        <p className="text-xs leading-relaxed text-ink-muted font-body line-clamp-2">
                           {story.shortdesc}
                         </p>
                       )}
-                      <p className="mt-3 text-xs font-semibold text-gold font-body">
+                      <p className="mt-2 text-[11px] font-semibold text-gold font-body">
                         Read more →
                       </p>
                     </div>

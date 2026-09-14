@@ -39,10 +39,10 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: "Stories & News",
+    label: "Discussion Forum & Stories",
     items: [
-      { label: "Latest News",  href: "/admin/news" },
-      { label: "Write News",   href: "/admin/news/new" },
+      { label: "Discussion Forum",  href: "/admin/news" },
+      { label: "Add to Discussion Forum",   href: "/admin/news/new" },
       { label: "User Stories", href: "/admin/user-stories" },
     ],
   },
@@ -53,18 +53,18 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: "Pages",
+    label: 'Pages',
     items: [
-      { label: "Homepage Hero",        href: "/admin/homepage" },
-      { label: "Who Is Who",           href: "/admin/homepage?section=page_whoiswho" },
-      { label: "Pakistani Products",   href: "/admin/homepage?section=page_products" },
-      { label: "Pakistani Businesses", href: "/admin/homepage?section=page_businesses" },
-      { label: "Latest News",          href: "/admin/homepage?section=page_news" },
-      { label: "Your Stories",         href: "/admin/homepage?section=page_stories" },
-      { label: "Contact",              href: "/admin/homepage?section=page_contact" },
-      { label: "Pride TV",             href: "/admin/homepage?section=page_pridetv" },
-      { label: "About Us",             href: "/admin/pages/about" },
-      { label: "Our Mission",          href: "/admin/pages/mission" },
+      { label: 'Homepage',        href: '/admin/homepage' },
+      { label: 'Who Is Who',           href: '/admin/pages/whoiswho' },
+      { label: 'Pakistani Products',   href: '/admin/pages/products' },
+      { label: 'Pakistani Businesses', href: '/admin/pages/businesses' },
+      { label: 'Discussion Forum',          href: '/admin/pages/news' },
+      { label: 'Your Stories',         href: '/admin/pages/stories' },
+      { label: 'Contact',              href: '/admin/pages/contact' },
+      { label: 'Pride TV',             href: '/admin/pages/pridetv' },
+      { label: 'About Us',             href: '/admin/pages/about' },
+      { label: 'Our Mission',          href: '/admin/pages/mission' },
     ],
   },
 ];
@@ -97,7 +97,7 @@ const GROUP_ICONS: Record<string, JSX.Element> = {
       <path d="M16 10a4 4 0 0 1-8 0" />
     </svg>
   ),
-  "Stories & News": (
+  "Discussion Forum & Stories": (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
       <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />

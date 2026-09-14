@@ -22,7 +22,6 @@ export default async function NewProfilePage() {
     featured: 0,
     categoryid: null,
     facebook: '',
-    twitter: '',
     linkedin: '',
     threads: '',
     meta_title: '',

@@ -4,8 +4,9 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
+import CommentSection from "@/app/components/shared/CommentSection";
 
-export const revalidate = 3600;
+export const revalidate = 30;
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;
@@ -48,7 +49,7 @@ export default async function BusinessDetailPage({ params }: Props) {
           {/* Back */}
           <Link
             href="/business"
-            className="flex items-center gap-2 text-sm font-semibold no-underline text-gold font-body hover:underline mb-8"
+            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-gold font-body hover:underline"
           >
             <svg
               width="16"
@@ -66,7 +67,7 @@ export default async function BusinessDetailPage({ params }: Props) {
           </Link>
 
           {/* ── Flex row: image left, content right — stacks on mobile ── */}
-          <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="flex flex-col items-start gap-8 lg:flex-row">
             {/* Left — image + categories sidebar */}
             <div className="w-full lg:w-[340px] flex-shrink-0 space-y-5">
               {/* Image */}
@@ -79,11 +80,11 @@ export default async function BusinessDetailPage({ params }: Props) {
                   <img
                     src={image}
                     alt={biz.company_name}
-                    className="w-full h-full object-fit object-top"
+                    className="object-top w-full h-full object-fit"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-green">
-                    <span className="font-display text-6xl font-bold text-white">
+                  <div className="flex items-center justify-center w-full h-full bg-green">
+                    <span className="text-6xl font-bold text-white font-display">
                       {biz.company_name.charAt(0)}
                     </span>
                   </div>
@@ -91,9 +92,9 @@ export default async function BusinessDetailPage({ params }: Props) {
               </div>
 
               {/* Categories sidebar */}
-              <div className="bg-white border border-border rounded-xl overflow-hidden lg:sticky lg:top-6">
-                <div className="bg-green/10 border-b border-border px-4 py-3">
-                  <h2 className="text-sm font-bold text-green font-display uppercase tracking-wide">
+              <div className="overflow-hidden bg-white border border-border rounded-xl lg:sticky lg:top-6">
+                <div className="px-4 py-3 border-b bg-green/10 border-border">
+                  <h2 className="text-sm font-bold tracking-wide uppercase text-green font-display">
                     Categories
                   </h2>
                 </div>
@@ -118,12 +119,12 @@ export default async function BusinessDetailPage({ params }: Props) {
             {/* Right — all content */}
             <div className="flex-1 min-w-0 space-y-5">
               {/* Business name header */}
-              <div className="bg-green rounded-xl px-6 py-4">
-                <h1 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+              <div className="px-6 py-4 bg-green rounded-xl">
+                <h1 className="text-2xl font-bold leading-tight text-white font-display sm:text-3xl">
                   {biz.company_name}
                 </h1>
                 {biz.category && (
-                  <p className="text-gold text-sm font-body mt-1">
+                  <p className="mt-1 text-sm text-gold font-body">
                     {biz.category.name}
                   </p>
                 )}
@@ -133,16 +134,16 @@ export default async function BusinessDetailPage({ params }: Props) {
               {(biz.description ||
                 biz.company_description ||
                 biz.shortdesc) && (
-                <div className="bg-white border border-border rounded-xl overflow-hidden">
-                  <div className="bg-green/10 border-b border-border px-5 py-3">
-                    <h2 className="text-sm font-bold text-green font-display uppercase tracking-wide">
+                <div className="overflow-hidden bg-white border border-border rounded-xl">
+                  <div className="px-5 py-3 border-b bg-green/10 border-border">
+                    <h2 className="text-sm font-bold tracking-wide uppercase text-green font-display">
                       Introduction
                     </h2>
                   </div>
                   <div className="px-5 py-4">
                     {biz.description || biz.company_description ? (
                       <div
-                        className="text-sm leading-relaxed text-ink-mid font-body prose prose-neutral max-w-none prose-a:text-gold prose-headings:font-display prose-headings:text-green"
+                        className="text-sm leading-relaxed prose text-ink-mid font-body prose-neutral max-w-none prose-a:text-gold prose-headings:font-display prose-headings:text-green"
                         dangerouslySetInnerHTML={{
                           __html: biz.description || biz.company_description,
                         }}
@@ -158,16 +159,16 @@ export default async function BusinessDetailPage({ params }: Props) {
 
               {/* Basic Information */}
               {(biz.category || biz.keywords || biz.no_of_emplys) && (
-                <div className="bg-white border border-border rounded-xl overflow-hidden">
-                  <div className="bg-green/10 border-b border-border px-5 py-3">
-                    <h2 className="text-sm font-bold text-green font-display uppercase tracking-wide">
+                <div className="overflow-hidden bg-white border border-border rounded-xl">
+                  <div className="px-5 py-3 border-b bg-green/10 border-border">
+                    <h2 className="text-sm font-bold tracking-wide uppercase text-green font-display">
                       Basic Information
                     </h2>
                   </div>
                   <div className="px-5 py-4 space-y-3">
                     {biz.category && (
                       <div className="flex gap-3 text-sm font-body">
-                        <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                        <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                           Category:
                         </span>
                         <span className="text-ink-mid">
@@ -177,7 +178,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                     )}
                     {biz.keywords && (
                       <div className="flex gap-3 text-sm font-body">
-                        <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                        <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                           Products / Services:
                         </span>
                         <span className="text-ink-mid">{biz.keywords}</span>
@@ -185,7 +186,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                     )}
                     {biz.no_of_emplys && (
                       <div className="flex gap-3 text-sm font-body">
-                        <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                        <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                           No. of Employees:
                         </span>
                         <span className="text-ink-mid">{biz.no_of_emplys}</span>
@@ -196,16 +197,16 @@ export default async function BusinessDetailPage({ params }: Props) {
               )}
 
               {/* Contact Information */}
-              <div className="bg-white border border-border rounded-xl overflow-hidden">
-                <div className="bg-green/10 border-b border-border px-5 py-3">
-                  <h2 className="text-sm font-bold text-green font-display uppercase tracking-wide">
+              <div className="overflow-hidden bg-white border border-border rounded-xl">
+                <div className="px-5 py-3 border-b bg-green/10 border-border">
+                  <h2 className="text-sm font-bold tracking-wide uppercase text-green font-display">
                     Contact Information
                   </h2>
                 </div>
                 <div className="px-5 py-4 space-y-3">
                   {biz.company_name && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         Company Title:
                       </span>
                       <span className="text-ink-mid">{biz.company_name}</span>
@@ -213,7 +214,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   )}
                   {(biz.name || biz.l_name) && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         Contact Name:
                       </span>
                       <span className="text-ink-mid">
@@ -223,12 +224,12 @@ export default async function BusinessDetailPage({ params }: Props) {
                   )}
                   {biz.email && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         Email:
                       </span>
                       <a
                         href={`mailto:${biz.email}`}
-                        className="text-gold hover:underline no-underline"
+                        className="no-underline text-gold hover:underline"
                       >
                         {biz.email}
                       </a>
@@ -236,7 +237,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   )}
                   {biz.city && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         City:
                       </span>
                       <span className="text-ink-mid">{biz.city}</span>
@@ -244,7 +245,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   )}
                   {biz.country && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         Country:
                       </span>
                       <span className="text-ink-mid">{biz.country}</span>
@@ -252,12 +253,12 @@ export default async function BusinessDetailPage({ params }: Props) {
                   )}
                   {biz.phone && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         Phone Number:
                       </span>
                       <a
                         href={`tel:${biz.phone}`}
-                        className="text-ink-mid hover:text-green no-underline"
+                        className="no-underline text-ink-mid hover:text-green"
                       >
                         {biz.phone}
                       </a>
@@ -265,7 +266,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   )}
                   {biz.address && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         Address:
                       </span>
                       <span className="text-ink-mid">{biz.address}</span>
@@ -273,7 +274,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   )}
                   {biz.site_url && (
                     <div className="flex gap-3 text-sm font-body">
-                      <span className="font-semibold text-ink-dark w-40 flex-shrink-0">
+                      <span className="flex-shrink-0 w-40 font-semibold text-ink-dark">
                         Website URL:
                       </span>
                       <a
@@ -284,7 +285,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                         }
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gold hover:underline no-underline break-all"
+                        className="no-underline break-all text-gold hover:underline"
                       >
                         {biz.site_url.replace(/https?:\/\/(www\.)?/, "")}
                       </a>
@@ -320,9 +321,9 @@ export default async function BusinessDetailPage({ params }: Props) {
 
               {/* Google Maps */}
               {(biz.address || biz.city) && (
-                <div className="bg-white border border-border rounded-xl overflow-hidden">
-                  <div className="bg-green/10 border-b border-border px-5 py-3">
-                    <h2 className="text-sm font-bold text-green font-display uppercase tracking-wide">
+                <div className="overflow-hidden bg-white border border-border rounded-xl">
+                  <div className="px-5 py-3 border-b bg-green/10 border-border">
+                    <h2 className="text-sm font-bold tracking-wide uppercase text-green font-display">
                       Location
                     </h2>
                   </div>
@@ -337,7 +338,8 @@ export default async function BusinessDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
-
+              {/* Comments */}
+              <CommentSection entityType="business" entityId={bizId} />
               {/* Share */}
               <div className="flex flex-wrap gap-2">
                 <a

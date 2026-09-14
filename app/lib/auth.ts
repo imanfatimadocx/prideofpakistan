@@ -1,79 +1,101 @@
-import { NextAuthOptions } from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import bcrypt from 'bcryptjs'
-import { prisma } from '@/app/lib/prisma'
+import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+import { prisma } from "@/app/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      id: 'admin-credentials',
-      name: 'Admin',
+      id: "admin-credentials",
+      name: "Admin",
       credentials: {
-        email:    { label: 'Email',    type: 'email' },
-        password: { label: 'Password', type: 'password' },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null
+        if (!credentials?.email || !credentials?.password) return null;
         try {
           const user = await prisma.user.findUnique({
             where: { email: credentials.email },
-          })
-          if (!user || !user.password) return null
-          const ok = await bcrypt.compare(credentials.password, user.password)
-          if (!ok) return null
-          return { id: user.id, email: user.email, role: 'ADMIN' }
+          });
+          if (!user || !user.password) return null;
+          const ok = await bcrypt.compare(credentials.password, user.password);
+          if (!ok) return null;
+          return { id: user.id, email: user.email, role: "ADMIN" };
         } catch (err) {
-          console.error('Admin auth error:', err)
-          return null
+          console.error("Admin auth error:", err);
+          return null;
         }
       },
     }),
 
     CredentialsProvider({
-      id: 'public-credentials',
-      name: 'Account',
+      id: "public-credentials",
+      name: "Account",
       credentials: {
-        email:    { label: 'Email',    type: 'email' },
-        password: { label: 'Password', type: 'password' },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null
+        if (!credentials?.email || !credentials?.password) return null;
         try {
           const user = await prisma.publicUser.findUnique({
             where: { email: credentials.email },
-          })
-          if (!user) return null
-          const ok = await bcrypt.compare(credentials.password, user.password)
-          if (!ok) return null
-          return { id: user.id, email: user.email, name: user.name, role: 'USER' }
+          });
+          if (!user) return null;
+          const ok = await bcrypt.compare(credentials.password, user.password);
+          if (!ok) return null;
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            role: "USER",
+          };
         } catch (err) {
-          console.error('Public auth error:', err)
-          return null
+          console.error("Public auth error:", err);
+          return null;
         }
       },
     }),
   ],
 
-  session: { strategy: 'jwt' },
+  session: {
+    strategy: "jwt",
+    maxAge: 2 * 60 * 60, // 2 hours — session expires after 2 hours
+    updateAge: 2 * 60 * 60,
+    },
+
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 2 * 60 * 60, // matches session maxAge
+      },
+    },
+  },
 
   pages: {
-    signIn: '/login',  // ← was /admin/login - this was breaking public users
-    error:  '/login',
+    signIn: "/login",
+    error: "/login",
   },
 
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.role = (user as { role?: string }).role
-      return token
+      if (user) token.role = (user as { role?: string }).role;
+      return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        ;(session.user as { role?: string }).role = token.role as string
+        (session.user as { role?: string }).role = token.role as string;
       }
-      return session
+      return session;
     },
   },
 
   secret: process.env.NEXTAUTH_SECRET,
   debug: false,
-}
+};

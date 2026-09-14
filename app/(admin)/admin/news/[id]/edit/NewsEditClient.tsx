@@ -151,10 +151,10 @@ export default function NewsEditClient({
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-3">
-          <Link href="/admin/news" className="text-sm no-underline text-gold font-body hover:underline">← News</Link>
+          <Link href="/admin/news" className="text-sm no-underline text-gold font-body hover:underline">← Discussion Forum</Link>
           <span className="text-ink-muted">/</span>
           <h1 className="text-xl font-bold font-display text-green">
-            {isNew ? "Write News" : form.title || "Edit News"}
+            {isNew ? "Write to Discussion Forum" : form.title || "Edit in Discussion Forum"}
           </h1>
         </div>
         <button onClick={handleSave} disabled={saving} className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50">
@@ -172,7 +172,7 @@ export default function NewsEditClient({
 
           {/* Title + shortdesc */}
           <div className="p-6 space-y-4 bg-white border border-border rounded-xl">
-            <h2 className="text-base font-bold font-display text-green">News Details</h2>
+            <h2 className="text-base font-bold font-display text-green">Discussion Forum Details</h2>
             <div>
               <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">Title *</label>
               <input type="text" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold" />
@@ -292,7 +292,7 @@ export default function NewsEditClient({
 
           {/* Save */}
           <button onClick={handleSave} disabled={saving} className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50">
-            {saving ? "Saving..." : isNew ? "Publish News" : "Save Changes"}
+            {saving ? "Saving..." : isNew ? "Publish Story" : "Save Changes"}
           </button>
         </div>
       </div>

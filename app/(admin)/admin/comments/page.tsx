@@ -27,14 +27,14 @@ export default async function AdminCommentsPage() {
   return (
     <div className="flex min-h-screen bg-cream">
       <AdminNav />
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 p-4 lg:p-8">
+      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
         <div className="max-w-[1100px]">
           <div className="mb-6">
-            <h1 className="font-display text-2xl font-bold text-green mb-1">
+            <h1 className="mb-1 text-2xl font-bold font-display text-green">
               Comments
             </h1>
             <p className="text-sm text-ink-muted font-body">
-              {comments.length} total · across profiles, businesses, news and
+              {comments.length} total · across profiles, businesses, discussion forum and
               stories
             </p>
           </div>

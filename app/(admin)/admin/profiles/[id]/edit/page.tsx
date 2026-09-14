@@ -33,7 +33,6 @@ export default async function ProfileEditPage({ params }: Props) {
     featured: profile.feature ?? 0,
     categoryid: profile.categoryid ?? null,
     facebook: profile.facebook ?? '',
-    twitter: profile.twitter ?? '',
     linkedin: profile.linkedin ?? '',
     meta_title: profile.meta_title ?? '',
     meta_keywords: profile.meta_keyword ?? '',

@@ -13,7 +13,6 @@ interface Profile {
   shortdesc: string
   description?: string
   facebook?: string
-  twitter?: string
   linkedin?: string
 
 }
@@ -251,7 +250,6 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             { label: 'Country',      key: 'Country' },
             { label: 'Email',        key: 'Email' },
             { label: 'Facebook URL', key: 'facebook' },
-            { label: 'Twitter URL',  key: 'twitter' },
             { label: 'LinkedIn URL', key: 'linkedin' },
             { label: 'Threads URL', key: 'threads'},
           ].map(({ label, key }) => (

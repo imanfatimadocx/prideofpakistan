@@ -18,7 +18,7 @@ import PrideTVSection, {
   VideoCard,
 } from "@/app/components/home/PrideTVSection";
 
-export const revalidate = 3600;
+export const revalidate = 30;
 
 const PRODUCT_CATEGORY_NAMES: Record<number, string> = {
   1: "Food & Agriculture",
@@ -391,12 +391,12 @@ export default async function HomePage() {
     getFeatured6(),
     getLatestUserStories(),
     getHomepageContent(),
-  ])
-  
-  const content = hpContentR.status === 'fulfilled' ? hpContentR.value : {}
-  
+  ]);
+
+  const content = hpContentR.status === "fulfilled" ? hpContentR.value : {};
+
   function hp(section: string, key: string, fallback: string): string {
-    return content[section]?.[key] ?? fallback
+    return content[section]?.[key] ?? fallback;
   }
   const userStories =
     userStoriesR.status === "fulfilled" ? userStoriesR.value : [];
@@ -422,11 +422,11 @@ export default async function HomePage() {
       <Topbar />
       <Navbar />
       <main>
-      <HeroSection
-  heading={hp('hero', 'heading', '')}
-  subtext={hp('hero', 'subtext', '')}
-  image={hp('hero', 'image', '')}
-/>
+        <HeroSection
+          heading={hp("hero", "heading", "")}
+          subtext={hp("hero", "subtext", "")}
+          image={hp("hero", "image", "")}
+        />
         {profiles.length > 0 && (
           <WhoIsWhoSection
             profiles={profiles}

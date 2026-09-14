@@ -78,136 +78,132 @@ function SectionEditor({
   const hasImage = section.section === "hero";
 
   return (
-    <div className="overflow-hidden bg-white border border-border rounded-xl">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-cream">
-        <h2 className="text-base font-bold font-display text-green">
-          {section.label}
-        </h2>
-        <div className="flex items-center gap-3">
+    <div className="p-5 space-y-4">
+      {/* Eyebrow */}
+      <div>
+        <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
+          Golden Label
+        </label>
+        <input
+          type="text"
+          value={content.eyebrow ?? ""}
+          onChange={(e) =>
+            setContent((c) => ({ ...c, eyebrow: e.target.value }))
+          }
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+        />
+      </div>
+
+      {/* Heading */}
+      <div>
+        <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
+          Heading
+        </label>
+        <input
+          type="text"
+          value={content.heading ?? ""}
+          onChange={(e) =>
+            setContent((c) => ({ ...c, heading: e.target.value }))
+          }
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+        />
+      </div>
+
+      {/* Subtext */}
+      <div>
+        <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
+          Subtext
+        </label>
+        <textarea
+          value={content.subtext ?? ""}
+          onChange={(e) =>
+            setContent((c) => ({ ...c, subtext: e.target.value }))
+          }
+          rows={3}
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
+        />
+      </div>
+
+      {/* Hero image */}
+      {hasImage && (
+        <div>
+          <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
+            Hero Image
+          </label>
+          {imagePreview ? (
+            <div
+              className="w-full mb-3 overflow-hidden border rounded-lg border-border"
+              style={{ aspectRatio: "1200/500" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imagePreview}
+                alt="Hero"
+                className="object-cover object-top w-full h-full"
+              />
+            </div>
+          ) : (
+            <div
+              className="flex items-center justify-center w-full mb-3 overflow-hidden border-2 border-dashed rounded-lg border-border bg-cream"
+              style={{ aspectRatio: "1200/500" }}
+            >
+              <p className="text-sm text-ink-muted font-body">
+                No hero image set — upload one below
+              </p>
+            </div>
+          )}
+          <label
+            className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+          >
+            {uploading
+              ? "Uploading…"
+              : imagePreview
+                ? "Change Hero Image"
+                : "Upload Hero Image"}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageUpload}
+              disabled={uploading}
+            />
+          </label>
+          <p className="text-[11px] text-ink-muted font-body mt-1.5">
+            Recommended size: 1200 × 500px.
+          </p>
+          {imagePreview && (
+            <button
+              onClick={() => {
+                setContent((c) => ({ ...c, image: "" }));
+                setImagePreview(null);
+              }}
+              className="block w-full p-2 mt-2 text-xs text-red-500 transition-colors border rounded-md font-body hover:underline border-lg radius-lg border-border"
+            >
+              Remove image
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Save button — always at the bottom */}
+      <div className="flex items-center justify-between pt-2 border-t border-border">
+        <div className="flex items-center gap-2">
           {saved && (
             <span className="text-xs font-semibold text-green font-body">
-              ✓ Saved
+              ✓ Saved successfully
             </span>
           )}
           {error && (
             <span className="text-xs text-red-500 font-body">{error}</span>
           )}
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-4 py-2 text-xs font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
-          >
-            {saving ? "Saving…" : "Save"}
-          </button>
         </div>
-      </div>
-
-      <div className="p-5 space-y-4">
-        {/* Eyebrow */}
-        <div>
-          <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-            Eyebrow Label
-          </label>
-          <input
-            type="text"
-            value={content.eyebrow ?? ""}
-            onChange={(e) =>
-              setContent((c) => ({ ...c, eyebrow: e.target.value }))
-            }
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
-          />
-        </div>
-
-        {/* Heading */}
-        <div>
-          <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-            Heading
-          </label>
-          <input
-            type="text"
-            value={content.heading ?? ""}
-            onChange={(e) =>
-              setContent((c) => ({ ...c, heading: e.target.value }))
-            }
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
-          />
-        </div>
-
-        {/* Subtext */}
-        <div>
-          <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-            Subtext
-          </label>
-          <textarea
-            value={content.subtext ?? ""}
-            onChange={(e) =>
-              setContent((c) => ({ ...c, subtext: e.target.value }))
-            }
-            rows={3}
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
-          />
-        </div>
-
-        {/* Hero image — only shown for hero section */}
-        {hasImage && (
-          <div>
-            <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-              Hero Image
-            </label>
-            {imagePreview ? (
-              <div
-                className="w-full mb-3 overflow-hidden border rounded-lg border-border"
-                style={{ aspectRatio: "1200/500" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={imagePreview}
-                  alt="Hero"
-                  className="object-cover object-top w-full h-full"
-                />
-              </div>
-            ) : (
-              <div
-                className="flex items-center justify-center w-full mb-3 overflow-hidden border-2 border-dashed rounded-lg border-border bg-cream"
-                style={{ aspectRatio: "1200/500" }}
-              >
-                <p className="text-sm text-ink-muted font-body">
-                  No hero image set — upload one below
-                </p>
-              </div>
-            )}
-            <label
-              className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
-            >
-              {uploading
-                ? "Uploading…"
-                : imagePreview
-                  ? "Change Hero Image"
-                  : "Upload Hero Image"}
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImageUpload}
-                disabled={uploading}
-              />
-            </label>
-            <p className="text-[11px] text-ink-muted font-body mt-1.5">
-              Recommended size: 1200 × 500px. Uploaded to Cloudinary.
-            </p>
-            {imagePreview && (
-              <button
-                onClick={() => {
-                  setContent((c) => ({ ...c, image: "" }));
-                  setImagePreview(null);
-                }}
-                className="block mt-2 text-xs text-red-500 font-body hover:underline"
-              >
-                Remove image
-              </button>
-            )}
-          </div>
-        )}
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="px-6 py-2.5 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+        >
+          {saving ? "Saving…" : "Save Changes"}
+        </button>
       </div>
     </div>
   );
@@ -226,17 +222,7 @@ export default function HomepageEditorClient({
     );
   }
 
-  // Fixed ORDER — must match exact section keys from DB
-  const ORDER = [
-    "hero",
-    "page_whoiswho",
-    "page_products",
-    "page_businesses",
-    "page_news",
-    "page_stories",
-    "page_contact",
-    "page_pridetv",
-  ];
+  const ORDER = ["hero"];
 
   const sorted = [...sections].sort(
     (a, b) => ORDER.indexOf(a.section) - ORDER.indexOf(b.section),

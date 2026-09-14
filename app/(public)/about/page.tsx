@@ -5,7 +5,7 @@ import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import AboutClient from "./AboutClient";
 
-export const revalidate = 3600;
+export const revalidate = 30;
 
 const DEFAULT_IMAGES: {
   src: string;

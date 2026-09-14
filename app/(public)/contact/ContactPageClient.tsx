@@ -1,39 +1,43 @@
-'use client'
-import type { PageHeroContent } from '@/app/lib/pageContent'
-import { useState } from 'react'
-import Topbar from '@/app/components/layout/Topbar'
-import Navbar from '@/app/components/layout/Navbar'
-import Footer from '@/app/components/layout/Footer'
+"use client";
+import type { PageHeroContent } from "@/app/lib/pageContent";
+import { useState } from "react";
+import Topbar from "@/app/components/layout/Topbar";
+import Navbar from "@/app/components/layout/Navbar";
+import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
-export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading]     = useState(false)
-  const [error, setError]         = useState<string | null>(null)
+
+export default function ContactPageClient({ hero }: { hero: PageHeroContent }) {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-    const form = e.currentTarget
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    const form = e.currentTarget;
     const data = {
-      name:    (form.elements.namedItem('name')    as HTMLInputElement).value,
-      email:   (form.elements.namedItem('email')   as HTMLInputElement).value,
-      subject: (form.elements.namedItem('subject') as HTMLInputElement).value,
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-    }
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement)
+        .value,
+    };
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      })
-      if (!res.ok) throw new Error('Failed')
-      setSubmitted(true)
-      form.reset()
+      });
+      if (!res.ok) throw new Error("Failed");
+      setSubmitted(true);
+      form.reset();
     } catch {
-      setError('Something went wrong. Please email us directly at info@prideofpakistan.com')
+      setError(
+        "Something went wrong. Please email us directly at info@prideofpakistan.com",
+      );
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -42,10 +46,12 @@ export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
       <Topbar />
       <Navbar />
       <main className="min-h-screen bg-cream">
-       <PageHero
-         eyebrow="hero-eyebrow" title="hero-title" subtitle="hero-subtitle"
+        <PageHero
+          eyebrow={hero.eyebrow}
+          title={hero.heading}
+          subtitle={hero.subtext}
         />
-        {/* Main content */}
+
         <section className="py-16 sm:py-20">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-12 lg:gap-16 items-start">
@@ -63,7 +69,6 @@ export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
                   </p>
                 </div>
 
-                {/* Contact details */}
                 <div className="space-y-4">
                   <div className="p-5 bg-white border border-border rounded-xl">
                     <h3 className="mb-4 text-sm font-bold tracking-wide uppercase font-display text-green">
@@ -181,7 +186,7 @@ export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
                     </div>
                   </div>
 
-                  {/* Social */}
+                  {/* Social — Facebook only*/}
                   <div className="p-5 bg-white border border-border rounded-xl">
                     <h3 className="mb-4 text-sm font-bold tracking-wide uppercase font-display text-green">
                       Follow Us
@@ -273,7 +278,6 @@ export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
                         />
                       </div>
                     </div>
-
                     <div>
                       <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
                         Subject <span className="text-gold">*</span>
@@ -286,7 +290,6 @@ export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
                         className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
                       />
                     </div>
-
                     <div>
                       <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
                         Message <span className="text-gold">*</span>
@@ -299,11 +302,9 @@ export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
                         className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors resize-none"
                       />
                     </div>
-
                     {error && (
                       <p className="text-sm text-red-500 font-body">{error}</p>
                     )}
-
                     <button
                       type="submit"
                       disabled={loading}
@@ -311,7 +312,6 @@ export default function ContactPageCLient({hero}: {hero: PageHeroContent}) {
                     >
                       {loading ? "Sending…" : "Send Message"}
                     </button>
-
                     <p className="text-xs text-center text-ink-muted font-body">
                       Or email us directly at{" "}
                       <a
