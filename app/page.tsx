@@ -18,7 +18,7 @@ import PrideTVSection, {
   VideoCard,
 } from "@/app/components/home/PrideTVSection";
 
-export const revalidate = 30;
+export const revalidate = 0;
 
 const PRODUCT_CATEGORY_NAMES: Record<number, string> = {
   1: "Food & Agriculture",
