@@ -65,18 +65,18 @@ export const authOptions: NextAuthOptions = {
     updateAge: 2 * 60 * 60,
     },
 
-  cookies: {
-    sessionToken: {
-      name: `next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 2 * 60 * 60, // matches session maxAge
-      },
-    },
-  },
+  // cookies: {
+  //   sessionToken: {
+  //     name: `next-auth.session-token`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: "lax",
+  //       path: "/",
+  //       secure: process.env.NODE_ENV === "production",
+  //       maxAge: 2 * 60 * 60, // matches session maxAge
+  //     },
+  //   },
+  // },
 
   pages: {
     signIn: "/login",
