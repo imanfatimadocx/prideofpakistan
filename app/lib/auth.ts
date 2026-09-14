@@ -61,9 +61,26 @@ export const authOptions: NextAuthOptions = {
 
   session: {
     strategy: "jwt",
-    maxAge: 2 * 60 * 60, // 2 hours — session expires after 2 hours
-    updateAge: 2 * 60 * 60,
+    maxAge: 2 * 60 * 60, // JWT expires after 2 hours
+    updateAge: 0,
+  },
+
+  cookies: {
+    sessionToken: {
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.session-token"
+          : "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax" as const,
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        // NO maxAge here — makes it a session cookie
+        // Browser deletes it when closed
+      },
     },
+  },
 
   // cookies: {
   //   sessionToken: {
