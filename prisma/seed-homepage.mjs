@@ -62,7 +62,7 @@ const DEFAULTS = [
       eyebrow: "Get in Touch",
       heading: "Contact Us",
       subtext:
-        "Whether you want to share your story, explore partnership opportunities, or learn more about the movement — we'd love to hear from you.",
+        "Whether you want to share your story, explore sponsorships opportunities, or learn more about the movement — we'd love to hear from you.",
     },
   },
   {

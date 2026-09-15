@@ -97,7 +97,7 @@ export default function ContactPageClient({ hero }: { hero: PageHeroContent }) {
                           ),
                         },
                         {
-                          label: "Marketing & Partnerships",
+                          label: "Marketing & Sponsorships",
                           value: "marketing@prideofpakistan.com",
                           href: "mailto:marketing@prideofpakistan.com",
                           icon: (
