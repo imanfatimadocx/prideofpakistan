@@ -286,7 +286,7 @@ export default function ContactPageClient({ hero }: { hero: PageHeroContent }) {
                         name="subject"
                         type="text"
                         required
-                        placeholder="e.g. Partnership enquiry"
+                        placeholder="e.g. Sponsorship enquiry"
                         className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
                       />
                     </div>

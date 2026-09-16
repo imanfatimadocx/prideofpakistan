@@ -28,11 +28,11 @@ export default async function AdminNewsPage() {
   return (
     <div className="flex min-h-screen bg-cream pt-14">
       <AdminNav />
-      <main className="flex-1 lg:ml-64 lg:pt-0 p-4 lg:p-8">
+      <main className="flex-1 p-4 lg:ml-64 lg:pt-0 lg:p-8">
         <div className="max-w-[1100px]">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="font-display text-2xl font-bold text-green mb-1">
+              <h1 className="mb-1 text-2xl font-bold font-display text-green">
                 Discussion Forum
               </h1>
               <p className="text-sm text-ink-muted font-body">
@@ -45,7 +45,7 @@ export default async function AdminNewsPage() {
               href="/admin/news/new"
               className="bg-gold text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
             >
-              + Write News
+              + Write to Discussion Forum
             </Link>
           </div>
           <NewsTableClient news={serialized} />
