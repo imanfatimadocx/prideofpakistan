@@ -7,7 +7,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { getPageContent } from "@/app/lib/pageContent";
 
-export const revalidate = 30;
+export const revalidate = 3600;
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;

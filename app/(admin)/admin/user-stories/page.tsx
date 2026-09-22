@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import AdminNav from "@/app/components/admin/AdminNav";
 import UserStoriesClient from "./UserStoriesClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function AdminUserStoriesPage() {
   const stories = await prisma.userStory.findMany({

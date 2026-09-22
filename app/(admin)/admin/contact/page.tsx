@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import AdminNav from "@/app/components/admin/AdminNav";
 import ContactClient from "./ContactClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function AdminContactPage() {
   const queries = await prisma.contactQuery.findMany({

@@ -3,7 +3,7 @@ import AdminNav from "@/app/components/admin/AdminNav";
 import Link from "next/link";
 import NewsTableClient from "./NewsTableClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function AdminNewsPage() {
   const news = await prisma.latestNews.findMany({

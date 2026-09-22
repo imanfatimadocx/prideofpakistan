@@ -5,7 +5,7 @@ import Footer from "@/app/components/layout/Footer";
 import BusinessPageClient from "./BusinessPageClient";
 import { getPageContent } from "@/app/lib/pageContent";
 
-export const revalidate = 30;
+export const revalidate = 3600;
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;

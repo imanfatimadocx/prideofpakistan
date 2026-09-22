@@ -3,7 +3,7 @@ import AdminNav from "@/app/components/admin/AdminNav";
 import Link from "next/link";
 import ProductsTableClient from "./ProductsTableClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function AdminProductsPage() {
   const [products, categories] = await Promise.all([

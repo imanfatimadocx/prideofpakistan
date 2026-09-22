@@ -1,14 +1,14 @@
-import { prisma } from '@/app/lib/prisma'
-import AdminNav from '@/app/components/admin/AdminNav'
-import Link from 'next/link'
-import ProfilesTableClient from './ProfilesTableClient'
+import { prisma } from "@/app/lib/prisma";
+import AdminNav from "@/app/components/admin/AdminNav";
+import Link from "next/link";
+import ProfilesTableClient from "./ProfilesTableClient";
 
-export const revalidate = 0
+export const revalidate = 3600;
 
 export default async function AdminProfilesPage() {
   const [profiles, categories] = await Promise.all([
     prisma.hallOfFame.findMany({
-      orderBy: { title: 'asc' },
+      orderBy: { title: "asc" },
       select: {
         id: true,
         title: true,
@@ -20,33 +20,37 @@ export default async function AdminProfilesPage() {
       },
     }),
     prisma.hallCategory.findMany({
-      orderBy: { categoryname: 'asc' },
+      orderBy: { categoryname: "asc" },
       select: { categoryid: true, categoryname: true },
     }),
-  ])
+  ]);
 
-  const catMap: Record<number, string> = {}
-  categories.forEach((c) => { catMap[c.categoryid] = c.categoryname })
+  const catMap: Record<number, string> = {};
+  categories.forEach((c) => {
+    catMap[c.categoryid] = c.categoryname;
+  });
 
   const serialized = profiles.map((p) => ({
     id: p.id,
-    title: p.title ?? '-',
-    Profession: p.Profession ?? '',
+    title: p.title ?? "-",
+    Profession: p.Profession ?? "",
     status: p.status ?? 0,
     image: p.image
-      ? p.image.startsWith('http') ? p.image
-        : p.image.startsWith('uploads/') ? `/${p.image}`
-        : `/uploads/${p.image}`
+      ? p.image.startsWith("http")
+        ? p.image
+        : p.image.startsWith("uploads/")
+          ? `/${p.image}`
+          : `/uploads/${p.image}`
       : null,
     feature: p.feature ?? 0,
     categoryid: p.categoryid ?? null,
-    categoryname: p.categoryid ? catMap[p.categoryid] ?? null : null,
-  }))
+    categoryname: p.categoryid ? (catMap[p.categoryid] ?? null) : null,
+  }));
 
   const cats = categories.map((c) => ({
     categoryid: c.categoryid,
     categoryname: c.categoryname,
-  }))
+  }));
 
   return (
     <div className="flex min-h-screen bg-cream">
@@ -55,10 +59,12 @@ export default async function AdminProfilesPage() {
         <div className="max-w-[1200px]">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="mb-1 text-2xl font-bold font-display text-green">Profiles</h1>
+              <h1 className="mb-1 text-2xl font-bold font-display text-green">
+                Profiles
+              </h1>
               <p className="text-sm text-ink-muted font-body">
-                {profiles.filter((p) => p.status === 0).length} pending ·{' '}
-                {profiles.filter((p) => p.feature === 1).length} featured ·{' '}
+                {profiles.filter((p) => p.status === 0).length} pending ·{" "}
+                {profiles.filter((p) => p.feature === 1).length} featured ·{" "}
                 {profiles.length} total
               </p>
             </div>
@@ -73,5 +79,5 @@ export default async function AdminProfilesPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }

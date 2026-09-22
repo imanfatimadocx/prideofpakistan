@@ -6,7 +6,7 @@ import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import CommentSection from "@/app/components/shared/CommentSection";
 
-export const revalidate = 30;
+export const revalidate = 3600;
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;

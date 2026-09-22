@@ -1,11 +1,11 @@
-import AdminNav from '@/app/components/admin/AdminNav'
-import { getPageContent } from '@/app/lib/pageContent'
-import PageHeroEditor from '../PageHeroEditor'
+import AdminNav from "@/app/components/admin/AdminNav";
+import { getPageContent } from "@/app/lib/pageContent";
+import PageHeroEditor from "../PageHeroEditor";
 
-export const revalidate = 0
+export const revalidate = 3600;
 
 export default async function PrideTVPageEditor() {
-  const content = await getPageContent('page_pridetv')
+  const content = await getPageContent("page_pridetv");
   return (
     <div className="flex min-h-screen bg-cream">
       <AdminNav />
@@ -13,9 +13,13 @@ export default async function PrideTVPageEditor() {
         <PageHeroEditor
           section="page_pridetv"
           label="Pride TV Page"
-          initial={{ eyebrow: content.eyebrow, heading: content.heading, subtext: content.subtext }}
+          initial={{
+            eyebrow: content.eyebrow,
+            heading: content.heading,
+            subtext: content.subtext,
+          }}
         />
       </main>
     </div>
-  )
+  );
 }

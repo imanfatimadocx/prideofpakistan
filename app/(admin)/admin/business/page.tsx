@@ -3,7 +3,7 @@ import AdminNav from "@/app/components/admin/AdminNav";
 import Link from "next/link";
 import BusinessTableClient from "./BusinessTableClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function AdminBusinessPage() {
   const [businesses, categories] = await Promise.all([

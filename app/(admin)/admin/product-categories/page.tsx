@@ -2,7 +2,7 @@ import AdminNav from "@/app/components/admin/AdminNav";
 import { prisma } from "@/app/lib/prisma";
 import ProductCategoriesClient from "./ProductCategoriesClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function ProductCategoriesPage() {
   const categories = await prisma.productCategory.findMany({

@@ -2,7 +2,7 @@ import AdminNav from "@/app/components/admin/AdminNav";
 import { prisma } from "@/app/lib/prisma";
 import PageContentClient from "../PageContentClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 const DEFAULT_IMAGES = [
   {

@@ -1,8 +1,8 @@
-import { prisma } from '@/app/lib/prisma'
-import AdminNav from '@/app/components/admin/AdminNav'
-import Link from 'next/link'
+import { prisma } from "@/app/lib/prisma";
+import AdminNav from "@/app/components/admin/AdminNav";
+import Link from "next/link";
 
-export const revalidate = 0
+export const revalidate = 3600;
 
 export default async function AdminDashboard() {
   const [
@@ -21,76 +21,84 @@ export default async function AdminDashboard() {
     prisma.business.count(),
     prisma.business.count({ where: { status: 0 } }),
     prisma.userStory.count(),
-    prisma.userStory.count({ where: { status: 'pending' } }),
-    prisma.video.count({ where: { status: 'active' } }),
-  ])
+    prisma.userStory.count({ where: { status: "pending" } }),
+    prisma.video.count({ where: { status: "active" } }),
+  ]);
 
   const SECTIONS = [
     {
-      label: 'Hall of Fame',
-      color: 'border-green',
+      label: "Hall of Fame",
+      color: "border-green",
       stats: [
-        { label: 'Total Profiles',   value: totalProfiles },
-        { label: 'Pending Approval', value: pendingProfiles,  alert: pendingProfiles > 0 },
-        { label: 'Featured',         value: featuredProfiles },
+        { label: "Total Profiles", value: totalProfiles },
+        {
+          label: "Pending Approval",
+          value: pendingProfiles,
+          alert: pendingProfiles > 0,
+        },
+        { label: "Featured", value: featuredProfiles },
       ],
       actions: [
-        { label: 'Manage Profiles',    href: '/admin/profiles' },
-        { label: 'Add New Profile',    href: '/admin/profiles/new' },
-        { label: 'Manage Categories',  href: '/admin/categories' },
+        { label: "Manage Profiles", href: "/admin/profiles" },
+        { label: "Add New Profile", href: "/admin/profiles/new" },
+        { label: "Manage Categories", href: "/admin/categories" },
       ],
     },
     {
-      label: 'Pakistani Businesses',
-      color: 'border-gold',
+      label: "Pakistani Businesses",
+      color: "border-gold",
       stats: [
-        { label: 'Total Businesses',  value: totalBusinesses },
-        { label: 'Pending Approval',  value: pendingBusinesses, alert: pendingBusinesses > 0 },
+        { label: "Total Businesses", value: totalBusinesses },
+        {
+          label: "Pending Approval",
+          value: pendingBusinesses,
+          alert: pendingBusinesses > 0,
+        },
+      ],
+      actions: [{ label: "Manage Businesses", href: "/admin/business" }],
+    },
+    {
+      label: "Stories & Blog",
+      color: "border-blue-400",
+      stats: [
+        { label: "Total Stories", value: totalStories },
+        {
+          label: "Pending Review",
+          value: pendingStories,
+          alert: pendingStories > 0,
+        },
       ],
       actions: [
-        { label: 'Manage Businesses',  href: '/admin/business' },
+        { label: "Manage Stories", href: "/admin/stories" },
+        { label: "Write Blog Post", href: "/admin/blog" },
       ],
     },
     {
-      label: 'Stories & Blog',
-      color: 'border-blue-400',
-      stats: [
-        { label: 'Total Stories',   value: totalStories },
-        { label: 'Pending Review',  value: pendingStories, alert: pendingStories > 0 },
-      ],
-      actions: [
-        { label: 'Manage Stories',   href: '/admin/stories' },
-        { label: 'Write Blog Post',  href: '/admin/blog' },
-      ],
+      label: "Pride TV",
+      color: "border-red-400",
+      stats: [{ label: "Active Videos", value: totalVideos }],
+      actions: [{ label: "Manage Videos", href: "/admin/media" }],
     },
-    {
-      label: 'Pride TV',
-      color: 'border-red-400',
-      stats: [
-        { label: 'Active Videos', value: totalVideos },
-      ],
-      actions: [
-        { label: 'Manage Videos',   href: '/admin/media' },
-      ],
-    },
-  ]
+  ];
 
-  const totalPending = pendingProfiles + pendingBusinesses + pendingStories
+  const totalPending = pendingProfiles + pendingBusinesses + pendingStories;
 
   return (
     <div className="flex min-h-screen bg-cream">
       <AdminNav />
       <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-12 lg:p-8">
         <div className="max-w-[1100px]">
-
           {/* Header */}
           <div className="mb-8">
-            <h1 className="mb-1 text-2xl font-bold font-display text-green">Dashboard</h1>
+            <h1 className="mb-1 text-2xl font-bold font-display text-green">
+              Dashboard
+            </h1>
             <p className="text-sm text-ink-muted font-body">
-              Welcome back.{' '}
+              Welcome back.{" "}
               {totalPending > 0 ? (
                 <span className="font-semibold text-amber-600">
-                  {totalPending} item{totalPending !== 1 ? 's' : ''} pending review.
+                  {totalPending} item{totalPending !== 1 ? "s" : ""} pending
+                  review.
                 </span>
               ) : (
                 <span>Everything is up to date.</span>
@@ -107,17 +115,23 @@ export default async function AdminDashboard() {
               >
                 {/* Section header */}
                 <div className="px-5 py-4 border-b border-border">
-                  <h2 className="text-base font-bold font-display text-green">{section.label}</h2>
+                  <h2 className="text-base font-bold font-display text-green">
+                    {section.label}
+                  </h2>
                 </div>
 
                 {/* Stats */}
                 <div className="flex gap-6 px-5 py-4 border-b border-border">
                   {section.stats.map((stat) => (
                     <div key={stat.label}>
-                      <p className={`text-2xl font-black font-display ${stat.alert ? 'text-amber-500' : 'text-green'}`}>
+                      <p
+                        className={`text-2xl font-black font-display ${stat.alert ? "text-amber-500" : "text-green"}`}
+                      >
                         {stat.value}
                       </p>
-                      <p className="text-[11px] text-ink-muted font-body mt-0.5">{stat.label}</p>
+                      <p className="text-[11px] text-ink-muted font-body mt-0.5">
+                        {stat.label}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -150,7 +164,8 @@ export default async function AdminDashboard() {
                     href="/admin/profiles?status=0"
                     className="text-xs font-semibold text-amber-700 border border-amber-300 bg-amber-100 px-3 py-1.5 rounded-md hover:bg-amber-200 transition-colors no-underline font-body"
                   >
-                    {pendingProfiles} profile{pendingProfiles !== 1 ? 's' : ''} pending →
+                    {pendingProfiles} profile{pendingProfiles !== 1 ? "s" : ""}{" "}
+                    pending →
                   </Link>
                 )}
                 {pendingBusinesses > 0 && (
@@ -158,7 +173,8 @@ export default async function AdminDashboard() {
                     href="/admin/business"
                     className="text-xs font-semibold text-amber-700 border border-amber-300 bg-amber-100 px-3 py-1.5 rounded-md hover:bg-amber-200 transition-colors no-underline font-body"
                   >
-                    {pendingBusinesses} business{pendingBusinesses !== 1 ? 'es' : ''} pending →
+                    {pendingBusinesses} business
+                    {pendingBusinesses !== 1 ? "es" : ""} pending →
                   </Link>
                 )}
                 {pendingStories > 0 && (
@@ -166,7 +182,8 @@ export default async function AdminDashboard() {
                     href="/admin/stories"
                     className="text-xs font-semibold text-amber-700 border border-amber-300 bg-amber-100 px-3 py-1.5 rounded-md hover:bg-amber-200 transition-colors no-underline font-body"
                   >
-                    {pendingStories} stor{pendingStories !== 1 ? 'ies' : 'y'} pending →
+                    {pendingStories} stor{pendingStories !== 1 ? "ies" : "y"}{" "}
+                    pending →
                   </Link>
                 )}
               </div>
@@ -175,5 +192,5 @@ export default async function AdminDashboard() {
         </div>
       </main>
     </div>
-  )
+  );
 }

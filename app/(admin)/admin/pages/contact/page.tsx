@@ -2,7 +2,7 @@ import AdminNav from "@/app/components/admin/AdminNav";
 import { getPageContent } from "@/app/lib/pageContent";
 import PageHeroEditor from "../PageHeroEditor";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function ContactPageEditor() {
   const content = await getPageContent("page_contact");

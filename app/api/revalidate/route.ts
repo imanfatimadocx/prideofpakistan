@@ -15,7 +15,9 @@ const PATHS = [
 ];
 
 function doRevalidate() {
-  for (const path of PATHS) revalidatePath(path);
+  for (const path of PATHS) {
+    revalidatePath(path, "page");
+  }
 }
 
 export async function GET(req: NextRequest) {

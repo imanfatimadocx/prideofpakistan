@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import AdminNav from "@/app/components/admin/AdminNav";
 import CommentsClient from "./CommentsClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export default async function AdminCommentsPage() {
   const comments = await prisma.comment.findMany({
@@ -34,8 +34,8 @@ export default async function AdminCommentsPage() {
               Comments
             </h1>
             <p className="text-sm text-ink-muted font-body">
-              {comments.length} total · across profiles, businesses, discussion forum and
-              stories
+              {comments.length} total · across profiles, businesses, discussion
+              forum and stories
             </p>
           </div>
           <CommentsClient comments={serialized} />
