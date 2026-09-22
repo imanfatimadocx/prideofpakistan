@@ -179,8 +179,7 @@ export default function ContactPageClient({ hero }: { hero: PageHeroContent }) {
                           Response Time
                         </p>
                         <p className="text-xs text-ink-muted font-body mt-0.5">
-                          We aim to respond to all enquiries within 2 working
-                          days.
+                          We aim to respond to all enquiries as soon as possible
                         </p>
                       </div>
                     </div>

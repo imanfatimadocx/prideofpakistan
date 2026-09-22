@@ -6,7 +6,7 @@ import PrideTVPageClient from './PrideTVPageClient'
 import { getPageContent } from '@/app/lib/pageContent'
 import PageHero from '@/app/components/shared/PageHero'
 
-export const revalidate = 60
+export const dynamic = "force-dynamic";
 
 export default async function PrideTVPage() {
   let videos: {

@@ -5,7 +5,7 @@ import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import MissionClient from "./MissionClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const DEFAULT_IMAGES: {
   src: string;

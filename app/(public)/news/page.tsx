@@ -6,7 +6,7 @@ import Link from "next/link";
 import PageHero from "@/app/components/shared/PageHero";
 import { getPageContent } from "@/app/lib/pageContent";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;

@@ -5,8 +5,7 @@ import Topbar from '@/app/components/layout/Topbar'
 import Navbar from '@/app/components/layout/Navbar'
 import Footer from '@/app/components/layout/Footer'
 import CommentSection from '@/app/components/shared/CommentSection'
-
-export const revalidate = 60
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: Promise<{ id: string }>
