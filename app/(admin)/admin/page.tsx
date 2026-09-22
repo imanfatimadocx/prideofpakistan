@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import AdminNav from "@/app/components/admin/AdminNav";
 import Link from "next/link";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminDashboard() {
   const [
