@@ -11,18 +11,26 @@ export default async function AdminDashboard() {
     featuredProfiles,
     totalBusinesses,
     pendingBusinesses,
+    totalProducts,
     totalStories,
     pendingStories,
+    totalNews,
     totalVideos,
+    totalContacts,
+    totalComments,
   ] = await Promise.all([
     prisma.hallOfFame.count(),
     prisma.hallOfFame.count({ where: { status: 0 } }),
     prisma.hallOfFame.count({ where: { feature: 1 } }),
     prisma.business.count(),
     prisma.business.count({ where: { status: 0 } }),
+    prisma.pakProduct.count(),
     prisma.userStory.count(),
     prisma.userStory.count({ where: { status: "pending" } }),
+    prisma.latestNews.count(),
     prisma.video.count({ where: { status: "active" } }),
+    prisma.contactQuery.count({ where: { read: false } }),
+    prisma.comment.count(),
   ]);
 
   const SECTIONS = [
@@ -40,8 +48,8 @@ export default async function AdminDashboard() {
       ],
       actions: [
         { label: "Manage Profiles", href: "/admin/profiles" },
-        { label: "Add New Profile", href: "/admin/profiles/new" },
-        { label: "Manage Categories", href: "/admin/categories" },
+        { label: "Add Profile", href: "/admin/profiles/new" },
+        { label: "Categories", href: "/admin/categories" },
       ],
     },
     {
@@ -55,10 +63,24 @@ export default async function AdminDashboard() {
           alert: pendingBusinesses > 0,
         },
       ],
-      actions: [{ label: "Manage Businesses", href: "/admin/business" }],
+      actions: [
+        { label: "Manage Businesses", href: "/admin/business" },
+        { label: "Add Business", href: "/admin/business/new" },
+        { label: "Categories", href: "/admin/business-categories" },
+      ],
     },
     {
-      label: "Stories & Blog",
+      label: "Pakistani Products",
+      color: "border-amber-400",
+      stats: [{ label: "Total Products", value: totalProducts }],
+      actions: [
+        { label: "Manage Products", href: "/admin/products" },
+        { label: "Add Product", href: "/admin/products/new" },
+        { label: "Categories", href: "/admin/product-categories" },
+      ],
+    },
+    {
+      label: "Discussion Forum & Stories",
       color: "border-blue-400",
       stats: [
         { label: "Total Stories", value: totalStories },
@@ -67,10 +89,12 @@ export default async function AdminDashboard() {
           value: pendingStories,
           alert: pendingStories > 0,
         },
+        { label: "News Posts", value: totalNews },
       ],
       actions: [
-        { label: "Manage Stories", href: "/admin/stories" },
-        { label: "Write Blog Post", href: "/admin/blog" },
+        { label: "Discussion Forum", href: "/admin/news" },
+        { label: "Write in Discussion Forum", href: "/admin/news/new" },
+        { label: "Your Stories", href: "/admin/user-stories" },
       ],
     },
     {
@@ -79,9 +103,27 @@ export default async function AdminDashboard() {
       stats: [{ label: "Active Videos", value: totalVideos }],
       actions: [{ label: "Manage Videos", href: "/admin/media" }],
     },
+    {
+      label: "Other",
+      color: "border-ink-muted",
+      stats: [
+        {
+          label: "Contact Queries",
+          value: totalContacts,
+          alert: totalContacts > 0,
+        },
+        { label: "Comments", value: totalComments },
+      ],
+      actions: [
+        { label: "Contact Queries", href: "/admin/contact" },
+        { label: "Comments", href: "/admin/comments" },
+        { label: "Event Banners", href: "/admin/banners" },
+      ],
+    },
   ];
 
-  const totalPending = pendingProfiles + pendingBusinesses + pendingStories;
+  const totalPending =
+    pendingProfiles + pendingBusinesses + pendingStories + totalContacts;
 
   return (
     <div className="flex min-h-screen bg-cream">

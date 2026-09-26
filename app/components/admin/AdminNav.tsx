@@ -1,8 +1,8 @@
 "use client";
-import { useState, Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { useState, Suspense, useRef, useEffect } from "react";
 
 const NAV_GROUPS = [
   {
@@ -185,17 +185,29 @@ function AdminNavInner() {
   const searchParams = useSearchParams();
   const currentSearch = searchParams.toString();
   const [open, setOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem("admin-nav-scroll");
+    if (saved && navRef.current) {
+      navRef.current.scrollTop = parseInt(saved);
+    }
+  }, []);
+
+  function handleScroll() {
+    if (navRef.current) {
+      sessionStorage.setItem(
+        "admin-nav-scroll",
+        String(navRef.current.scrollTop),
+      );
+    }
+  }
 
   function isActive(href: string): boolean {
     const [hrefPath, hrefQuery] = href.split("?");
     if (pathname !== hrefPath) return false;
     if (!hrefQuery) return !currentSearch;
     return currentSearch === hrefQuery;
-  }
-
-  function toggleGroup(label: string) {
-    setCollapsed((prev) => ({ ...prev, [label]: !prev[label] }));
   }
 
   return (
@@ -260,69 +272,53 @@ function AdminNavInner() {
           </div>
         </div>
 
-        {/* Nav groups */}
-        <nav className="flex-1 py-3 overflow-y-auto scrollbar-thin">
+        {/* Nav groups — always expanded, no collapse */}
+        <nav
+          ref={navRef}
+          onScroll={handleScroll}
+          className="flex-1 py-3 overflow-y-auto scrollbar-thin"
+        >
           {NAV_GROUPS.map((group) => {
-            const isCollapsed = collapsed[group.label];
             const hasActive = group.items.some((i) => isActive(i.href));
-
             return (
-              <div key={group.label} className="mb-0.5">
-                <button
-                  onClick={() => toggleGroup(group.label)}
-                  className="flex items-center justify-between w-full px-4 py-2 text-left group"
-                >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`transition-colors ${hasActive ? "text-gold" : "text-white/40 group-hover:text-white/60"}`}
-                    >
-                      {GROUP_ICONS[group.label]}
-                    </span>
-                    <span
-                      className={`text-[10px] font-bold uppercase tracking-[.14em] font-body transition-colors ${hasActive ? "text-gold" : "text-white/40 group-hover:text-white/60"}`}
-                    >
-                      {group.label}
-                    </span>
-                  </div>
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className={`text-white/30 transition-transform duration-200 ${isCollapsed ? "-rotate-90" : ""}`}
+              <div key={group.label} className="mb-1">
+                {/* Group label — static, not a button */}
+                <div className="flex items-center gap-2 px-4 py-2">
+                  <span
+                    className={`flex-shrink-0 transition-colors ${hasActive ? "text-gold" : "text-white/35"}`}
                   >
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
-                </button>
+                    {GROUP_ICONS[group.label]}
+                  </span>
+                  <span
+                    className={`text-[10px] font-bold uppercase tracking-[.14em] font-body ${hasActive ? "text-gold" : "text-white/35"}`}
+                  >
+                    {group.label}
+                  </span>
+                </div>
 
-                {!isCollapsed && (
-                  <div className="pb-1">
-                    {group.items.map(({ label, href }) => {
-                      const active = isActive(href);
-                      return (
-                        <Link
-                          key={href}
-                          href={href}
-                          onClick={() => setOpen(false)}
-                          className={`flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-[13px] font-medium font-body transition-all no-underline ${
-                            active
-                              ? "bg-white/15 text-white font-semibold"
-                              : "text-white/60 hover:bg-white/8 hover:text-white/90"
-                          }`}
-                        >
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors ${active ? "bg-gold" : "bg-transparent"}`}
-                          />
-                          {label}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
+                {/* Items — always visible */}
+                <div className="pb-1">
+                  {group.items.map(({ label, href }) => {
+                    const active = isActive(href);
+                    return (
+                      <Link
+                        key={href}
+                        href={href}
+                        onClick={() => setOpen(false)}
+                        className={`flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-[13px] font-medium font-body transition-all no-underline ${
+                          active
+                            ? "bg-white/15 text-white font-semibold"
+                            : "text-white/60 hover:bg-white/8 hover:text-white/90"
+                        }`}
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors ${active ? "bg-gold" : "bg-transparent"}`}
+                        />
+                        {label}
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
             );
           })}
