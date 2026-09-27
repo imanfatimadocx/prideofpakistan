@@ -2,7 +2,9 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { useState, Suspense, useRef, useEffect } from "react";
+import { useState, Suspense, useRef, useLayoutEffect } from "react";
+
+const NAV_SCROLL_KEY = "admin-nav-scroll";
 
 const NAV_GROUPS = [
   {
@@ -187,20 +189,29 @@ function AdminNavInner() {
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const saved = sessionStorage.getItem("admin-nav-scroll");
-    if (saved && navRef.current) {
-      navRef.current.scrollTop = parseInt(saved);
+  // Restore scroll position BEFORE the browser paints, so there's no visible jump.
+  // If nothing is saved yet, bring the active link into view instead.
+  useLayoutEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    let saved: string | null = null;
+    try {
+      saved = sessionStorage.getItem(NAV_SCROLL_KEY);
+    } catch {}
+    if (saved) {
+      el.scrollTop = parseInt(saved, 10) || 0;
+    } else {
+      el.querySelector<HTMLElement>("[data-active='true']")?.scrollIntoView({
+        block: "nearest",
+      });
     }
   }, []);
 
   function handleScroll() {
-    if (navRef.current) {
-      sessionStorage.setItem(
-        "admin-nav-scroll",
-        String(navRef.current.scrollTop),
-      );
-    }
+    if (!navRef.current) return;
+    try {
+      sessionStorage.setItem(NAV_SCROLL_KEY, String(navRef.current.scrollTop));
+    } catch {}
   }
 
   function isActive(href: string): boolean {
@@ -209,6 +220,9 @@ function AdminNavInner() {
     if (!hrefQuery) return !currentSearch;
     return currentSearch === hrefQuery;
   }
+
+  // No sidebar on the login page. Must stay AFTER all hooks above.
+  if (pathname?.startsWith("/admin/login")) return null;
 
   return (
     <>
@@ -272,7 +286,7 @@ function AdminNavInner() {
           </div>
         </div>
 
-        {/* Nav groups — always expanded, no collapse */}
+        {/* Nav groups — always expanded */}
         <nav
           ref={navRef}
           onScroll={handleScroll}
@@ -282,7 +296,6 @@ function AdminNavInner() {
             const hasActive = group.items.some((i) => isActive(i.href));
             return (
               <div key={group.label} className="mb-1">
-                {/* Group label — static, not a button */}
                 <div className="flex items-center gap-2 px-4 py-2">
                   <span
                     className={`flex-shrink-0 transition-colors ${hasActive ? "text-gold" : "text-white/35"}`}
@@ -296,7 +309,6 @@ function AdminNavInner() {
                   </span>
                 </div>
 
-                {/* Items — always visible */}
                 <div className="pb-1">
                   {group.items.map(({ label, href }) => {
                     const active = isActive(href);
@@ -304,6 +316,8 @@ function AdminNavInner() {
                       <Link
                         key={href}
                         href={href}
+                        scroll={false}
+                        data-active={active}
                         onClick={() => setOpen(false)}
                         className={`flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-[13px] font-medium font-body transition-all no-underline ${
                           active
@@ -348,6 +362,7 @@ function AdminNavInner() {
             </Link>
             <Link
               href="/admin/settings"
+              scroll={false}
               className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-body transition-colors no-underline ${
                 pathname === "/admin/settings"
                   ? "bg-white/15 text-white"
@@ -370,7 +385,12 @@ function AdminNavInner() {
               Settings
             </Link>
             <button
-              onClick={() => signOut({ callbackUrl: "/admin/login" })}
+              onClick={() => {
+                try {
+                  sessionStorage.removeItem(NAV_SCROLL_KEY);
+                } catch {}
+                signOut({ callbackUrl: "/admin/login" });
+              }}
               className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-body text-white/60 hover:bg-red-500/20 hover:text-red-300 transition-colors text-left"
             >
               <svg

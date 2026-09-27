@@ -1,5 +1,4 @@
 import { prisma } from "@/app/lib/prisma";
-import AdminNav from "@/app/components/admin/AdminNav";
 import UserStoriesClient from "./UserStoriesClient";
 
 export const revalidate = 3600;
@@ -28,7 +27,6 @@ export default async function AdminUserStoriesPage() {
 
   return (
     <div className="flex min-h-screen bg-cream pt-14">
-      <AdminNav />
       <main className="flex-1 p-4 lg:ml-64 lg:pt-0 lg:p-8">
         <div className="max-w-[1100px]">
           <div className="mb-6">

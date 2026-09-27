@@ -1,5 +1,4 @@
 import { prisma } from "@/app/lib/prisma";
-import AdminNav from "@/app/components/admin/AdminNav";
 import ContactClient from "./ContactClient";
 
 export const revalidate = 3600;
@@ -11,7 +10,6 @@ export default async function AdminContactPage() {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <AdminNav />
       <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 p-4 lg:p-8">
         <div className="max-w-[900px]">
           <div className="mb-6">

@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
-import AdminNav from "@/app/components/admin/AdminNav";
 import ProductEditClient from "./ProductsEditClient";
 
 interface Props {
@@ -47,7 +46,6 @@ export default async function ProductEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream pt-14">
-      <AdminNav />
       <main className="flex-1 lg:ml-64 lg:pt-0 p-4 lg:p-8">
         <ProductEditClient
           product={serialized}

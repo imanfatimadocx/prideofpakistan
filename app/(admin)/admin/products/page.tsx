@@ -1,5 +1,4 @@
 import { prisma } from "@/app/lib/prisma";
-import AdminNav from "@/app/components/admin/AdminNav";
 import Link from "next/link";
 import ProductsTableClient from "./ProductsTableClient";
 
@@ -44,7 +43,6 @@ export default async function AdminProductsPage() {
 
   return (
     <div className="flex min-h-screen bg-cream pt-14">
-      <AdminNav />
       <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
         <div className="max-w-[1200px]">
           <div className="flex items-center justify-between mb-6">

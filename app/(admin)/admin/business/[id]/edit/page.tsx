@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
-import AdminNav from "@/app/components/admin/AdminNav";
 import BusinessEditClient from "./BusinessEditClient";
 
 interface Props {
@@ -50,7 +49,6 @@ export default async function BusinessEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream pt-14">
-      <AdminNav />
       <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
         <BusinessEditClient business={serialized} categories={cats} />
       </main>

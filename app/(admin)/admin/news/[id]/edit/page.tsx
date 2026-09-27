@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
-import AdminNav from "@/app/components/admin/AdminNav";
 import NewsEditClient from "./NewsEditClient";
 
 interface Props {
@@ -34,7 +33,6 @@ export default async function NewsEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <AdminNav />
       <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 p-4 lg:p-8">
         <NewsEditClient item={serialized} />
       </main>

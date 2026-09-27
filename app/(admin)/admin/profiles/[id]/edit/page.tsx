@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import { prisma } from '@/app/lib/prisma'
-import AdminNav from '@/app/components/admin/AdminNav'
 import ProfileEditClient from './ProfileEditClient'
 
 interface Props {
@@ -47,7 +46,6 @@ export default async function ProfileEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <AdminNav />
       <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-8 lg:p-8">
         <ProfileEditClient profile={serialized} categories={cats} />
       </main>

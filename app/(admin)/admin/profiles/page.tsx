@@ -1,5 +1,4 @@
 import { prisma } from "@/app/lib/prisma";
-import AdminNav from "@/app/components/admin/AdminNav";
 import Link from "next/link";
 import ProfilesTableClient from "./ProfilesTableClient";
 
@@ -54,7 +53,6 @@ export default async function AdminProfilesPage() {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <AdminNav />
       <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-14 lg:p-8">
         <div className="max-w-[1200px]">
           <div className="flex items-center justify-between mb-6">
