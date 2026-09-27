@@ -13,7 +13,7 @@ export default function NewNewsPage() {
 
   return (
     <div className="flex min-h-screen bg-cream pt-4">
-      <main className="flex-1 p-4 lg:ml-64 lg:pt-0 lg:p-8">
+      <main className="flex-1 p-4 lg:pt-0 lg:p-8">
         <NewsEditClient item={empty} isNew />
       </main>
     </div>

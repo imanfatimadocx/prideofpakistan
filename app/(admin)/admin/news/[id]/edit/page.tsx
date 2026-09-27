@@ -33,7 +33,7 @@ export default async function NewsEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 p-4 lg:p-8">
+      <main className="flex-1 pt-14 lg:pt-0 p-4 lg:p-8">
         <NewsEditClient item={serialized} />
       </main>
     </div>

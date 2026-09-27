@@ -7,7 +7,7 @@ export default async function WhoIsWhoPageEditor() {
   const content = await getPageContent("page_whoiswho");
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
+      <main className="flex-1 p-4 pt-14 lg:pt-0 lg:p-8">
         <PageHeroEditor
           section="page_whoiswho"
           label="Who Is Who Page"

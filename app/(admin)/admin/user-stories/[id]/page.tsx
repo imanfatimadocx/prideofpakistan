@@ -31,7 +31,7 @@ export default async function AdminUserStoryDetailPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream pt-14">
-      <main className="flex-1 lg:ml-64 lg:pt-0 p-4 lg:p-8">
+      <main className="flex-1 lg:pt-0 p-4 lg:p-8">
         <div className="max-w-[900px]">
           {/* Header */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6">

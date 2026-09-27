@@ -49,7 +49,7 @@ export default async function BusinessEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream pt-14">
-      <main className="flex-1 p-4 lg:ml-64 pt-14 lg:pt-0 lg:p-8">
+      <main className="flex-1 p-4 pt-14 lg:pt-0 lg:p-8">
         <BusinessEditClient business={serialized} categories={cats} />
       </main>
     </div>

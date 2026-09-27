@@ -25,7 +25,7 @@ export default async function AdminBannersPage() {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 lg:ml-64 lg:p-8">
+      <main className="flex-1 p-4 lg:p-8">
         <div className="max-w-[900px]">
           <div className="mb-6">
             <h1 className="mb-1 text-2xl font-bold font-display text-green">
