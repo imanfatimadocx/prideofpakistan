@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import Link from "next/link";
 import BusinessTableClient from "./BusinessTableClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminBusinessPage() {
   const [businesses, categories] = await Promise.all([

@@ -1,7 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import HomepageEditorClient from "./HomepageEditorClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminHomepagePage() {
   const hero = await prisma.homepageContent.findUnique({

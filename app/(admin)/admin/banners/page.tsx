@@ -1,7 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import BannersClient from "./BannersClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminBannersPage() {
   const banners = await prisma.eventBanner.findMany({

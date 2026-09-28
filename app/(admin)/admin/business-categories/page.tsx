@@ -1,7 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import BizCategoriesClient from "./BizCategoriesClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function BizCategoriesPage() {
   const categories = await prisma.businessCategory.findMany({

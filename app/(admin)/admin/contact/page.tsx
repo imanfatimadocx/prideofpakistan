@@ -1,7 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import ContactClient from "./ContactClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminContactPage() {
   const queries = await prisma.contactQuery.findMany({

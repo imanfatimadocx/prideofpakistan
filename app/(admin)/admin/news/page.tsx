@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import Link from "next/link";
 import NewsTableClient from "./NewsTableClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminNewsPage() {
   const news = await prisma.latestNews.findMany({

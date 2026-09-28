@@ -1,7 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import CommentsClient from "./CommentsClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminCommentsPage() {
   const comments = await prisma.comment.findMany({

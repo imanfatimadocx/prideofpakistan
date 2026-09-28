@@ -1,7 +1,7 @@
 import { getPageContent } from "@/app/lib/pageContent";
 import PageHeroEditor from "../PageHeroEditor";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function NewsPageEditor() {
   const content = await getPageContent("page_news");

@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import Link from "next/link";
 import ProfilesTableClient from "./ProfilesTableClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminProfilesPage() {
   const [profiles, categories] = await Promise.all([

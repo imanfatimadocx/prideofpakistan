@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import Link from "next/link";
 import ProductsTableClient from "./ProductsTableClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminProductsPage() {
   const [products, categories] = await Promise.all([

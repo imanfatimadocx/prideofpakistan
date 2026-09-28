@@ -1,7 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import PageContentClient from "../PageContentClient";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const DEFAULT_IMAGES = [
   {
