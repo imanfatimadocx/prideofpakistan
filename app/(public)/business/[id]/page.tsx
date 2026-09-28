@@ -7,7 +7,7 @@ import Link from "next/link";
 import CommentSection from "@/app/components/shared/CommentSection";
 import VideoEmbed from "@/app/components/shared/VideoEmbed";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;
@@ -93,7 +93,7 @@ export default async function BusinessDetailPage({ params }: Props) {
               </div>
 
               {/* Categories sidebar */}
-              <div className="overflow-hidden bg-white border border-border rounded-xl lg:sticky lg:top-6">
+              <div className="hidden overflow-hidden bg-white border border-border rounded-xl lg:block lg:sticky lg:top-6">
                 <div className="px-4 py-3 border-b bg-green/10 border-border">
                   <h2 className="text-sm font-bold tracking-wide uppercase text-green font-display">
                     Categories
@@ -115,6 +115,31 @@ export default async function BusinessDetailPage({ params }: Props) {
                   ))}
                 </nav>
               </div>
+
+              {/* Mobile: collapsible categories (desktop shows the sidebar above) */}
+              <details className="overflow-hidden bg-white border lg:hidden border-border rounded-xl group">
+                <summary className="flex items-center justify-between px-4 py-3 text-sm font-bold tracking-wide uppercase list-none cursor-pointer select-none text-green font-display bg-green/10 [&::-webkit-details-marker]:hidden">
+                  Browse Categories
+                  <span className="transition-transform duration-200 group-open:rotate-180">
+                    ▾
+                  </span>
+                </summary>
+                <nav className="py-2 max-h-[320px] overflow-y-auto">
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.id}
+                      href={`/business?category=${cat.id}`}
+                      className={`block px-4 py-2.5 text-sm font-body transition-colors no-underline border-b border-border/50 last:border-0 ${
+                        biz.category_id === cat.id
+                          ? "bg-gold-pale text-gold font-semibold"
+                          : "text-ink-dark hover:bg-gold-pale hover:text-gold"
+                      }`}
+                    >
+                      {cat.name}
+                    </Link>
+                  ))}
+                </nav>
+              </details>
             </div>
 
             {/* Right — all content */}
@@ -167,7 +192,10 @@ export default async function BusinessDetailPage({ params }: Props) {
                     </h2>
                   </div>
                   <div className="p-4">
-                    <VideoEmbed url={biz.video_url} title={`${biz.company_name} video`} />
+                    <VideoEmbed
+                      url={biz.video_url}
+                      title={`${biz.company_name} video`}
+                    />
                   </div>
                 </div>
               )}

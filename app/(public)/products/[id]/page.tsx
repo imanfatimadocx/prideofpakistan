@@ -6,7 +6,7 @@ import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import ProductInquiryForm from "./ProductInquiryForm";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 function resolveImage(img: string | null): string | null {
   if (!img || img.trim() === "") return null;
@@ -91,7 +91,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
 
               {/* Categories sidebar */}
-              <div className="bg-white border border-border rounded-xl overflow-hidden lg:sticky lg:top-6">
+              <div className="hidden overflow-hidden bg-white border border-border rounded-xl lg:block lg:sticky lg:top-6">
                 <div className="bg-green/10 border-b border-border px-4 py-3">
                   <h2 className="text-sm font-bold text-green font-display uppercase tracking-wide">
                     Pakistani Products Categories
@@ -113,6 +113,31 @@ export default async function ProductDetailPage({ params }: Props) {
                   ))}
                 </nav>
               </div>
+
+              {/* Mobile: collapsible categories (desktop shows the sidebar above) */}
+              <details className="overflow-hidden bg-white border lg:hidden border-border rounded-xl group">
+                <summary className="flex items-center justify-between px-4 py-3 text-sm font-bold tracking-wide uppercase list-none cursor-pointer select-none text-green font-display bg-green/10 [&::-webkit-details-marker]:hidden">
+                  Browse Categories
+                  <span className="transition-transform duration-200 group-open:rotate-180">
+                    ▾
+                  </span>
+                </summary>
+                <nav className="py-2 max-h-[320px] overflow-y-auto">
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.id}
+                      href={`/products?category=${cat.id}`}
+                      className={`block px-4 py-2.5 text-sm font-body transition-colors no-underline border-b border-border/50 last:border-0 ${
+                        product.categoryid === cat.id
+                          ? "bg-gold-pale text-gold font-semibold"
+                          : "text-ink-dark hover:bg-gold-pale hover:text-gold"
+                      }`}
+                    >
+                      {cat.name}
+                    </Link>
+                  ))}
+                </nav>
+              </details>
             </div>
 
             {/* Right — content */}
