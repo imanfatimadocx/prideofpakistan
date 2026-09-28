@@ -72,7 +72,7 @@ const NAV_GROUPS = [
       { label: "Pakistani Businesses", href: "/admin/pages/businesses" },
       { label: "Discussion Forum", href: "/admin/pages/news" },
       { label: "Your Stories", href: "/admin/pages/stories" },
-      { label: "Contact", href: "/admin/pages/contact" },
+      { label: "Contact us Admin", href: "/admin/pages/contact" },
       { label: "Pride TV", href: "/admin/pages/pridetv" },
       { label: "About Us", href: "/admin/pages/about" },
       { label: "Our Mission", href: "/admin/pages/mission" },

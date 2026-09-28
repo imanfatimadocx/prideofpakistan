@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 interface Member {
   id: number;
@@ -15,16 +16,14 @@ const PER_PAGE = 12;
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 function MemberCard({ m }: { m: Member }) {
-  const [open, setOpen] = useState(false);
-  const long = m.description.length > 120;
   const place = [m.city, m.country].filter(Boolean).join(", ");
 
   return (
-    <div className="group">
+    <Link href={`/pride-team/${m.id}`} className="block no-underline group">
       {/* Plain image - no card, no border (same as Who Is Who) */}
       <div
         className="w-full overflow-hidden rounded-lg"
-        style={{ aspectRatio: "650/500" }}
+        style={{ aspectRatio: "650/400" }}
       >
         {m.image ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -54,25 +53,9 @@ function MemberCard({ m }: { m: Member }) {
         {place && (
           <p className="text-[11px] text-ink-muted font-body mt-0.5">{place}</p>
         )}
-        {m.description && (
-          <>
-            <p
-              className={`mt-1.5 text-xs leading-relaxed text-left text-ink-mid font-body ${open ? "" : "line-clamp-3"}`}
-            >
-              {m.description}
-            </p>
-            {long && (
-              <button
-                onClick={() => setOpen(!open)}
-                className="mt-1 text-[11px] font-semibold text-gold font-body hover:underline"
-              >
-                {open ? "Show less" : "Read more"}
-              </button>
-            )}
-          </>
-        )}
+      
       </div>
-    </div>
+    </Link>
   );
 }
 

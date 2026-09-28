@@ -19,7 +19,10 @@ export default async function OurSponsorsPage() {
   const [hero, sponsors] = await Promise.all([
     getPageContent("page_sponsors"),
     prisma.sponsor
-      .findMany({ where: { status: 1 }, orderBy: [{ sortOrder: "asc" }, { id: "asc" }] })
+      .findMany({
+        where: { status: 1 },
+        orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
+      })
       .catch(() => []),
   ]);
 
@@ -28,39 +31,87 @@ export default async function OurSponsorsPage() {
       <Topbar />
       <Navbar />
       <main className="min-h-screen bg-cream">
-        <PageHero eyebrow={hero.eyebrow} title={hero.heading} subtitle={hero.subtext} />
+        <PageHero
+          eyebrow={hero.eyebrow}
+          title={hero.heading}
+          subtitle={hero.subtext}
+        />
 
         <section className="py-14 sm:py-16">
           <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
             {sponsors.length === 0 ? (
               <div className="py-20 text-center bg-white border border-border rounded-2xl">
-                <p className="text-sm text-ink-muted font-body">Our sponsors will be listed here soon.</p>
+                <p className="text-sm text-ink-muted font-body">
+                  Our sponsors will be listed here soon.
+                </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
                 {sponsors.map((s) => {
                   const logo = resolveImage(s.smallimage);
+                  const image = (
+                    <div
+                      className="flex items-center justify-center w-full overflow-hidden rounded-lg"
+                      style={{ aspectRatio: "650/400" }}
+                    >
+                      {logo ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={logo}
+                          alt={s.title}
+                          loading="lazy"
+                          className="object-fit w-full h-full transition-transform duration-300 rounded-lg group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center w-full h-full text-3xl font-bold text-white rounded-lg bg-green font-display">
+                          {s.title.charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                    </div>
+                  );
                   return (
-                    <div key={s.id} className="flex flex-col overflow-hidden bg-white border border-border rounded-2xl">
-                      <div className="flex items-center justify-center h-40 p-6 border-b border-border bg-cream/40">
-                        {logo ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={logo} alt={s.title} className="object-contain w-full h-full" />
+                    <div key={s.id} className="group">
+                      {/* Plain image - no card, no border (same as Who Is Who) */}
+                      {s.website ? (
+                        <a
+                          href={s.website}
+                          target="_blank"
+                          rel="noopener noreferrer sponsored"
+                          className="block no-underline"
+                        >
+                          {image}
+                        </a>
+                      ) : (
+                        image
+                      )}
+
+                      {/* Content underneath */}
+                      <div className="mt-2.5">
+                        {s.website ? (
+                          <a
+                            href={s.website}
+                            target="_blank"
+                            rel="noopener noreferrer sponsored"
+                            className="text-sm font-bold leading-snug no-underline transition-colors text-ink-dark font-display hover:text-green"
+                          >
+                            {s.title}
+                          </a>
                         ) : (
-                          <span className="text-4xl font-bold font-display text-green">{s.title.charAt(0)}</span>
+                          <p className="text-sm font-bold leading-snug text-ink-dark font-display">
+                            {s.title}
+                          </p>
                         )}
-                      </div>
-                      <div className="flex flex-col flex-1 p-5">
-                        <h2 className="mb-2 text-lg font-bold leading-snug font-display text-green">{s.title}</h2>
                         {s.shortdesc && (
-                          <p className="flex-1 text-sm leading-relaxed text-left text-ink-mid font-body">{s.shortdesc}</p>
+                          <p className="mt-1 text-xs leading-relaxed text-left text-ink-mid font-body line-clamp-3">
+                            {s.shortdesc}
+                          </p>
                         )}
                         {s.website && (
                           <a
                             href={s.website}
                             target="_blank"
                             rel="noopener noreferrer sponsored"
-                            className="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold no-underline text-gold font-body hover:underline"
+                            className="block mt-1.5 text-xs font-semibold no-underline text-gold font-body hover:underline"
                           >
                             Visit website ↗
                           </a>
@@ -73,7 +124,9 @@ export default async function OurSponsorsPage() {
             )}
 
             <div className="p-6 mt-12 text-center border sm:p-8 bg-green/5 border-green/20 rounded-2xl">
-              <h2 className="mb-2 text-xl font-bold font-display text-green">Become a Sponsor</h2>
+              <h2 className="mb-2 text-xl font-bold font-display text-green">
+                Become a Sponsor
+              </h2>
               <p className="mb-5 text-sm text-center text-ink-mid font-body">
                 Help us share the best of Pakistan with the world.
               </p>
