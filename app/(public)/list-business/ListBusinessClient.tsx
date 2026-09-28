@@ -7,8 +7,8 @@ import PageHero from "@/app/components/shared/PageHero";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default async function ListBusinessPage() {
-  const { data: session } = useSession();
+export default function ListBusinessClient() {
+  const { data: session, status } = useSession();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,6 +39,20 @@ export default async function ListBusinessPage() {
     } finally {
       setLoading(false);
     }
+  }
+
+  // Wait for the session before deciding - avoids a "Login Required" flash
+  if (status === "loading") {
+    return (
+      <>
+        <Topbar />
+        <Navbar />
+        <main className="flex items-center justify-center min-h-screen bg-cream">
+          <p className="text-sm text-ink-muted font-body">Loading…</p>
+        </main>
+        <Footer />
+      </>
+    );
   }
 
   if (!session) {
