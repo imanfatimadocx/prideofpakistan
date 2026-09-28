@@ -87,6 +87,7 @@ export default function Footer() {
               {[
                 { label: "Submit Your Profile", href: "/submit-profile" },
                 { label: "Pride TV", href: "/pride-tv" },
+                { label: "Pride Team", href: "/pride-team" },
                 { label: "Contact Us", href: "/contact" },
                 { label: "About Us", href: "/about" },
               ].map(({ label, href }) => (

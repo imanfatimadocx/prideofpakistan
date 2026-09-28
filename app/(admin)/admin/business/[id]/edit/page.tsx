@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
 import BusinessEditClient from "./BusinessEditClient";
+import BusinessVideoField from "./BusinessVideoField";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -51,6 +52,7 @@ export default async function BusinessEditPage({ params }: Props) {
     <div className="flex min-h-screen bg-cream ">
       <main className="flex-1 p-4 lg:p-8">
         <BusinessEditClient business={serialized} categories={cats} />
+        <BusinessVideoField businessId={biz.id} initial={biz.video_url ?? ""} />
       </main>
     </div>
   );

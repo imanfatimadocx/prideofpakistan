@@ -45,7 +45,21 @@ function getThumbnail(embedCode: string, existingThumb: string): string {
   return "";
 }
 
-export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
+export default function PrideTVPageClient({
+  videos: allVideos,
+  categories = [],
+  initialCategory = null,
+}: {
+  videos: Video[];
+  categories?: { id: number; name: string }[];
+  initialCategory?: number | null;
+}) {
+  const [category, setCategory] = useState<number | null>(initialCategory);
+  const videos =
+    category === null
+      ? allVideos
+      : allVideos.filter((v) => v.category === category);
+
   const [activeId, setActiveId] = useState<number | null>(
     videos.find((v) => v.featured === "feature")?.video_id ??
       videos[0]?.video_id ??
@@ -54,7 +68,22 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
 
   const activeVideo = videos.find((v) => v.video_id === activeId) ?? videos[0];
 
-  if (videos.length === 0) {
+  function chooseCategory(id: number | null) {
+    setCategory(id);
+    const list =
+      id === null ? allVideos : allVideos.filter((v) => v.category === id);
+    setActiveId(
+      list.find((v) => v.featured === "feature")?.video_id ??
+        list[0]?.video_id ??
+        null,
+    );
+    const url = new URL(window.location.href);
+    if (id === null) url.searchParams.delete("category");
+    else url.searchParams.set("category", String(id));
+    window.history.replaceState(null, "", url.toString());
+  }
+
+  if (allVideos.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen px-4 text-center bg-green">
         <div>
@@ -82,6 +111,26 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
         <h1 className="mb-6 text-2xl font-bold text-white font-display sm:text-3xl">
           Watch Pakistan
         </h1>
+
+        {categories.length > 0 && (
+          <div className="flex gap-2 pb-1 mb-6 -mx-1 overflow-x-auto">
+            {[{ id: null as number | null, name: "All Videos" }, ...categories].map(
+              (c) => (
+                <button
+                  key={c.id ?? "all"}
+                  onClick={() => chooseCategory(c.id)}
+                  className={`flex-shrink-0 mx-1 px-4 py-1.5 rounded-full text-xs font-semibold font-body transition-colors border ${
+                    category === c.id
+                      ? "bg-gold text-white border-gold"
+                      : "bg-white/[.06] text-white/70 border-white/15 hover:bg-white/15 hover:text-white"
+                  }`}
+                >
+                  {c.name}
+                </button>
+              ),
+            )}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
           {/* Main player */}
@@ -180,7 +229,9 @@ export default function PrideTVPageClient({ videos }: { videos: Video[] }) {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pb-16">
         <div className="pt-10 mt-4 border-t border-white/10">
           <h2 className="mb-6 text-xl font-bold text-white font-display">
-            All Videos
+            {category === null
+              ? "All Videos"
+              : (categories.find((c) => c.id === category)?.name ?? "Videos")}
           </h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {videos.map((v) => (

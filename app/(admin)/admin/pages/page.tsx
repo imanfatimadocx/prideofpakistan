@@ -1,127 +1,61 @@
-"use client";
-import { useState } from "react";
 import Link from "next/link";
 
-interface Props {
-  section: string;
-  label: string;
-  initial: {
-    eyebrow?: string;
-    heading?: string;
-    subtext?: string;
-  };
-}
+const GROUPS = [
+  {
+    title: "Page headings",
+    desc: "The green banner at the top of each page.",
+    pages: [
+      { label: "Homepage", href: "/admin/homepage" },
+      { label: "Who Is Who", href: "/admin/pages/whoiswho" },
+      { label: "Pakistani Products", href: "/admin/pages/products" },
+      { label: "Pakistani Businesses", href: "/admin/pages/businesses" },
+      { label: "Discussion Forum", href: "/admin/pages/news" },
+      { label: "Your Stories", href: "/admin/pages/stories" },
+      { label: "Pride TV", href: "/admin/pages/pridetv" },
+      { label: "Pride Team", href: "/admin/pages/team" },
+      { label: "Our Sponsors", href: "/admin/pages/sponsors" },
+    ],
+  },
+  {
+    title: "Full pages",
+    desc: "Pages where you can edit all the text.",
+    pages: [
+      { label: "About Us", href: "/admin/pages/about" },
+      { label: "Our Mission", href: "/admin/pages/mission" },
+      { label: "Contact Us", href: "/admin/pages/contact" },
+      { label: "Terms & Conditions", href: "/admin/pages/legal/terms" },
+      { label: "Privacy Policy", href: "/admin/pages/legal/privacy" },
+      { label: "Disclaimer", href: "/admin/pages/legal/disclaimer" },
+    ],
+  },
+];
 
-export default function PageHeroEditor({ section, label, initial }: Props) {
-  const [form, setForm] = useState({
-    eyebrow: initial?.eyebrow ?? "",
-    heading: initial?.heading ?? "",
-    subtext: initial?.subtext ?? "",
-  });
-  const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleSave() {
-    setSaving(true);
-    setError(null);
-    try {
-      const res = await fetch(`/api/admin/homepage/${section}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: form }),
-      });
-      if (!res.ok) {
-        setError("Failed to save.");
-        return;
-      }
-      setSaved(true);
-      setTimeout(() => setSaved(false), 3000);
-    } catch {
-      setError("Something went wrong.");
-    } finally {
-      setSaving(false);
-    }
-  }
-
+export default function AdminPagesIndex() {
   return (
-    <div className="max-w-[700px]">
-      <div className="flex items-center gap-3 mb-6">
-        <Link
-          href="/admin/pages"
-          className="text-sm no-underline text-gold font-body hover:underline"
-        >
-          ← Pages
-        </Link>
-        <span className="text-ink-muted">/</span>
-        <h1 className="text-2xl font-bold font-display text-green">{label}</h1>
-      </div>
-
-      {saved && (
-        <div className="px-4 py-3 mb-5 text-sm font-semibold border rounded-lg bg-green/10 border-green/20 text-green font-body">
-          Saved successfully.
+    <div className="p-4 lg:p-8">
+      <div className="max-w-[900px]">
+        <h1 className="mb-1 text-2xl font-bold font-display text-green">Pages</h1>
+        <p className="mb-8 text-sm text-ink-muted font-body">Choose a page to edit.</p>
+        <div className="space-y-8">
+          {GROUPS.map((g) => (
+            <div key={g.title}>
+              <h2 className="text-base font-bold font-display text-green">{g.title}</h2>
+              <p className="mb-3 text-xs text-ink-muted font-body">{g.desc}</p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {g.pages.map((p) => (
+                  <Link
+                    key={p.href}
+                    href={p.href}
+                    className="flex items-center justify-between px-4 py-3.5 text-sm font-semibold no-underline bg-white border rounded-xl border-border text-ink-dark font-body hover:border-gold hover:text-gold transition-colors"
+                  >
+                    {p.label}
+                    <span className="text-gold">→</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-      )}
-      {error && (
-        <div className="px-4 py-3 mb-5 text-sm text-red-600 border border-red-200 rounded-lg bg-red-50 font-body">
-          {error}
-        </div>
-      )}
-
-      <div className="p-6 space-y-4 bg-white border border-border rounded-xl">
-        <p className="text-xs text-ink-muted font-body">
-          Changes go live instantly on the public page.
-        </p>
-
-        <div>
-          <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-            Golden Label
-          </label>
-          <input
-            type="text"
-            value={form.eyebrow}
-            onChange={(e) =>
-              setForm((f) => ({ ...f, eyebrow: e.target.value }))
-            }
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
-          />
-        </div>
-
-        <div>
-          <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-            Page Heading
-          </label>
-          <input
-            type="text"
-            value={form.heading}
-            onChange={(e) =>
-              setForm((f) => ({ ...f, heading: e.target.value }))
-            }
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
-          />
-        </div>
-
-        <div>
-          <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-            Subtext
-          </label>
-          <textarea
-            value={form.subtext}
-            onChange={(e) =>
-              setForm((f) => ({ ...f, subtext: e.target.value }))
-            }
-            rows={3}
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
-          />
-        </div>
-
-        <button
-          onClick={handleSave}
-          disabled={saving}
-          className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
-        >
-          {saving ? "Saving…" : "Save Changes"}
-        </button>
       </div>
     </div>
   );

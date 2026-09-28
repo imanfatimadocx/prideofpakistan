@@ -8,7 +8,12 @@ import PageHero from '@/app/components/shared/PageHero'
 
 export const dynamic = "force-dynamic";
 
-export default async function PrideTVPage() {
+export default async function PrideTVPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>
+}) {
+  const { category } = await searchParams
   let videos: {
     video_id: number
     title: string
@@ -36,7 +41,22 @@ export default async function PrideTVPage() {
   } catch {
     videos = []
   }
-  const hero = await getPageContent('page_pridetv')
+  const [hero, categoryRows] = await Promise.all([
+    getPageContent('page_pridetv'),
+    prisma.videoCategory
+      .findMany({
+        where: { status: 1 },
+        orderBy: [{ sortOrder: 'asc' }, { name: 'asc' }],
+        select: { id: true, name: true },
+      })
+      .catch(() => []),
+  ])
+  // Only show categories that actually have videos
+  const usedIds = new Set(videos.map((v) => v.category))
+  const categories = categoryRows.filter((c) => usedIds.has(c.id))
+  const initialCategory = categories.some((c) => c.id === Number(category))
+    ? Number(category)
+    : null
 
   return (
     <>
@@ -48,7 +68,11 @@ export default async function PrideTVPage() {
           title={hero.heading}
           subtitle={hero.subtext}
         />
-        <PrideTVPageClient videos={videos} />
+        <PrideTVPageClient
+          videos={videos}
+          categories={categories}
+          initialCategory={initialCategory}
+        />
       </main>
       <Footer />
     </>

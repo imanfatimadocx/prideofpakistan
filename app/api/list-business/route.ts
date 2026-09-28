@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
 import { v2 as cloudinary } from "cloudinary";
+import { parseVideoUrl } from "@/app/lib/video";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -35,6 +36,15 @@ export async function POST(req: NextRequest) {
     );
     const company_description =
       (formData.get("company_description") as string) || "";
+
+    const videoRaw = ((formData.get("video_url") as string) || "").trim();
+    const video = videoRaw ? parseVideoUrl(videoRaw) : null;
+    if (videoRaw && !video) {
+      return NextResponse.json(
+        { error: "The video link must be a YouTube or Vimeo link." },
+        { status: 400 },
+      );
+    }
 
     const imageFileRaw = formData.get("image");
     const imageFile =
@@ -101,6 +111,7 @@ export async function POST(req: NextRequest) {
         org_img: "",
         lng: "",
         lat: "",
+        video_url: video?.watchUrl ?? "",
       },
     });
     return NextResponse.json({ success: true });

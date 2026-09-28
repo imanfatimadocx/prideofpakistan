@@ -210,6 +210,23 @@ export default async function ListBusinessPage() {
                   />
                 </div>
 
+                {/* Video */}
+                <div>
+                  <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
+                    Business Video
+                  </label>
+                  <input
+                    name="video_url"
+                    type="text"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                  />
+                  <p className="text-xs text-ink-muted font-body mt-1.5">
+                    Optional. Paste a YouTube or Vimeo link and it will play on
+                    your business page.
+                  </p>
+                </div>
+
                 {/* Short Description */}
                 <div>
                   <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">

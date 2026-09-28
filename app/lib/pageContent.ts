@@ -8,6 +8,18 @@ export interface PageHeroContent {
 }
 
 const FALLBACKS: Record<string, PageHeroContent> = {
+  page_sponsors: {
+    eyebrow: "Our Supporters",
+    heading: "Our Sponsors",
+    subtext:
+      "The organisations and businesses that help Pride of Pakistan share the best of Pakistan with the world.",
+  },
+  page_team: {
+    eyebrow: "The People Behind It",
+    heading: "Pride Team",
+    subtext:
+      "A growing network of people who believe in a brighter future for Pakistan.",
+  },
   hero: {
     eyebrow: "Celebrating Pakistan",
     heading: "Pride of Pakistan",

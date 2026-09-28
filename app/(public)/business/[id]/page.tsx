@@ -5,6 +5,7 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import CommentSection from "@/app/components/shared/CommentSection";
+import VideoEmbed from "@/app/components/shared/VideoEmbed";
 
 export const revalidate = 3600;
 
@@ -153,6 +154,20 @@ export default async function BusinessDetailPage({ params }: Props) {
                         {biz.shortdesc}
                       </p>
                     )}
+                  </div>
+                </div>
+              )}
+
+              {/* Video */}
+              {biz.video_url && (
+                <div className="overflow-hidden bg-white border border-border rounded-xl">
+                  <div className="px-5 py-3 border-b bg-green/10 border-border">
+                    <h2 className="text-sm font-bold tracking-wide uppercase text-green font-display">
+                      Video
+                    </h2>
+                  </div>
+                  <div className="p-4">
+                    <VideoEmbed url={biz.video_url} title={`${biz.company_name} video`} />
                   </div>
                 </div>
               )}

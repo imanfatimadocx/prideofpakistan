@@ -188,6 +188,7 @@ model Business {
   lat                 String            @default("") @db.VarChar(255)
   title               String            @default("") @db.VarChar(255)
   category            BusinessCategory? @relation(fields: [category_id], references: [id])
+  video_url           String            @default("") @db.VarChar(500)
 
   @@map("busniss")
 }
@@ -417,6 +418,8 @@ model Sponsor {
   shortdesc  String @db.Text
   smallimage String @db.VarChar(255)
   status     Int    @default(0)
+  website    String @default("") @db.VarChar(500)
+  sortOrder  Int    @default(0)
 
   @@map("sponsors")
 }
@@ -494,4 +497,13 @@ model PageContent {
   updatedAt DateTime @updatedAt
 
   @@map("page_content")
+}
+
+model VideoCategory {
+  id        Int    @id @default(autoincrement())
+  name      String @db.VarChar(100)
+  sortOrder Int    @default(0)
+  status    Int    @default(1)
+
+  @@map("video_categories")
 }

@@ -8,6 +8,7 @@ import WhoIsWhoSection, { ProfileCard, CategoryCard } from "@/app/components/hom
 import BusinessSection, { BizCard } from "@/app/components/home/BusinessSection";
 import ProductsSection, { ProductCard } from "@/app/components/home/ProductsSection";
 import PrideTVSection, { VideoCard } from "@/app/components/home/PrideTVSection";
+import SponsorsSection from "@/app/components/home/SponsorsSection";
 
 export const dynamic = 'force-dynamic'
 
@@ -223,6 +224,7 @@ export default async function HomePage() {
         )}
 
         <PrideTVSection videos={videoCards} comingSoon={videoCards.length === 0} />
+        <SponsorsSection />
       </main>
       <Footer />
     </>
