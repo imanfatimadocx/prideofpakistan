@@ -28,7 +28,8 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
 
   async function handleSave() {
     setError(null);
-    if (password.length < 8) return setError("Password must be at least 8 characters.");
+    if (password.length < 8)
+      return setError("Password must be at least 8 characters.");
     if (password !== confirm) return setError("The two passwords don't match.");
     setSaving(true);
     try {
@@ -54,10 +55,13 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
           Password updated for {user.name}.
         </p>
         <p className="text-xs text-ink-muted font-body">
-          Share the new password with them privately (e.g. WhatsApp or phone), and ask them to keep it safe.
+          Share the new password with them privately (e.g. WhatsApp or phone),
+          and ask them to keep it safe.
         </p>
         <div className="flex flex-wrap items-center gap-2">
-          <code className="px-3 py-1.5 text-sm bg-white border rounded border-border">{done}</code>
+          <code className="px-3 py-1.5 text-sm bg-white border rounded border-border">
+            {done}
+          </code>
           <button
             type="button"
             onClick={async () => {
@@ -68,7 +72,11 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
           >
             {copied ? "Copied" : "Copy"}
           </button>
-          <button type="button" onClick={onClose} className="ml-auto text-xs text-ink-muted font-body hover:text-green">
+          <button
+            type="button"
+            onClick={onClose}
+            className="ml-auto text-xs text-ink-muted font-body hover:text-green"
+          >
             Close
           </button>
         </div>
@@ -113,7 +121,11 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
           Generate a password
         </button>
         <label className="flex items-center gap-1.5 cursor-pointer text-ink-muted">
-          <input type="checkbox" checked={show} onChange={(e) => setShow(e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={show}
+            onChange={(e) => setShow(e.target.checked)}
+          />
           Show
         </label>
       </div>
@@ -139,7 +151,13 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
   );
 }
 
-export default function UsersTableClient({ users, offset }: { users: User[]; offset: number }) {
+export default function UsersTableClient({
+  users,
+  offset,
+}: {
+  users: User[];
+  offset: number;
+}) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   if (users.length === 0) {
@@ -156,30 +174,25 @@ export default function UsersTableClient({ users, offset }: { users: User[]; off
         <span>#</span>
         <span>Name</span>
         <span>Email</span>
-        <span>Verified</span>
         <span>Joined</span>
         <span className="text-right">Actions</span>
       </div>
       <div className="divide-y divide-border">
         {users.map((u, i) => (
           <div key={u.id} className="px-5 py-3">
-            <div className="grid grid-cols-1 md:grid-cols-[40px_1.2fr_1.5fr_110px_110px_130px] gap-1 md:gap-4 md:items-center">
-              <span className="hidden text-xs md:block text-ink-muted font-body">{offset + i + 1}</span>
-              <span className="text-sm font-semibold truncate text-ink-dark font-body">{u.name}</span>
-              <a href={`mailto:${u.email}`} className="text-sm no-underline truncate text-ink-mid font-body hover:text-gold">
+            <div className="grid grid-cols-1 md:grid-cols-[40px_1.2fr_1.5fr_110px_130px] gap-1 md:gap-4 md:items-center">
+              <span className="hidden text-xs md:block text-ink-muted font-body">
+                {offset + i + 1}
+              </span>
+              <span className="text-sm font-semibold truncate text-ink-dark font-body">
+                {u.name}
+              </span>
+              <a
+                href={`mailto:${u.email}`}
+                className="text-sm no-underline truncate text-ink-mid font-body hover:text-gold"
+              >
                 {u.email}
               </a>
-              <span>
-                <span
-                  className={`text-[11px] font-bold px-2 py-0.5 rounded border font-body ${
-                    u.emailVerified
-                      ? "bg-green/10 text-green border-green/20"
-                      : "bg-gray-50 text-gray-500 border-gray-200"
-                  }`}
-                >
-                  {u.emailVerified ? "Verified" : "Not verified"}
-                </span>
-              </span>
               <span className="text-xs text-ink-muted font-body">
                 {new Date(u.createdAt).toLocaleDateString("en-GB", {
                   day: "numeric",
