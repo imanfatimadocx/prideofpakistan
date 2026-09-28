@@ -25,8 +25,8 @@ export default async function NewProductPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-cream pt-14">
-      <main className="flex-1 pt-14 lg:pt-0 p-4 lg:p-8">
+    <div className="flex min-h-screen bg-cream ">
+      <main className="flex-1 p-4 lg:p-8">
         <ProductEditClient
           product={empty}
           categories={categories.map((c) => ({ id: c.id, name: c.name }))}

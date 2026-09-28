@@ -10,7 +10,7 @@ export default async function BizCategoriesPage() {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 pt-14 lg:pt-0 lg:p-8">
+      <main className="flex-1 p-4 lg:p-8">
         <div className="max-w-[600px]">
           <h1 className="mb-1 text-2xl font-bold font-display text-green">
             Business Categories

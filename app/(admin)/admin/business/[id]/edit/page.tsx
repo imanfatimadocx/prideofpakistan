@@ -48,8 +48,8 @@ export default async function BusinessEditPage({ params }: Props) {
   const cats = categories.map((c) => ({ id: c.id, name: c.name }));
 
   return (
-    <div className="flex min-h-screen bg-cream pt-14">
-      <main className="flex-1 p-4 pt-14 lg:pt-0 lg:p-8">
+    <div className="flex min-h-screen bg-cream ">
+      <main className="flex-1 p-4 lg:p-8">
         <BusinessEditClient business={serialized} categories={cats} />
       </main>
     </div>

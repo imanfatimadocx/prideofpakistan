@@ -42,8 +42,8 @@ export default async function AdminProductsPage() {
   }));
 
   return (
-    <div className="flex min-h-screen bg-cream pt-14">
-      <main className="flex-1 p-4 pt-14 lg:pt-0 lg:p-8">
+    <div className="flex min-h-screen bg-cream ">
+      <main className="flex-1 p-4 lg:p-8">
         <div className="max-w-[1200px]">
           <div className="flex items-center justify-between mb-6">
             <div>

@@ -46,7 +46,7 @@ export default async function ProfileEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 pt-14 lg:pt-8 lg:p-8">
+      <main className="flex-1 p-4 lg:pt-8 lg:p-8">
         <ProfileEditClient profile={serialized} categories={cats} />
       </main>
     </div>
