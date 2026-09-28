@@ -12,6 +12,11 @@ const PATHS = [
   "/about",
   "/mission",
   "/pride-tv",
+  "/pride-team",
+  "/our-sponsors",
+  "/terms-of-use",
+  "/privacy-policy",
+  "/disclaimer",
 ];
 
 function doRevalidate() {

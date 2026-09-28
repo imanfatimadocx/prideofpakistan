@@ -13,8 +13,7 @@ const edits = [
     name: "Business.video_url column",
     done: /video_url\s+String/,
     find: /\n(\s*@@map\("busniss"\))/,
-    replace:
-      '\n  video_url           String            @default("") @db.VarChar(500)\n$1',
+    replace: '\n  video_url           String            @default("") @db.VarChar(500)\n$1',
   },
   {
     file: "prisma/schema.prisma",
@@ -56,8 +55,7 @@ const edits = [
     name: "Show video field under the business form",
     done: /<BusinessVideoField/,
     find: /(\n)([ \t]*)(<BusinessEditClient business=\{serialized\} categories=\{cats\} \/>)/,
-    replace:
-      '$1$2$3\n$2<BusinessVideoField businessId={biz.id} initial={biz.video_url ?? ""} />',
+    replace: '$1$2$3\n$2<BusinessVideoField businessId={biz.id} initial={biz.video_url ?? ""} />',
   },
 
   // ── Public business page ─────────────────────────────────────────────
@@ -115,15 +113,14 @@ const edits = [
     name: "Import SponsorsSection",
     done: /SponsorsSection from/,
     find: /(import PrideTVSection[^\n]*\n)/,
-    replace:
-      '$1import SponsorsSection from "@/app/components/home/SponsorsSection";\n',
+    replace: '$1import SponsorsSection from "@/app/components/home/SponsorsSection";\n',
   },
   {
     file: "app/page.tsx",
     name: "Sponsors strip on the homepage",
     done: /<SponsorsSection/,
     find: /(\n)([ \t]*)(<PrideTVSection[^\n]*\/>)/,
-    replace: "$1$2$3\n$2<SponsorsSection />",
+    replace: '$1$2$3\n$2<SponsorsSection />',
   },
   {
     file: "app/components/layout/Footer.tsx",
@@ -145,11 +142,7 @@ for (const e of edits) {
   }
   if (!cache.has(e.file)) {
     const raw = readFileSync(e.file, "utf8");
-    cache.set(e.file, {
-      crlf: raw.includes("\r\n"),
-      text: raw.replace(/\r\n/g, "\n"),
-      changed: false,
-    });
+    cache.set(e.file, { crlf: raw.includes("\r\n"), text: raw.replace(/\r\n/g, "\n"), changed: false });
   }
   const f = cache.get(e.file);
   if (e.done.test(f.text)) {
@@ -157,9 +150,7 @@ for (const e of edits) {
     continue;
   }
   if (!e.find.test(f.text)) {
-    console.log(
-      `✗ ${e.name}\n    couldn't find the spot in ${e.file} - add it by hand (see INSTALL.md)`,
-    );
+    console.log(`✗ ${e.name}\n    couldn't find the spot in ${e.file} - add it by hand (see INSTALL.md)`);
     failed++;
     continue;
   }
@@ -169,15 +160,8 @@ for (const e of edits) {
 }
 
 for (const [file, f] of cache) {
-  if (f.changed)
-    writeFileSync(
-      file,
-      f.crlf ? f.text.replace(/\n/g, "\r\n") : f.text,
-      "utf8",
-    );
+  if (f.changed) writeFileSync(file, f.crlf ? f.text.replace(/\n/g, "\r\n") : f.text, "utf8");
 }
 
-console.log(
-  failed ? `\n${failed} edit(s) need doing by hand.` : "\nAll edits applied.",
-);
+console.log(failed ? `\n${failed} edit(s) need doing by hand.` : "\nAll edits applied.");
 process.exit(failed ? 1 : 0);

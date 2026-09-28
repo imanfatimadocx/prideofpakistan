@@ -1,23 +1,28 @@
 import { getPageContent } from "@/app/lib/pageContent";
+import { getContactInfo } from "@/app/lib/contactInfo";
 import PageHeroEditor from "../PageHeroEditor";
+import ContactInfoEditor from "./ContactInfoEditor";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function ContactPageEditor() {
-  const content = await getPageContent("page_contact");
+  const [hero, info] = await Promise.all([
+    getPageContent("page_contact"),
+    getContactInfo(),
+  ]);
+
   return (
-    <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 lg:p-8">
-        <PageHeroEditor
-          section="page_contact"
-          label="Contact Page"
-          initial={{
-            eyebrow: content.eyebrow,
-            heading: content.heading,
-            subtext: content.subtext,
-          }}
-        />
-      </main>
+    <div className="p-4 lg:p-8">
+      <PageHeroEditor
+        section="page_contact"
+        label="Contact Page"
+        initial={{
+          eyebrow: hero.eyebrow,
+          heading: hero.heading,
+          subtext: hero.subtext,
+        }}
+      />
+      <ContactInfoEditor initial={info} />
     </div>
   );
 }

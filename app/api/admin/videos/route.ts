@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
         description: description?.trim() ?? "",
         video_embed_code: video_embed_code.trim(),
         thumb_url: thumb_url?.trim() ?? "",
-        category: Number(category ?? 1),
+        category: Number.isInteger(Number(category)) ? Number(category) : 0,
         tags: tags?.trim() ?? "",
         featured: featured ? "feature" : "no",
         status: "active",
@@ -101,6 +101,7 @@ export async function PATCH(req: NextRequest) {
       thumb_url,
       status,
       featured,
+      category,
     } = await req.json();
     if (!video_id)
       return NextResponse.json({ error: "Missing video_id" }, { status: 400 });
@@ -116,6 +117,8 @@ export async function PATCH(req: NextRequest) {
         ...(featured !== undefined && {
           featured: featured ? "feature" : "no",
         }),
+        ...(category !== undefined &&
+          Number.isInteger(Number(category)) && { category: Number(category) }),
       },
     });
 

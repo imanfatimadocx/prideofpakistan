@@ -10,6 +10,12 @@ interface Video {
   featured: string;
   views: number;
   datetime: string;
+  category: number;
+}
+
+interface Category {
+  id: number;
+  name: string;
 }
 
 function extractYoutubeId(input: string): string | null {
@@ -45,15 +51,25 @@ function getThumbnail(input: string): string {
   return "";
 }
 
-const EMPTY_FORM = { title: "", url: "", featured: false };
-
 export default function MediaAdminClient({
   videos: initial,
+  categories,
 }: {
   videos: Video[];
+  categories: Category[];
 }) {
+  const EMPTY_FORM = {
+    title: "",
+    url: "",
+    featured: false,
+    category: categories[0]?.id ?? 0,
+  };
+  const categoryName = (id: number) =>
+    categories.find((c) => c.id === id)?.name ?? "Uncategorised";
+
   const [videos, setVideos] = useState(initial);
   const [form, setForm] = useState(EMPTY_FORM);
+  const [filter, setFilter] = useState<number | "all">("all");
   const [editingId, setEditingId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState<number | null>(null);
@@ -72,6 +88,7 @@ export default function MediaAdminClient({
       title: v.title,
       url: v.video_embed_code,
       featured: v.featured === "feature",
+      category: categories.some((c) => c.id === v.category) ? v.category : 0,
     });
     setEditingId(v.video_id);
     setPreview(getThumbnail(v.video_embed_code) || v.thumb_url || null);
@@ -113,6 +130,7 @@ export default function MediaAdminClient({
             video_embed_code: embedUrl,
             thumb_url: thumb,
             featured: form.featured,
+            category: form.category,
           }),
         });
         if (!res.ok) throw new Error();
@@ -126,6 +144,7 @@ export default function MediaAdminClient({
                   video_embed_code: embedUrl,
                   thumb_url: thumb,
                   featured: form.featured ? "feature" : "no",
+                  category: form.category,
                 }
               : v,
           ),
@@ -141,7 +160,7 @@ export default function MediaAdminClient({
             featured: form.featured,
             description: "",
             tags: "",
-            category: 1,
+            category: form.category,
           }),
         });
         if (!res.ok) throw new Error();
@@ -157,6 +176,7 @@ export default function MediaAdminClient({
             featured: form.featured ? "feature" : "no",
             views: 0,
             datetime: new Date().toISOString(),
+            category: form.category,
           },
           ...prev,
         ]);
@@ -210,6 +230,14 @@ export default function MediaAdminClient({
     }
   }
 
+  const known = new Set(categories.map((c) => c.id));
+  const shown =
+    filter === "all"
+      ? videos
+      : filter === 0
+        ? videos.filter((v) => !known.has(v.category))
+        : videos.filter((v) => v.category === filter);
+
   return (
     <div className="space-y-8">
       {/* Add / Edit form */}
@@ -247,6 +275,34 @@ export default function MediaAdminClient({
           <p className="text-xs text-ink-muted font-body mt-1.5">
             Paste any YouTube URL - watch page, short, or share link. Thumbnail
             is auto-extracted.
+          </p>
+        </div>
+
+        {/* Category */}
+        <div>
+          <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
+            Category
+          </label>
+          <select
+            value={form.category}
+            onChange={(e) =>
+              setForm((f) => ({ ...f, category: Number(e.target.value) }))
+            }
+            className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body bg-white focus:outline-none focus:border-gold transition-colors"
+          >
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+            <option value={0}>Uncategorised</option>
+          </select>
+          <p className="text-xs text-ink-muted font-body mt-1.5">
+            Manage categories under{" "}
+            <a href="/admin/video-categories" className="text-gold hover:underline">
+              Pride TV → Video Categories
+            </a>
+            .
           </p>
         </div>
 
@@ -315,24 +371,41 @@ export default function MediaAdminClient({
 
       {/* Video list */}
       <div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 className="text-lg font-bold font-display text-green">
             All Videos{" "}
             <span className="text-base font-normal text-ink-muted">
-              ({videos.length})
+              ({shown.length})
             </span>
           </h2>
+          <select
+            value={filter}
+            onChange={(e) =>
+              setFilter(e.target.value === "all" ? "all" : Number(e.target.value))
+            }
+            className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          >
+            <option value="all">All categories</option>
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+            <option value={0}>Uncategorised</option>
+          </select>
         </div>
 
-        {videos.length === 0 ? (
+        {shown.length === 0 ? (
           <div className="py-16 text-center bg-white border border-border rounded-xl">
             <p className="text-sm text-ink-muted font-body">
-              No videos added yet. Add your first one above.
+              {filter === "all"
+                ? "No videos added yet. Add your first one above."
+                : "No videos in this category."}
             </p>
           </div>
         ) : (
           <div className="space-y-3">
-            {videos.map((v) => (
+            {shown.map((v) => (
               <div
                 key={v.video_id}
                 className="overflow-hidden bg-white border border-border rounded-xl"
@@ -381,6 +454,10 @@ export default function MediaAdminClient({
                       })}
                       {" · "}
                       {v.views.toLocaleString()} views
+                      {" · "}
+                      <span className="font-semibold text-ink-mid">
+                        {categoryName(v.category)}
+                      </span>
                     </p>
                   </div>
 

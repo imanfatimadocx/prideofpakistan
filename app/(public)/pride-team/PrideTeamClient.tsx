@@ -16,34 +16,55 @@ const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 function MemberCard({ m }: { m: Member }) {
   const [open, setOpen] = useState(false);
-  const long = m.description.length > 160;
+  const long = m.description.length > 120;
   const place = [m.city, m.country].filter(Boolean).join(", ");
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white border border-border rounded-2xl">
-      <div className="relative w-full overflow-hidden aspect-square bg-green">
+    <div className="group">
+      {/* Plain image - no card, no border (same as Who Is Who) */}
+      <div
+        className="w-full overflow-hidden rounded-lg"
+        style={{ aspectRatio: "650/500" }}
+      >
         {m.image ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={m.image} alt={m.fullname} className="object-cover object-top w-full h-full" loading="lazy" />
+          <img
+            src={m.image}
+            alt={m.fullname}
+            loading="lazy"
+            className="object-cover object-top w-full h-full transition-transform duration-300 rounded-lg group-hover:scale-105"
+          />
         ) : (
-          <div className="flex items-center justify-center w-full h-full">
-            <span className="text-6xl font-bold text-white/90 font-display">{m.fullname.charAt(0)}</span>
+          <div className="flex items-center justify-center w-full h-full text-3xl font-bold text-white rounded-lg bg-green font-display">
+            {m.fullname.charAt(0).toUpperCase()}
           </div>
         )}
       </div>
-      <div className="flex flex-col flex-1 p-5">
-        <h3 className="text-lg font-bold leading-snug font-display text-green">{m.fullname}</h3>
-        {m.designation && <p className="mt-0.5 text-sm font-semibold text-gold font-body">{m.designation}</p>}
-        {place && <p className="mt-1 text-xs text-ink-muted font-body">{place}</p>}
+
+      {/* Content underneath */}
+      <div className="mt-2.5">
+        <p className="text-sm font-bold leading-snug transition-colors text-ink-dark font-display group-hover:text-green">
+          {m.fullname}
+        </p>
+        {m.designation && (
+          <p className="text-xs font-semibold text-gold font-body mt-0.5">
+            {m.designation}
+          </p>
+        )}
+        {place && (
+          <p className="text-[11px] text-ink-muted font-body mt-0.5">{place}</p>
+        )}
         {m.description && (
           <>
-            <p className={`mt-3 text-sm leading-relaxed text-left text-ink-mid font-body ${open ? "" : "line-clamp-3"}`}>
+            <p
+              className={`mt-1.5 text-xs leading-relaxed text-left text-ink-mid font-body ${open ? "" : "line-clamp-3"}`}
+            >
               {m.description}
             </p>
             {long && (
               <button
                 onClick={() => setOpen(!open)}
-                className="self-start mt-2 text-xs font-semibold text-gold font-body hover:underline"
+                className="mt-1 text-[11px] font-semibold text-gold font-body hover:underline"
               >
                 {open ? "Show less" : "Read more"}
               </button>
@@ -70,7 +91,9 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
     return members.filter((m) => {
       if (letter && m.fullname.charAt(0).toUpperCase() !== letter) return false;
       if (!q) return true;
-      return [m.fullname, m.designation, m.city, m.country].some((v) => v.toLowerCase().includes(q));
+      return [m.fullname, m.designation, m.city, m.country].some((v) =>
+        v.toLowerCase().includes(q),
+      );
     });
   }, [members, search, letter]);
 
@@ -80,14 +103,18 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
 
   function goTo(p: number) {
     setPage(p);
-    document.getElementById("team-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById("team-grid")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   if (members.length === 0) {
     return (
       <section className="py-20">
         <div className="max-w-[700px] mx-auto px-4 text-center">
-          <p className="text-sm text-ink-muted font-body">Our team members will be introduced here soon.</p>
+          <p className="text-sm text-ink-muted font-body">
+            Our team members will be introduced here soon.
+          </p>
         </div>
       </section>
     );
@@ -119,7 +146,9 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
                 setPage(1);
               }}
               className={`px-2.5 h-8 rounded text-xs font-semibold font-body transition-colors ${
-                letter === null ? "bg-green text-white" : "text-ink-mid hover:bg-gold-pale"
+                letter === null
+                  ? "bg-green text-white"
+                  : "text-ink-mid hover:bg-gold-pale"
               }`}
             >
               All
@@ -152,10 +181,12 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
         <div id="team-grid" className="scroll-mt-6">
           {visible.length === 0 ? (
             <div className="py-16 text-center bg-white border border-border rounded-2xl">
-              <p className="text-sm text-ink-muted font-body">No team members match your search.</p>
+              <p className="text-sm text-ink-muted font-body">
+                No team members match your search.
+              </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-3 gap-y-7 sm:grid-cols-3 lg:grid-cols-5 sm:gap-x-4">
               {visible.map((m) => (
                 <MemberCard key={m.id} m={m} />
               ))}
@@ -177,7 +208,9 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
                 key={p}
                 onClick={() => goTo(p)}
                 className={`w-9 h-9 rounded-md text-sm font-semibold font-body border ${
-                  p === current ? "bg-gold text-white border-gold" : "bg-white border-border text-ink-mid hover:border-gold"
+                  p === current
+                    ? "bg-gold text-white border-gold"
+                    : "bg-white border-border text-ink-mid hover:border-gold"
                 }`}
               >
                 {p}

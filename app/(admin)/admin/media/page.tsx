@@ -1,52 +1,43 @@
 import MediaAdminClient from "./MediaAdminClient";
 import { prisma } from "@/app/lib/prisma";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function AdminMediaPage() {
-  let videos: {
-    video_id: number;
-    title: string;
-    video_embed_code: string;
-    thumb_url: string;
-    status: string;
-    featured: string;
-    views: number;
-    datetime: string;
-  }[] = [];
+  const [rows, categories] = await Promise.all([
+    prisma.video.findMany({ orderBy: { datetime: "desc" } }).catch(() => []),
+    prisma.videoCategory
+      .findMany({ orderBy: [{ sortOrder: "asc" }, { name: "asc" }] })
+      .catch(() => []),
+  ]);
 
-  try {
-    const rows = await prisma.video.findMany({
-      orderBy: { datetime: "desc" },
-    });
-    videos = rows.map((v) => ({
-      video_id: Number(v.video_id),
-      title: v.title,
-      video_embed_code: v.video_embed_code,
-      thumb_url: v.thumb_url,
-      status: v.status,
-      featured: v.featured,
-      views: Number(v.views),
-      datetime: v.datetime.toISOString(),
-    }));
-  } catch {
-    videos = [];
-  }
+  const videos = rows.map((v) => ({
+    video_id: Number(v.video_id),
+    title: v.title,
+    video_embed_code: v.video_embed_code,
+    thumb_url: v.thumb_url,
+    status: v.status,
+    featured: v.featured,
+    views: Number(v.views),
+    datetime: v.datetime.toISOString(),
+    category: v.category,
+  }));
 
   return (
-    <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 lg:p-8">
-        <div className="max-w-[900px]">
-          <h1 className="mb-1 text-2xl font-bold font-display text-green">
-            Pride TV Media
-          </h1>
-          <p className="mb-8 text-sm text-ink-muted font-body">
-            Add YouTube videos with a custom caption. They appear as embedded
-            players on the homepage and Pride TV page.
-          </p>
-          <MediaAdminClient videos={videos} />
-        </div>
-      </main>
+    <div className="p-4 lg:p-8">
+      <div className="max-w-[900px]">
+        <h1 className="mb-1 text-2xl font-bold font-display text-green">
+          Pride TV Media
+        </h1>
+        <p className="mb-8 text-sm text-ink-muted font-body">
+          Add YouTube videos with a custom caption. They appear as embedded
+          players on the homepage and Pride TV page.
+        </p>
+        <MediaAdminClient
+          videos={videos}
+          categories={categories.map((c) => ({ id: c.id, name: c.name }))}
+        />
+      </div>
     </div>
   );
 }
