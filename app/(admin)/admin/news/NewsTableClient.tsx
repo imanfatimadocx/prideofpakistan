@@ -40,7 +40,7 @@ export default function NewsTableClient({
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   async function handleDelete(id: number) {
-    if (!confirm("Delete this news item permanently?")) return;
+    if (!confirm("Delete this item permanently?")) return;
     setDeleting(id);
     try {
       await fetch(`/api/admin/news/${id}`, { method: "DELETE" });
@@ -53,10 +53,10 @@ export default function NewsTableClient({
   return (
     <div className="space-y-4">
       {/* Filters */}
-      <div className="bg-white border border-border rounded-xl p-4 flex flex-wrap gap-3 items-center">
+      <div className="flex flex-wrap items-center gap-3 p-4 bg-white border border-border rounded-xl">
         <input
           type="text"
-          placeholder="Search news…"
+          placeholder="Search items…"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
@@ -70,36 +70,36 @@ export default function NewsTableClient({
             setFilterStatus(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
         >
           <option value="all">All</option>
           <option value="0">Draft</option>
           <option value="1">Published</option>
         </select>
-        <span className="text-xs text-ink-muted font-body ml-auto">
+        <span className="ml-auto text-xs text-ink-muted font-body">
           {filtered.length} items
         </span>
       </div>
 
       {/* Table */}
-      <div className="bg-white border border-border rounded-xl overflow-hidden">
+      <div className="overflow-hidden bg-white border border-border rounded-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-sm font-body">
             <thead>
               <tr className="border-b border-border bg-cream">
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wide text-ink-muted w-12">
+                <th className="w-12 px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
                   #
                 </th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wide text-ink-muted">
+                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
                   News Item
                 </th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wide text-ink-muted hidden sm:table-cell">
+                <th className="hidden px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted sm:table-cell">
                   Date
                 </th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wide text-ink-muted">
+                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
                   Status
                 </th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wide text-ink-muted">
+                <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
                   Actions
                 </th>
               </tr>
@@ -109,16 +109,16 @@ export default function NewsTableClient({
                 <tr>
                   <td
                     colSpan={5}
-                    className="px-4 py-10 text-center text-sm text-ink-muted font-body"
+                    className="px-4 py-10 text-sm text-center text-ink-muted font-body"
                   >
-                    No news items found.
+                    No items found.
                   </td>
                 </tr>
               ) : (
                 paginated.map((n, idx) => (
                   <tr
                     key={n.id}
-                    className="hover:bg-cream/50 transition-colors"
+                    className="transition-colors hover:bg-cream/50"
                   >
                     <td className="px-4 py-3">
                       <span className="text-xs text-ink-muted tabular-nums">
@@ -132,10 +132,10 @@ export default function NewsTableClient({
                           <img
                             src={n.smallimage}
                             alt={n.title}
-                            className="w-20 h-16 rounded-lg object-fit flex-shrink-0"
+                            className="flex-shrink-0 w-20 h-16 rounded-lg object-fit"
                           />
                         ) : (
-                          <div className="w-20 h-16 rounded-lg bg-green/10 flex items-center justify-center flex-shrink-0">
+                          <div className="flex items-center justify-center flex-shrink-0 w-20 h-16 rounded-lg bg-green/10">
                             <svg
                               width="16"
                               height="16"
@@ -162,7 +162,7 @@ export default function NewsTableClient({
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 hidden sm:table-cell">
+                    <td className="hidden px-4 py-3 sm:table-cell">
                       <span className="text-xs text-ink-muted">
                         {new Date(n.date_time).toLocaleDateString("en-GB", {
                           day: "numeric",
@@ -183,7 +183,7 @@ export default function NewsTableClient({
                         <Link
                           href={`/news/${n.id}`}
                           target="_blank"
-                          className="text-xs no-underline text-ink-muted font-body hover:text-green transition-colors"
+                          className="text-xs no-underline transition-colors text-ink-muted font-body hover:text-green"
                         >
                           View
                         </Link>
@@ -219,14 +219,14 @@ export default function NewsTableClient({
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="px-4 py-2 text-sm font-semibold border border-border rounded-lg font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
+              className="px-4 py-2 text-sm font-semibold border rounded-lg border-border font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
             >
               Previous
             </button>
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="px-4 py-2 text-sm font-semibold border border-border rounded-lg font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
+              className="px-4 py-2 text-sm font-semibold border rounded-lg border-border font-body text-ink-mid hover:border-green hover:text-green disabled:opacity-40"
             >
               Next
             </button>
