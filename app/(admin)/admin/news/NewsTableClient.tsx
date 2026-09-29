@@ -91,7 +91,7 @@ export default function NewsTableClient({
                   #
                 </th>
                 <th className="px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted">
-                  News Item
+                  Forum Items
                 </th>
                 <th className="hidden px-4 py-3 text-xs font-bold tracking-wide text-left uppercase text-ink-muted sm:table-cell">
                   Date
