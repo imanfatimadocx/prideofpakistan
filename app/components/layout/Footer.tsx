@@ -62,6 +62,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 list-none">
               {[
+                { label: "Submit Your Profile", href: "/submit-profile" },
                 { label: "Pakistani Businesses", href: "/business" },
                 { label: "List Your Business", href: "/list-business" },
                 { label: "Our Sponsors", href: "/our-sponsors" },
@@ -85,7 +86,6 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 list-none">
               {[
-                { label: "Submit Your Profile", href: "/submit-profile" },
                 { label: "Pride TV", href: "/pride-tv" },
                 { label: "Pride Team", href: "/pride-team" },
                 { label: "Contact Us", href: "/contact" },
