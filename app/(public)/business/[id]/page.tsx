@@ -4,7 +4,6 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
-import CommentSection from "@/app/components/shared/CommentSection";
 import VideoEmbed from "@/app/components/shared/VideoEmbed";
 
 export const dynamic = "force-dynamic";
@@ -120,9 +119,7 @@ export default async function BusinessDetailPage({ params }: Props) {
               <details className="overflow-hidden bg-white border lg:hidden border-border rounded-xl group">
                 <summary className="flex items-center justify-between px-4 py-3 text-sm font-bold tracking-wide uppercase list-none cursor-pointer select-none text-green font-display bg-green/10 [&::-webkit-details-marker]:hidden">
                   Browse Categories
-                  <span className="transition-transform duration-200 group-open:rotate-180">
-                    ▾
-                  </span>
+                  <span className="transition-transform duration-200 group-open:rotate-180">▾</span>
                 </summary>
                 <nav className="py-2 max-h-[320px] overflow-y-auto">
                   {categories.map((cat) => (
@@ -192,10 +189,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                     </h2>
                   </div>
                   <div className="p-4">
-                    <VideoEmbed
-                      url={biz.video_url}
-                      title={`${biz.company_name} video`}
-                    />
+                    <VideoEmbed url={biz.video_url} title={`${biz.company_name} video`} />
                   </div>
                 </div>
               )}
@@ -381,8 +375,24 @@ export default async function BusinessDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
-              {/* Comments */}
-              <CommentSection entityType="business" entityId={bizId} />
+              {/* List your business */}
+              <div className="p-6 border bg-green/5 border-green/20 rounded-xl sm:flex sm:items-center sm:justify-between sm:gap-6">
+                <div>
+                  <h2 className="mb-1 text-lg font-bold font-display text-green">
+                    Have a business of your own?
+                  </h2>
+                  <p className="text-sm text-left text-ink-mid font-body">
+                    List it on Pride of Pakistan and reach people
+                    across the country and around the world.
+                  </p>
+                </div>
+                <Link
+                  href="/list-business"
+                  className="inline-flex items-center flex-shrink-0 gap-2 px-6 py-3 mt-4 text-sm font-semibold text-white no-underline transition-colors rounded-md sm:mt-0 bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                >
+                  List Your Business →
+                </Link>
+              </div>
               {/* Share */}
               <div className="flex flex-wrap gap-2">
                 <a
