@@ -40,7 +40,7 @@ export default async function YourStoriesPage() {
               {hero.heading}
             </h1>
             {hero.subtext && (
-              <p className="text-white/65 font-body text-sm sm:text-base max-w-[560px]">
+              <p className="text-white/65 font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
                 {hero.subtext}
               </p>
             )}

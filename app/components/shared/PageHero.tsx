@@ -15,7 +15,7 @@ export default function PageHero({ eyebrow, title, subtitle }: Props) {
           {title}
         </h1>
         {subtitle && (
-          <p className="text-white/65 font-body text-sm sm:text-base max-w-[560px]">
+          <p className="w-full text-sm leading-relaxed whitespace-pre-line text-white/65 font-body sm:text-base">
             {subtitle}
           </p>
         )}
