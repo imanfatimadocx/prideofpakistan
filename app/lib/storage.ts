@@ -1,17 +1,12 @@
-import { promises as fs } from "fs";
 import path from "path";
 import crypto from "crypto";
+import { prisma } from "@/app/lib/prisma";
 
 /**
- * Where uploaded images are kept.
- * On Hostinger set UPLOAD_DIR to a folder OUTSIDE the app's build folder,
- * e.g. /home/u123456789/domains/prideofpakistan.com/uploads
- * (the build folders are wiped on every deploy).
- * Locally it defaults to ./storage in the project.
+ * Images are stored INSIDE the MySQL database (table "media"), so they are
+ * never lost when Hostinger redeploys the site, and they are included in
+ * Hostinger's database backups. Public link: /media/<path>
  */
-export function uploadRoot(): string {
-  return path.resolve(process.env.UPLOAD_DIR || path.join(process.cwd(), "storage"));
-}
 
 const TYPES: { ext: string; mime: string; test: (b: Buffer) => boolean }[] = [
   { ext: "jpg", mime: "image/jpeg", test: (b) => b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff },
@@ -31,8 +26,13 @@ export function detectImage(buf: Buffer) {
   return TYPES.find((t) => buf.length > 12 && t.test(buf)) ?? null;
 }
 
+/** Optional old-style folder (only used as a fallback when reading). */
+export function uploadRoot(): string {
+  return path.resolve(process.env.UPLOAD_DIR || path.join(process.cwd(), "storage"));
+}
+
 /**
- * Saves an image buffer and returns its public URL, e.g. /media/businesses/2026/10/ab12cd34.jpg
+ * Saves an image and returns its public URL, e.g. /media/businesses/2026/10/ab12cd34.jpg
  * Throws if the file is not a supported image.
  */
 export async function saveImage(buf: Buffer, folder = "general"): Promise<string> {
@@ -41,15 +41,15 @@ export async function saveImage(buf: Buffer, folder = "general"): Promise<string
 
   const safeFolder = folder.replace(/[^a-z0-9_-]/gi, "").toLowerCase() || "general";
   const now = new Date();
-  const rel = path.posix.join(
+  const rel = [
     safeFolder,
     String(now.getFullYear()),
     String(now.getMonth() + 1).padStart(2, "0"),
     `${crypto.randomBytes(12).toString("hex")}.${kind.ext}`,
-  );
+  ].join("/");
 
-  const full = path.join(uploadRoot(), ...rel.split("/"));
-  await fs.mkdir(path.dirname(full), { recursive: true });
-  await fs.writeFile(full, buf);
+  await prisma.media.create({
+    data: { path: rel, mime: kind.mime, size: buf.length, data: new Uint8Array(buf) },
+  });
   return `/media/${rel}`;
 }

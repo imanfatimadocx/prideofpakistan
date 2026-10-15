@@ -506,3 +506,15 @@ model VideoCategory {
 
   @@map("video_categories")
 }
+
+// ─── UPLOADED IMAGES (stored in the database) ───────────────────────────────
+model Media {
+  id        Int      @id @default(autoincrement())
+  path      String   @unique @db.VarChar(255)
+  mime      String   @db.VarChar(50)
+  size      Int
+  data      Bytes    @db.LongBlob
+  createdAt DateTime @default(now())
+
+  @@map("media")
+}

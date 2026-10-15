@@ -1,6 +1,6 @@
 // Copies every table from Supabase (PostgreSQL) to Hostinger (MySQL/MariaDB).
-// Optional: --images  downloads all Cloudinary images into ./storage-export
-//                      and rewrites their links to /media/cloudinary/...
+// Optional: --images  downloads all Cloudinary images, saves them INSIDE the
+//                      MySQL "media" table, and rewrites links to /media/cloudinary/...
 //
 // Usage (PowerShell, inside the hostinger-move folder):
 //   $env:PG_URL="postgresql://...supabase..."      (Supabase SESSION/direct connection string)
@@ -10,13 +10,10 @@
 // Safe to run again: it empties the MySQL tables first, then copies fresh.
 import pg from "pg";
 import mysql from "mysql2/promise";
-import fs from "fs/promises";
-import path from "path";
 
 const PG_URL = process.env.PG_URL;
 const MYSQL_URL = process.env.MYSQL_URL;
 const DO_IMAGES = process.argv.includes("--images");
-const EXPORT_DIR = path.resolve("storage-export");
 
 if (!PG_URL || !MYSQL_URL) {
   console.error("Set PG_URL and MYSQL_URL first (see top of this file).");
@@ -35,25 +32,31 @@ const dst = await mysql.createConnection({ uri: MYSQL_URL, multipleStatements: f
 // ── Cloudinary image handling ───────────────────────────────────────────────
 const CLD_RE = /https?:\/\/res\.cloudinary\.com\/[^/\s"'<>]+\/image\/upload\/([^\s"'<>?#)]+)/g;
 const downloaded = new Map(); // url -> local link
+const MIME = { jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", gif: "image/gif", webp: "image/webp", avif: "image/avif" };
+let MEDIA_TABLE = "media";
 let imgOk = 0, imgFail = 0;
 
 async function fetchImage(url, relPath) {
   if (downloaded.has(url)) return downloaded.get(url);
-  const safe = relPath.split("/").map((p) => p.replace(/[^a-zA-Z0-9._-]/g, "_")).join("/");
-  const local = `/media/cloudinary/${safe}`;
+  const safe = "cloudinary/" + relPath.split("/").map((p) => p.replace(/[^a-zA-Z0-9._-]/g, "_")).join("/");
+  const local = `/media/${safe}`;
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
-    const file = path.join(EXPORT_DIR, "cloudinary", ...safe.split("/"));
-    await fs.mkdir(path.dirname(file), { recursive: true });
-    await fs.writeFile(file, buf);
+    const ext = (safe.split(".").pop() || "").toLowerCase();
+    const mime = MIME[ext] || res.headers.get("content-type") || "image/jpeg";
+    await dst.query(
+      "INSERT INTO ?? (path, mime, size, data, createdAt) VALUES (?, ?, ?, ?, NOW(3)) " +
+        "ON DUPLICATE KEY UPDATE mime = VALUES(mime), size = VALUES(size), data = VALUES(data)",
+      [MEDIA_TABLE, safe, mime, buf.length, buf],
+    );
     imgOk++;
     downloaded.set(url, local);
     return local;
   } catch (e) {
     imgFail++;
-    console.warn(`   ! could not download ${url} (${e.message}) — keeping original link`);
+    console.warn(`   ! could not save ${url} (${e.message}) — keeping original link`);
     downloaded.set(url, url);
     return url;
   }
@@ -88,6 +91,19 @@ const { rows: tables } = await src.query(
 const [myTables] = await dst.query("SHOW TABLES");
 // Windows MySQL stores table names in lowercase ("User" -> "user"), so match ignoring case
 const myNames = new Map(myTables.map((r) => { const n = Object.values(r)[0]; return [n.toLowerCase(), n]; }));
+
+if (DO_IMAGES) {
+  MEDIA_TABLE = myNames.get("media");
+  if (!MEDIA_TABLE) {
+    console.error('The "media" table is missing. Run  npx prisma db push  (with DATABASE_URL pointing to this MySQL) first.');
+    process.exit(1);
+  }
+  const [[{ p }]] = await dst.query("SELECT @@max_allowed_packet AS p");
+  if (p < 16 * 1024 * 1024) {
+    console.warn(`WARNING: MySQL max_allowed_packet is only ${Math.round(p / 1024)} KB — big images may fail.`);
+    console.warn("XAMPP fix: E:\\xampp\\mysql\\bin\\my.ini → set max_allowed_packet=64M, then Stop/Start MySQL.\n");
+  }
+}
 
 await dst.query("SET FOREIGN_KEY_CHECKS=0");
 const report = [];
@@ -156,6 +172,5 @@ await dst.end();
 console.log("\n=== Summary (table, Postgres rows, MySQL rows, failed) ===");
 for (const r of report) console.log(r.join("\t"));
 if (DO_IMAGES) {
-  console.log(`\nImages downloaded: ${imgOk}, failed: ${imgFail}`);
-  console.log(`Upload the CONTENTS of ${EXPORT_DIR} into your server's uploads folder (UPLOAD_DIR).`);
+  console.log(`\nImages saved into the database: ${imgOk}, failed: ${imgFail}`);
 }
