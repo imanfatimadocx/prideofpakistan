@@ -2,14 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
-import { v2 as cloudinary } from "cloudinary";
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
+import { saveImage } from "@/app/lib/storage";
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -34,23 +27,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Upload image to Cloudinary
+    // Save image to our own storage
     let imageUrl = "";
     if (imageFile && imageFile.size > 0) {
       const bytes = await imageFile.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      const result = await new Promise<{ secure_url: string }>(
-        (resolve, reject) => {
-          cloudinary.uploader
-            .upload_stream(
-              { folder: "prideofpakistan/profiles", resource_type: "image" },
-              (err, result) =>
-                err ? reject(err) : resolve(result as { secure_url: string }),
-            )
-            .end(buffer);
-        },
-      );
-      imageUrl = result.secure_url;
+      imageUrl = await saveImage(buffer, "profiles");
     }
 
     const now = new Date();

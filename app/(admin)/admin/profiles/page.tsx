@@ -1,6 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import Link from "next/link";
 import ProfilesTableClient from "./ProfilesTableClient";
+import { resolveImage } from "@/app/lib/images";
 
 export const dynamic = "force-dynamic";
 
@@ -34,13 +35,7 @@ export default async function AdminProfilesPage() {
     title: p.title ?? "-",
     Profession: p.Profession ?? "",
     status: p.status ?? 0,
-    image: p.image
-      ? p.image.startsWith("http")
-        ? p.image
-        : p.image.startsWith("uploads/")
-          ? `/${p.image}`
-          : `/uploads/${p.image}`
-      : null,
+    image: resolveImage(p.image),
     feature: p.feature ?? 0,
     categoryid: p.categoryid ?? null,
     categoryname: p.categoryid ? (catMap[p.categoryid] ?? null) : null,

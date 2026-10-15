@@ -19,8 +19,8 @@ export default async function AdminUsersPage({
   const where: Prisma.PublicUserWhereInput = query
     ? {
         OR: [
-          { name: { contains: query, mode: "insensitive" } },
-          { email: { contains: query, mode: "insensitive" } },
+          { name: { contains: query } },
+          { email: { contains: query } },
         ],
       }
     : {};
