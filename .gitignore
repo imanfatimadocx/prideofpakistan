@@ -49,3 +49,6 @@ next-env.d.ts
 /storage/
 hostinger-move/node_modules/
 hostinger-move/storage-export/
+
+pride_local.*
+*.sql
