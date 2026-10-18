@@ -41,7 +41,7 @@ export default function Footer() {
                 { label: "Who Is Who", href: "/who-is-who" },
                 { label: "Pakistani Products", href: "/products" },
                 { label: "Your Stories", href: "/your-stories" },
-                { label: "Discussion Forum", href: "/latest-news" },
+                { label: "Discussion Forum", href: "/news" },
               ].map(({ label, href }) => (
                 <li key={href}>
                   <Link

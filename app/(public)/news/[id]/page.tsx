@@ -162,7 +162,7 @@ export default async function NewsDetailPage({ params }: Props) {
               WhatsApp
             </a>
           </div>
-          <CommentSection entityType="news" entityId={newsId} />;
+          <CommentSection entityType="news" entityId={newsId} />
         </div>
       </main>
       <Footer />
