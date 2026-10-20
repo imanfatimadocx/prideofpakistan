@@ -150,7 +150,7 @@ export default function ProductEditClient({
         <div className="flex items-center gap-3">
           <NextLink
             href="/admin/products"
-            className="text-sm no-underline text-gold font-body hover:underline"
+            className="text-sm no-underline text-leaf-dark font-body hover:underline"
           >
             ← Products
           </NextLink>
@@ -208,7 +208,7 @@ export default function ProductEditClient({
                 onChange={(e) =>
                   setForm((f) => ({ ...f, title: e.target.value }))
                 }
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
               />
             </div>
             <div>
@@ -221,7 +221,7 @@ export default function ProductEditClient({
                   setForm((f) => ({ ...f, shortdesc: e.target.value }))
                 }
                 rows={3}
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors resize-none"
                 placeholder="Brief overview shown on listing cards…"
               />
             </div>
@@ -299,7 +299,7 @@ export default function ProductEditClient({
                   onChange={(e) =>
                     setForm((f) => ({ ...f, [key]: e.target.value }))
                   }
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
                 />
               </div>
             ))}
@@ -330,7 +330,7 @@ export default function ProductEditClient({
                 </div>
               )}
             </div>
-            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block">
+            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block">
               {imagePreview ? "Change Photo" : "Upload Photo"}
               <input
                 type="file"
@@ -351,7 +351,7 @@ export default function ProductEditClient({
               onChange={(e) =>
                 setForm((f) => ({ ...f, status: Number(e.target.value) }))
               }
-              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
             >
               <option value={0}>Pending</option>
               <option value={1}>Approved</option>
@@ -369,7 +369,7 @@ export default function ProductEditClient({
               onChange={(e) =>
                 setForm((f) => ({ ...f, categoryid: Number(e.target.value) }))
               }
-              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
             >
               <option value={0}>— Select category —</option>
               {categories.map((c) => (

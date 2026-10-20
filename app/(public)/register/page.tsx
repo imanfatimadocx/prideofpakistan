@@ -81,7 +81,7 @@ export default function RegisterPage() {
                 name="name"
                 type="text"
                 required
-                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                 placeholder="Your full name"
               />
             </div>
@@ -92,7 +92,7 @@ export default function RegisterPage() {
                 name="email"
                 type="email"
                 required
-                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                 placeholder="you@example.com"
               />
             </div>
@@ -104,7 +104,7 @@ export default function RegisterPage() {
                 type="password"
                 required
                 minLength={8}
-                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                 placeholder="At least 8 characters"
               />
             </div>
@@ -115,7 +115,7 @@ export default function RegisterPage() {
                 name="confirm"
                 type="password"
                 required
-                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                 placeholder="Repeat your password"
               />
             </div>
@@ -132,7 +132,7 @@ export default function RegisterPage() {
 
             <p className="text-sm text-center text-ink-muted font-body">
               Already have an account?{' '}
-              <Link href="/login" className="font-semibold text-gold hover:underline">
+              <Link href="/login" className="font-semibold text-leaf-dark hover:underline">
                 Sign In
               </Link>
             </p>

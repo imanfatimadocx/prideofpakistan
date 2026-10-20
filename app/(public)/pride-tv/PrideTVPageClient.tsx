@@ -87,7 +87,7 @@ export default function PrideTVPageClient({
     return (
       <div className="flex items-center justify-center min-h-screen px-4 text-center bg-green">
         <div>
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-3 font-body">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-sage mb-3 font-body">
             Pride TV
           </p>
           <h1 className="mb-3 text-3xl font-bold text-white font-display">
@@ -105,7 +105,7 @@ export default function PrideTVPageClient({
     <div className="min-h-screen bg-green">
       {/* Hero - active player */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pt-8 pb-6">
-        <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-2 font-body">
+        <p className="text-[11px] font-bold tracking-[.16em] uppercase text-sage mb-2 font-body">
           Pride TV
         </p>
         <h1 className="mb-6 text-2xl font-bold text-white font-display sm:text-3xl">
@@ -207,7 +207,7 @@ export default function PrideTVPageClient({
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       {v.featured === "feature" && (
-                        <span className="text-[9px] font-bold text-gold-bright font-body uppercase tracking-wide">
+                        <span className="text-[9px] font-bold text-sage font-body uppercase tracking-wide">
                           Featured
                         </span>
                       )}

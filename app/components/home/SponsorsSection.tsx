@@ -19,7 +19,7 @@ export default async function SponsorsSection() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
               Our Supporters
             </p>
             <h2 className="text-2xl font-bold font-display sm:text-3xl text-green">
@@ -28,7 +28,7 @@ export default async function SponsorsSection() {
           </div>
           <Link
             href="/our-sponsors"
-            className="text-sm font-semibold no-underline text-gold font-body hover:underline"
+            className="text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
           >
             View all sponsors →
           </Link>

@@ -249,13 +249,13 @@ export default function MediaAdminClient({
         {/* Caption */}
         <div>
           <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-            Caption <span className="text-gold">*</span>
+            Caption <span className="text-leaf-dark">*</span>
           </label>
           <input
             type="text"
             value={form.title}
             onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-            className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+            className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
             placeholder="e.g. Pakistan National Day Celebrations 2024"
           />
         </div>
@@ -263,13 +263,13 @@ export default function MediaAdminClient({
         {/* YouTube URL */}
         <div>
           <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-            YouTube URL <span className="text-gold">*</span>
+            YouTube URL <span className="text-leaf-dark">*</span>
           </label>
           <input
             type="text"
             value={form.url}
             onChange={(e) => handleUrlChange(e.target.value)}
-            className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+            className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
             placeholder="https://www.youtube.com/watch?v=..."
           />
           <p className="text-xs text-ink-muted font-body mt-1.5">
@@ -288,7 +288,7 @@ export default function MediaAdminClient({
             onChange={(e) =>
               setForm((f) => ({ ...f, category: Number(e.target.value) }))
             }
-            className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body bg-white focus:outline-none focus:border-gold transition-colors"
+            className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body bg-white focus:outline-none focus:border-leaf transition-colors"
           >
             {categories.map((c) => (
               <option key={c.id} value={c.id}>
@@ -299,7 +299,7 @@ export default function MediaAdminClient({
           </select>
           <p className="text-xs text-ink-muted font-body mt-1.5">
             Manage categories under{" "}
-            <a href="/admin/video-categories" className="text-gold hover:underline">
+            <a href="/admin/video-categories" className="text-leaf-dark hover:underline">
               Pride TV → Video Categories
             </a>
             .
@@ -383,7 +383,7 @@ export default function MediaAdminClient({
             onChange={(e) =>
               setFilter(e.target.value === "all" ? "all" : Number(e.target.value))
             }
-            className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-gold"
+            className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-leaf"
           >
             <option value="all">All categories</option>
             {categories.map((c) => (
@@ -440,7 +440,7 @@ export default function MediaAdminClient({
                         {v.title}
                       </p>
                       {v.featured === "feature" && (
-                        <span className="text-[10px] font-bold text-gold bg-gold-pale px-2 py-0.5 rounded font-body flex-shrink-0">
+                        <span className="text-[10px] font-bold text-leaf-dark bg-sage/40 px-2 py-0.5 rounded font-body flex-shrink-0">
                           Featured
                         </span>
                       )}
@@ -474,7 +474,7 @@ export default function MediaAdminClient({
                     </span>
                     <button
                       onClick={() => toggleFeatured(v)}
-                      className="text-xs transition-colors text-ink-muted font-body hover:text-gold"
+                      className="text-xs transition-colors text-ink-muted font-body hover:text-leaf-dark"
                     >
                       {v.featured === "feature" ? "Unfeature" : "Feature"}
                     </button>
@@ -486,7 +486,7 @@ export default function MediaAdminClient({
                     </button>
                     <button
                       onClick={() => openEdit(v)}
-                      className="text-xs font-semibold text-gold font-body hover:underline"
+                      className="text-xs font-semibold text-leaf-dark font-body hover:underline"
                     >
                       Edit
                     </button>

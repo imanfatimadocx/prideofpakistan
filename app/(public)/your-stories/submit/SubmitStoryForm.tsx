@@ -143,7 +143,7 @@ export default function SubmitStoryForm() {
             value={form.title}
             onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
             placeholder="Give your story a title…"
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
           />
         </div>
         <div>
@@ -157,7 +157,7 @@ export default function SubmitStoryForm() {
             }
             rows={2}
             placeholder="A brief summary of your story…"
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none"
           />
         </div>
       </div>
@@ -180,7 +180,7 @@ export default function SubmitStoryForm() {
             />
           </div>
         )}
-        <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block">
+        <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block">
           {coverPreview ? "Change Cover Image" : "Upload Cover Image"}
           <input
             type="file"
@@ -201,7 +201,7 @@ export default function SubmitStoryForm() {
           onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
           rows={12}
           placeholder="Write your story here…"
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none leading-relaxed"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none leading-relaxed"
         />
       </div>
 
@@ -248,7 +248,7 @@ export default function SubmitStoryForm() {
                     value={img.caption}
                     onChange={(e) => updateCaption(i, e.target.value)}
                     placeholder="Caption…"
-                    className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                    className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
                   />
                   <div className="flex flex-wrap items-center gap-2">
                     <button

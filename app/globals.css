@@ -14,11 +14,11 @@ body {
   color: #1C332C;
 }
 
-p {
-  text-align: justify;
-}
-
-.prose p {
+/* Justify only long-form article text. A global `p { text-align: justify }`
+   overrode text-center everywhere (e.g. the login subtitle sat left under a
+   centred heading). */
+.prose p,
+.rich-content p {
   text-align: justify;
 }
 
@@ -103,7 +103,7 @@ p {
 }
 
 .ProseMirror blockquote {
-  border-left: 3px solid #8F6A10;
+  border-left: 3px solid #2A7F45;
   padding-left: 1rem;
   color: #596B68;
   font-style: italic;

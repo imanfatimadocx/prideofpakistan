@@ -62,7 +62,7 @@ export default function NewsTableClient({
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold flex-1 min-w-[180px]"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf flex-1 min-w-[180px]"
         />
         <select
           value={filterStatus}
@@ -70,7 +70,7 @@ export default function NewsTableClient({
             setFilterStatus(e.target.value);
             setPage(1);
           }}
-          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All</option>
           <option value="0">Draft</option>
@@ -189,7 +189,7 @@ export default function NewsTableClient({
                         </Link>
                         <Link
                           href={`/admin/news/${n.id}/edit`}
-                          className="text-xs font-semibold no-underline text-gold font-body hover:underline"
+                          className="text-xs font-semibold no-underline text-leaf-dark font-body hover:underline"
                         >
                           Edit
                         </Link>

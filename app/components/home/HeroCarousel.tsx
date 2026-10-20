@@ -18,7 +18,7 @@ export default function HeroSection({ heading, subtext, image }: Props) {
         className="absolute inset-0 object-cover object-center w-full h-full"
       />
       <div className="absolute inset-0 bg-ivory/55" />
-      <div className="absolute inset-0 bg-gradient-to-b from-sage/40 via-mint/20 to-ivory/90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-sage/70 via-sage/30 to-ivory/80" />
 
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
@@ -28,7 +28,7 @@ export default function HeroSection({ heading, subtext, image }: Props) {
                 ? heading
                 : "The Pride of Pakistan"}
             </h1>
-            <p className="text-base sm:text-lg text-slate font-body leading-relaxed mb-8 max-w-[520px]">
+            <p className="text-base sm:text-lg text-ink-dark/85 font-body leading-relaxed mb-8 max-w-[520px]">
               {subtext && subtext.trim() !== ""
                 ? subtext
                 : "We honour the achievements of outstanding Pakistanis around the world, visionaries, entrepreneurs, innovators, and leaders whose talent, dedication, and integrity have made a lasting impact on their communities and beyond."}

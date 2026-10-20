@@ -130,13 +130,13 @@ export default function ListBusinessClient() {
                 {/* Company Name */}
                 <div>
                   <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                    Company Name <span className="text-gold">*</span>
+                    Company Name <span className="text-leaf-dark">*</span>
                   </label>
                   <input
                     name="company_name"
                     type="text"
                     required
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     placeholder="e.g. Innovation Excellence Pvt Ltd"
                   />
                 </div>
@@ -145,13 +145,13 @@ export default function ListBusinessClient() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                      Your Name <span className="text-gold">*</span>
+                      Your Name <span className="text-leaf-dark">*</span>
                     </label>
                     <input
                       name="name"
                       type="text"
                       required
-                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     />
                   </div>
                   <div>
@@ -161,7 +161,7 @@ export default function ListBusinessClient() {
                     <input
                       name="l_name"
                       type="text"
-                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     />
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function ListBusinessClient() {
                   <input
                     name="phone"
                     type="tel"
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                   />
                 </div>
 
@@ -189,13 +189,13 @@ export default function ListBusinessClient() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                      City <span className="text-gold">*</span>
+                      City <span className="text-leaf-dark">*</span>
                     </label>
                     <input
                       name="city"
                       type="text"
                       required
-                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     />
                   </div>
                   <div>
@@ -206,7 +206,7 @@ export default function ListBusinessClient() {
                       name="country"
                       type="text"
                       defaultValue="Pakistan"
-                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     />
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export default function ListBusinessClient() {
                   <input
                     name="site_url"
                     type="text"
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     placeholder="https://"
                   />
                 </div>
@@ -232,7 +232,7 @@ export default function ListBusinessClient() {
                   <input
                     name="video_url"
                     type="text"
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     placeholder="https://www.youtube.com/watch?v=..."
                   />
                   <p className="text-xs text-ink-muted font-body mt-1.5">
@@ -244,13 +244,13 @@ export default function ListBusinessClient() {
                 {/* Short Description */}
                 <div>
                   <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                    Short Description <span className="text-gold">*</span>
+                    Short Description <span className="text-leaf-dark">*</span>
                   </label>
                   <textarea
                     name="shortdesc"
                     required
                     rows={3}
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors resize-none"
                     placeholder="One or two sentences about what your business does…"
                   />
                 </div>
@@ -263,7 +263,7 @@ export default function ListBusinessClient() {
                   <textarea
                     name="company_description"
                     rows={5}
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors resize-none"
                     placeholder="Tell us more about your business, services, history…"
                   />
                 </div>
@@ -294,7 +294,7 @@ export default function ListBusinessClient() {
                       const file = e.target.files?.[0];
                       if (file) setPreview(URL.createObjectURL(file));
                     }}
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors file:bg-gold-pale file:text-gold file:border-0 file:rounded file:px-3 file:py-1 file:mr-3 file:text-xs file:font-semibold file:cursor-pointer"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors file:bg-sage/40 file:text-green file:border-0 file:rounded file:px-3 file:py-1 file:mr-3 file:text-xs file:font-semibold file:cursor-pointer"
                   />
                   <p className="mt-1 text-xs text-ink-muted font-body">
                     Best size: 600 × 350px.

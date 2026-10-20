@@ -23,7 +23,7 @@ export default function CitiesSection({ cities }: Props) {
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
               Explore Pakistan
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
@@ -31,7 +31,7 @@ export default function CitiesSection({ cities }: Props) {
             </h2>
             <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
           </div>
-          <Link href="/cities" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
+          <Link href="/cities" className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
             View All →
           </Link>
         </div>

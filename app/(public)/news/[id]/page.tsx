@@ -43,7 +43,7 @@ export default async function NewsDetailPage({ params }: Props) {
           {/* Back */}
           <Link
             href="/news"
-            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-gold font-body hover:underline"
+            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
           >
             <svg
               width="16"
@@ -60,7 +60,7 @@ export default async function NewsDetailPage({ params }: Props) {
             Back to Discussion Forum
           </Link>
           {/* Date */}
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate font-body mb-3">
             {new Date(item.date_time).toLocaleDateString("en-GB", {
               day: "numeric",
               month: "long",
@@ -121,7 +121,7 @@ export default async function NewsDetailPage({ params }: Props) {
 
             {/* Article text */}
             <div
-              className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-gold prose-strong:text-ink-dark"
+              className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-leaf-dark prose-strong:text-ink-dark"
               dangerouslySetInnerHTML={{ __html: item.description }}
             />
 

@@ -28,7 +28,7 @@ const TH =
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mb-3 text-xs font-bold tracking-widest uppercase text-gold font-body">
+    <h2 className="mb-3 text-xs font-bold tracking-widest uppercase text-slate font-body">
       {children}
     </h2>
   );
@@ -64,11 +64,11 @@ export default async function ProfileDetailPage({ params }: Props) {
       <Topbar />
       <Navbar />
       <main className="min-h-screen bg-white">
-        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12 py-8 lg:py-12">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-8 lg:py-12">
           {/* Back link */}
           <Link
             href="/who-is-who"
-            className="inline-flex items-center gap-2 mb-6 text-sm font-semibold no-underline text-gold font-body hover:underline"
+            className="inline-flex items-center gap-2 mb-6 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
           >
             <svg
               width="16"
@@ -92,7 +92,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                 {profile.title}
               </h1>
               {profile.Profession && (
-                <p className="mt-2 text-base font-semibold text-gold font-body">
+                <p className="mt-2 text-base font-semibold text-leaf-dark font-body">
                   {profile.Profession}
                 </p>
               )}
@@ -118,7 +118,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                 <section className="pt-6 mt-8 border-t border-border">
                   <SectionTitle>Professional Achievements</SectionTitle>
                   <div
-                    className="text-base leading-relaxed prose prose-neutral max-w-none text-ink-dark font-body prose-a:text-gold prose-headings:font-display prose-headings:text-green prose-img:rounded-lg"
+                    className="text-base leading-relaxed prose prose-neutral max-w-none text-ink-dark font-body prose-a:text-leaf-dark prose-headings:font-display prose-headings:text-green prose-img:rounded-lg"
                     dangerouslySetInnerHTML={{ __html: description }}
                   />
                 </section>
@@ -181,7 +181,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="flex-shrink-0 text-gold"
+                          className="flex-shrink-0 text-leaf-dark"
                         >
                           <rect width="20" height="16" x="2" y="4" rx="2" />
                           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -200,7 +200,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="flex-shrink-0 text-gold"
+                          className="flex-shrink-0 text-leaf-dark"
                         >
                           <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                           <circle cx="12" cy="10" r="3" />
@@ -354,7 +354,7 @@ export default async function ProfileDetailPage({ params }: Props) {
         </div>
 
         {/* Comments */}
-        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12 pb-16">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pb-16">
           <CommentSection entityType="profile" entityId={profileId} />
         </div>
       </main>

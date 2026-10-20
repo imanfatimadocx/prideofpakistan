@@ -145,7 +145,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <div
               key={p.id}
               className={`bg-white border rounded-xl p-4 flex items-center gap-3 transition-all ${
-                editing?.id === p.id ? 'border-gold shadow-md' : 'border-border'
+                editing?.id === p.id ? 'border-leaf shadow-md' : 'border-border'
               }`}
             >
               {resolveImage(p.image) ? (
@@ -183,7 +183,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 {p.status === 2 && (
                   <button onClick={() => updateStatus(p.id, 1)} className="text-xs text-green font-body hover:underline">Re-approve</button>
                 )}
-                <button onClick={() => openEdit(p)} className="text-xs font-semibold text-gold font-body hover:underline">Edit</button>
+                <button onClick={() => openEdit(p)} className="text-xs font-semibold text-leaf-dark font-body hover:underline">Edit</button>
                 <button
                   onClick={() => handleDelete(p.id)}
                   disabled={deleting === p.id}
@@ -221,7 +221,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                   {editing.title.charAt(0)}
                 </div>
               )}
-              <label className="px-3 py-2 text-xs font-semibold transition-colors border rounded-md cursor-pointer bg-cream border-border text-ink-dark font-body hover:border-gold">
+              <label className="px-3 py-2 text-xs font-semibold transition-colors border rounded-md cursor-pointer bg-cream border-border text-ink-dark font-body hover:border-leaf">
                 Change Photo
                 <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
               </label>
@@ -234,7 +234,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <select
               value={editing.status}
               onChange={(e) => setEditing({ ...editing, status: Number(e.target.value) })}
-              className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
             >
               <option value={0}>Pending</option>
               <option value={1}>Approved</option>
@@ -259,7 +259,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 type="text"
                 value={(editing as unknown as Record<string, string>)[key] ?? ''}
                 onChange={(e) => setEditing({ ...editing, [key]: e.target.value })}
-                className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-leaf"
               />
             </div>
           ))}
@@ -273,7 +273,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
               value={editing.shortdesc ?? ''}
               onChange={(e) => setEditing({ ...editing, shortdesc: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 text-sm transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 text-sm transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-leaf"
               placeholder="Brief summary shown on profile cards"
             />
           </div>
@@ -287,7 +287,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
               value={(editing.description ?? '').replace(/<[^>]*>/g, '')}
               onChange={(e) => setEditing({ ...editing, description: e.target.value })}
               rows={10}
-              className="w-full px-3 py-2 text-sm leading-relaxed transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 text-sm leading-relaxed transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-leaf"
               placeholder="Full profile description"
             />
           </div>

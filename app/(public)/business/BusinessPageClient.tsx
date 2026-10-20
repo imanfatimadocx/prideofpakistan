@@ -128,16 +128,16 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
   return (
     <div className="min-h-screen bg-cream">
       {/* Hero */}
-      <div className="px-4 py-10 bg-mint border-b border-sage sm:px-8 lg:px-12 sm:py-14">
-        <div className="max-w-[1280px] mx-auto">
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+      <div className="py-10 bg-sage border-b border-leaf/40 sm:py-14">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green-mid mb-2 font-body">
             {hero.eyebrow}
           </p>
           <h1 className="mb-3 text-3xl font-black leading-tight text-green font-display sm:text-4xl lg:text-5xl">
             {hero.heading}
           </h1>
           {hero.subtext && (
-            <p className="text-ink-mid font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
+            <p className="text-ink-dark/85 font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
               {hero.subtext}
             </p>
           )}
@@ -159,7 +159,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                 onClick={() => selectCategory(null)}
                 className={`w-full flex items-center px-4 py-2.5 text-sm font-body transition-colors text-left ${
                   activeCategoryId === null
-                    ? "bg-gold-pale text-gold font-semibold"
+                    ? "bg-sage/40 text-leaf-dark font-semibold"
                     : "text-ink-dark hover:bg-gray-50"
                 }`}
               >
@@ -171,7 +171,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                   onClick={() => selectCategory(cat.id)}
                   className={`w-full flex items-center px-4 py-2.5 text-sm font-body transition-colors text-left ${
                     activeCategoryId === cat.id
-                      ? "bg-gold-pale text-gold font-semibold"
+                      ? "bg-sage/40 text-leaf-dark font-semibold"
                       : "text-ink-dark hover:bg-gray-50"
                   }`}
                 >
@@ -201,7 +201,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
               <div className="mt-1 overflow-hidden bg-white border shadow-lg border-border rounded-xl">
                 <button
                   onClick={() => selectCategory(null)}
-                  className={`w-full px-4 py-3 text-sm font-body text-left ${activeCategoryId === null ? "bg-gold-pale text-gold font-semibold" : "text-ink-dark hover:bg-gray-50"}`}
+                  className={`w-full px-4 py-3 text-sm font-body text-left ${activeCategoryId === null ? "bg-sage/40 text-leaf-dark font-semibold" : "text-ink-dark hover:bg-gray-50"}`}
                 >
                   All Businesses
                 </button>
@@ -209,7 +209,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                   <button
                     key={cat.id}
                     onClick={() => selectCategory(cat.id)}
-                    className={`w-full px-4 py-3 text-sm font-body text-left ${activeCategoryId === cat.id ? "bg-gold-pale text-gold font-semibold" : "text-ink-dark hover:bg-gray-50"}`}
+                    className={`w-full px-4 py-3 text-sm font-body text-left ${activeCategoryId === cat.id ? "bg-sage/40 text-leaf-dark font-semibold" : "text-ink-dark hover:bg-gray-50"}`}
                   >
                     {cat.name}
                   </button>
@@ -232,7 +232,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
               placeholder="Search by name, city, or description…"
               value={search}
               onChange={(e) => handleSearch(e.target.value)}
-              className="w-full px-4 py-3 text-sm bg-white border border-border rounded-xl pr-9 font-body text-ink-dark placeholder:text-ink-muted focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+              className="w-full px-4 py-3 text-sm bg-white border border-border rounded-xl pr-9 font-body text-ink-dark placeholder:text-ink-muted focus:outline-none focus:border-leaf focus:ring-1 focus:ring-leaf/30"
             />
             {search && (
               <button
@@ -268,7 +268,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                         activeLetter === letter
                           ? "bg-leaf text-green"
                           : available
-                            ? "text-ink-dark hover:bg-gold-pale hover:text-gold"
+                            ? "text-ink-dark hover:bg-sage/40 hover:text-leaf-dark"
                             : "text-ink-muted/25 cursor-not-allowed"
                       }`}
                     >
@@ -294,7 +294,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                   handleSearch("");
                   handleLetter(null);
                 }}
-                className="text-sm font-semibold text-gold font-body hover:underline"
+                className="text-sm font-semibold text-leaf-dark font-body hover:underline"
               >
                 Clear filters
               </button>
@@ -322,7 +322,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                         {hasMore && (
                           <button
                             onClick={() => toggleExpand(letter)}
-                            className="flex-shrink-0 text-xs font-semibold text-gold font-body hover:underline"
+                            className="flex-shrink-0 text-xs font-semibold text-leaf-dark font-body hover:underline"
                           >
                             {isExpanded
                               ? "Show less"
@@ -373,7 +373,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                   <button
                     onClick={() => changePage(Math.max(1, page - 1))}
                     disabled={page === 1}
-                    className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-ink-mid hover:border-green hover:text-green disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-slate hover:border-green hover:text-green disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Previous
                   </button>
@@ -398,7 +398,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                         <button
                           key={p}
                           onClick={() => changePage(p)}
-                          className={`w-9 h-9 rounded-lg text-sm font-semibold font-body border transition-colors ${page === p ? "bg-green text-white border-green" : "border-border text-ink-mid hover:border-green hover:text-green"}`}
+                          className={`w-9 h-9 rounded-lg text-sm font-semibold font-body border transition-colors ${page === p ? "bg-green text-white border-green" : "border-border text-slate hover:border-green hover:text-green"}`}
                         >
                           {p}
                         </button>
@@ -408,7 +408,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                   <button
                     onClick={() => changePage(Math.min(totalPages, page + 1))}
                     disabled={page === totalPages}
-                    className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-ink-mid hover:border-green hover:text-green disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="px-4 py-2 text-sm font-semibold transition-colors border rounded-lg font-body border-border text-slate hover:border-green hover:text-green disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Next
                   </button>

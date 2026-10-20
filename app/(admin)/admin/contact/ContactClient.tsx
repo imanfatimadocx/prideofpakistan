@@ -46,7 +46,7 @@ export default function ContactClient({ queries: initial }: { queries: Query[] }
         <div
           key={q.id}
           className={`bg-white border rounded-xl overflow-hidden transition-all ${
-            !q.read ? 'border-gold/40 shadow-sm' : 'border-border'
+            !q.read ? 'border-sage shadow-sm' : 'border-border'
           }`}
         >
           {/* Header */}

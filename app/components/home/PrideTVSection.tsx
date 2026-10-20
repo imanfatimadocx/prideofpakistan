@@ -83,7 +83,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
     return (
       <section className="py-12 bg-green sm:py-16 lg:py-20" id="pride-tv">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-3 font-body">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-sage mb-3 font-body">
             Pride TV
           </p>
           <h2 className="mb-4 text-2xl font-bold text-white font-display sm:text-3xl">
@@ -103,7 +103,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-sage mb-2 font-body">
               Pride TV
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-white leading-tight">
@@ -113,7 +113,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
           </div>
           <Link
             href="/pride-tv"
-            className="text-[13px] font-semibold text-gold-bright no-underline hover:underline font-body whitespace-nowrap"
+            className="text-[13px] font-semibold text-sage no-underline hover:underline font-body whitespace-nowrap"
           >
             All Videos
           </Link>
@@ -189,7 +189,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                     {v.title}
                   </p>
                   {v.featured === "feature" && (
-                    <span className="text-[9px] font-bold text-gold-bright font-body uppercase tracking-wide mt-1 block">
+                    <span className="text-[9px] font-bold text-sage font-body uppercase tracking-wide mt-1 block">
                       Featured
                     </span>
                   )}

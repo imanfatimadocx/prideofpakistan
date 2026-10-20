@@ -9,16 +9,17 @@ export default function Topbar() {
   })
 
   return (
-    <div className="flex items-center justify-between px-4 py-2 text-xs tracking-wide bg-sage text-green sm:px-8 lg:px-12 font-body">
+    <div className="py-2 text-xs tracking-wide bg-slate text-white font-body">
+      <div className="flex items-center justify-between max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
       <div className="flex items-center gap-2 sm:gap-2.5">
-        <span className="hidden font-bold text-green sm:inline">{dateStr}</span>
-        <span className="hidden sm:inline text-green">|</span>
+        <span className="hidden font-bold text-white sm:inline">{dateStr}</span>
       </div>
 
       <div className="flex items-center gap-3 sm:gap-6">
-        <a href="./contact" className="hidden font-bold transition-colors text-green hover:text-gold md:inline">Contact Us</a>
-        <a href="./about" className="hidden font-bold transition-colors text-green hover:text-gold md:inline">About Us</a>
-        <a href="./mission" className="hidden font-bold transition-colors text-green hover:text-gold md:inline">Our Mission</a>
+        <a href="/contact" className="hidden font-bold transition-colors text-white hover:text-sage md:inline">Contact Us</a>
+        <a href="/about" className="hidden font-bold transition-colors text-white hover:text-sage md:inline">About Us</a>
+        <a href="/mission" className="hidden font-bold transition-colors text-white hover:text-sage md:inline">Our Mission</a>
+      </div>
       </div>
     </div>
   )

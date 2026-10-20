@@ -133,7 +133,7 @@ function Carousel({
             {images[current].caption}
           </p>
           {images[current].href && (
-            <p className="text-[11px] text-gold font-body mt-0.5">
+            <p className="text-[11px] text-leaf-dark font-body mt-0.5">
               View Profile →
             </p>
           )}
@@ -180,7 +180,7 @@ function Carousel({
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-leaf" : "w-1.5 h-1.5 bg-border hover:bg-gold/50"}`}
+            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-leaf" : "w-1.5 h-1.5 bg-border hover:bg-sage/50"}`}
             aria-label={`Go to image ${i + 1}`}
           />
         ))}
@@ -226,7 +226,7 @@ export default function MissionClient({ data }: { data: MissionData }) {
           <div className="mb-8 space-y-5 text-base leading-relaxed text-ink-mid font-body">
             <p>{data.body2a}</p>
             <p>{data.body2b}</p>
-            <blockquote className="py-2 pl-5 border-l-4 border-gold">
+            <blockquote className="py-2 pl-5 border-l-4 border-leaf">
               <p className="text-xl leading-snug font-display text-green">
                 "{data.quote}"
               </p>
@@ -254,7 +254,7 @@ export default function MissionClient({ data }: { data: MissionData }) {
       <section className="py-16 bg-cream sm:py-20">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="mb-12 text-center">
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-3 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-3 font-body">
               What We Stand For
             </p>
             <h2 className="text-3xl font-bold font-display sm:text-4xl text-green">
@@ -266,7 +266,7 @@ export default function MissionClient({ data }: { data: MissionData }) {
             {PILLARS.map((p) => (
               <div
                 key={p.title}
-                className="p-6 transition-all bg-white border border-border rounded-xl hover:border-gold hover:-translate-y-1"
+                className="p-6 transition-all bg-white border border-border rounded-xl hover:border-leaf hover:-translate-y-1"
               >
                 <div className="mb-4 text-green">{p.icon}</div>
                 <h3 className="mb-2 text-base font-bold font-display text-green">

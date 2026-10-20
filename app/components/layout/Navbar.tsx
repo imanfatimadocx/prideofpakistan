@@ -41,16 +41,16 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-ivory border-b-[2.5px] border-sage sticky top-0 z-[100] shadow-[0_2px_24px_rgba(6,77,50,0.08)]">
-        <div className="flex items-center justify-between h-24 max-w-full px-4 mx-auto sm:px-8 lg:px-16 lg:h-28">
+      <nav className="bg-ivory border-b-[3px] border-leaf sticky top-0 z-[100] shadow-[0_2px_24px_rgba(6,77,50,0.08)]">
+        <div className="flex items-center justify-between h-24 lg:h-28 max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src="/logo-dark.png"
               alt="Pride of Pakistan"
-              className="object-contain w-auto h-16 lg:h-24"
-              width={480}
-              height={480}
+              className="object-contain w-auto h-11 lg:h-16"
+              width={293}
+              height={128}
               priority
             />
           </Link>
@@ -63,8 +63,8 @@ export default function Navbar() {
                 href={href}
                 className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all whitespace-nowrap font-body ${
                   pathname === href
-                    ? "text-gold font-semibold bg-mint"
-                    : "text-green hover:text-gold hover:bg-mint"
+                    ? "text-green font-semibold bg-sage/60"
+                    : "text-green hover:bg-sage/40"
                 }`}
               >
                 {label}
@@ -76,15 +76,15 @@ export default function Navbar() {
                   href={dashboardHref}
                   className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all font-body ${
                     isActiveDashboard
-                      ? "text-gold font-semibold bg-mint"
-                      : "text-green hover:text-gold hover:bg-mint"
+                      ? "text-green font-semibold bg-sage/60"
+                      : "text-green hover:bg-sage/40"
                   }`}
                 >
                   {dashboardLabel}
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:text-gold hover:bg-mint font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:bg-sage/40 font-body transition-colors"
                 >
                   Sign Out
                 </button>
@@ -93,7 +93,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2 ml-3">
                 <Link
                   href="/login"
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:text-gold hover:bg-mint font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:bg-sage/40 font-body transition-colors"
                 >
                   Sign In
                 </Link>
@@ -112,14 +112,14 @@ export default function Navbar() {
             {session ? (
               <Link
                 href={dashboardHref}
-                className="text-xs font-semibold text-green font-body border border-green/30 px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition-colors"
+                className="text-xs font-semibold text-green font-body border border-green/30 px-3 py-1.5 rounded-full hover:border-leaf hover:text-leaf-dark transition-colors"
               >
                 {isAdmin ? "Admin" : "Dashboard"}
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="text-xs font-semibold text-green font-body border border-green/30 px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition-colors"
+                className="text-xs font-semibold text-green font-body border border-green/30 px-3 py-1.5 rounded-full hover:border-leaf hover:text-leaf-dark transition-colors"
               >
                 Sign In
               </Link>
@@ -166,9 +166,9 @@ export default function Navbar() {
             <Image
               src="/logo-dark.png"
               alt="Pride of Pakistan"
-              className="object-contain w-auto h-16"
-              width={360}
-              height={360}
+              className="object-contain w-auto h-11"
+              width={293}
+              height={128}
             />
           </Link>
           <button
@@ -244,7 +244,7 @@ export default function Navbar() {
                     {session.user?.email}
                   </p>
                   {isAdmin && (
-                    <p className="text-[10px] font-bold text-gold uppercase tracking-wide font-body">
+                    <p className="text-[10px] font-bold text-slate uppercase tracking-wide font-body">
                       Administrator
                     </p>
                   )}
@@ -269,7 +269,7 @@ export default function Navbar() {
               <Link
                 href="/login"
                 onClick={() => setOpen(false)}
-                className="w-full py-3 text-sm font-semibold text-center text-green no-underline transition-colors border rounded-lg border-green/30 font-body hover:border-gold hover:text-gold"
+                className="w-full py-3 text-sm font-semibold text-center text-green no-underline transition-colors border rounded-lg border-green/30 font-body hover:border-leaf hover:text-leaf-dark"
               >
                 Sign In
               </Link>

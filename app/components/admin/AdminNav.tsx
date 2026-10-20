@@ -224,7 +224,7 @@ function AdminNavInner() {
             </div>
             <div>
               <p className="text-sm font-bold leading-tight text-white font-display">Pride of Pakistan</p>
-              <p className="text-[10px] text-gold-bright/80 font-body mt-0.5 uppercase tracking-widest">Admin Panel</p>
+              <p className="text-[10px] text-sage/80 font-body mt-0.5 uppercase tracking-widest">Admin Panel</p>
             </div>
           </div>
         </div>
@@ -240,10 +240,10 @@ function AdminNavInner() {
             return (
               <div key={group.label} className="mb-1">
                 <div className="flex items-center gap-2 px-4 py-2">
-                  <span className={`flex-shrink-0 transition-colors ${hasActive ? "text-gold-bright" : "text-white/35"}`}>
+                  <span className={`flex-shrink-0 transition-colors ${hasActive ? "text-sage" : "text-white/35"}`}>
                     {GROUP_ICONS[group.label]}
                   </span>
-                  <span className={`text-[10px] font-bold uppercase tracking-[.14em] font-body ${hasActive ? "text-gold-bright" : "text-white/35"}`}>
+                  <span className={`text-[10px] font-bold uppercase tracking-[.14em] font-body ${hasActive ? "text-sage" : "text-white/35"}`}>
                     {group.label}
                   </span>
                 </div>

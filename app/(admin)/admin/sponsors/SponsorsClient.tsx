@@ -20,7 +20,7 @@ const EMPTY: Omit<Sponsor, "id"> = {
 };
 
 const input =
-  "w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors";
+  "w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors";
 const labelCls =
   "block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body";
 
@@ -119,7 +119,7 @@ export default function SponsorsClient({ sponsors: initial }: { sponsors: Sponso
 
         <div>
           <label className={labelCls}>
-            Sponsor name <span className="text-gold">*</span>
+            Sponsor name <span className="text-leaf-dark">*</span>
           </label>
           <input className={input} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="e.g. Habib Bank Limited" />
         </div>
@@ -192,7 +192,7 @@ export default function SponsorsClient({ sponsors: initial }: { sponsors: Sponso
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold truncate text-ink-dark font-body">{s.title}</p>
                   {s.website ? (
-                    <a href={s.website} target="_blank" rel="noopener noreferrer" className="block text-xs no-underline truncate text-gold hover:underline font-body">
+                    <a href={s.website} target="_blank" rel="noopener noreferrer" className="block text-xs no-underline truncate text-leaf-dark hover:underline font-body">
                       {s.website.replace(/^https?:\/\/(www\.)?/, "")}
                     </a>
                   ) : (
@@ -203,7 +203,7 @@ export default function SponsorsClient({ sponsors: initial }: { sponsors: Sponso
                   <button onClick={() => toggle(s)} className={`text-[11px] font-bold px-2.5 py-1 rounded-md border font-body ${s.status === 1 ? "bg-green/10 text-green border-green/20" : "bg-amber-50 text-amber-700 border-amber-200"}`}>
                     {s.status === 1 ? "● Live" : "● Hidden"}
                   </button>
-                  <button onClick={() => edit(s)} className="text-xs font-semibold text-gold font-body hover:underline">Edit</button>
+                  <button onClick={() => edit(s)} className="text-xs font-semibold text-leaf-dark font-body hover:underline">Edit</button>
                   <button onClick={() => remove(s)} className="text-xs text-red-500 font-body hover:underline">Delete</button>
                 </div>
               </div>

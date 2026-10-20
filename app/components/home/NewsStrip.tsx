@@ -23,7 +23,7 @@ export default function NewsStrip({ news = [] }: Props) {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex items-end justify-between gap-4 mb-7 sm:mb-9">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
               Latest Updates
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
@@ -33,7 +33,7 @@ export default function NewsStrip({ news = [] }: Props) {
           </div>
           <Link
             href="/top-stories"
-            className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap"
+            className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap"
           >
             All Stories →
           </Link>
@@ -44,7 +44,7 @@ export default function NewsStrip({ news = [] }: Props) {
             <Link
               key={item.id}
               href={`/top-stories/${item.id}`}
-              className="block overflow-hidden no-underline transition-all bg-white border rounded-lg border-border hover:-translate-y-1 hover:shadow-xl hover:border-gold group"
+              className="block overflow-hidden no-underline transition-all bg-white border rounded-lg border-border hover:-translate-y-1 hover:shadow-xl hover:border-leaf group"
             >
               {item.smallimage && (
                 <div className="w-full overflow-hidden h-44 sm:h-48">
@@ -70,7 +70,7 @@ export default function NewsStrip({ news = [] }: Props) {
                 <p className="text-[13px] text-ink-muted leading-relaxed font-body mb-4 line-clamp-2">
                   {item.shortdesc.replace(/<[^>]*>/g, "").slice(0, 120)}…
                 </p>
-                <span className="text-[13px] font-semibold text-gold font-body">
+                <span className="text-[13px] font-semibold text-leaf-dark font-body">
                   Read More →
                 </span>
               </div>

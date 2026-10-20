@@ -39,7 +39,7 @@ export default async function StoryDetailPage({ params }: Props) {
         <div className="max-w-[860px] mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-14">
           <Link
             href="/your-stories"
-            className="flex items-center gap-2 text-sm font-semibold no-underline text-gold font-body hover:underline mb-8"
+            className="flex items-center gap-2 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline mb-8"
           >
             <svg
               width="16"
@@ -55,7 +55,7 @@ export default async function StoryDetailPage({ params }: Props) {
             </svg>
             Back to Your Stories
           </Link>
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate font-body mb-3">
             By {story.authorName} ·{" "}
             {new Date(story.createdAt).toLocaleDateString("en-GB", {
               day: "numeric",
@@ -110,7 +110,7 @@ export default async function StoryDetailPage({ params }: Props) {
               </div>
             )}
 
-            <div className="prose prose-neutral max-w-none font-body text-ink-mid leading-relaxed prose-headings:font-display prose-headings:text-green prose-a:text-gold">
+            <div className="prose prose-neutral max-w-none font-body text-ink-mid leading-relaxed prose-headings:font-display prose-headings:text-green prose-a:text-leaf-dark">
               {story.content}
             </div>
 

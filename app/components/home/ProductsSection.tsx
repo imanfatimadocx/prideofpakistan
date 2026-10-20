@@ -27,7 +27,7 @@ export default function ProductsSection({ products }: Props) {
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
               Made in Pakistan
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
@@ -37,7 +37,7 @@ export default function ProductsSection({ products }: Props) {
           </div>
           <Link
             href="/products"
-            className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap"
+            className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap"
           >
             View All →
           </Link>
@@ -75,7 +75,7 @@ export default function ProductsSection({ products }: Props) {
                 <p className="text-sm font-bold leading-snug transition-colors font-display text-ink-dark group-hover:text-green line-clamp-1">
                   {p.title}
                 </p>
-                <p className="text-[11px] font-semibold text-gold font-body mt-0.5">
+                <p className="text-[11px] font-semibold text-leaf-dark font-body mt-0.5">
                   View Product →
                 </p>
               </div>

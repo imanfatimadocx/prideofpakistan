@@ -9,7 +9,7 @@ import type {
 } from "@/app/lib/contactInfo";
 
 const input =
-  "w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors bg-white";
+  "w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors bg-white";
 const labelCls =
   "block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body";
 const card = "p-6 space-y-4 bg-white border border-border rounded-xl";

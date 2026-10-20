@@ -33,14 +33,14 @@ export default async function ProductInquiriesPage({ params }: Props) {
           <div className="flex items-center gap-3 mb-6">
             <Link
               href="/admin/products"
-              className="text-sm no-underline text-gold font-body hover:underline"
+              className="text-sm no-underline text-leaf-dark font-body hover:underline"
             >
               ← Products
             </Link>
             <span className="text-ink-muted">/</span>
             <Link
               href={`/admin/products/${productId}/edit`}
-              className="text-sm no-underline text-gold font-body hover:underline"
+              className="text-sm no-underline text-leaf-dark font-body hover:underline"
             >
               {product.title}
             </Link>
@@ -64,7 +64,7 @@ export default async function ProductInquiriesPage({ params }: Props) {
               {inquiries.map((inq) => (
                 <div
                   key={inq.id}
-                  className={`bg-white border rounded-xl p-5 space-y-3 ${!inq.read ? "border-gold/40 shadow-sm" : "border-border"}`}
+                  className={`bg-white border rounded-xl p-5 space-y-3 ${!inq.read ? "border-sage shadow-sm" : "border-border"}`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -80,7 +80,7 @@ export default async function ProductInquiriesPage({ params }: Props) {
                       </div>
                       <a
                         href={`mailto:${inq.email}`}
-                        className="text-xs text-gold hover:underline no-underline font-body"
+                        className="text-xs text-leaf-dark hover:underline no-underline font-body"
                       >
                         {inq.email}
                       </a>
@@ -98,7 +98,7 @@ export default async function ProductInquiriesPage({ params }: Props) {
                   </p>
                   <a
                     href={`mailto:${inq.email}?subject=Re: ${product.title}&body=Dear ${inq.name},%0D%0A%0D%0A`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold no-underline hover:underline font-body"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-leaf-dark no-underline hover:underline font-body"
                   >
                     Reply by email →
                   </a>

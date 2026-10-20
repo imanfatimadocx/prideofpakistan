@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
             <span className="text-2xl text-white">☽</span>
           </div>
           <h1 className="text-2xl font-bold text-white font-display">Pride of Pakistan</h1>
-          <p className="text-xs text-gold-light tracking-[.14em] uppercase font-semibold font-body mt-1">
+          <p className="text-xs text-leaf-dark tracking-[.14em] uppercase font-semibold font-body mt-1">
             Admin Panel
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+              className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
               placeholder="admin@prideofpakistan.com"
             />
           </div>
@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+              className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
               placeholder="••••••••"
             />
           </div>

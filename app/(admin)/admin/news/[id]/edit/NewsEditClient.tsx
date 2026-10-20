@@ -151,7 +151,7 @@ export default function NewsEditClient({
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-3">
-          <Link href="/admin/news" className="text-sm no-underline text-gold font-body hover:underline">← Discussion Forum</Link>
+          <Link href="/admin/news" className="text-sm no-underline text-leaf-dark font-body hover:underline">← Discussion Forum</Link>
           <span className="text-ink-muted">/</span>
           <h1 className="text-xl font-bold font-display text-green">
             {isNew ? "Write to Discussion Forum" : form.title || "Edit in Discussion Forum"}
@@ -175,11 +175,11 @@ export default function NewsEditClient({
             <h2 className="text-base font-bold font-display text-green">Discussion Forum Details</h2>
             <div>
               <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">Title *</label>
-              <input type="text" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold" />
+              <input type="text" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf" />
             </div>
             <div>
               <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">Short Description</label>
-              <textarea value={form.shortdesc} onChange={(e) => setForm((f) => ({ ...f, shortdesc: e.target.value }))} rows={3} className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none" placeholder="Brief summary shown on listing cards…" />
+              <textarea value={form.shortdesc} onChange={(e) => setForm((f) => ({ ...f, shortdesc: e.target.value }))} rows={3} className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none" placeholder="Brief summary shown on listing cards…" />
             </div>
           </div>
 
@@ -233,7 +233,7 @@ export default function NewsEditClient({
                         value={img.caption}
                         onChange={(e) => updateCaption(i, e.target.value)}
                         placeholder="Image caption…"
-                        className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                        className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
                       />
                       <div className="flex flex-wrap items-center gap-2">
                         <button onClick={() => moveUp(i)} disabled={i === 0} className="text-xs text-ink-muted font-body hover:text-green disabled:opacity-30">↑ Up</button>
@@ -275,7 +275,7 @@ export default function NewsEditClient({
                 <div className="flex items-center justify-center w-full h-full text-sm text-ink-muted font-body">No cover</div>
               )}
             </div>
-            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block">
+            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block">
               {coverPreview ? "Change Cover" : "Upload Cover"}
               <input type="file" accept="image/*" className="hidden" onChange={handleCoverChange} />
             </label>
@@ -284,7 +284,7 @@ export default function NewsEditClient({
           {/* Status */}
           <div className="p-5 space-y-3 bg-white border border-border rounded-xl">
             <h2 className="text-base font-bold font-display text-green">Status</h2>
-            <select value={form.status} onChange={(e) => setForm((f) => ({ ...f, status: Number(e.target.value) }))} className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold">
+            <select value={form.status} onChange={(e) => setForm((f) => ({ ...f, status: Number(e.target.value) }))} className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf">
               <option value={0}>Draft</option>
               <option value={1}>Published</option>
             </select>

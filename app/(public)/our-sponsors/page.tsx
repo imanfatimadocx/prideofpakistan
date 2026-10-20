@@ -111,7 +111,7 @@ export default async function OurSponsorsPage() {
                             href={s.website}
                             target="_blank"
                             rel="noopener noreferrer sponsored"
-                            className="block mt-1.5 text-xs font-semibold no-underline text-gold font-body hover:underline"
+                            className="block mt-1.5 text-xs font-semibold no-underline text-leaf-dark font-body hover:underline"
                           >
                             Visit website ↗
                           </a>

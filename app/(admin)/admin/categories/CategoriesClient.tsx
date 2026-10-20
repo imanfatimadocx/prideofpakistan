@@ -77,7 +77,7 @@ export default function CategoriesClient({ categories: initial }: { categories: 
             onChange={(e) => setNewName(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
             placeholder="Category name…"
-            className="flex-1 border border-border rounded-md px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+            className="flex-1 border border-border rounded-md px-3 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
           />
           <button
             onClick={handleAdd}
@@ -108,7 +108,7 @@ export default function CategoriesClient({ categories: initial }: { categories: 
                     onChange={(e) => setEditName(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleUpdate(c.categoryid)}
                     autoFocus
-                    className="flex-1 border border-gold rounded-md px-3 py-1.5 text-sm font-body focus:outline-none"
+                    className="flex-1 border border-leaf rounded-md px-3 py-1.5 text-sm font-body focus:outline-none"
                   />
                   <button onClick={() => handleUpdate(c.categoryid)} disabled={saving} className="text-xs font-semibold text-green font-body hover:underline disabled:opacity-50">Save</button>
                   <button onClick={() => setEditingId(null)} className="text-xs text-ink-muted font-body hover:underline">Cancel</button>
@@ -118,7 +118,7 @@ export default function CategoriesClient({ categories: initial }: { categories: 
                   <p className="flex-1 text-sm font-body text-ink-dark">{c.categoryname}</p>
                   <button
                     onClick={() => { setEditingId(c.categoryid); setEditName(c.categoryname) }}
-                    className="text-xs font-semibold text-gold font-body hover:underline"
+                    className="text-xs font-semibold text-leaf-dark font-body hover:underline"
                   >Edit</button>
                   <button
                     onClick={() => handleDelete(c.categoryid)}

@@ -135,13 +135,13 @@ export default function SubmitProfilePage() {
                 {/* Full Name */}
                 <div>
                   <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                    Full Name <span className="text-gold">*</span>
+                    Full Name <span className="text-leaf-dark">*</span>
                   </label>
                   <input
                     name="title"
                     type="text"
                     required
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     placeholder="e.g. Dr. Abdus Salam"
                   />
                 </div>
@@ -149,13 +149,13 @@ export default function SubmitProfilePage() {
                 {/* Profession */}
                 <div>
                   <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                    Profession / Title <span className="text-gold">*</span>
+                    Profession / Title <span className="text-leaf-dark">*</span>
                   </label>
                   <input
                     name="Profession"
                     type="text"
                     required
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     placeholder="e.g. Physicist, Athlete, Entrepreneur"
                   />
                 </div>
@@ -169,7 +169,7 @@ export default function SubmitProfilePage() {
                     <input
                       name="City"
                       type="text"
-                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                       placeholder="e.g. Lahore"
                     />
                   </div>
@@ -181,7 +181,7 @@ export default function SubmitProfilePage() {
                       name="Country"
                       type="text"
                       defaultValue="Pakistan"
-                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                      className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     />
                   </div>
                 </div>
@@ -189,14 +189,14 @@ export default function SubmitProfilePage() {
                 {/* Email */}
                 <div>
                   <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                    Email <span className="text-gold">*</span>
+                    Email <span className="text-leaf-dark">*</span>
                   </label>
                   <input
                     name="Email"
                     type="email"
                     required
                     defaultValue={session.user?.email ?? ""}
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -204,13 +204,13 @@ export default function SubmitProfilePage() {
                 {/* Bio */}
                 <div>
                   <label className="block text-sm font-semibold text-ink-dark mb-1.5 font-body">
-                    Short Bio <span className="text-gold">*</span>
+                    Short Bio <span className="text-leaf-dark">*</span>
                   </label>
                   <textarea
                     name="shortdesc"
                     required
                     rows={5}
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors resize-none"
                     placeholder="Tell us about your achievements and background..."
                   />
                 </div>
@@ -238,7 +238,7 @@ export default function SubmitProfilePage() {
                       const file = e.target.files?.[0];
                       if (file) setPreview(URL.createObjectURL(file));
                     }}
-                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors file:bg-gold-pale file:text-gold file:border-0 file:rounded file:px-3 file:py-1 file:mr-3 file:text-xs file:font-semibold file:cursor-pointer"
+                    className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors file:bg-sage/40 file:text-green file:border-0 file:rounded file:px-3 file:py-1 file:mr-3 file:text-xs file:font-semibold file:cursor-pointer"
                   />
                 </div>
 

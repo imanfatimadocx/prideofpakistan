@@ -5,26 +5,26 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-mint border-t-[2.5px] border-sage text-ink-mid py-12 sm:py-16 lg:pb-8">
+    <footer className="bg-slate border-t-[3px] border-leaf text-white/80 py-12 sm:py-16 lg:pb-8">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-14 mb-10 sm:mb-12">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center flex-shrink-0 mb-4">
               <Image
-                src="/logo-dark.png"
+                src="/logo-light.png"
                 alt="Pride of Pakistan"
-                className="object-contain"
-                width={240}
-                height={240}
+                className="object-contain object-left w-auto h-20 sm:h-[88px]"
+                width={293}
+                height={128}
               />
             </Link>
-            <p className="text-[13px] text-ink-mid leading-relaxed max-w-[300px] font-body">
+            <p className="text-[13px] text-white/75 leading-relaxed max-w-[300px] font-body">
               All content on this website is copyrighted material of
               prideofpakistan.com. Please seek the written permission of site
               owner before copying anything from the website. If you find any
               problems/mistakes please contact the Webmaster by clicking{" "}
-              <a href="/contact" className="text-gold">
+              <a href="/contact" className="text-sage underline">
                 here
               </a>
               . Our staff will try to fix the problem as soon as possible.{" "}
@@ -33,7 +33,7 @@ export default function Footer() {
 
           {/* Discover */}
           <div>
-            <h4 className="mb-4 text-sm font-bold text-green font-display">
+            <h4 className="mb-4 text-sm font-bold text-white font-display">
               Discover
             </h4>
             <ul className="space-y-2.5 list-none">
@@ -46,7 +46,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-ink-mid no-underline text-[13px] hover:text-gold transition-colors font-body"
+                    className="text-white/75 no-underline text-[13px] hover:text-sage transition-colors font-body"
                   >
                     {label}
                   </Link>
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* Business */}
           <div>
-            <h4 className="mb-4 text-sm font-bold text-green font-display">
+            <h4 className="mb-4 text-sm font-bold text-white font-display">
               Business
             </h4>
             <ul className="space-y-2.5 list-none">
@@ -70,7 +70,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-ink-mid no-underline text-[13px] hover:text-gold transition-colors font-body"
+                    className="text-white/75 no-underline text-[13px] hover:text-sage transition-colors font-body"
                   >
                     {label}
                   </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
 
           {/* Join */}
           <div>
-            <h4 className="mb-4 text-sm font-bold text-green font-display">
+            <h4 className="mb-4 text-sm font-bold text-white font-display">
               Join Us
             </h4>
             <ul className="space-y-2.5 list-none">
@@ -94,7 +94,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-ink-mid no-underline text-[13px] hover:text-gold transition-colors font-body"
+                    className="text-white/75 no-underline text-[13px] hover:text-sage transition-colors font-body"
                   >
                     {label}
                   </Link>
@@ -105,29 +105,23 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-ink-muted font-body text-center sm:text-left">
+        <div className="border-t border-white/15 pt-6 flex flex-col sm:flex-row sm:justify-between items-center gap-3 text-xs text-white/60 font-body text-center sm:text-left">
           <span>© {year} Pride of Pakistan. All rights reserved.</span>
-          <Link
-            href="/terms-of-use"
-            className="text-xs no-underline transition-colors text-ink-muted hover:text-gold font-body"
-          >
-            Terms of Use
-          </Link>
-          <Link
-            href="/privacy-policy"
-            className="text-xs no-underline transition-colors text-ink-muted hover:text-gold font-body"
-          >
-            Privacy Policy
-          </Link>
-          <Link
-            href="/disclaimer"
-            className="text-xs no-underline transition-colors text-ink-muted hover:text-gold font-body"
-          >
-            Disclaimer
-          </Link>
-          {/* <span>
-            Powered by <a href="https://rasekh.pk">rasekh.pk</a>
-          </span> */}
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {[
+              { label: "Terms of Use", href: "/terms-of-use" },
+              { label: "Privacy Policy", href: "/privacy-policy" },
+              { label: "Disclaimer", href: "/disclaimer" },
+            ].map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-xs no-underline transition-colors text-white/60 hover:text-sage font-body"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

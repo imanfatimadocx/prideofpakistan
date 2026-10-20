@@ -78,7 +78,7 @@ function Carousel({ images }: { images: { src: string; caption: string }[] }) {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-leaf" : "w-1.5 h-1.5 bg-border hover:bg-gold/50"}`}
+            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-leaf" : "w-1.5 h-1.5 bg-border hover:bg-sage/50"}`}
             aria-label={`Go to image ${i + 1}`}
           />
         ))}
@@ -114,7 +114,7 @@ export default function AboutClient({ data }: { data: AboutData }) {
         <div className="mb-6 space-y-5 text-base leading-relaxed text-ink-mid font-body">
           <p>{data.body1a}</p>
           <p>{data.body1b}</p>
-          <blockquote className="py-2 pl-5 border-l-4 border-gold">
+          <blockquote className="py-2 pl-5 border-l-4 border-leaf">
             <p className="text-xl leading-snug font-display text-green">
               "{data.quote}"
             </p>

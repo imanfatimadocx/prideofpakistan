@@ -84,7 +84,7 @@ export default function CommentsClient({
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold flex-1 min-w-[180px]"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf flex-1 min-w-[180px]"
         />
         <select
           value={filterType}
@@ -92,7 +92,7 @@ export default function CommentsClient({
             setFilterType(e.target.value);
             setPage(1);
           }}
-          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All Types</option>
           <option value="profile">Profiles</option>
@@ -123,7 +123,7 @@ export default function CommentsClient({
                 <div className="flex-1 min-w-0">
                   {/* Meta */}
                   <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wide text-gold font-body bg-gold-pale px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold uppercase tracking-wide text-slate font-body bg-sage/40 px-2 py-0.5 rounded">
                       {ENTITY_LABELS[c.entityType] ?? c.entityType}
                     </span>
                     {c.parentId && (
@@ -134,7 +134,7 @@ export default function CommentsClient({
                     <Link
                       href={ENTITY_LINKS[c.entityType]?.(c.entityId) ?? "#"}
                       target="_blank"
-                      className="text-xs no-underline text-ink-muted hover:text-gold font-body"
+                      className="text-xs no-underline text-ink-muted hover:text-leaf-dark font-body"
                     >
                       View #{c.entityId} →
                     </Link>
@@ -157,7 +157,7 @@ export default function CommentsClient({
                     </p>
                     <a
                       href={`mailto:${c.authorEmail}`}
-                      className="text-xs no-underline text-gold hover:underline font-body"
+                      className="text-xs no-underline text-leaf-dark hover:underline font-body"
                     >
                       {c.authorEmail}
                     </a>

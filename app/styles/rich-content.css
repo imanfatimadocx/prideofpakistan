@@ -21,11 +21,11 @@
 .rich-content ol { list-style: decimal; padding-left: 1.4rem; }
 .rich-content li + li { margin-top: 0.35em; }
 .rich-content li > p { margin: 0; }
-.rich-content a { color: #8F6A10; text-decoration: underline; text-underline-offset: 2px; }
+.rich-content a { color: #2A7F45; text-decoration: underline; text-underline-offset: 2px; }
 .rich-content a:hover { color: #064D32; }
 .rich-content strong, .rich-content b { color: #1C332C; font-weight: 600; }
 .rich-content blockquote {
-  border-left: 3px solid #8F6A10;
+  border-left: 3px solid #2A7F45;
   padding-left: 1rem;
   color: #596B68;
   font-style: italic;

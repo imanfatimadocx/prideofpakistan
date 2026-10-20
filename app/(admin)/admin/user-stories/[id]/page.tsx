@@ -38,7 +38,7 @@ export default async function AdminUserStoryDetailPage({ params }: Props) {
             <div className="flex items-center gap-3">
               <Link
                 href="/admin/user-stories"
-                className="text-sm no-underline text-gold font-body hover:underline"
+                className="text-sm no-underline text-leaf-dark font-body hover:underline"
               >
                 ← Your Stories
               </Link>
@@ -161,7 +161,7 @@ export default async function AdminUserStoryDetailPage({ params }: Props) {
                     </p>
                     <a
                       href={`mailto:${story.authorEmail}`}
-                      className="text-sm text-gold hover:underline no-underline font-body"
+                      className="text-sm text-leaf-dark hover:underline no-underline font-body"
                     >
                       {story.authorEmail}
                     </a>

@@ -13,18 +13,14 @@ module.exports = {
         "green-light": "#5BB56B",
         leaf: "#5BB56B",           // Fresh Leaf Green – buttons
         "leaf-light": "#7CC78A",   // button hover
+        "leaf-dark": "#2A7F45",    // links / active states (readable on light backgrounds)
         sage: "#B9DFC5",           // Pastel Sage – header accent / top bar
         mint: "#E5F4E8",           // Soft Mint – light panels / sections
         ivory: "#F7FCF8",          // Ivory White – header & main background
         slate: "#596B68",          // Slate Grey – paragraph text
 
-        // Gold is kept as a small accent only (darkened so it is readable on light backgrounds)
-        gold: "#8F6A10",
-        "gold-light": "#B8891F",
-        "gold-pale": "#F1EBDA",
-        "gold-bright": "#E3B94F",  // gold on dark-green backgrounds
 
-        cream: "#E5F4E8",          // (old name) now Soft Mint
+        cream: "#EEF3EF",          // (old name) soft neutral sage-grey section background
 
         "ink-dark": "#1C332C",
         "ink-mid": "#596B68",

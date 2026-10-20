@@ -10,13 +10,12 @@ const config: Config = {
     extend: {
       colors: {
         green: { DEFAULT: '#064D32', mid: '#0B6B45', light: '#5BB56B' },
-        leaf: { DEFAULT: '#5BB56B', light: '#7CC78A' },
+        leaf: { DEFAULT: '#5BB56B', light: '#7CC78A', dark: '#2A7F45' },
         sage: '#B9DFC5',
         mint: '#E5F4E8',
         ivory: '#F7FCF8',
         slate: '#596B68',
-        gold: { DEFAULT: '#8F6A10', light: '#B8891F', pale: '#F1EBDA', bright: '#E3B94F' },
-        cream: '#E5F4E8',
+        cream: '#EEF3EF',
         ink: { dark: '#1C332C', mid: '#596B68', muted: '#657673' },
         border: '#CFE3D6',
       },

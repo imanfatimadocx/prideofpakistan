@@ -61,7 +61,7 @@ export default function ProductInquiryForm({
             </p>
             <button
               onClick={() => setSent(false)}
-              className="text-xs text-gold font-semibold font-body hover:underline mt-3 block mx-auto"
+              className="text-xs text-leaf-dark font-semibold font-body hover:underline mt-3 block mx-auto"
             >
               Send another message
             </button>
@@ -85,7 +85,7 @@ export default function ProductInquiryForm({
                     setForm((f) => ({ ...f, name: e.target.value }))
                   }
                   placeholder="Your name"
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
                 />
               </div>
               <div>
@@ -99,7 +99,7 @@ export default function ProductInquiryForm({
                     setForm((f) => ({ ...f, email: e.target.value }))
                   }
                   placeholder="Your email"
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
                 />
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function ProductInquiryForm({
                 }
                 rows={4}
                 placeholder="Enter your enquiry here…"
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors resize-none"
               />
             </div>
             <button

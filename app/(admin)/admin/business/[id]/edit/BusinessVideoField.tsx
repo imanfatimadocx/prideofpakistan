@@ -71,7 +71,7 @@ export default function BusinessVideoField({
         }}
         placeholder="https://www.youtube.com/watch?v=..."
         className={`w-full px-3 py-2.5 text-sm border rounded-md font-body focus:outline-none transition-colors ${
-          invalid ? "border-red-300 focus:border-red-400" : "border-border focus:border-gold"
+          invalid ? "border-red-300 focus:border-red-400" : "border-border focus:border-leaf"
         }`}
       />
       {invalid && (

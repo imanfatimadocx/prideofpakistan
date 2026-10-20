@@ -90,7 +90,7 @@ function SectionEditor({
           onChange={(e) =>
             setContent((c) => ({ ...c, eyebrow: e.target.value }))
           }
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
         />
       </div>
 
@@ -105,7 +105,7 @@ function SectionEditor({
           onChange={(e) =>
             setContent((c) => ({ ...c, heading: e.target.value }))
           }
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
         />
       </div>
 
@@ -120,7 +120,7 @@ function SectionEditor({
             setContent((c) => ({ ...c, subtext: e.target.value }))
           }
           rows={3}
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none"
         />
       </div>
 
@@ -153,7 +153,7 @@ function SectionEditor({
             </div>
           )}
           <label
-            className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {uploading
               ? "Uploading…"

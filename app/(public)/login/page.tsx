@@ -61,7 +61,7 @@ function LoginForm() {
           name="email"
           type="email"
           required
-          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
           placeholder="you@example.com"
         />
       </div>
@@ -72,7 +72,7 @@ function LoginForm() {
           name="password"
           type="password"
           required
-          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
           placeholder="Your password"
         />
       </div>
@@ -89,7 +89,7 @@ function LoginForm() {
 
       <p className="text-sm text-center text-ink-muted font-body">
         Don&apos;t have an account?{' '}
-        <Link href="/register" className="font-semibold text-gold hover:underline">
+        <Link href="/register" className="font-semibold text-leaf-dark hover:underline">
           Create one
         </Link>
       </p>

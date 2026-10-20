@@ -238,7 +238,7 @@ export default function ProfileEditClient({
         <div className="flex items-center gap-3">
           <NextLink
             href="/admin/profiles"
-            className="text-sm no-underline text-gold font-body hover:underline"
+            className="text-sm no-underline text-leaf-dark font-body hover:underline"
           >
             ← Profiles
           </NextLink>
@@ -306,7 +306,7 @@ export default function ProfileEditClient({
                     onChange={(e) =>
                       setForm((f) => ({ ...f, [key]: e.target.value }))
                     }
-                    className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
                   />
                 </div>
               ))}
@@ -324,7 +324,7 @@ export default function ProfileEditClient({
                         : null,
                     }))
                   }
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
                 >
                   <option value="">- Select category -</option>
                   {categories.map((c) => (
@@ -352,7 +352,7 @@ export default function ProfileEditClient({
                 setForm((f) => ({ ...f, shortdesc: e.target.value }))
               }
               rows={4}
-              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors resize-none"
+              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors resize-none"
               placeholder="Brief introduction shown on profile cards…"
             />
           </div>
@@ -525,7 +525,7 @@ export default function ProfileEditClient({
                     setForm((f) => ({ ...f, [key]: e.target.value }))
                   }
                   placeholder={placeholder}
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
                 />
               </div>
             ))}
@@ -544,7 +544,7 @@ export default function ProfileEditClient({
               </div>
               <button
                 onClick={autoFillMeta}
-                className="text-xs font-semibold text-gold font-body hover:underline"
+                className="text-xs font-semibold text-leaf-dark font-body hover:underline"
               >
                 Auto-fill
               </button>
@@ -561,7 +561,7 @@ export default function ProfileEditClient({
                   setForm((f) => ({ ...f, meta_title: e.target.value }))
                 }
                 placeholder={`${form.title} | Pride of Pakistan`}
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
               />
               <p className="text-[11px] text-ink-muted font-body mt-1">
                 {form.meta_title.length}/60 characters
@@ -579,7 +579,7 @@ export default function ProfileEditClient({
                   setForm((f) => ({ ...f, meta_keywords: e.target.value }))
                 }
                 placeholder={`${form.title}, ${form.Profession}, Pakistan`}
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
               />
               <p className="text-[11px] text-ink-muted font-body mt-1">
                 Comma-separated keywords
@@ -597,7 +597,7 @@ export default function ProfileEditClient({
                 }
                 rows={3}
                 placeholder="Brief description for Google search results…"
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors resize-none"
               />
               <p className="text-[11px] text-ink-muted font-body mt-1">
                 {form.meta_description.length}/160 characters
@@ -630,7 +630,7 @@ export default function ProfileEditClient({
                 </div>
               )}
             </div>
-            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block">
+            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block">
               {imagePreview ? "Change Photo" : "Upload Photo"}
               <input
                 type="file"
@@ -654,7 +654,7 @@ export default function ProfileEditClient({
               onChange={(e) =>
                 setForm((f) => ({ ...f, status: Number(e.target.value) }))
               }
-              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
             >
               <option value={0}>Pending</option>
               <option value={1}>Approved</option>
@@ -691,7 +691,7 @@ export default function ProfileEditClient({
               </button>
             </div>
             {form.featured === 1 && (
-              <p className="mt-3 text-xs font-semibold text-gold font-body">
+              <p className="mt-3 text-xs font-semibold text-leaf-dark font-body">
                 This profile will appear in the daily rotation on the homepage.
               </p>
             )}

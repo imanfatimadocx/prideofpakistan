@@ -77,7 +77,7 @@ function ProfileListModal({
       <div className="bg-white rounded-2xl w-full max-w-[960px] shadow-2xl flex flex-col max-h-[70vh]">
         <div className="flex items-center justify-between flex-shrink-0 px-6 py-5 bg-white border-b border-border rounded-t-2xl">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-1 font-body">Hall of Fame</p>
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-1 font-body">Hall of Fame</p>
             <h3 className="text-xl font-bold leading-tight font-display sm:text-2xl text-green">{category.categoryname}</h3>
             <p className="text-xs text-ink-muted font-body mt-0.5">{category.count} {category.count === 1 ? 'profile' : 'profiles'}</p>
           </div>
@@ -91,7 +91,7 @@ function ProfileListModal({
               placeholder="Search by name, profession, or city…"
               value={search}
               onChange={(e) => { setSearch(e.target.value); setActiveLetter(null) }}
-              className="w-full border border-border rounded-lg px-4 pr-9 py-2.5 text-sm font-body text-ink-dark placeholder:text-ink-muted focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+              className="w-full border border-border rounded-lg px-4 pr-9 py-2.5 text-sm font-body text-ink-dark placeholder:text-ink-muted focus:outline-none focus:border-leaf focus:ring-1 focus:ring-leaf/30"
             />
             {search && (
               <button onClick={() => setSearch('')} className="absolute text-lg -translate-y-1/2 right-3 top-1/2 text-ink-muted hover:text-ink-dark">×</button>
@@ -115,7 +115,7 @@ function ProfileListModal({
                     disabled={!available}
                     className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${
                       activeLetter === letter ? 'bg-leaf text-green'
-                      : available ? 'text-ink-dark hover:bg-gold-pale hover:text-gold'
+                      : available ? 'text-ink-dark hover:bg-sage/40 hover:text-leaf-dark'
                       : 'text-ink-muted/30 cursor-not-allowed'
                     }`}
                   >{letter}</button>
@@ -129,7 +129,7 @@ function ProfileListModal({
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <p className="text-sm text-ink-muted font-body">No profiles match your search.</p>
-              <button onClick={() => { setSearch(''); setActiveLetter(null) }} className="mt-3 text-sm font-semibold text-gold font-body hover:underline">Clear filters</button>
+              <button onClick={() => { setSearch(''); setActiveLetter(null) }} className="mt-3 text-sm font-semibold text-leaf-dark font-body hover:underline">Clear filters</button>
             </div>
           ) : (
             <div className="space-y-7">
@@ -146,13 +146,13 @@ function ProfileListModal({
                         key={p.id}
                         href={`/who-is-who/${p.id}`}
                         onClick={onClose}
-                        className="flex items-center gap-3.5 p-3.5 rounded-xl border border-border hover:border-gold hover:shadow-md transition-all group no-underline"
+                        className="flex items-center gap-3.5 p-3.5 rounded-xl border border-border hover:border-leaf hover:shadow-md transition-all group no-underline"
                       >
                         {p.image ? (
                           <Image src={p.image} alt={p.title} width={48} height={48}
-                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-cover ring-2 ring-border group-hover:ring-gold" />
+                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-cover ring-2 ring-border group-hover:ring-leaf" />
                         ) : (
-                          <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-gold">
+                          <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-leaf">
                             {p.title.charAt(0).toUpperCase()}
                           </div>
                         )}
@@ -163,7 +163,7 @@ function ProfileListModal({
                             <p className="text-[11px] text-ink-muted font-body mt-0.5">{[p.City, p.Country].filter(Boolean).join(', ')}</p>
                           )}
                         </div>
-                        <span className="flex-shrink-0 text-sm transition-opacity opacity-0 text-gold group-hover:opacity-100">→</span>
+                        <span className="flex-shrink-0 text-sm transition-opacity opacity-0 text-leaf-dark group-hover:opacity-100">→</span>
                       </Link>
                     ))}
                   </div>
@@ -178,7 +178,7 @@ function ProfileListModal({
             Showing <span className="font-semibold text-ink-dark">{filtered.length}</span> of{' '}
             <span className="font-semibold text-ink-dark">{category.count}</span> profiles
           </p>
-          <Link href={`/who-is-who?category=${category.categoryid}`} onClick={onClose} className="text-xs font-semibold text-gold hover:underline font-body">
+          <Link href={`/who-is-who?category=${category.categoryid}`} onClick={onClose} className="text-xs font-semibold text-leaf-dark hover:underline font-body">
             View full page →
           </Link>
         </div>
@@ -218,12 +218,12 @@ export default function WhoIsWhoSection({
           {/* Header */}
           <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
             <div>
-              <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Hall of Fame</p>
+              <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">Hall of Fame</p>
               <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Who Is Who</h2>
               <span className="text-green">These are the people who are proud of what they have done and we, in highlighting what they have done, are proud of them and want to ensure their activities are recognized.</span>
               <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
             </div>
-            <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
+            <Link href="/who-is-who" className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
               View All →
             </Link>
           </div>
@@ -235,7 +235,7 @@ export default function WhoIsWhoSection({
              {/* ── Profile of the Day - flex, no background ── */}
 {profileOfTheDay && profileOfTheDay.id && (
   <div>
-    <p className="text-[16px] font-bold uppercase tracking-[.16em] text-gold font-body mb-4">
+    <p className="text-[16px] font-bold uppercase tracking-[.16em] text-slate font-body mb-4">
       Profile of the Day
     </p>
     <Link
@@ -263,7 +263,7 @@ export default function WhoIsWhoSection({
 
       {/* Text - no background */}
       <div className="flex-1 min-w-0 py-2">
-        <h3 className="mb-1 text-2xl font-bold leading-tight transition-colors font-display sm:text-3xl text-green group-hover:text-gold">
+        <h3 className="mb-1 text-2xl font-bold leading-tight transition-colors font-display sm:text-3xl text-green group-hover:text-leaf-dark">
           {profileOfTheDay.title}
         </h3>
         {profileOfTheDay.Profession && (
@@ -281,7 +281,7 @@ export default function WhoIsWhoSection({
             {profileOfTheDay.shortdesc.replace(/<[^>]*>/g, '')}
           </p>
         )}
-        <p className="mt-4 text-sm font-semibold text-gold font-body">
+        <p className="mt-4 text-sm font-semibold text-leaf-dark font-body">
           View Profile →
         </p>
       </div>
@@ -321,7 +321,7 @@ export default function WhoIsWhoSection({
                         <p className="text-sm font-bold leading-snug transition-colors font-display text-ink-dark group-hover:text-green line-clamp-1">
                           {p.title}
                         </p>
-                        <p className="text-[11px] font-semibold text-gold font-body mt-0.5">
+                        <p className="text-[11px] font-semibold text-leaf-dark font-body mt-0.5">
                           View Profile →
                         </p>
                       </div>
