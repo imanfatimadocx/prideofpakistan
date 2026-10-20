@@ -15,7 +15,7 @@ interface Banner {
 
 const STRIP_COLORS: Record<string, string> = {
   green: "bg-green text-white",
-  gold: "bg-gold text-white",
+  gold: "bg-leaf text-green",
   red: "bg-red-600 text-white",
 };
 
@@ -167,7 +167,7 @@ export default function EventBanners() {
               </button>
 
               {/* Green top bar */}
-              <div className="w-10 h-1 mb-4 rounded bg-gold" />
+              <div className="w-10 h-1 mb-4 rounded bg-leaf" />
 
               {modal.title && (
                 <h2 className="mb-3 text-2xl font-bold font-display text-green">
@@ -183,7 +183,7 @@ export default function EventBanners() {
                   <Link
                     href={modal.ctaLink}
                     onClick={dismissModal}
-                    className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
+                    className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
                   >
                     {modal.ctaLabel}
                   </Link>

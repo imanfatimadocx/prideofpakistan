@@ -41,14 +41,14 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-green border-b-[2.5px] border-gold sticky top-0 z-[100] shadow-[0_2px_24px_rgba(13,74,46,0.07)]">
+      <nav className="bg-ivory border-b-[2.5px] border-sage sticky top-0 z-[100] shadow-[0_2px_24px_rgba(6,77,50,0.08)]">
         <div className="flex items-center justify-between h-24 max-w-full px-4 mx-auto sm:px-8 lg:px-16 lg:h-28">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/logo-3.png"
+              src="/logo-dark.png"
               alt="Pride of Pakistan"
-              className="object-contain w-auto h-16 lg:h-36"
+              className="object-contain w-auto h-16 lg:h-24"
               width={480}
               height={480}
               priority
@@ -63,8 +63,8 @@ export default function Navbar() {
                 href={href}
                 className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all whitespace-nowrap font-body ${
                   pathname === href
-                    ? "text-gold font-semibold"
-                    : "text-white hover:text-gold hover:bg-gold/5"
+                    ? "text-gold font-semibold bg-mint"
+                    : "text-green hover:text-gold hover:bg-mint"
                 }`}
               >
                 {label}
@@ -76,15 +76,15 @@ export default function Navbar() {
                   href={dashboardHref}
                   className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all font-body ${
                     isActiveDashboard
-                      ? "text-gold font-semibold"
-                      : "text-white hover:text-gold hover:bg-gold/5"
+                      ? "text-gold font-semibold bg-mint"
+                      : "text-green hover:text-gold hover:bg-mint"
                   }`}
                 >
                   {dashboardLabel}
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-white hover:text-gold hover:bg-gold/5 font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:text-gold hover:bg-mint font-body transition-colors"
                 >
                   Sign Out
                 </button>
@@ -93,13 +93,13 @@ export default function Navbar() {
               <div className="flex items-center gap-2 ml-3">
                 <Link
                   href="/login"
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-white hover:text-gold hover:bg-gold/5 font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:text-gold hover:bg-mint font-body transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-gold text-white rounded-md px-4 py-2.5 font-bold text-[13px] hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
+                  className="bg-leaf text-green rounded-md px-4 py-2.5 font-bold text-[13px] hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
                 >
                   Join
                 </Link>
@@ -112,14 +112,14 @@ export default function Navbar() {
             {session ? (
               <Link
                 href={dashboardHref}
-                className="text-xs font-semibold text-white font-body border border-white/30 px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition-colors"
+                className="text-xs font-semibold text-green font-body border border-green/30 px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition-colors"
               >
                 {isAdmin ? "Admin" : "Dashboard"}
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="text-xs font-semibold text-white font-body border border-white/30 px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition-colors"
+                className="text-xs font-semibold text-green font-body border border-green/30 px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition-colors"
               >
                 Sign In
               </Link>
@@ -131,13 +131,13 @@ export default function Navbar() {
               aria-label="Toggle menu"
             >
               <span
-                className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`}
+                className={`block w-6 h-0.5 bg-green transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`}
               />
               <span
-                className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`}
+                className={`block w-6 h-0.5 bg-green transition-all duration-300 ${open ? "opacity-0" : ""}`}
               />
               <span
-                className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`}
+                className={`block w-6 h-0.5 bg-green transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`}
               />
             </button>
           </div>
@@ -156,15 +156,15 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-green z-[210] lg:hidden shadow-2xl flex flex-col transition-transform duration-300 ease-[cubic-bezier(.77,0,.175,1)] ${
+        className={`fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-ivory z-[210] lg:hidden shadow-2xl flex flex-col transition-transform duration-300 ease-[cubic-bezier(.77,0,.175,1)] ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Drawer header */}
-        <div className="flex items-center justify-between flex-shrink-0 px-5 py-4 border-b border-white/10">
+        <div className="flex items-center justify-between flex-shrink-0 px-5 py-4 border-b border-border">
           <Link href="/" onClick={() => setOpen(false)}>
             <Image
-              src="/logo-3.png"
+              src="/logo-dark.png"
               alt="Pride of Pakistan"
               className="object-contain w-auto h-16"
               width={360}
@@ -173,7 +173,7 @@ export default function Navbar() {
           </Link>
           <button
             onClick={() => setOpen(false)}
-            className="flex items-center justify-center text-white transition-colors rounded-full w-9 h-9 hover:bg-white/10"
+            className="flex items-center justify-center text-green transition-colors rounded-full w-9 h-9 hover:bg-mint"
             aria-label="Close menu"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -197,13 +197,13 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className={`flex items-center justify-between px-3 py-3 rounded-lg text-sm font-medium font-body transition-colors ${
                   pathname === href
-                    ? "bg-white/10 text-gold font-semibold"
-                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                    ? "bg-mint text-green font-semibold"
+                    : "text-ink-mid hover:bg-mint hover:text-green"
                 }`}
               >
                 {label}
                 {pathname === href && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-leaf flex-shrink-0" />
                 )}
               </Link>
             ))}
@@ -213,13 +213,13 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className={`flex items-center justify-between px-3 py-3 rounded-lg text-sm font-medium font-body transition-colors ${
                   isActiveDashboard
-                    ? "bg-white/10 text-gold font-semibold"
-                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                    ? "bg-mint text-green font-semibold"
+                    : "text-ink-mid hover:bg-mint hover:text-green"
                 }`}
               >
                 {dashboardLabel}
                 {isActiveDashboard && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-leaf flex-shrink-0" />
                 )}
               </Link>
             )}
@@ -227,20 +227,20 @@ export default function Navbar() {
         </div>
 
         {/* Drawer footer */}
-        <div className="flex-shrink-0 px-4 py-5 border-t border-white/10">
+        <div className="flex-shrink-0 px-4 py-5 border-t border-border">
           {session ? (
             <div className="space-y-3">
               <div className="flex items-center gap-3 px-3">
-                <div className="flex items-center justify-center flex-shrink-0 text-sm font-bold text-white rounded-full w-9 h-9 bg-gold font-display">
+                <div className="flex items-center justify-center flex-shrink-0 text-sm font-bold text-green rounded-full w-9 h-9 bg-leaf font-display">
                   {(session.user?.name ?? session.user?.email ?? "U")
                     .charAt(0)
                     .toUpperCase()}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-white truncate font-body">
+                  <p className="text-sm font-semibold text-green truncate font-body">
                     {session.user?.name ?? session.user?.email}
                   </p>
-                  <p className="text-xs truncate text-white/60 font-body">
+                  <p className="text-xs truncate text-ink-muted font-body">
                     {session.user?.email}
                   </p>
                   {isAdmin && (
@@ -252,7 +252,7 @@ export default function Navbar() {
               </div>
               <button
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className="w-full py-2 text-sm font-semibold text-center transition-colors rounded-lg text-white/60 font-body hover:bg-white/10 hover:text-white"
+                className="w-full py-2 text-sm font-semibold text-center transition-colors rounded-lg text-ink-mid font-body hover:bg-mint hover:text-green"
               >
                 Sign Out
               </button>
@@ -262,14 +262,14 @@ export default function Navbar() {
               <Link
                 href="/register"
                 onClick={() => setOpen(false)}
-                className="w-full py-3 text-sm font-semibold text-center text-white no-underline transition-colors rounded-lg bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                className="w-full py-3 text-sm font-semibold text-center text-green no-underline transition-colors rounded-lg bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
               >
                 Create Account
               </Link>
               <Link
                 href="/login"
                 onClick={() => setOpen(false)}
-                className="w-full py-3 text-sm font-semibold text-center text-white no-underline transition-colors border rounded-lg border-white/20 font-body hover:border-gold hover:text-gold"
+                className="w-full py-3 text-sm font-semibold text-center text-green no-underline transition-colors border rounded-lg border-green/30 font-body hover:border-gold hover:text-gold"
               >
                 Sign In
               </Link>

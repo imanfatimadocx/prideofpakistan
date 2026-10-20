@@ -175,7 +175,7 @@ export default function BusinessEditClient({
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+            className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
           >
             {saving ? "Saving..." : isNew ? "Create Business" : "Save Changes"}
           </button>
@@ -343,7 +343,7 @@ export default function BusinessEditClient({
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="object-fit object-top w-full h-full"
+                  className="object-cover object-top w-full h-full"
                 />
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-sm text-ink-muted font-body">
@@ -423,7 +423,7 @@ export default function BusinessEditClient({
                 onClick={() =>
                   setForm((f) => ({ ...f, feature: f.feature === 1 ? 0 : 1 }))
                 }
-                className={`flex-shrink-0 w-11 h-6 rounded-full transition-colors flex items-center ${form.feature === 1 ? "bg-gold" : "bg-border"}`}
+                className={`flex-shrink-0 w-11 h-6 rounded-full transition-colors flex items-center ${form.feature === 1 ? "bg-leaf" : "bg-border"}`}
               >
                 <div
                   className={`w-5 h-5 bg-white rounded-full shadow transition-transform mx-0.5 ${form.feature === 1 ? "translate-x-5" : "translate-x-0"}`}
@@ -437,7 +437,7 @@ export default function BusinessEditClient({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+              className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
             >
               {saving
                 ? "Saving..."

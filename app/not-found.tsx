@@ -16,14 +16,14 @@ export default function NotFound() {
           <h1 className="mb-4 text-5xl font-black font-display sm:text-6xl text-green">
             Coming Soon
           </h1>
-          <div className="w-12 h-[3px] bg-gold mx-auto mb-6 rounded" />
+          <div className="w-12 h-[3px] bg-leaf mx-auto mb-6 rounded" />
           <p className="mb-8 leading-relaxed text-ink-muted font-body">
             This page is coming soon. We're working hard to bring it to you.
             Check back shortly.
           </p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-green no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
           >
             ← Back to Home
           </Link>

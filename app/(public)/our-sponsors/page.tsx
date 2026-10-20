@@ -60,7 +60,7 @@ export default async function OurSponsorsPage() {
                           src={logo}
                           alt={s.title}
                           loading="lazy"
-                          className="object-fit w-full h-full transition-transform duration-300 rounded-lg group-hover:scale-105"
+                          className="object-contain w-full h-full transition-transform duration-300 rounded-lg group-hover:scale-105"
                         />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full text-3xl font-bold text-white rounded-lg bg-green font-display">
@@ -132,7 +132,7 @@ export default async function OurSponsorsPage() {
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                className="inline-flex items-center px-6 py-3 text-sm font-semibold text-green no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
               >
                 Get in Touch
               </Link>

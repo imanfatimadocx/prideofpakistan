@@ -116,7 +116,7 @@ export default function SubmitStoryForm() {
         </p>
         <button
           onClick={() => router.push("/your-stories")}
-          className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors"
+          className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors"
         >
           Back to Stories
         </button>
@@ -176,7 +176,7 @@ export default function SubmitStoryForm() {
             <img
               src={coverPreview}
               alt="Cover preview"
-              className="object-top w-full h-full object-fit"
+              className="object-top w-full h-full object-cover"
             />
           </div>
         )}
@@ -212,7 +212,7 @@ export default function SubmitStoryForm() {
             Additional Images
           </h2>
           <label
-            className={`cursor-pointer bg-gold text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`cursor-pointer bg-leaf text-green px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {uploading ? "Uploading…" : "+ Add Image"}
             <input
@@ -286,7 +286,7 @@ export default function SubmitStoryForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+        className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
       >
         {submitting ? "Submitting…" : "Submit Story for Review"}
       </button>

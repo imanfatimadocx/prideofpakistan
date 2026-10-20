@@ -80,7 +80,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   <img
                     src={image}
                     alt={biz.company_name}
-                    className="object-top w-full h-full object-fit"
+                    className="object-top w-full h-full object-cover"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">
@@ -147,7 +147,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   {biz.company_name}
                 </h1>
                 {biz.category && (
-                  <p className="mt-1 text-sm text-gold font-body">
+                  <p className="mt-1 text-sm text-gold-bright font-body">
                     {biz.category.name}
                   </p>
                 )}
@@ -335,7 +335,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   <div className="px-5 pb-5">
                     <a
                       href={`mailto:${biz.email}`}
-                      className="inline-flex items-center gap-2 bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
+                      className="inline-flex items-center gap-2 bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
                     >
                       <svg
                         width="14"
@@ -388,7 +388,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                 </div>
                 <Link
                   href="/list-business"
-                  className="inline-flex items-center flex-shrink-0 gap-2 px-6 py-3 mt-4 text-sm font-semibold text-white no-underline transition-colors rounded-md sm:mt-0 bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                  className="inline-flex items-center flex-shrink-0 gap-2 px-6 py-3 mt-4 text-sm font-semibold text-green no-underline transition-colors rounded-md sm:mt-0 bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
                 >
                   List Your Business →
                 </Link>
@@ -415,7 +415,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   href={`https://wa.me/?text=${encodeURIComponent(`Check out ${biz.company_name} on Pride of Pakistan: https://prideofpakistan.com/business/${bizId}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
                 >
                   <svg
                     width="12"

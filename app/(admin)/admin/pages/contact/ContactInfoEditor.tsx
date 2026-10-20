@@ -144,7 +144,7 @@ export default function ContactInfoEditor({ initial }: { initial: ContactInfo })
           <button
             type="button"
             onClick={() => set("items", [...info.items, { id: newId(), label: "", value: "", type: "email" }])}
-            className="px-4 py-2 text-xs font-semibold text-white rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+            className="px-4 py-2 text-xs font-semibold text-green rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
           >
             + Add Detail
           </button>
@@ -201,7 +201,7 @@ export default function ContactInfoEditor({ initial }: { initial: ContactInfo })
           <button
             type="button"
             onClick={() => set("socials", [...info.socials, { id: newId(), platform: "instagram", label: "", url: "" }])}
-            className="px-4 py-2 text-xs font-semibold text-white rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+            className="px-4 py-2 text-xs font-semibold text-green rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
           >
             + Add Link
           </button>
@@ -272,7 +272,7 @@ export default function ContactInfoEditor({ initial }: { initial: ContactInfo })
         type="button"
         onClick={save}
         disabled={saving}
-        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+        className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
       >
         {saving ? "Saving…" : "Save Contact Details"}
       </button>

@@ -233,7 +233,7 @@ export default function TeamClient({
             onChange={(e) =>
               setForm((f) => ({ ...f, status: e.target.checked ? 1 : 0 }))
             }
-            className="w-4 h-4 accent-[#C9992A]"
+            className="w-4 h-4 accent-[#5BB56B]"
           />
           <span className="text-sm text-ink-dark font-body">
             Show on the website
@@ -246,7 +246,7 @@ export default function TeamClient({
           <button
             onClick={save}
             disabled={saving}
-            className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+            className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
           >
             {saving ? "Saving…" : editingId ? "Update Member" : "Add Member"}
           </button>

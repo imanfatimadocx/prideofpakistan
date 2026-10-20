@@ -87,7 +87,7 @@ export default function PrideTVPageClient({
     return (
       <div className="flex items-center justify-center min-h-screen px-4 text-center bg-green">
         <div>
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-3 font-body">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-3 font-body">
             Pride TV
           </p>
           <h1 className="mb-3 text-3xl font-bold text-white font-display">
@@ -105,7 +105,7 @@ export default function PrideTVPageClient({
     <div className="min-h-screen bg-green">
       {/* Hero - active player */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pt-8 pb-6">
-        <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-2 font-body">
+        <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-2 font-body">
           Pride TV
         </p>
         <h1 className="mb-6 text-2xl font-bold text-white font-display sm:text-3xl">
@@ -121,7 +121,7 @@ export default function PrideTVPageClient({
                   onClick={() => chooseCategory(c.id)}
                   className={`flex-shrink-0 mx-1 px-4 py-1.5 rounded-full text-xs font-semibold font-body transition-colors border ${
                     category === c.id
-                      ? "bg-gold text-white border-gold"
+                      ? "bg-leaf text-green border-leaf"
                       : "bg-white/[.06] text-white/70 border-white/15 hover:bg-white/15 hover:text-white"
                   }`}
                 >
@@ -185,11 +185,11 @@ export default function PrideTVPageClient({
                     <img
                       src={getThumbnail(v.video_embed_code, v.thumb_url)}
                       alt={v.title}
-                      className="object-fit w-full h-full"
+                      className="object-cover w-full h-full"
                     />
                     {activeId === v.video_id && (
                       <div className="absolute inset-0 flex items-center justify-center bg-green/60">
-                        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-gold">
+                        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-leaf">
                           <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-l-[8px] border-t-transparent border-b-transparent border-l-white ml-0.5" />
                         </div>
                       </div>
@@ -207,7 +207,7 @@ export default function PrideTVPageClient({
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       {v.featured === "feature" && (
-                        <span className="text-[9px] font-bold text-gold font-body uppercase tracking-wide">
+                        <span className="text-[9px] font-bold text-gold-bright font-body uppercase tracking-wide">
                           Featured
                         </span>
                       )}
@@ -248,7 +248,7 @@ export default function PrideTVPageClient({
                   <img
                     src={getThumbnail(v.video_embed_code, v.thumb_url)}
                     alt={v.title}
-                    className="object-fit w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
                   {/* Play button overlay */}
                   <div className="absolute inset-0 flex items-center justify-center transition-colors bg-black/0 group-hover:bg-black/30">
@@ -257,7 +257,7 @@ export default function PrideTVPageClient({
                     </div>
                   </div>
                   {activeId === v.video_id && (
-                    <div className="absolute top-2 left-2 bg-gold text-white text-[9px] font-bold px-2 py-0.5 rounded font-body uppercase">
+                    <div className="absolute top-2 left-2 bg-leaf text-green text-[9px] font-bold px-2 py-0.5 rounded font-body uppercase">
                       Playing
                     </div>
                   )}

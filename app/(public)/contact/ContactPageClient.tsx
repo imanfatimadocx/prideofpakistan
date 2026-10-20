@@ -59,7 +59,7 @@ const SOCIAL_STYLE: Record<SocialPlatform, { name: string; cls: string }> = {
   youtube: { name: "YouTube", cls: "text-red-600 border-red-200 bg-red-50 hover:bg-red-100" },
   linkedin: { name: "LinkedIn", cls: "text-sky-700 border-sky-200 bg-sky-50 hover:bg-sky-100" },
   tiktok: { name: "TikTok", cls: "text-ink-dark border-border bg-cream hover:bg-gold-pale" },
-  whatsapp: { name: "WhatsApp", cls: "text-green-700 border-green-200 bg-green-50 hover:bg-green-100" },
+  whatsapp: { name: "WhatsApp", cls: "text-green border-sage bg-mint hover:bg-sage/60" },
   other: { name: "Website", cls: "text-ink-mid border-border bg-cream hover:bg-gold-pale" },
 };
 
@@ -136,7 +136,7 @@ export default function ContactPageClient({
                         <h2 className="mb-3 text-2xl font-bold font-display sm:text-3xl text-green">
                           {info.introHeading}
                         </h2>
-                        <div className="w-10 h-[3px] bg-gold rounded mb-5" />
+                        <div className="w-10 h-[3px] bg-leaf rounded mb-5" />
                       </>
                     )}
                     {info.introText && (
@@ -314,7 +314,7 @@ export default function ContactPageClient({
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+                      className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
                     >
                       {loading ? "Sending…" : "Send Message"}
                     </button>

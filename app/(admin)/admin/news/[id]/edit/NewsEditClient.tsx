@@ -157,7 +157,7 @@ export default function NewsEditClient({
             {isNew ? "Write to Discussion Forum" : form.title || "Edit in Discussion Forum"}
           </h1>
         </div>
-        <button onClick={handleSave} disabled={saving} className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50">
+        <button onClick={handleSave} disabled={saving} className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50">
           {saving ? "Saving..." : isNew ? "Publish" : "Save Changes"}
         </button>
       </div>
@@ -206,7 +206,7 @@ export default function NewsEditClient({
           <div className="p-6 space-y-4 bg-white border border-border rounded-xl">
             <div className="flex items-center justify-between">
               <h2 className="text-base font-bold font-display text-green">Images</h2>
-              <label className={`cursor-pointer bg-gold text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}>
+              <label className={`cursor-pointer bg-leaf text-green px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}>
                 {uploading ? "Uploading…" : "+ Add Image"}
                 <input type="file" accept="image/*" className="hidden" onChange={handleAddImage} disabled={uploading} />
               </label>
@@ -291,7 +291,7 @@ export default function NewsEditClient({
           </div>
 
           {/* Save */}
-          <button onClick={handleSave} disabled={saving} className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50">
+          <button onClick={handleSave} disabled={saving} className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50">
             {saving ? "Saving..." : isNew ? "Publish Story" : "Save Changes"}
           </button>
         </div>

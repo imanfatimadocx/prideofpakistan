@@ -208,7 +208,7 @@ export default function ProductsTableClient({
                           <img
                             src={p.image}
                             alt={p.title}
-                            className="w-20 h-16 rounded-lg object-fit object-top flex-shrink-0"
+                            className="w-20 h-16 rounded-lg object-cover object-top flex-shrink-0"
                           />
                         ) : (
                           <div className="w-9 h-9 rounded-full bg-green flex items-center justify-center text-white font-bold font-display text-sm flex-shrink-0">

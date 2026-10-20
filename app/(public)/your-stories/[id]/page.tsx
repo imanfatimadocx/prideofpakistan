@@ -80,7 +80,7 @@ export default async function StoryDetailPage({ params }: Props) {
               <img
                 src={coverImage}
                 alt={story.title}
-                className="w-full h-full object-fit object-top"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           )}
@@ -97,7 +97,7 @@ export default async function StoryDetailPage({ params }: Props) {
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="w-full h-full object-fit object-top"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                     {img.caption && (
@@ -121,7 +121,7 @@ export default async function StoryDetailPage({ params }: Props) {
               href={`https://wa.me/?text=${encodeURIComponent(`${story.title} — https://prideofpakistan.com/your-stories/${storyId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+              className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
             >
               WhatsApp Share
             </a>

@@ -10,8 +10,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-cream);
-  color: var(--color-ink-dark);
+  background: #F7FCF8; /* Ivory White */
+  color: #1C332C;
 }
 
 p {
@@ -103,9 +103,9 @@ p {
 }
 
 .ProseMirror blockquote {
-  border-left: 3px solid #C9992A;
+  border-left: 3px solid #8F6A10;
   padding-left: 1rem;
-  color: #7A6B50;
+  color: #596B68;
   font-style: italic;
   margin: 1rem 0;
 }

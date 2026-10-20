@@ -143,14 +143,14 @@ export default function SponsorsClient({ sponsors: initial }: { sponsors: Sponso
         </div>
 
         <label className="flex items-center gap-3 cursor-pointer select-none w-fit">
-          <input type="checkbox" checked={form.status === 1} onChange={(e) => setForm((f) => ({ ...f, status: e.target.checked ? 1 : 0 }))} className="w-4 h-4 accent-[#C9992A]" />
+          <input type="checkbox" checked={form.status === 1} onChange={(e) => setForm((f) => ({ ...f, status: e.target.checked ? 1 : 0 }))} className="w-4 h-4 accent-[#5BB56B]" />
           <span className="text-sm text-ink-dark font-body">Show on the website</span>
         </label>
 
         {error && <p className="text-sm text-red-500 font-body">{error}</p>}
 
         <div className="flex gap-3">
-          <button onClick={save} disabled={saving} className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50">
+          <button onClick={save} disabled={saving} className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50">
             {saving ? "Saving…" : editingId ? "Update Sponsor" : "Add Sponsor"}
           </button>
           {editingId && (

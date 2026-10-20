@@ -128,16 +128,16 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
   return (
     <div className="min-h-screen bg-cream">
       {/* Hero */}
-      <div className="px-4 py-10 bg-green sm:px-8 lg:px-12 sm:py-14">
+      <div className="px-4 py-10 bg-mint border-b border-sage sm:px-8 lg:px-12 sm:py-14">
         <div className="max-w-[1280px] mx-auto">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
             {hero.eyebrow}
           </p>
-          <h1 className="mb-3 text-3xl font-black leading-tight text-white font-display sm:text-4xl lg:text-5xl">
+          <h1 className="mb-3 text-3xl font-black leading-tight text-green font-display sm:text-4xl lg:text-5xl">
             {hero.heading}
           </h1>
           {hero.subtext && (
-            <p className="text-white/65 font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
+            <p className="text-ink-mid font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
               {hero.subtext}
             </p>
           )}
@@ -266,7 +266,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                       disabled={!available}
                       className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${
                         activeLetter === letter
-                          ? "bg-gold text-white"
+                          ? "bg-leaf text-green"
                           : available
                             ? "text-ink-dark hover:bg-gold-pale hover:text-gold"
                             : "text-ink-muted/25 cursor-not-allowed"
@@ -347,7 +347,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                                   alt={b.company_name}
                                   width={600}
                                   height={350}
-                                  className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
+                                  className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105"
                                 />
                               ) : (
                                 <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-green font-display">

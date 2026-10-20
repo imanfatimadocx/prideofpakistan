@@ -83,7 +83,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
     return (
       <section className="py-12 bg-green sm:py-16 lg:py-20" id="pride-tv">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-3 font-body">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-3 font-body">
             Pride TV
           </p>
           <h2 className="mb-4 text-2xl font-bold text-white font-display sm:text-3xl">
@@ -103,17 +103,17 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-light mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold-bright mb-2 font-body">
               Pride TV
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-white leading-tight">
               Watch Pakistan
             </h2>
-            <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+            <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
           </div>
           <Link
             href="/pride-tv"
-            className="text-[13px] font-semibold text-gold-light no-underline hover:underline font-body whitespace-nowrap"
+            className="text-[13px] font-semibold text-gold-bright no-underline hover:underline font-body whitespace-nowrap"
           >
             All Videos
           </Link>
@@ -165,14 +165,14 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                     <img
                       src={getThumbnail(v.video_embed_code, v.thumb_url)}
                       alt={v.title}
-                      className="object-fit w-full h-full"
+                      className="object-cover w-full h-full"
                     />
                   ) : (
                     <div className="w-full h-full bg-white/10" />
                   )}
                   {activeId === v.video_id && (
                     <div className="absolute inset-0 flex items-center justify-center bg-green/60">
-                      <div className="flex items-center justify-center w-5 h-5 rounded-full bg-gold">
+                      <div className="flex items-center justify-center w-5 h-5 rounded-full bg-leaf">
                         <div className="w-0 h-0 border-t-[4px] border-b-[4px] border-l-[7px] border-t-transparent border-b-transparent border-l-white ml-0.5" />
                       </div>
                     </div>
@@ -189,7 +189,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                     {v.title}
                   </p>
                   {v.featured === "feature" && (
-                    <span className="text-[9px] font-bold text-gold font-body uppercase tracking-wide mt-1 block">
+                    <span className="text-[9px] font-bold text-gold-bright font-body uppercase tracking-wide mt-1 block">
                       Featured
                     </span>
                   )}

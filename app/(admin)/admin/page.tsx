@@ -127,7 +127,7 @@ export default async function AdminDashboard() {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 lg:ml-64lg:p-8">
+      <main className="flex-1 p-4 lg:p-8">
         <div className="max-w-[1100px]">
           {/* Header */}
           <div className="mb-8">

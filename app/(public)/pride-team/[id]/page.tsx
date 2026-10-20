@@ -217,7 +217,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                   href={`https://wa.me/?text=${encodeURIComponent(`Meet ${member.fullname} of the Pride of Pakistan team: ${url}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
                 >
                   Share on WhatsApp
                 </a>
@@ -269,7 +269,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                  className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-green no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
                 >
                   Get in Touch
                 </Link>

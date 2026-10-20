@@ -120,7 +120,7 @@ export default function ProductInquiryForm({
             <button
               type="submit"
               disabled={sending}
-              className="w-full bg-gold text-white rounded-md py-3 text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+              className="w-full bg-leaf text-green rounded-md py-3 text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
             >
               {sending ? "Sending…" : "Send Enquiry"}
             </button>

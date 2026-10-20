@@ -134,7 +134,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             >
               {f === 'all' ? 'All' : STATUS_LABELS[f as number]}
               {f === 0 && pendingCount > 0 && (
-                <span className="ml-1.5 bg-gold text-white text-[10px] px-1.5 py-0.5 rounded-full">{pendingCount}</span>
+                <span className="ml-1.5 bg-leaf text-green text-[10px] px-1.5 py-0.5 rounded-full">{pendingCount}</span>
               )}
             </button>
           ))}
@@ -153,7 +153,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 <img
                   src={resolveImage(p.image)!}
                   alt={p.title}
-                  className="flex-shrink-0 object-top w-10 h-10 rounded-full object-fit"
+                  className="flex-shrink-0 object-top w-10 h-10 rounded-full object-cover"
                 />
               ) : (
                 <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-white rounded-full bg-green font-display">
@@ -214,7 +214,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="object-top w-16 h-16 border rounded-lg object-fit border-border"
+                  className="object-top w-16 h-16 border rounded-lg object-cover border-border"
                 />
               ) : (
                 <div className="flex items-center justify-center w-16 h-16 text-2xl font-bold border rounded-lg bg-cream border-border text-green font-display">
@@ -298,7 +298,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-1 bg-gold text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+              className="flex-1 bg-leaf text-green rounded-md py-2.5 text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
             >
               {saving ? 'Saving...' : 'Save Changes'}
             </button>

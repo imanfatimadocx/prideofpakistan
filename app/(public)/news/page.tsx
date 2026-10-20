@@ -57,7 +57,7 @@ export default async function NewsPage() {
                         <img
                           src={image}
                           alt={item.title}
-                          className="object-top w-full h-full transition-transform duration-300 object-fit group-hover:scale-105"
+                          className="object-top w-full h-full transition-transform duration-300 object-cover group-hover:scale-105"
                         />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full bg-green/10">

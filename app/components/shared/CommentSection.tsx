@@ -279,7 +279,7 @@ export default function CommentSection({
                 <button
                   type="submit"
                   disabled={submitting || !content.trim()}
-                  className="bg-gold text-white px-5 py-2 rounded-lg text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+                  className="bg-leaf text-green px-5 py-2 rounded-lg text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
                 >
                   {submitting
                     ? "Posting…"

@@ -74,7 +74,7 @@ export default async function AdminUserStoryDetailPage({ params }: Props) {
                   <img
                     src={coverImage}
                     alt={story.title}
-                    className="w-full h-full object-fit object-top"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
               )}
@@ -124,7 +124,7 @@ export default async function AdminUserStoryDetailPage({ params }: Props) {
                           <img
                             src={img.src}
                             alt={img.caption}
-                            className="w-full h-full object-fit object-top"
+                            className="w-full h-full object-cover object-top"
                           />
                         </div>
                         {img.caption && (

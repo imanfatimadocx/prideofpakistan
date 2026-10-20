@@ -130,7 +130,7 @@ export default function UserStoriesClient({
                   <img
                     src={s.image}
                     alt={s.title}
-                    className="flex-shrink-0 object-fit w-12 h-12 rounded-lg"
+                    className="flex-shrink-0 object-cover w-12 h-12 rounded-lg"
                   />
                 )}
                 <div className="flex-1 min-w-0">

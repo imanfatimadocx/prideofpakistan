@@ -79,7 +79,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   <img
                     src={image}
                     alt={product.title}
-                    className="w-full h-full object-fit object-top"
+                    className="w-full h-full object-cover object-top"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-green">
@@ -148,7 +148,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   {product.title}
                 </h1>
                 {product.category && (
-                  <p className="text-gold text-sm font-body mt-1">
+                  <p className="text-gold-bright text-sm font-body mt-1">
                     {product.category.name}
                   </p>
                 )}
@@ -211,7 +211,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   href={`https://wa.me/?text=${encodeURIComponent(`Check out ${product.title} on Pride of Pakistan: https://prideofpakistan.com/products/${productId}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
                 >
                   <svg
                     width="12"

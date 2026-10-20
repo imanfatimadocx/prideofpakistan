@@ -32,7 +32,7 @@ const EMPTY: Omit<Banner, 'id' | 'createdAt'> = {
 const TYPE_LABELS = { modal: 'Full-screen Modal', strip: 'Dismissible Strip' }
 const COLOR_STYLES: Record<string, string> = {
   green: 'bg-green text-white',
-  gold:  'bg-gold text-white',
+  gold:  'bg-leaf text-green',
   red:   'bg-red-600 text-white',
 }
 
@@ -153,7 +153,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
       {!showForm && (
         <button
           onClick={openNew}
-          className="bg-gold text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors"
+          className="bg-leaf text-green px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors"
         >
           + Create Banner
         </button>
@@ -311,7 +311,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
               <button
                 type="button"
                 onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
-                className={`w-11 h-6 rounded-full transition-colors flex items-center ${form.active ? 'bg-gold' : 'bg-border'}`}
+                className={`w-11 h-6 rounded-full transition-colors flex items-center ${form.active ? 'bg-leaf' : 'bg-border'}`}
               >
                 <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform mx-0.5 ${form.active ? 'translate-x-5' : 'translate-x-0'}`} />
               </button>
@@ -321,7 +321,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
             <button
               onClick={handleSave}
               disabled={saving}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+              className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
             >
               {saving ? 'Saving…' : editingId ? 'Update Banner' : 'Create Banner'}
             </button>

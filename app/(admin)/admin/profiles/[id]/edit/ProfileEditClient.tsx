@@ -251,7 +251,7 @@ export default function ProfileEditClient({
           <button
             onClick={handleSave}
             disabled={saving || !!imgUploading}
-            className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+            className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
           >
             {saving ? "Saving..." : isNew ? "Create Profile" : "Save Changes"}
           </button>
@@ -680,7 +680,7 @@ export default function ProfileEditClient({
                   setForm((f) => ({ ...f, featured: f.featured === 1 ? 0 : 1 }))
                 }
                 className={`flex-shrink-0 w-11 h-6 rounded-full transition-colors flex items-center ${
-                  form.featured === 1 ? "bg-gold" : "bg-border"
+                  form.featured === 1 ? "bg-leaf" : "bg-border"
                 }`}
               >
                 <div
@@ -702,7 +702,7 @@ export default function ProfileEditClient({
             <button
               onClick={handleSave}
               disabled={saving || !!imgUploading}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+              className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
             >
               {saving ? "Saving..." : isNew ? "Create Profile" : "Save Changes"}
             </button>

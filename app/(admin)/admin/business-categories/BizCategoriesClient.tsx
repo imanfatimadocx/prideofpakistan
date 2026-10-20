@@ -95,7 +95,7 @@ export default function BizCategoriesClient({
           <button
             onClick={handleAdd}
             disabled={saving}
-            className="bg-gold text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+            className="bg-leaf text-green px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
           >
             {saving ? "..." : "Add"}
           </button>

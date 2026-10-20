@@ -33,7 +33,7 @@ export default function ProductsSection({ products }: Props) {
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
               Pakistani Products
             </h2>
-            <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+            <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
           </div>
           <Link
             href="/products"
@@ -61,7 +61,7 @@ export default function ProductsSection({ products }: Props) {
                     alt={p.title}
                     width={600}
                     height={350}
-                    className="object-fit object-top  rounded-lg w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top  rounded-lg w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">

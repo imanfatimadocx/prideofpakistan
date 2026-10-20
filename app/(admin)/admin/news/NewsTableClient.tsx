@@ -132,7 +132,7 @@ export default function NewsTableClient({
                           <img
                             src={n.smallimage}
                             alt={n.title}
-                            className="flex-shrink-0 w-20 h-16 rounded-lg object-fit"
+                            className="flex-shrink-0 w-20 h-16 rounded-lg object-cover"
                           />
                         ) : (
                           <div className="flex items-center justify-center flex-shrink-0 w-20 h-16 rounded-lg bg-green/10">

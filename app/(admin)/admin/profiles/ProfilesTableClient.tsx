@@ -204,7 +204,7 @@ export default function ProfilesTableClient({
                           <img
                             src={p.image}
                             alt={p.title}
-                            className="flex-shrink-0 object-top w-16 h-16 rounded-lg object-fit"
+                            className="flex-shrink-0 object-top w-16 h-16 rounded-lg object-cover"
                           />
                         ) : (
                           <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-bold text-white rounded-full bg-green font-display">

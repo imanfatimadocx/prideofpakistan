@@ -62,7 +62,7 @@ export default async function AdminUsersPage({
           />
           <button
             type="submit"
-            className="px-5 py-2.5 text-sm font-semibold text-white rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+            className="px-5 py-2.5 text-sm font-semibold text-green rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
           >
             Search
           </button>

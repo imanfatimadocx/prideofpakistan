@@ -154,7 +154,7 @@ export default async function HomePage() {
                 <div>
                   <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Updates</p>
                   <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Discussion Forum</h2>
-                  <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+                  <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
                 </div>
                 <Link href="/news" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
               </div>
@@ -164,7 +164,7 @@ export default async function HomePage() {
                     <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: "600/350" }}>
                       {item.smallimage ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={item.smallimage} alt={item.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105" />
+                        <img src={item.smallimage} alt={item.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105" />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full bg-green/10">
                           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-green/40">
@@ -193,7 +193,7 @@ export default async function HomePage() {
                 <div>
                   <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Community</p>
                   <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Your Stories</h2>
-                  <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+                  <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
                 </div>
                 <Link href="/your-stories" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
               </div>
@@ -203,7 +203,7 @@ export default async function HomePage() {
                     <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: "600/350" }}>
                       {story.image ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={story.image} alt={story.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105" />
+                        <img src={story.image} alt={story.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105" />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full bg-green/10">
                           <span className="text-4xl font-bold font-display text-green/30">{story.title.charAt(0)}</span>

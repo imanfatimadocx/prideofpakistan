@@ -114,7 +114,7 @@ function ProfileListModal({
                     onClick={() => available && setActiveLetter(letter === activeLetter ? null : letter)}
                     disabled={!available}
                     className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${
-                      activeLetter === letter ? 'bg-gold text-white'
+                      activeLetter === letter ? 'bg-leaf text-green'
                       : available ? 'text-ink-dark hover:bg-gold-pale hover:text-gold'
                       : 'text-ink-muted/30 cursor-not-allowed'
                     }`}
@@ -150,7 +150,7 @@ function ProfileListModal({
                       >
                         {p.image ? (
                           <Image src={p.image} alt={p.title} width={48} height={48}
-                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-fit ring-2 ring-border group-hover:ring-gold" />
+                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-cover ring-2 ring-border group-hover:ring-gold" />
                         ) : (
                           <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-gold">
                             {p.title.charAt(0).toUpperCase()}
@@ -221,7 +221,7 @@ export default function WhoIsWhoSection({
               <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Hall of Fame</p>
               <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Who Is Who</h2>
               <span className="text-green">These are the people who are proud of what they have done and we, in highlighting what they have done, are proud of them and want to ensure their activities are recognized.</span>
-              <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+              <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
             </div>
             <Link href="/who-is-who" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
               View All →
@@ -250,7 +250,7 @@ export default function WhoIsWhoSection({
             alt={profileOfTheDay.title}
             width={600}
             height={350}
-            className="object-top w-full h-full rounded-lg on-500 bordertransition-transform object-fit group-hover:scale-105"
+            className="object-top w-full h-full rounded-lg transition-transform duration-500 object-cover group-hover:scale-105"
           />
         ) : (
           <div className="flex items-center justify-center w-full h-full bg-green">
@@ -306,7 +306,7 @@ export default function WhoIsWhoSection({
                             alt={p.title}
                             width={600}
                             height={350}
-                            className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
+                            className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105"
                           />
                         ) : (
                           <div className="flex items-center justify-center w-full h-full bg-green">

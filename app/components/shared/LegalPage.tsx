@@ -16,7 +16,7 @@ export default async function LegalPage({ slug }: { slug: LegalPageSlug }) {
       <main className="min-h-screen bg-cream">
         <div className="max-w-[860px] mx-auto px-4 sm:px-8 lg:px-12 py-12 lg:py-16">
           <h1 className="mb-2 text-3xl font-bold font-display text-green">{content.title}</h1>
-          <div className="w-12 h-[3px] bg-gold rounded mb-3" />
+          <div className="w-12 h-[3px] bg-leaf rounded mb-3" />
           {content.updatedAt && (
             <p className="mb-8 text-xs text-ink-muted font-body">
               Last updated{" "}

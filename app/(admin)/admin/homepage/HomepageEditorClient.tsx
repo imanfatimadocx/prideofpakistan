@@ -177,7 +177,7 @@ function SectionEditor({
                 setContent((c) => ({ ...c, image: "" }));
                 setImagePreview(null);
               }}
-              className="block w-full p-2 mt-2 text-xs text-red-500 transition-colors border rounded-md font-body hover:underline border-lg radius-lg border-border"
+              className="block w-full p-2 mt-2 text-xs text-red-500 transition-colors border rounded-md font-body hover:underline rounded-lg border-border"
             >
               Remove image
             </button>
@@ -200,7 +200,7 @@ function SectionEditor({
         <button
           onClick={handleSave}
           disabled={saving}
-          className="px-6 py-2.5 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+          className="px-6 py-2.5 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save Changes"}
         </button>

@@ -118,7 +118,7 @@ export default function PageHeroEditor({ section, label, initial }: Props) {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+          className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save Changes"}
         </button>

@@ -17,7 +17,7 @@ export default function NewsStrip({ news = [] }: Props) {
 
   return (
     <section
-      className="py-12 bg-white border-t sm:py-16 lg:py-18 border-border"
+      className="py-12 bg-white border-t sm:py-16 lg:py-20 border-border"
       id="top-stories"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
@@ -29,7 +29,7 @@ export default function NewsStrip({ news = [] }: Props) {
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
               Top Stories
             </h2>
-            <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+            <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
           </div>
           <Link
             href="/top-stories"
@@ -52,7 +52,7 @@ export default function NewsStrip({ news = [] }: Props) {
                   <img
                     src={item.smallimage}
                     alt={item.title}
-                    className="object-fit w-full h-full transition-transform duration-400 group-hover:scale-105"
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
               )}

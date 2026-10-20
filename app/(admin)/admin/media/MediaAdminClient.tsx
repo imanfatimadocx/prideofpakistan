@@ -317,7 +317,7 @@ export default function MediaAdminClient({
               <img
                 src={preview}
                 alt="Video thumbnail"
-                className="object-fit w-full h-full"
+                className="object-cover w-full h-full"
               />
             </div>
           </div>
@@ -328,7 +328,7 @@ export default function MediaAdminClient({
           <button
             type="button"
             onClick={() => setForm((f) => ({ ...f, featured: !f.featured }))}
-            className={`w-10 h-5 rounded-full transition-colors flex items-center flex-shrink-0 ${form.featured ? "bg-gold" : "bg-border"}`}
+            className={`w-10 h-5 rounded-full transition-colors flex items-center flex-shrink-0 ${form.featured ? "bg-leaf" : "bg-border"}`}
           >
             <div
               className={`w-4 h-4 bg-white rounded-full shadow transition-transform mx-0.5 ${form.featured ? "translate-x-5" : "translate-x-0"}`}
@@ -350,7 +350,7 @@ export default function MediaAdminClient({
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+            className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
           >
             {saving
               ? "Saving..."
@@ -418,7 +418,7 @@ export default function MediaAdminClient({
                       <img
                         src={v.thumb_url}
                         alt={v.title}
-                        className="object-fit w-full h-full"
+                        className="object-cover w-full h-full"
                       />
                     ) : (
                       <div className="flex items-center justify-center w-full h-full bg-green/10">
