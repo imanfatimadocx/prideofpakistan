@@ -81,15 +81,15 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
 
   if (comingSoon || videos.length === 0) {
     return (
-      <section className="py-12 bg-green sm:py-16 lg:py-20" id="pride-tv">
+      <section className="py-12 bg-sage sm:py-16 lg:py-20" id="pride-tv">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-sage mb-3 font-body">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green mb-3 font-body">
             Pride TV
           </p>
-          <h2 className="mb-4 text-2xl font-bold text-white font-display sm:text-3xl">
+          <h2 className="mb-4 text-2xl font-bold text-green font-display sm:text-3xl">
             Coming Soon
           </h2>
-          <p className="text-sm text-white/60 font-body">
+          <p className="text-sm text-slate-deep font-body">
             Video content is being added. Check back soon.
           </p>
         </div>
@@ -98,22 +98,22 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
   }
 
   return (
-    <section className="py-12 bg-green sm:py-16 lg:py-20" id="pride-tv">
+    <section className="py-12 bg-sage sm:py-16 lg:py-20" id="pride-tv">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-sage mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green mb-2 font-body">
               Pride TV
             </p>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-white leading-tight">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
               Watch Pakistan
             </h2>
-            <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
+            <div className="w-12 h-[3px] bg-green mt-3 rounded" />
           </div>
           <Link
             href="/pride-tv"
-            className="text-[13px] font-semibold text-sage no-underline hover:underline font-body whitespace-nowrap"
+            className="text-[13px] font-semibold text-green no-underline hover:underline font-body whitespace-nowrap"
           >
             All Videos
           </Link>
@@ -134,11 +134,11 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
             </div>
             {activeVideo && (
               <div className="mt-3">
-                <h3 className="text-base font-bold leading-snug text-white font-display sm:text-lg">
+                <h3 className="text-base font-bold leading-snug text-green font-display sm:text-lg">
                   {activeVideo.title}
                 </h3>
                 {activeVideo.views > 0 && (
-                  <p className="mt-1 text-xs text-white/40 font-body">
+                  <p className="mt-1 text-xs text-slate-deep font-body">
                     {activeVideo.views.toLocaleString()} views
                   </p>
                 )}
@@ -154,12 +154,12 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                 onClick={() => setActiveId(v.video_id)}
                 className={`w-full flex items-start gap-3 p-2.5 rounded-lg text-left transition-all ${
                   activeId === v.video_id
-                    ? "bg-white/15 border border-white/20"
-                    : "hover:bg-white/[.08] border border-transparent"
+                    ? "bg-white/70 border border-white"
+                    : "hover:bg-white/40 border border-transparent"
                 }`}
               >
                 {/* Thumb */}
-                <div className="relative flex-shrink-0 w-24 overflow-hidden rounded-md h-14 bg-white/10">
+                <div className="relative flex-shrink-0 w-24 overflow-hidden rounded-md h-14 bg-white/50">
                   {v.thumb_url || v.video_embed_code ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -168,7 +168,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                       className="object-cover w-full h-full"
                     />
                   ) : (
-                    <div className="w-full h-full bg-white/10" />
+                    <div className="w-full h-full bg-white/50" />
                   )}
                   {activeId === v.video_id && (
                     <div className="absolute inset-0 flex items-center justify-center bg-green/60">
@@ -183,13 +183,13 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                 <div className="flex-1 min-w-0">
                   <p
                     className={`text-xs font-semibold font-body leading-snug line-clamp-2 ${
-                      activeId === v.video_id ? "text-white" : "text-white/65"
+                      activeId === v.video_id ? "text-green" : "text-slate-deep"
                     }`}
                   >
                     {v.title}
                   </p>
                   {v.featured === "feature" && (
-                    <span className="text-[9px] font-bold text-sage font-body uppercase tracking-wide mt-1 block">
+                    <span className="text-[9px] font-bold text-leaf-dark font-body uppercase tracking-wide mt-1 block">
                       Featured
                     </span>
                   )}

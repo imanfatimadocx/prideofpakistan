@@ -64,7 +64,7 @@ export default function ImageUpload({
         </div>
         <div className="space-y-2">
           <label
-            className={`inline-block cursor-pointer bg-leaf text-green px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors ${
+            className={`inline-block cursor-pointer bg-green text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-green-mid transition-colors ${
               uploading ? "opacity-50 pointer-events-none" : ""
             }`}
           >

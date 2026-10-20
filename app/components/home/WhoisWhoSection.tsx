@@ -114,7 +114,7 @@ function ProfileListModal({
                     onClick={() => available && setActiveLetter(letter === activeLetter ? null : letter)}
                     disabled={!available}
                     className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${
-                      activeLetter === letter ? 'bg-leaf text-green'
+                      activeLetter === letter ? 'bg-green text-white'
                       : available ? 'text-ink-dark hover:bg-sage/40 hover:text-leaf-dark'
                       : 'text-ink-muted/30 cursor-not-allowed'
                     }`}

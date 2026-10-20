@@ -93,7 +93,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
               {/* Video info */}
               <div className="mt-5">
                 {video.featured === "feature" && (
-                  <span className="inline-block bg-leaf text-green text-[10px] font-bold tracking-[.12em] uppercase px-3 py-1 rounded mb-3 font-body">
+                  <span className="inline-block bg-sage text-green text-[10px] font-bold tracking-[.12em] uppercase px-3 py-1 rounded mb-3 font-body">
                     Featured
                   </span>
                 )}

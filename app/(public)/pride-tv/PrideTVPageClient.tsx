@@ -121,7 +121,7 @@ export default function PrideTVPageClient({
                   onClick={() => chooseCategory(c.id)}
                   className={`flex-shrink-0 mx-1 px-4 py-1.5 rounded-full text-xs font-semibold font-body transition-colors border ${
                     category === c.id
-                      ? "bg-leaf text-green border-leaf"
+                      ? "bg-green text-white border-green"
                       : "bg-white/[.06] text-white/70 border-white/15 hover:bg-white/15 hover:text-white"
                   }`}
                 >
@@ -257,7 +257,7 @@ export default function PrideTVPageClient({
                     </div>
                   </div>
                   {activeId === v.video_id && (
-                    <div className="absolute top-2 left-2 bg-leaf text-green text-[9px] font-bold px-2 py-0.5 rounded font-body uppercase">
+                    <div className="absolute top-2 left-2 bg-sage text-green text-[9px] font-bold px-2 py-0.5 rounded font-body uppercase">
                       Playing
                     </div>
                   )}

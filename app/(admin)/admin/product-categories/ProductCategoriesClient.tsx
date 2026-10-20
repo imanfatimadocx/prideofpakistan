@@ -95,7 +95,7 @@ export default function ProductCategoriesClient({
           <button
             onClick={handleAdd}
             disabled={saving}
-            className="bg-leaf text-green px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
+            className="bg-green text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid disabled:opacity-50"
           >
             {saving ? "..." : "Add"}
           </button>

@@ -163,7 +163,7 @@ export default function ProductEditClient({
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
+            className="bg-green text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50"
           >
             {saving ? "Saving..." : isNew ? "Create Product" : "Save Changes"}
           </button>
@@ -410,7 +410,7 @@ export default function ProductEditClient({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="w-full bg-leaf text-green rounded-md py-3 text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
+              className="w-full bg-green text-white rounded-md py-3 text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50"
             >
               {saving ? "Saving..." : isNew ? "Create Product" : "Save Changes"}
             </button>

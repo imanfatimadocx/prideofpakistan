@@ -31,16 +31,16 @@ export default async function YourStoriesPage() {
       <Navbar />
       <main className="min-h-screen bg-cream">
         {/* Left-aligned hero — matches other pages */}
-        <div className="py-10 bg-sage border-b border-leaf/40 sm:py-14">
+        <div className="py-10 bg-mint border-b border-sage sm:py-14">
           <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green-mid mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
               {hero.eyebrow}
             </p>
             <h1 className="mb-3 text-3xl font-black leading-tight text-green font-display sm:text-4xl lg:text-5xl">
               {hero.heading}
             </h1>
             {hero.subtext && (
-              <p className="text-ink-dark/85 font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
+              <p className="text-slate-deep font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
                 {hero.subtext}
               </p>
             )}
@@ -56,14 +56,14 @@ export default async function YourStoriesPage() {
             {session ? (
               <Link
                 href="/your-stories/submit"
-                className="bg-leaf text-green px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
+                className="bg-green text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors no-underline"
               >
                 Share Your Story →
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="bg-leaf text-green px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
+                className="bg-green text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors no-underline"
               >
                 Login to Share Your Story →
               </Link>

@@ -314,7 +314,7 @@ export default function ContactPageClient({
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
+                      className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
                     >
                       {loading ? "Sending…" : "Send Message"}
                     </button>

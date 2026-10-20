@@ -237,7 +237,7 @@ export default function MissionClient({ data }: { data: MissionData }) {
           <div className="flex flex-col clear-both gap-3 pt-2 sm:flex-row">
             <Link
               href="/who-is-who"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
+              className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:bg-green-mid"
             >
               Explore Who Is Who →
             </Link>

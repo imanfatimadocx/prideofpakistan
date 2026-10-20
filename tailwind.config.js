@@ -17,16 +17,16 @@ module.exports = {
         sage: "#B9DFC5",           // Pastel Sage – header accent / top bar
         mint: "#E5F4E8",           // Soft Mint – light panels / sections
         ivory: "#F7FCF8",          // Ivory White – header & main background
-        slate: "#596B68",          // Slate Grey – paragraph text
+        slate: { DEFAULT: '#596B68', deep: '#3D4D4A' },          // Slate Grey – paragraph text
 
 
-        cream: "#EEF3EF",          // (old name) soft neutral sage-grey section background
+        cream: '#F7FCF8',          // (old name) soft neutral sage-grey section background
 
         "ink-dark": "#1C332C",
         "ink-mid": "#596B68",
         "ink-muted": "#657673",
 
-        border: "#CFE3D6",
+        border: '#DCE7E0',
       },
       fontFamily: {
         display: ["Playfair Display", "serif"],

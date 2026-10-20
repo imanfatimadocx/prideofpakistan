@@ -73,7 +73,7 @@ export default async function ProductInquiriesPage({ params }: Props) {
                           {inq.name}
                         </p>
                         {!inq.read && (
-                          <span className="text-[10px] font-bold bg-leaf text-green px-2 py-0.5 rounded-full font-body">
+                          <span className="text-[10px] font-bold bg-sage text-green px-2 py-0.5 rounded-full font-body">
                             New
                           </span>
                         )}

@@ -15,7 +15,7 @@ interface Banner {
 
 const STRIP_COLORS: Record<string, string> = {
   green: "bg-green text-white",
-  gold: "bg-leaf text-green",
+  gold: "bg-green text-white",
   red: "bg-red-600 text-white",
 };
 
@@ -183,7 +183,7 @@ export default function EventBanners() {
                   <Link
                     href={modal.ctaLink}
                     onClick={dismissModal}
-                    className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
+                    className="bg-green text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors no-underline"
                   >
                     {modal.ctaLabel}
                   </Link>

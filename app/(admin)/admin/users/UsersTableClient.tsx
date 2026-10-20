@@ -135,7 +135,7 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="px-5 py-2 text-sm font-semibold text-green rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
+          className="px-5 py-2 text-sm font-semibold text-white rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
         >
           {saving ? "Saving…" : "Update Password"}
         </button>

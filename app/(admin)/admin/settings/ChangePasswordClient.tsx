@@ -107,7 +107,7 @@ export default function ChangePasswordClient() {
         <button
           type="submit"
           disabled={saving}
-          className="w-full bg-leaf text-green rounded-md py-2.5 text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50 mt-2"
+          className="w-full bg-green text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50 mt-2"
         >
           {saving ? 'Updating...' : 'Update Password'}
         </button>

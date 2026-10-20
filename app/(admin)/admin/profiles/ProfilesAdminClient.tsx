@@ -134,7 +134,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             >
               {f === 'all' ? 'All' : STATUS_LABELS[f as number]}
               {f === 0 && pendingCount > 0 && (
-                <span className="ml-1.5 bg-leaf text-green text-[10px] px-1.5 py-0.5 rounded-full">{pendingCount}</span>
+                <span className="ml-1.5 bg-sage text-green text-[10px] px-1.5 py-0.5 rounded-full">{pendingCount}</span>
               )}
             </button>
           ))}
@@ -298,7 +298,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-1 bg-leaf text-green rounded-md py-2.5 text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50"
+              className="flex-1 bg-green text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50"
             >
               {saving ? 'Saving...' : 'Save Changes'}
             </button>

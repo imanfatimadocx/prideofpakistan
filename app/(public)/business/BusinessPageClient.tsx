@@ -128,16 +128,16 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
   return (
     <div className="min-h-screen bg-cream">
       {/* Hero */}
-      <div className="py-10 bg-sage border-b border-leaf/40 sm:py-14">
+      <div className="py-10 bg-mint border-b border-sage sm:py-14">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green-mid mb-2 font-body">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
             {hero.eyebrow}
           </p>
           <h1 className="mb-3 text-3xl font-black leading-tight text-green font-display sm:text-4xl lg:text-5xl">
             {hero.heading}
           </h1>
           {hero.subtext && (
-            <p className="text-ink-dark/85 font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
+            <p className="text-slate-deep font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
               {hero.subtext}
             </p>
           )}
@@ -266,7 +266,7 @@ export default function BusinessPageClient({ businesses, categories, hero }: Pro
                       disabled={!available}
                       className={`text-[11px] font-bold font-body w-7 h-7 rounded transition-colors ${
                         activeLetter === letter
-                          ? "bg-leaf text-green"
+                          ? "bg-green text-white"
                           : available
                             ? "text-ink-dark hover:bg-sage/40 hover:text-leaf-dark"
                             : "text-ink-muted/25 cursor-not-allowed"

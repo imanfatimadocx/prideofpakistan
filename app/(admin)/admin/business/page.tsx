@@ -67,7 +67,7 @@ export default async function AdminBusinessPage() {
             </div>
             <Link
               href="/admin/business/new"
-              className="bg-leaf text-green px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
+              className="bg-green text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors no-underline"
             >
               + Add Business
             </Link>

@@ -9,7 +9,7 @@ export default function Topbar() {
   })
 
   return (
-    <div className="py-2 text-xs tracking-wide bg-slate text-white font-body">
+    <div className="py-2 text-xs tracking-wide bg-slate-deep text-white font-body">
       <div className="flex items-center justify-between max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
       <div className="flex items-center gap-2 sm:gap-2.5">
         <span className="hidden font-bold text-white sm:inline">{dateStr}</span>

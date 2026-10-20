@@ -17,8 +17,8 @@ export default function HeroSection({ heading, subtext, image }: Props) {
         alt="Pakistan"
         className="absolute inset-0 object-cover object-center w-full h-full"
       />
-      <div className="absolute inset-0 bg-ivory/55" />
-      <div className="absolute inset-0 bg-gradient-to-br from-sage/70 via-sage/30 to-ivory/80" />
+      <div className="absolute inset-0 bg-ivory/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-mint/90 via-ivory/40 to-ivory/80" />
 
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
@@ -36,7 +36,7 @@ export default function HeroSection({ heading, subtext, image }: Props) {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center gap-2 bg-leaf text-green px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-leaf-light hover:text-ink-dark transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-green text-white px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-green-mid transition-colors"
               >
                 About Us →
               </Link>

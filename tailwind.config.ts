@@ -14,10 +14,10 @@ const config: Config = {
         sage: '#B9DFC5',
         mint: '#E5F4E8',
         ivory: '#F7FCF8',
-        slate: '#596B68',
-        cream: '#EEF3EF',
+        slate: { DEFAULT: '#596B68', deep: '#3D4D4A' },
+        cream: '#F7FCF8',
         ink: { dark: '#1C332C', mid: '#596B68', muted: '#657673' },
-        border: '#CFE3D6',
+        border: '#DCE7E0',
       },
       fontFamily: {
         display: ['"Playfair Display"', 'serif'],

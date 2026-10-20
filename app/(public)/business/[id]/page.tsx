@@ -335,7 +335,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   <div className="px-5 pb-5">
                     <a
                       href={`mailto:${biz.email}`}
-                      className="inline-flex items-center gap-2 bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
+                      className="inline-flex items-center gap-2 bg-green text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors no-underline"
                     >
                       <svg
                         width="14"
@@ -388,7 +388,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                 </div>
                 <Link
                   href="/list-business"
-                  className="inline-flex items-center flex-shrink-0 gap-2 px-6 py-3 mt-4 text-sm font-semibold text-green no-underline transition-colors rounded-md sm:mt-0 bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
+                  className="inline-flex items-center flex-shrink-0 gap-2 px-6 py-3 mt-4 text-sm font-semibold text-white no-underline transition-colors rounded-md sm:mt-0 bg-green font-body hover:bg-green-mid"
                 >
                   List Your Business →
                 </Link>

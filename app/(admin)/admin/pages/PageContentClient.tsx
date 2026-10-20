@@ -175,7 +175,7 @@ export default function PageContentClient({
             Carousel Images
           </h2>
           <label
-            className={`cursor-pointer bg-leaf text-green px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`cursor-pointer bg-green text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-green-mid transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {uploading ? "Uploading…" : "+ Add Image"}
             <input
@@ -286,7 +286,7 @@ export default function PageContentClient({
       <button
         onClick={handleSave}
         disabled={saving}
-        className="w-full py-3 text-sm font-semibold text-green transition-colors rounded-md bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark disabled:opacity-50"
+        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
       >
         {saving ? "Saving…" : "Save All Changes"}
       </button>

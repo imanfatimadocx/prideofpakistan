@@ -56,7 +56,7 @@ export default function CitiesSection({ cities }: Props) {
               <div className="absolute inset-0 bg-gradient-to-t from-green/[.88] via-green/[.15] to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
                 {city.tag && (
-                  <span className="inline-block bg-leaf text-green text-[9px] sm:text-[10px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded mb-1 sm:mb-1.5 tracking-[.08em] uppercase font-body">
+                  <span className="inline-block bg-sage text-green text-[9px] sm:text-[10px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded mb-1 sm:mb-1.5 tracking-[.08em] uppercase font-body">
                     {city.tag}
                   </span>
                 )}

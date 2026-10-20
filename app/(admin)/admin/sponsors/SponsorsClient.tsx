@@ -150,7 +150,7 @@ export default function SponsorsClient({ sponsors: initial }: { sponsors: Sponso
         {error && <p className="text-sm text-red-500 font-body">{error}</p>}
 
         <div className="flex gap-3">
-          <button onClick={save} disabled={saving} className="bg-leaf text-green px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-light hover:text-ink-dark transition-colors disabled:opacity-50">
+          <button onClick={save} disabled={saving} className="bg-green text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50">
             {saving ? "Saving…" : editingId ? "Update Sponsor" : "Add Sponsor"}
           </button>
           {editingId && (

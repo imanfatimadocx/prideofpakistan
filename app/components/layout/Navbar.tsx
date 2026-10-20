@@ -41,7 +41,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-ivory border-b-[3px] border-leaf sticky top-0 z-[100] shadow-[0_2px_24px_rgba(6,77,50,0.08)]">
+      <nav className="bg-white border-b-[3px] border-leaf sticky top-0 z-[100] shadow-[0_2px_24px_rgba(6,77,50,0.08)]">
         <div className="flex items-center justify-between h-24 lg:h-28 max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
@@ -63,8 +63,8 @@ export default function Navbar() {
                 href={href}
                 className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all whitespace-nowrap font-body ${
                   pathname === href
-                    ? "text-green font-semibold bg-sage/60"
-                    : "text-green hover:bg-sage/40"
+                    ? "text-green font-semibold bg-mint"
+                    : "text-slate-deep hover:bg-mint hover:text-green"
                 }`}
               >
                 {label}
@@ -76,15 +76,15 @@ export default function Navbar() {
                   href={dashboardHref}
                   className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all font-body ${
                     isActiveDashboard
-                      ? "text-green font-semibold bg-sage/60"
-                      : "text-green hover:bg-sage/40"
+                      ? "text-green font-semibold bg-mint"
+                      : "text-slate-deep hover:bg-mint hover:text-green"
                   }`}
                 >
                   {dashboardLabel}
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:bg-sage/40 font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-slate-deep hover:bg-mint hover:text-green font-body transition-colors"
                 >
                   Sign Out
                 </button>
@@ -93,13 +93,13 @@ export default function Navbar() {
               <div className="flex items-center gap-2 ml-3">
                 <Link
                   href="/login"
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:bg-sage/40 font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-slate-deep hover:bg-mint hover:text-green font-body transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-leaf text-green rounded-md px-4 py-2.5 font-bold text-[13px] hover:bg-leaf-light hover:text-ink-dark transition-colors no-underline"
+                  className="bg-green text-white rounded-md px-4 py-2.5 font-bold text-[13px] hover:bg-green-mid transition-colors no-underline"
                 >
                   Join
                 </Link>
@@ -262,7 +262,7 @@ export default function Navbar() {
               <Link
                 href="/register"
                 onClick={() => setOpen(false)}
-                className="w-full py-3 text-sm font-semibold text-center text-green no-underline transition-colors rounded-lg bg-leaf font-body hover:bg-leaf-light hover:text-ink-dark"
+                className="w-full py-3 text-sm font-semibold text-center text-white no-underline transition-colors rounded-lg bg-green font-body hover:bg-green-mid"
               >
                 Create Account
               </Link>

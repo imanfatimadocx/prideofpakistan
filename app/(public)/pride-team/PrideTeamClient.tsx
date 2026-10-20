@@ -192,8 +192,8 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
                 onClick={() => goTo(p)}
                 className={`w-9 h-9 rounded-md text-sm font-semibold font-body border ${
                   p === current
-                    ? "bg-leaf text-green border-leaf"
-                    : "bg-white border-border text-ink-mid hover:border-leaf"
+                    ? "bg-green text-white border-green"
+                    : "bg-white border-border text-ink-mid hover:border-green"
                 }`}
               >
                 {p}
