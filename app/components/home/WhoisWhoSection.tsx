@@ -150,7 +150,7 @@ function ProfileListModal({
                       >
                         {p.image ? (
                           <Image src={p.image} alt={p.title} width={48} height={48}
-                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-cover ring-2 ring-border group-hover:ring-leaf" />
+                            className="flex-shrink-0 object-top w-12 h-12 transition-all rounded-lg object-fit ring-2 ring-border group-hover:ring-leaf" />
                         ) : (
                           <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-lg font-bold text-white rounded-lg bg-green font-display ring-2 ring-border group-hover:ring-leaf">
                             {p.title.charAt(0).toUpperCase()}
@@ -250,7 +250,7 @@ export default function WhoIsWhoSection({
             alt={profileOfTheDay.title}
             width={600}
             height={350}
-            className="object-top w-full h-full rounded-lg transition-transform duration-500 object-cover group-hover:scale-105"
+            className="object-top w-full h-full transition-transform duration-500 rounded-lg object-fit group-hover:scale-105"
           />
         ) : (
           <div className="flex items-center justify-center w-full h-full bg-green">
@@ -306,7 +306,7 @@ export default function WhoIsWhoSection({
                             alt={p.title}
                             width={600}
                             height={350}
-                            className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105"
+                            className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
                           />
                         ) : (
                           <div className="flex items-center justify-center w-full h-full bg-green">

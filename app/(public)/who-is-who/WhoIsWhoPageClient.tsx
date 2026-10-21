@@ -120,7 +120,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="py-10 bg-sage border-b border-leaf/30 sm:py-14">
+      <div className="py-10 border-b bg-sage border-leaf/30 sm:py-14">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green-mid mb-2 font-body">
             {hero.eyebrow}
@@ -129,7 +129,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
             {hero.heading}
           </h1>
           {hero.subtext && (
-            <p className="text-ink-dark/85 font-body text-sm sm:text-base w-full leading-relaxed whitespace-pre-line">
+            <p className="w-full text-sm leading-relaxed whitespace-pre-line text-ink-dark/85 font-body sm:text-base">
               {hero.subtext}
             </p>
           )}
@@ -363,7 +363,7 @@ export default function WhoIsWhoPageClient({ profiles, categories, defaultCatego
                                   alt={p.title}
                                   width={650}
                                   height={300}
-                                  className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105"
+                                  className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105"
                                 />
                               ) : (
                                 <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-green font-display">
