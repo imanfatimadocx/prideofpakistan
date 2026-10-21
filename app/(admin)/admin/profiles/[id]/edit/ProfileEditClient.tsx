@@ -251,7 +251,7 @@ export default function ProfileEditClient({
           <button
             onClick={handleSave}
             disabled={saving || !!imgUploading}
-            className="bg-green text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50"
+            className="bg-leaf text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
           >
             {saving ? "Saving..." : isNew ? "Create Profile" : "Save Changes"}
           </button>
@@ -702,7 +702,7 @@ export default function ProfileEditClient({
             <button
               onClick={handleSave}
               disabled={saving || !!imgUploading}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
+              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
             >
               {saving ? "Saving..." : isNew ? "Create Profile" : "Save Changes"}
             </button>

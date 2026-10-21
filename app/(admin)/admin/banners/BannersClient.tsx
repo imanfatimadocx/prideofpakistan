@@ -153,7 +153,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
       {!showForm && (
         <button
           onClick={openNew}
-          className="bg-green text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors"
+          className="bg-leaf text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors"
         >
           + Create Banner
         </button>
@@ -321,7 +321,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
             <button
               onClick={handleSave}
               disabled={saving}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
+              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
             >
               {saving ? 'Saving…' : editingId ? 'Update Banner' : 'Create Banner'}
             </button>

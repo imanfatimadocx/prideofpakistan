@@ -41,16 +41,16 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-white border-b-[3px] border-leaf sticky top-0 z-[100] shadow-[0_2px_24px_rgba(6,77,50,0.08)]">
+      <nav className="bg-ivory border-b-[3px] border-sage sticky top-0 z-[100] shadow-[0_2px_24px_rgba(6,77,50,0.08)]">
         <div className="flex items-center justify-between h-24 lg:h-28 max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/logo-dark.png"
+              src="/logo-forest.png"
               alt="Pride of Pakistan"
               className="object-contain w-auto h-11 lg:h-16"
-              width={293}
-              height={128}
+              width={290}
+              height={120}
               priority
             />
           </Link>
@@ -64,7 +64,7 @@ export default function Navbar() {
                 className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all whitespace-nowrap font-body ${
                   pathname === href
                     ? "text-green font-semibold bg-mint"
-                    : "text-slate-deep hover:bg-mint hover:text-green"
+                    : "text-green hover:bg-mint"
                 }`}
               >
                 {label}
@@ -77,14 +77,14 @@ export default function Navbar() {
                   className={`text-[13px] font-bold px-3 py-2 rounded-md transition-all font-body ${
                     isActiveDashboard
                       ? "text-green font-semibold bg-mint"
-                      : "text-slate-deep hover:bg-mint hover:text-green"
+                      : "text-green hover:bg-mint"
                   }`}
                 >
                   {dashboardLabel}
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-slate-deep hover:bg-mint hover:text-green font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:bg-mint font-body transition-colors"
                 >
                   Sign Out
                 </button>
@@ -93,13 +93,13 @@ export default function Navbar() {
               <div className="flex items-center gap-2 ml-3">
                 <Link
                   href="/login"
-                  className="text-[13px] font-bold px-3 py-2 rounded-md text-slate-deep hover:bg-mint hover:text-green font-body transition-colors"
+                  className="text-[13px] font-bold px-3 py-2 rounded-md text-green hover:bg-mint font-body transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-green text-white rounded-md px-4 py-2.5 font-bold text-[13px] hover:bg-green-mid transition-colors no-underline"
+                  className="bg-leaf text-white rounded-md px-4 py-2.5 font-bold text-[13px] hover:bg-leaf-dark transition-colors no-underline"
                 >
                   Join
                 </Link>
@@ -164,11 +164,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between flex-shrink-0 px-5 py-4 border-b border-border">
           <Link href="/" onClick={() => setOpen(false)}>
             <Image
-              src="/logo-dark.png"
+              src="/logo-forest.png"
               alt="Pride of Pakistan"
               className="object-contain w-auto h-11"
-              width={293}
-              height={128}
+              width={290}
+              height={120}
             />
           </Link>
           <button
@@ -262,7 +262,7 @@ export default function Navbar() {
               <Link
                 href="/register"
                 onClick={() => setOpen(false)}
-                className="w-full py-3 text-sm font-semibold text-center text-white no-underline transition-colors rounded-lg bg-green font-body hover:bg-green-mid"
+                className="w-full py-3 text-sm font-semibold text-center text-white no-underline transition-colors rounded-lg bg-leaf font-body hover:bg-leaf-dark"
               >
                 Create Account
               </Link>

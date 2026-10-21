@@ -200,7 +200,7 @@ function SectionEditor({
         <button
           onClick={handleSave}
           disabled={saving}
-          className="px-6 py-2.5 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
+          className="px-6 py-2.5 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save Changes"}
         </button>

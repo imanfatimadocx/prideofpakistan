@@ -269,7 +269,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-green font-body hover:bg-green-mid"
+                  className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
                 >
                   Get in Touch
                 </Link>

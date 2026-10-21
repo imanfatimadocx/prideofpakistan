@@ -350,7 +350,7 @@ export default function MediaAdminClient({
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-green text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50"
+            className="bg-leaf text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
           >
             {saving
               ? "Saving..."

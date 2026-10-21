@@ -132,7 +132,7 @@ export default async function OurSponsorsPage() {
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-green font-body hover:bg-green-mid"
+                className="inline-flex items-center px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
               >
                 Get in Touch
               </Link>

@@ -68,7 +68,7 @@ export default function SubmitProfilePage() {
             </p>
             <Link
               href="/login?redirect=/submit-profile"
-              className="px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-green font-body hover:bg-green-mid"
+              className="px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
             >
               Log In
             </Link>
@@ -115,7 +115,7 @@ export default function SubmitProfilePage() {
                 </p>
                 <Link
                   href="/dashboard"
-                  className="bg-green text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors no-underline"
+                  className="bg-leaf text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors no-underline"
                 >
                   View Dashboard
                 </Link>
@@ -249,7 +249,7 @@ export default function SubmitProfilePage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
+                  className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
                 >
                   {loading ? "Submitting…" : "Submit Profile for Review"}
                 </button>

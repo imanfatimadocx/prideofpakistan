@@ -298,7 +298,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-1 bg-green text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-green-mid transition-colors disabled:opacity-50"
+              className="flex-1 bg-leaf text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
             >
               {saving ? 'Saving...' : 'Save Changes'}
             </button>

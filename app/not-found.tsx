@@ -23,7 +23,7 @@ export default function NotFound() {
           </p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-green font-body hover:bg-green-mid"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
           >
             ← Back to Home
           </Link>

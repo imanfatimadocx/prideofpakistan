@@ -92,7 +92,7 @@ export default function ContactClient({ queries: initial }: { queries: Query[] }
                 <div className="flex items-center gap-3">
                   <a
                     href={`mailto:${q.email}?subject=Re: ${q.subject}`}
-                    className="inline-flex items-center gap-1.5 bg-green text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-green-mid transition-colors no-underline"
+                    className="inline-flex items-center gap-1.5 bg-leaf text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-leaf-dark transition-colors no-underline"
                   >
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>

@@ -120,7 +120,7 @@ export default function VideoCategoriesClient({
           <button
             onClick={handleAdd}
             disabled={busy}
-            className="bg-green text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid disabled:opacity-50"
+            className="bg-leaf text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark disabled:opacity-50"
           >
             Add
           </button>

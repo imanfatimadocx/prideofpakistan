@@ -5,26 +5,26 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-deep border-t-[3px] border-leaf text-white/80 py-12 sm:py-16 lg:pb-8">
+    <footer className="bg-ivory border-t-[3px] border-sage text-ink-mid py-12 sm:py-16 lg:pb-8">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-14 mb-10 sm:mb-12">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center flex-shrink-0 mb-4">
               <Image
-                src="/logo-light.png"
+                src="/logo-forest.png"
                 alt="Pride of Pakistan"
                 className="object-contain object-left w-auto h-20 sm:h-[88px]"
-                width={293}
-                height={128}
+                width={290}
+                height={120}
               />
             </Link>
-            <p className="text-[13px] text-white/75 leading-relaxed max-w-[300px] font-body">
+            <p className="text-[13px] text-ink-mid leading-relaxed max-w-[300px] font-body">
               All content on this website is copyrighted material of
               prideofpakistan.com. Please seek the written permission of site
               owner before copying anything from the website. If you find any
               problems/mistakes please contact the Webmaster by clicking{" "}
-              <a href="/contact" className="text-sage underline">
+              <a href="/contact" className="text-leaf-dark underline">
                 here
               </a>
               . Our staff will try to fix the problem as soon as possible.{" "}
@@ -33,7 +33,7 @@ export default function Footer() {
 
           {/* Discover */}
           <div>
-            <h4 className="mb-4 text-sm font-bold text-white font-display">
+            <h4 className="mb-4 text-sm font-bold text-green font-display">
               Discover
             </h4>
             <ul className="space-y-2.5 list-none">
@@ -46,7 +46,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-white/75 no-underline text-[13px] hover:text-sage transition-colors font-body"
+                    className="text-ink-mid no-underline text-[13px] hover:text-leaf-dark transition-colors font-body"
                   >
                     {label}
                   </Link>
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* Business */}
           <div>
-            <h4 className="mb-4 text-sm font-bold text-white font-display">
+            <h4 className="mb-4 text-sm font-bold text-green font-display">
               Business
             </h4>
             <ul className="space-y-2.5 list-none">
@@ -70,7 +70,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-white/75 no-underline text-[13px] hover:text-sage transition-colors font-body"
+                    className="text-ink-mid no-underline text-[13px] hover:text-leaf-dark transition-colors font-body"
                   >
                     {label}
                   </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
 
           {/* Join */}
           <div>
-            <h4 className="mb-4 text-sm font-bold text-white font-display">
+            <h4 className="mb-4 text-sm font-bold text-green font-display">
               Join Us
             </h4>
             <ul className="space-y-2.5 list-none">
@@ -94,7 +94,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-white/75 no-underline text-[13px] hover:text-sage transition-colors font-body"
+                    className="text-ink-mid no-underline text-[13px] hover:text-leaf-dark transition-colors font-body"
                   >
                     {label}
                   </Link>
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/15 pt-6 flex flex-col sm:flex-row sm:justify-between items-center gap-3 text-xs text-white/60 font-body text-center sm:text-left">
+        <div className="border-t border-border pt-6 flex flex-col sm:flex-row sm:justify-between items-center gap-3 text-xs text-ink-mid font-body text-center sm:text-left">
           <span>© {year} Pride of Pakistan. All rights reserved.</span>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             {[
@@ -116,7 +116,7 @@ export default function Footer() {
               <Link
                 key={href}
                 href={href}
-                className="text-xs no-underline transition-colors text-white/60 hover:text-sage font-body"
+                className="text-xs no-underline transition-colors text-ink-mid hover:text-leaf-dark font-body"
               >
                 {label}
               </Link>

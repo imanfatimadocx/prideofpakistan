@@ -58,7 +58,7 @@ export default async function AdminProductsPage() {
             </div>
             <Link
               href="/admin/products/new"
-              className="bg-green text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-green-mid transition-colors no-underline"
+              className="bg-leaf text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors no-underline"
             >
               + Add Product
             </Link>

@@ -146,7 +146,7 @@ export default function LegalEditorClient({
         <h2 className="text-lg font-bold font-display text-green">
           Sections <span className="text-base font-normal text-ink-muted">({sections.length})</span>
         </h2>
-        <button type="button" onClick={() => addSection()} className="px-4 py-2 text-xs font-semibold text-white rounded-md bg-green font-body hover:bg-green-mid">
+        <button type="button" onClick={() => addSection()} className="px-4 py-2 text-xs font-semibold text-white rounded-md bg-leaf font-body hover:bg-leaf-dark">
           + Add Section
         </button>
       </div>
@@ -200,7 +200,7 @@ export default function LegalEditorClient({
             type="button"
             onClick={save}
             disabled={saving}
-            className="px-8 py-2.5 text-sm font-semibold text-white rounded-md bg-green font-body hover:bg-green-mid disabled:opacity-50"
+            className="px-8 py-2.5 text-sm font-semibold text-white rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
           >
             {saving ? "Saving…" : "Save Changes"}
           </button>

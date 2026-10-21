@@ -15,7 +15,7 @@ const config: Config = {
         mint: '#E5F4E8',
         ivory: '#F7FCF8',
         slate: { DEFAULT: '#596B68', deep: '#3D4D4A' },
-        cream: '#F7FCF8',
+        cream: '#E5F4E8',          // main page background = Soft Mint
         ink: { dark: '#1C332C', mid: '#596B68', muted: '#657673' },
         border: '#DCE7E0',
       },
