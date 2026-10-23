@@ -138,12 +138,6 @@ export default function AboutClient({ data }: { data: AboutData }) {
           >
             Submit Your Profile →
           </Link>
-          <Link
-            href="/membership"
-            className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:opacity-90"
-          >
-            Become a Member
-          </Link>
         </div>
       </div>
     </section>

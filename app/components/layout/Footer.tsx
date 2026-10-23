@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-green border-t-4 border-leaf text-white/80 py-12 sm:py-16 lg:pb-8">
+    <footer className="py-12 border-t-4 bg-green border-leaf text-white/80 sm:py-16 lg:pb-8">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-14 mb-10 sm:mb-12">
           {/* Brand */}
@@ -24,7 +24,7 @@ export default function Footer() {
               prideofpakistan.com. Please seek the written permission of site
               owner before copying anything from the website. If you find any
               problems/mistakes please contact the Webmaster by clicking{" "}
-              <a href="/contact" className="text-sage underline">
+              <a href="/contact" className="underline text-sage">
                 here
               </a>
               . Our staff will try to fix the problem as soon as possible.{" "}
@@ -62,10 +62,10 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 list-none">
               {[
-                { label: "Submit Your Profile", href: "/submit-profile" },
                 { label: "Pakistani Businesses", href: "/business" },
                 { label: "List Your Business", href: "/list-business" },
                 { label: "Our Sponsors", href: "/our-sponsors" },
+                { label: "Contact Us", href: "/contact" },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link
@@ -88,7 +88,7 @@ export default function Footer() {
               {[
                 { label: "Pride TV", href: "/pride-tv" },
                 { label: "Pride Team", href: "/pride-team" },
-                { label: "Contact Us", href: "/contact" },
+                { label: "Submit Your Profile", href: "/submit-profile" },
                 { label: "About Us", href: "/about" },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/15 pt-6 flex flex-col sm:flex-row sm:justify-between items-center gap-3 text-xs text-white/65 font-body text-center sm:text-left">
+        <div className="flex flex-col items-center gap-3 pt-6 text-xs text-center border-t border-white/15 sm:flex-row sm:justify-between text-white/65 font-body sm:text-left">
           <span>© {year} Pride of Pakistan. All rights reserved.</span>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             {[
