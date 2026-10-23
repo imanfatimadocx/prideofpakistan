@@ -148,15 +148,15 @@ export default async function HomePage() {
         <BusinessSection businesses={bizs} />
 
         {newsCards.length > 0 && (
-          <section className="py-12 bg-white border-t sm:py-16 lg:py-20 border-border">
+          <section className="py-12 bg-mint border-t sm:py-16 lg:py-20 border-sage/60">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
               <div className="flex items-end justify-between gap-4 mb-8">
                 <div>
-                  <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Updates</p>
+                  <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">Updates</p>
                   <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Discussion Forum</h2>
-                  <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+                  <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
                 </div>
-                <Link href="/news" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
+                <Link href="/news" className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
               </div>
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {newsCards.map((item) => (
@@ -164,7 +164,7 @@ export default async function HomePage() {
                     <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: "600/350" }}>
                       {item.smallimage ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={item.smallimage} alt={item.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105" />
+                        <img src={item.smallimage} alt={item.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105" />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full bg-green/10">
                           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-green/40">
@@ -174,10 +174,10 @@ export default async function HomePage() {
                       )}
                     </div>
                     <div className="mt-3">
-                      <p className="text-[10px] font-bold tracking-[.12em] uppercase text-gold font-body mb-1.5">{new Date(item.date_time).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
-                      <h3 className="mb-1 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">{item.title}</h3>
+                      <p className="text-[10px] font-bold tracking-[.12em] uppercase text-slate font-body mb-1.5">{new Date(item.date_time).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                      <h3 className="mb-1 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-leaf-dark line-clamp-2">{item.title}</h3>
                       {item.shortdesc && <p className="text-xs leading-relaxed text-ink-muted font-body line-clamp-2">{item.shortdesc}</p>}
-                      <p className="text-[11px] font-semibold text-gold font-body mt-2">Read more →</p>
+                      <p className="text-[11px] font-semibold text-leaf-dark font-body mt-2">Read more →</p>
                     </div>
                   </Link>
                 ))}
@@ -191,11 +191,11 @@ export default async function HomePage() {
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
               <div className="flex items-end justify-between gap-4 mb-8">
                 <div>
-                  <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">Community</p>
+                  <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">Community</p>
                   <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Your Stories</h2>
-                  <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+                  <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
                 </div>
-                <Link href="/your-stories" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
+                <Link href="/your-stories" className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
               </div>
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {storyCards.map((story) => (
@@ -203,7 +203,7 @@ export default async function HomePage() {
                     <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: "600/350" }}>
                       {story.image ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={story.image} alt={story.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-fit group-hover:scale-105" />
+                        <img src={story.image} alt={story.title} className="object-top w-full h-full transition-transform duration-300 rounded-lg object-cover group-hover:scale-105" />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full bg-green/10">
                           <span className="text-4xl font-bold font-display text-green/30">{story.title.charAt(0)}</span>
@@ -211,10 +211,10 @@ export default async function HomePage() {
                       )}
                     </div>
                     <div className="mt-3">
-                      <p className="text-[10px] font-bold tracking-[.12em] uppercase text-gold font-body mb-1.5">By {story.authorName} · {new Date(story.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
-                      <h3 className="mb-1 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">{story.title}</h3>
+                      <p className="text-[10px] font-bold tracking-[.12em] uppercase text-slate font-body mb-1.5">By {story.authorName} · {new Date(story.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                      <h3 className="mb-1 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-leaf-dark line-clamp-2">{story.title}</h3>
                       {story.shortdesc && <p className="text-xs leading-relaxed text-ink-muted font-body line-clamp-2">{story.shortdesc}</p>}
-                      <p className="text-[11px] font-semibold text-gold font-body mt-2">Read more →</p>
+                      <p className="text-[11px] font-semibold text-leaf-dark font-body mt-2">Read more →</p>
                     </div>
                   </Link>
                 ))}

@@ -39,7 +39,7 @@ export default async function StoryDetailPage({ params }: Props) {
         <div className="max-w-[860px] mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-14">
           <Link
             href="/your-stories"
-            className="flex items-center gap-2 text-sm font-semibold no-underline text-gold font-body hover:underline mb-8"
+            className="flex items-center gap-2 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline mb-8"
           >
             <svg
               width="16"
@@ -55,7 +55,7 @@ export default async function StoryDetailPage({ params }: Props) {
             </svg>
             Back to Your Stories
           </Link>
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate font-body mb-3">
             By {story.authorName} ·{" "}
             {new Date(story.createdAt).toLocaleDateString("en-GB", {
               day: "numeric",
@@ -80,7 +80,7 @@ export default async function StoryDetailPage({ params }: Props) {
               <img
                 src={coverImage}
                 alt={story.title}
-                className="w-full h-full object-fit object-top"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           )}
@@ -97,7 +97,7 @@ export default async function StoryDetailPage({ params }: Props) {
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="w-full h-full object-fit object-top"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                     {img.caption && (
@@ -110,7 +110,7 @@ export default async function StoryDetailPage({ params }: Props) {
               </div>
             )}
 
-            <div className="prose prose-neutral max-w-none font-body text-ink-mid leading-relaxed prose-headings:font-display prose-headings:text-green prose-a:text-gold">
+            <div className="prose prose-neutral max-w-none font-body text-ink-mid leading-relaxed prose-headings:font-display prose-headings:text-green prose-a:text-leaf-dark">
               {story.content}
             </div>
 
@@ -121,7 +121,7 @@ export default async function StoryDetailPage({ params }: Props) {
               href={`https://wa.me/?text=${encodeURIComponent(`${story.title} — https://prideofpakistan.com/your-stories/${storyId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+              className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
             >
               WhatsApp Share
             </a>

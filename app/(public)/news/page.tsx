@@ -45,7 +45,7 @@ export default async function NewsPage() {
                   <Link
                     key={item.id}
                     href={`/news/${item.id}`}
-                    className="overflow-hidden no-underline transition-all bg-white border group border-border rounded-xl hover:border-gold hover:-translate-y-1 hover:shadow-lg"
+                    className="overflow-hidden no-underline transition-all bg-white border group border-border rounded-xl hover:border-leaf hover:-translate-y-1 hover:shadow-lg"
                   >
                     {/* Cover */}
                     <div
@@ -57,7 +57,7 @@ export default async function NewsPage() {
                         <img
                           src={image}
                           alt={item.title}
-                          className="object-top w-full h-full transition-transform duration-300 object-fit group-hover:scale-105"
+                          className="object-top w-full h-full transition-transform duration-300 object-cover group-hover:scale-105"
                         />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full bg-green/10">
@@ -77,14 +77,14 @@ export default async function NewsPage() {
                     </div>
                     {/* Content */}
                     <div className="p-5">
-                      <p className="text-[11px] font-bold tracking-[.12em] uppercase text-gold font-body mb-2">
+                      <p className="text-[11px] font-bold tracking-[.12em] uppercase text-slate font-body mb-2">
                         {new Date(item.date_time).toLocaleDateString("en-GB", {
                           day: "numeric",
                           month: "long",
                           year: "numeric",
                         })}
                       </p>
-                      <h2 className="mb-2 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-gold line-clamp-2">
+                      <h2 className="mb-2 text-base font-bold leading-snug transition-colors font-display text-green group-hover:text-leaf-dark line-clamp-2">
                         {item.title}
                       </h2>
                       {item.shortdesc && (
@@ -92,7 +92,7 @@ export default async function NewsPage() {
                           {item.shortdesc}
                         </p>
                       )}
-                      <p className="mt-3 text-xs font-semibold text-gold font-body">
+                      <p className="mt-3 text-xs font-semibold text-leaf-dark font-body">
                         Read more →
                       </p>
                     </div>

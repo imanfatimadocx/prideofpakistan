@@ -134,7 +134,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             >
               {f === 'all' ? 'All' : STATUS_LABELS[f as number]}
               {f === 0 && pendingCount > 0 && (
-                <span className="ml-1.5 bg-gold text-white text-[10px] px-1.5 py-0.5 rounded-full">{pendingCount}</span>
+                <span className="ml-1.5 bg-sage text-green text-[10px] px-1.5 py-0.5 rounded-full">{pendingCount}</span>
               )}
             </button>
           ))}
@@ -145,7 +145,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <div
               key={p.id}
               className={`bg-white border rounded-xl p-4 flex items-center gap-3 transition-all ${
-                editing?.id === p.id ? 'border-gold shadow-md' : 'border-border'
+                editing?.id === p.id ? 'border-leaf shadow-md' : 'border-border'
               }`}
             >
               {resolveImage(p.image) ? (
@@ -153,7 +153,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 <img
                   src={resolveImage(p.image)!}
                   alt={p.title}
-                  className="flex-shrink-0 object-top w-10 h-10 rounded-full object-fit"
+                  className="flex-shrink-0 object-top w-10 h-10 rounded-full object-cover"
                 />
               ) : (
                 <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-white rounded-full bg-green font-display">
@@ -183,7 +183,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 {p.status === 2 && (
                   <button onClick={() => updateStatus(p.id, 1)} className="text-xs text-green font-body hover:underline">Re-approve</button>
                 )}
-                <button onClick={() => openEdit(p)} className="text-xs font-semibold text-gold font-body hover:underline">Edit</button>
+                <button onClick={() => openEdit(p)} className="text-xs font-semibold text-leaf-dark font-body hover:underline">Edit</button>
                 <button
                   onClick={() => handleDelete(p.id)}
                   disabled={deleting === p.id}
@@ -214,14 +214,14 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="object-top w-16 h-16 border rounded-lg object-fit border-border"
+                  className="object-top w-16 h-16 border rounded-lg object-cover border-border"
                 />
               ) : (
                 <div className="flex items-center justify-center w-16 h-16 text-2xl font-bold border rounded-lg bg-cream border-border text-green font-display">
                   {editing.title.charAt(0)}
                 </div>
               )}
-              <label className="px-3 py-2 text-xs font-semibold transition-colors border rounded-md cursor-pointer bg-cream border-border text-ink-dark font-body hover:border-gold">
+              <label className="px-3 py-2 text-xs font-semibold transition-colors border rounded-md cursor-pointer bg-cream border-border text-ink-dark font-body hover:border-leaf">
                 Change Photo
                 <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
               </label>
@@ -234,7 +234,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <select
               value={editing.status}
               onChange={(e) => setEditing({ ...editing, status: Number(e.target.value) })}
-              className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
             >
               <option value={0}>Pending</option>
               <option value={1}>Approved</option>
@@ -259,7 +259,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
                 type="text"
                 value={(editing as unknown as Record<string, string>)[key] ?? ''}
                 onChange={(e) => setEditing({ ...editing, [key]: e.target.value })}
-                className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-leaf"
               />
             </div>
           ))}
@@ -273,7 +273,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
               value={editing.shortdesc ?? ''}
               onChange={(e) => setEditing({ ...editing, shortdesc: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 text-sm transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 text-sm transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-leaf"
               placeholder="Brief summary shown on profile cards"
             />
           </div>
@@ -287,7 +287,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
               value={(editing.description ?? '').replace(/<[^>]*>/g, '')}
               onChange={(e) => setEditing({ ...editing, description: e.target.value })}
               rows={10}
-              className="w-full px-3 py-2 text-sm leading-relaxed transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 text-sm leading-relaxed transition-colors border rounded-md resize-none border-border font-body focus:outline-none focus:border-leaf"
               placeholder="Full profile description"
             />
           </div>
@@ -298,7 +298,7 @@ export default function ProfilesAdminClient({ profiles: initial }: { profiles: P
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-1 bg-gold text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+              className="flex-1 bg-leaf text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
             >
               {saving ? 'Saving...' : 'Save Changes'}
             </button>

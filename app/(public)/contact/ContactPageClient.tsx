@@ -58,9 +58,9 @@ const SOCIAL_STYLE: Record<SocialPlatform, { name: string; cls: string }> = {
   instagram: { name: "Instagram", cls: "text-pink-600 border-pink-200 bg-pink-50 hover:bg-pink-100" },
   youtube: { name: "YouTube", cls: "text-red-600 border-red-200 bg-red-50 hover:bg-red-100" },
   linkedin: { name: "LinkedIn", cls: "text-sky-700 border-sky-200 bg-sky-50 hover:bg-sky-100" },
-  tiktok: { name: "TikTok", cls: "text-ink-dark border-border bg-cream hover:bg-gold-pale" },
-  whatsapp: { name: "WhatsApp", cls: "text-green-700 border-green-200 bg-green-50 hover:bg-green-100" },
-  other: { name: "Website", cls: "text-ink-mid border-border bg-cream hover:bg-gold-pale" },
+  tiktok: { name: "TikTok", cls: "text-ink-dark border-border bg-cream hover:bg-sage/40" },
+  whatsapp: { name: "WhatsApp", cls: "text-green border-sage bg-mint hover:bg-sage/60" },
+  other: { name: "Website", cls: "text-ink-mid border-border bg-cream hover:bg-sage/40" },
 };
 
 const FACEBOOK_PATH =
@@ -113,7 +113,7 @@ export default function ContactPageClient({
   }
 
   const fieldCls =
-    "w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors";
+    "w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors";
   const labelCls =
     "block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body";
 
@@ -125,8 +125,8 @@ export default function ContactPageClient({
         <PageHero eyebrow={hero.eyebrow} title={hero.heading} subtitle={hero.subtext} />
 
         <section className="py-16 sm:py-20">
-          <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-12 lg:gap-16 items-start">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div className="grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_480px] gap-12 lg:gap-16 items-start">
               {/* Left - contact info */}
               <div className="space-y-8">
                 {(info.introHeading || info.introText) && (
@@ -136,7 +136,7 @@ export default function ContactPageClient({
                         <h2 className="mb-3 text-2xl font-bold font-display sm:text-3xl text-green">
                           {info.introHeading}
                         </h2>
-                        <div className="w-10 h-[3px] bg-gold rounded mb-5" />
+                        <div className="w-10 h-[3px] bg-leaf rounded mb-5" />
                       </>
                     )}
                     {info.introText && (
@@ -160,7 +160,7 @@ export default function ContactPageClient({
                           const href = contactHref(item);
                           const body = (
                             <>
-                              <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 transition-colors rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-white">
+                              <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 transition-colors rounded-lg bg-sage/30 text-leaf-dark group-hover:bg-leaf-light group-hover:text-white">
                                 {ITEM_ICONS[item.type]}
                               </div>
                               <div className="min-w-0">
@@ -169,7 +169,7 @@ export default function ContactPageClient({
                                     {item.label}
                                   </p>
                                 )}
-                                <p className="text-sm font-semibold break-words transition-colors text-ink-dark font-body group-hover:text-gold">
+                                <p className="text-sm font-semibold break-words transition-colors text-ink-dark font-body group-hover:text-leaf-dark">
                                   {item.value}
                                 </p>
                               </div>
@@ -277,7 +277,7 @@ export default function ContactPageClient({
                     )}
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="mt-6 text-sm font-semibold text-gold font-body hover:underline"
+                      className="mt-6 text-sm font-semibold text-leaf-dark font-body hover:underline"
                     >
                       Send another message
                     </button>
@@ -287,26 +287,26 @@ export default function ContactPageClient({
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
                         <label className={labelCls}>
-                          Name <span className="text-gold">*</span>
+                          Name <span className="text-leaf-dark">*</span>
                         </label>
                         <input name="name" type="text" required placeholder="Your full name" className={fieldCls} />
                       </div>
                       <div>
                         <label className={labelCls}>
-                          Email <span className="text-gold">*</span>
+                          Email <span className="text-leaf-dark">*</span>
                         </label>
                         <input name="email" type="email" required placeholder="you@example.com" className={fieldCls} />
                       </div>
                     </div>
                     <div>
                       <label className={labelCls}>
-                        Subject <span className="text-gold">*</span>
+                        Subject <span className="text-leaf-dark">*</span>
                       </label>
                       <input name="subject" type="text" required placeholder="e.g. Sponsorship enquiry" className={fieldCls} />
                     </div>
                     <div>
                       <label className={labelCls}>
-                        Message <span className="text-gold">*</span>
+                        Message <span className="text-leaf-dark">*</span>
                       </label>
                       <textarea name="message" required rows={6} placeholder="Tell us how we can help…" className={`${fieldCls} resize-none`} />
                     </div>
@@ -314,14 +314,14 @@ export default function ContactPageClient({
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+                      className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
                     >
                       {loading ? "Sending…" : "Send Message"}
                     </button>
                     {email && (
                       <p className="text-xs text-center text-ink-muted font-body">
                         Or email us directly at{" "}
-                        <a href={`mailto:${email}`} className="text-gold hover:underline">
+                        <a href={`mailto:${email}`} className="text-leaf-dark hover:underline">
                           {email}
                         </a>
                       </p>

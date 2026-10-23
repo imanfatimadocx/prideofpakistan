@@ -68,7 +68,7 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
               await navigator.clipboard.writeText(done).catch(() => {});
               setCopied(true);
             }}
-            className="text-xs font-semibold text-gold font-body hover:underline"
+            className="text-xs font-semibold text-leaf-dark font-body hover:underline"
           >
             {copied ? "Copied" : "Copy"}
           </button>
@@ -96,7 +96,7 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="New password (min 8 characters)"
           autoComplete="new-password"
-          className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         />
         <input
           type={show ? "text" : "password"}
@@ -104,7 +104,7 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
           onChange={(e) => setConfirm(e.target.value)}
           placeholder="Type it again"
           autoComplete="new-password"
-          className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         />
       </div>
       <div className="flex flex-wrap items-center gap-4 text-xs font-body">
@@ -116,7 +116,7 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
             setConfirm(p);
             setShow(true);
           }}
-          className="font-semibold text-gold hover:underline"
+          className="font-semibold text-leaf-dark hover:underline"
         >
           Generate a password
         </button>
@@ -135,7 +135,7 @@ function PasswordPanel({ user, onClose }: { user: User; onClose: () => void }) {
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="px-5 py-2 text-sm font-semibold text-white rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+          className="px-5 py-2 text-sm font-semibold text-white rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
         >
           {saving ? "Saving…" : "Update Password"}
         </button>
@@ -189,7 +189,7 @@ export default function UsersTableClient({
               </span>
               <a
                 href={`mailto:${u.email}`}
-                className="text-sm no-underline truncate text-ink-mid font-body hover:text-gold"
+                className="text-sm no-underline truncate text-ink-mid font-body hover:text-leaf-dark"
               >
                 {u.email}
               </a>
@@ -204,7 +204,7 @@ export default function UsersTableClient({
                 <button
                   type="button"
                   onClick={() => setOpenId(openId === u.id ? null : u.id)}
-                  className="text-xs font-semibold text-gold font-body hover:underline"
+                  className="text-xs font-semibold text-leaf-dark font-body hover:underline"
                 >
                   {openId === u.id ? "Close" : "Set password"}
                 </button>

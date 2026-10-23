@@ -68,13 +68,13 @@ export default async function PrideTeamMemberPage({ params }: Props) {
       <Topbar />
       <Navbar />
       <main className="min-h-screen bg-cream">
-        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12 py-8 lg:py-12">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-8 lg:py-12">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 items-start">
             {/* ── Left sidebar ── */}
             <div className="space-y-4">
               <Link
                 href="/pride-team"
-                className="flex items-center gap-2 text-sm font-semibold no-underline text-gold font-body hover:underline"
+                className="flex items-center gap-2 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
               >
                 <svg
                   width="16"
@@ -114,7 +114,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                     {member.fullname}
                   </h1>
                   {member.designation && (
-                    <p className="text-sm font-semibold text-gold font-body">
+                    <p className="text-sm font-semibold text-leaf-dark font-body">
                       {member.designation}
                     </p>
                   )}
@@ -141,7 +141,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                   {member.email && (
                     <a
                       href={`mailto:${member.email}`}
-                      className="flex items-center gap-2.5 text-sm no-underline break-all text-ink-mid font-body hover:text-gold"
+                      className="flex items-center gap-2.5 text-sm no-underline break-all text-ink-mid font-body hover:text-leaf-dark"
                     >
                       <svg
                         width="16"
@@ -163,7 +163,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                   {member.phone && (
                     <a
                       href={`tel:${member.phone.replace(/[^\d+]/g, "")}`}
-                      className="flex items-center gap-2.5 text-sm no-underline text-ink-mid font-body hover:text-gold"
+                      className="flex items-center gap-2.5 text-sm no-underline text-ink-mid font-body hover:text-leaf-dark"
                     >
                       <svg
                         width="16"
@@ -217,7 +217,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                   href={`https://wa.me/?text=${encodeURIComponent(`Meet ${member.fullname} of the Pride of Pakistan team: ${url}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
                 >
                   Share on WhatsApp
                 </a>
@@ -269,7 +269,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                  className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
                 >
                   Get in Touch
                 </Link>
@@ -283,7 +283,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                     </h2>
                     <Link
                       href="/pride-team"
-                      className="text-xs font-semibold no-underline text-gold font-body hover:underline"
+                      className="text-xs font-semibold no-underline text-leaf-dark font-body hover:underline"
                     >
                       View all →
                     </Link>
@@ -319,7 +319,7 @@ export default async function PrideTeamMemberPage({ params }: Props) {
                             {o.fullname}
                           </p>
                           {o.designation && (
-                            <p className="text-[10px] text-gold font-body line-clamp-1">
+                            <p className="text-[10px] text-leaf-dark font-body line-clamp-1">
                               {o.designation}
                             </p>
                           )}

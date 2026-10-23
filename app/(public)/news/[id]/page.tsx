@@ -43,7 +43,7 @@ export default async function NewsDetailPage({ params }: Props) {
           {/* Back */}
           <Link
             href="/news"
-            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-gold font-body hover:underline"
+            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
           >
             <svg
               width="16"
@@ -60,7 +60,7 @@ export default async function NewsDetailPage({ params }: Props) {
             Back to Discussion Forum
           </Link>
           {/* Date */}
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate font-body mb-3">
             {new Date(item.date_time).toLocaleDateString("en-GB", {
               day: "numeric",
               month: "long",
@@ -87,7 +87,7 @@ export default async function NewsDetailPage({ params }: Props) {
               <img
                 src={coverImage}
                 alt={item.title}
-                className="object-top w-full h-full object-fit"
+                className="object-top w-full h-full object-cover"
               />
             </div>
           )}
@@ -106,7 +106,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="object-top w-full h-full object-fit"
+                        className="object-top w-full h-full object-cover"
                       />
                     </div>
                     {img.caption && (
@@ -121,7 +121,7 @@ export default async function NewsDetailPage({ params }: Props) {
 
             {/* Article text */}
             <div
-              className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-gold prose-strong:text-ink-dark"
+              className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-leaf-dark prose-strong:text-ink-dark"
               dangerouslySetInnerHTML={{ __html: item.description }}
             />
 
@@ -149,7 +149,7 @@ export default async function NewsDetailPage({ params }: Props) {
               href={`https://wa.me/?text=${encodeURIComponent(`${item.title} — https://prideofpakistan.com/news/${newsId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+              className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
             >
               <svg
                 width="12"
@@ -162,7 +162,7 @@ export default async function NewsDetailPage({ params }: Props) {
               WhatsApp
             </a>
           </div>
-          <CommentSection entityType="news" entityId={newsId} />;
+          <CommentSection entityType="news" entityId={newsId} />
         </div>
       </main>
       <Footer />

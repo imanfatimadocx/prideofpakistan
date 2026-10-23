@@ -90,12 +90,12 @@ export default function BizCategoriesClient({
             onChange={(e) => setNewName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleAdd()}
             placeholder="Category name…"
-            className="flex-1 border border-border rounded-md px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold"
+            className="flex-1 border border-border rounded-md px-3 py-2.5 text-sm font-body focus:outline-none focus:border-leaf"
           />
           <button
             onClick={handleAdd}
             disabled={saving}
-            className="bg-gold text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+            className="bg-leaf text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark disabled:opacity-50"
           >
             {saving ? "..." : "Add"}
           </button>
@@ -122,7 +122,7 @@ export default function BizCategoriesClient({
                     onChange={(e) => setEditName(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleUpdate(c.id)}
                     autoFocus
-                    className="flex-1 border border-gold rounded-md px-3 py-1.5 text-sm font-body focus:outline-none"
+                    className="flex-1 border border-leaf rounded-md px-3 py-1.5 text-sm font-body focus:outline-none"
                   />
                   <button
                     onClick={() => handleUpdate(c.id)}
@@ -148,7 +148,7 @@ export default function BizCategoriesClient({
                       setEditingId(c.id);
                       setEditName(c.name);
                     }}
-                    className="text-xs font-semibold text-gold font-body hover:underline"
+                    className="text-xs font-semibold text-leaf-dark font-body hover:underline"
                   >
                     Edit
                   </button>

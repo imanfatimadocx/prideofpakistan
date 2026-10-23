@@ -93,7 +93,7 @@ export default async function AboutPage() {
         <PageHero
           eyebrow="Our Story"
           title="About Pride of Pakistan"
-          subtitle="A movement to challenge misconceptions and showcase the true character of Pakistan."
+          subtitle="The founder set out to challenge widespread misconceptions about Pakistan - particularly those related to extremism and intolerance - by showcasing the country's true character: one rooted in diversity, progress, resilience, and hospitality."
         />
         <AboutClient data={data} />
       </main>

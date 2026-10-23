@@ -46,10 +46,10 @@ export default function AdminPagesIndex() {
                   <Link
                     key={p.href}
                     href={p.href}
-                    className="flex items-center justify-between px-4 py-3.5 text-sm font-semibold no-underline bg-white border rounded-xl border-border text-ink-dark font-body hover:border-gold hover:text-gold transition-colors"
+                    className="flex items-center justify-between px-4 py-3.5 text-sm font-semibold no-underline bg-white border rounded-xl border-border text-ink-dark font-body hover:border-leaf hover:text-leaf-dark transition-colors"
                   >
                     {p.label}
-                    <span className="text-gold">→</span>
+                    <span className="text-leaf-dark">→</span>
                   </Link>
                 ))}
               </div>

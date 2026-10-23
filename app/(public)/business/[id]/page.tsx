@@ -45,11 +45,11 @@ export default async function BusinessDetailPage({ params }: Props) {
       <Topbar />
       <Navbar />
       <main className="min-h-screen bg-cream">
-        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12 py-8 lg:py-12">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-8 lg:py-12">
           {/* Back */}
           <Link
             href="/business"
-            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-gold font-body hover:underline"
+            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
           >
             <svg
               width="16"
@@ -80,7 +80,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   <img
                     src={image}
                     alt={biz.company_name}
-                    className="object-top w-full h-full object-fit"
+                    className="object-top w-full h-full object-cover"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">
@@ -105,8 +105,8 @@ export default async function BusinessDetailPage({ params }: Props) {
                       href={`/business?category=${cat.id}`}
                       className={`block px-4 py-2.5 text-sm font-body transition-colors no-underline border-b border-border/50 last:border-0 ${
                         biz.category_id === cat.id
-                          ? "bg-gold-pale text-gold font-semibold"
-                          : "text-ink-dark hover:bg-gold-pale hover:text-gold"
+                          ? "bg-sage/40 text-leaf-dark font-semibold"
+                          : "text-ink-dark hover:bg-sage/40 hover:text-leaf-dark"
                       }`}
                     >
                       {cat.name}
@@ -128,8 +128,8 @@ export default async function BusinessDetailPage({ params }: Props) {
                       href={`/business?category=${cat.id}`}
                       className={`block px-4 py-2.5 text-sm font-body transition-colors no-underline border-b border-border/50 last:border-0 ${
                         biz.category_id === cat.id
-                          ? "bg-gold-pale text-gold font-semibold"
-                          : "text-ink-dark hover:bg-gold-pale hover:text-gold"
+                          ? "bg-sage/40 text-leaf-dark font-semibold"
+                          : "text-ink-dark hover:bg-sage/40 hover:text-leaf-dark"
                       }`}
                     >
                       {cat.name}
@@ -147,7 +147,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   {biz.company_name}
                 </h1>
                 {biz.category && (
-                  <p className="mt-1 text-sm text-gold font-body">
+                  <p className="mt-1 text-sm text-sage font-body">
                     {biz.category.name}
                   </p>
                 )}
@@ -166,7 +166,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   <div className="px-5 py-4">
                     {biz.description || biz.company_description ? (
                       <div
-                        className="text-sm leading-relaxed prose text-ink-mid font-body prose-neutral max-w-none prose-a:text-gold prose-headings:font-display prose-headings:text-green"
+                        className="text-sm leading-relaxed prose text-ink-mid font-body prose-neutral max-w-none prose-a:text-leaf-dark prose-headings:font-display prose-headings:text-green"
                         dangerouslySetInnerHTML={{
                           __html: biz.description || biz.company_description,
                         }}
@@ -266,7 +266,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                       </span>
                       <a
                         href={`mailto:${biz.email}`}
-                        className="no-underline text-gold hover:underline"
+                        className="no-underline text-leaf-dark hover:underline"
                       >
                         {biz.email}
                       </a>
@@ -322,7 +322,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                         }
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="no-underline break-all text-gold hover:underline"
+                        className="no-underline break-all text-leaf-dark hover:underline"
                       >
                         {biz.site_url.replace(/https?:\/\/(www\.)?/, "")}
                       </a>
@@ -335,7 +335,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   <div className="px-5 pb-5">
                     <a
                       href={`mailto:${biz.email}`}
-                      className="inline-flex items-center gap-2 bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors no-underline"
+                      className="inline-flex items-center gap-2 bg-leaf text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors no-underline"
                     >
                       <svg
                         width="14"
@@ -388,7 +388,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                 </div>
                 <Link
                   href="/list-business"
-                  className="inline-flex items-center flex-shrink-0 gap-2 px-6 py-3 mt-4 text-sm font-semibold text-white no-underline transition-colors rounded-md sm:mt-0 bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                  className="inline-flex items-center flex-shrink-0 gap-2 px-6 py-3 mt-4 text-sm font-semibold text-white no-underline transition-colors rounded-md sm:mt-0 bg-leaf font-body hover:bg-leaf-dark"
                 >
                   List Your Business →
                 </Link>
@@ -415,7 +415,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                   href={`https://wa.me/?text=${encodeURIComponent(`Check out ${biz.company_name} on Pride of Pakistan: https://prideofpakistan.com/business/${bizId}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+                  className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
                 >
                   <svg
                     width="12"

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
@@ -13,22 +13,20 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@auth/prisma-adapter": "^2.11.2",
     "@hookform/resolvers": "^5.4.0",
     "@prisma/client": "^6.19.3",
     "@tanstack/react-query": "^5.101.0",
-    "@tiptap/extension-link": "3.26.1",
-    "@tiptap/extension-placeholder": "3.26.1",
-    "@tiptap/pm": "3.26.1",
-    "@tiptap/react": "3.26.1",
-    "@tiptap/starter-kit": "3.26.1",
+    "@tiptap/extension-image": "3.32.0",
+    "@tiptap/extension-link": "3.32.0",
+    "@tiptap/extension-placeholder": "3.32.0",
+    "@tiptap/pm": "3.32.0",
+    "@tiptap/react": "3.32.0",
+    "@tiptap/starter-kit": "3.32.0",
     "@types/sanitize-html": "^2.16.1",
     "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.10.0",
     "lucide-react": "^1.17.0",
-    "next": "^16.2.9",
+    "next": "16.4.2",
     "next-auth": "^4.24.14",
-    "next-cloudinary": "^6.17.5",
     "prisma": "^6.19.3",
     "react": "18.2.0",
     "react-compiler-runtime": "^1.0.0",
@@ -45,10 +43,19 @@
     "autoprefixer": "^10.5.0",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "15.1.6",
+    "eslint-config-next": "16.4.2",
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19",
     "tsx": "^4.22.4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@tailwindcss/typography": "^0.5.20"
+  },
+  "overrides": {
+    "prosemirror-view": "^1.42.6",
+    "source-map-js": "^1.2.2",
+    "deepmerge-ts": "^8.0.2",
+    "@tiptap/core": "3.32.0",
+    "@tiptap/pm": "3.32.0",
+    "postcss-selector-parser": "^7.1.6"
   }
 }

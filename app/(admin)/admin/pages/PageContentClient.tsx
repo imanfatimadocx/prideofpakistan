@@ -152,7 +152,7 @@ export default function PageContentClient({
                   setForm((f) => ({ ...f, [key]: e.target.value }))
                 }
                 rows={5}
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors resize-none"
               />
             ) : (
               <input
@@ -161,7 +161,7 @@ export default function PageContentClient({
                 onChange={(e) =>
                   setForm((f) => ({ ...f, [key]: e.target.value }))
                 }
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
               />
             )}
           </div>
@@ -175,7 +175,7 @@ export default function PageContentClient({
             Carousel Images
           </h2>
           <label
-            className={`cursor-pointer bg-gold text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`cursor-pointer bg-leaf text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-leaf-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {uploading ? "Uploading…" : "+ Add Image"}
             <input
@@ -228,14 +228,14 @@ export default function PageContentClient({
                     value={img.caption}
                     onChange={(e) => updateCaption(i, e.target.value)}
                     placeholder="Enter image caption…"
-                    className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                    className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-leaf"
                   />
                   <input
                     type="text"
                     value={img.href ?? ""}
                     onChange={(e) => updateHref(i, e.target.value || null)}
                     placeholder="/who-is-who/123 (optional link)"
-                    className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                    className="w-full px-3 py-2 text-sm transition-colors border rounded-md border-border font-body focus:outline-none focus:border-leaf"
                   />
                   <div className="flex flex-wrap items-center gap-2 pt-1">
                     <button
@@ -286,7 +286,7 @@ export default function PageContentClient({
       <button
         onClick={handleSave}
         disabled={saving}
-        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
       >
         {saving ? "Saving…" : "Save All Changes"}
       </button>

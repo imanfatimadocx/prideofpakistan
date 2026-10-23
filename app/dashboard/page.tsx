@@ -89,10 +89,10 @@ function DashboardContent() {
 
   return (
     <main className="min-h-screen py-10 bg-cream sm:py-14">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="mb-8">
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
             My Account
           </p>
           <h1 className="mb-1 text-3xl font-bold font-display text-green">
@@ -137,7 +137,7 @@ function DashboardContent() {
             <Link
               key={a.href}
               href={a.href}
-              className="bg-white border border-border rounded-xl p-4 no-underline hover:border-gold hover:-translate-y-0.5 transition-all"
+              className="bg-white border border-border rounded-xl p-4 no-underline hover:border-leaf hover:-translate-y-0.5 transition-all"
             >
               <p className="mb-1 text-sm font-bold text-ink-dark font-body">
                 {a.label}
@@ -163,7 +163,7 @@ function DashboardContent() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-3 text-sm font-medium font-body whitespace-nowrap border-b-2 transition-colors ${
                   activeTab === tab
-                    ? "border-gold text-green font-semibold"
+                    ? "border-leaf text-green font-semibold"
                     : "border-transparent text-ink-muted hover:text-ink-dark"
                 }`}
               >

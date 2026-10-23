@@ -45,3 +45,10 @@ yarn-error.log*
 next-env.d.ts
 
 /app/generated/prisma
+
+/storage/
+hostinger-move/node_modules/
+hostinger-move/storage-export/
+
+pride_local.*
+*.sql

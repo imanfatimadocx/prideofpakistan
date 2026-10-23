@@ -188,8 +188,8 @@ function AdminNavInner() {
       {/* Mobile top bar */}
       <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b lg:hidden bg-green border-white/10">
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-md bg-gold">
-            <span className="text-white font-bold text-[10px] font-display">P</span>
+          <div className="flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-md bg-leaf">
+            <span className="text-green font-bold text-[10px] font-display">P</span>
           </div>
           <span className="text-sm font-bold text-white font-display">Admin Panel</span>
         </div>
@@ -219,12 +219,12 @@ function AdminNavInner() {
         {/* Logo */}
         <div className="flex-shrink-0 px-5 py-5 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-gold">
-              <span className="text-sm font-bold text-white font-display">P</span>
+            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-leaf">
+              <span className="text-sm font-bold text-green font-display">P</span>
             </div>
             <div>
               <p className="text-sm font-bold leading-tight text-white font-display">Pride of Pakistan</p>
-              <p className="text-[10px] text-gold/80 font-body mt-0.5 uppercase tracking-widest">Admin Panel</p>
+              <p className="text-[10px] text-sage/80 font-body mt-0.5 uppercase tracking-widest">Admin Panel</p>
             </div>
           </div>
         </div>
@@ -240,10 +240,10 @@ function AdminNavInner() {
             return (
               <div key={group.label} className="mb-1">
                 <div className="flex items-center gap-2 px-4 py-2">
-                  <span className={`flex-shrink-0 transition-colors ${hasActive ? "text-gold" : "text-white/35"}`}>
+                  <span className={`flex-shrink-0 transition-colors ${hasActive ? "text-sage" : "text-white/35"}`}>
                     {GROUP_ICONS[group.label]}
                   </span>
-                  <span className={`text-[10px] font-bold uppercase tracking-[.14em] font-body ${hasActive ? "text-gold" : "text-white/35"}`}>
+                  <span className={`text-[10px] font-bold uppercase tracking-[.14em] font-body ${hasActive ? "text-sage" : "text-white/35"}`}>
                     {group.label}
                   </span>
                 </div>
@@ -261,10 +261,10 @@ function AdminNavInner() {
                         className={`flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-[13px] font-medium font-body transition-all no-underline ${
                           active
                             ? "bg-white/15 text-white font-semibold"
-                            : "text-white/60 hover:bg-white/8 hover:text-white/90"
+                            : "text-white/60 hover:bg-white/10 hover:text-white/90"
                         }`}
                       >
-                        <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors ${active ? "bg-gold" : "bg-transparent"}`} />
+                        <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors ${active ? "bg-leaf" : "bg-transparent"}`} />
                         {label}
                       </Link>
                     );

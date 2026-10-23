@@ -1,10 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactCompiler: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
-      { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "img.youtube.com" },
       { protocol: "https", hostname: "prideofpakistan.com" },
     ],

@@ -115,12 +115,12 @@ export default function VideoCategoriesClient({
             onChange={(e) => setNewName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleAdd()}
             placeholder="e.g. Interviews, Events, Culture…"
-            className="flex-1 border border-border rounded-md px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold"
+            className="flex-1 border border-border rounded-md px-3 py-2.5 text-sm font-body focus:outline-none focus:border-leaf"
           />
           <button
             onClick={handleAdd}
             disabled={busy}
-            className="bg-gold text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+            className="bg-leaf text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark disabled:opacity-50"
           >
             Add
           </button>
@@ -136,7 +136,7 @@ export default function VideoCategoriesClient({
           {uncategorised > 0 && (
             <p className="text-xs text-ink-muted font-body">
               {uncategorised} video(s) uncategorised ·{" "}
-              <Link href="/admin/media" className="text-gold hover:underline">
+              <Link href="/admin/media" className="text-leaf-dark hover:underline">
                 assign them
               </Link>
             </p>
@@ -162,7 +162,7 @@ export default function VideoCategoriesClient({
                       onChange={(e) => setEditName(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleRename(c.id)}
                       autoFocus
-                      className="flex-1 border border-gold rounded-md px-3 py-1.5 text-sm font-body focus:outline-none"
+                      className="flex-1 border border-leaf rounded-md px-3 py-1.5 text-sm font-body focus:outline-none"
                     />
                     <button onClick={() => handleRename(c.id)} disabled={busy} className="text-xs font-semibold text-green font-body hover:underline">Save</button>
                     <button onClick={() => setEditingId(null)} className="text-xs text-ink-muted font-body hover:underline">Cancel</button>
@@ -183,7 +183,7 @@ export default function VideoCategoriesClient({
                     >
                       {c.status === 1 ? "● Live" : "● Hidden"}
                     </button>
-                    <button onClick={() => { setEditingId(c.id); setEditName(c.name); }} className="text-xs font-semibold text-gold font-body hover:underline">Rename</button>
+                    <button onClick={() => { setEditingId(c.id); setEditName(c.name); }} className="text-xs font-semibold text-leaf-dark font-body hover:underline">Rename</button>
                     <button onClick={() => handleDelete(c)} disabled={busy} className="text-xs text-red-500 font-body hover:underline disabled:opacity-50">Delete</button>
                   </>
                 )}

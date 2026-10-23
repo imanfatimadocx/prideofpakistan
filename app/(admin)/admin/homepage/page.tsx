@@ -29,7 +29,7 @@ export default async function AdminHomepagePage() {
             <p className="text-sm text-ink-muted font-body">
               Edit the hero section shown at the top of the homepage. To edit
               other pages go to{" "}
-              <a href="/admin/pages" className="text-gold hover:underline">
+              <a href="/admin/pages" className="text-leaf-dark hover:underline">
                 Pages
               </a>
               .
