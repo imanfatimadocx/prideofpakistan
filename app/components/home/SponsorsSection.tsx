@@ -15,7 +15,7 @@ export default async function SponsorsSection() {
   if (sponsors.length === 0) return null;
 
   return (
-    <section className="py-14 bg-white border-t border-border sm:py-16">
+    <section className="py-14 bg-mint border-t border-sage/60 sm:py-16">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
           <div>

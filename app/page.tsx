@@ -148,7 +148,7 @@ export default async function HomePage() {
         <BusinessSection businesses={bizs} />
 
         {newsCards.length > 0 && (
-          <section className="py-12 bg-white border-t sm:py-16 lg:py-20 border-border">
+          <section className="py-12 bg-mint border-t sm:py-16 lg:py-20 border-sage/60">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
               <div className="flex items-end justify-between gap-4 mb-8">
                 <div>

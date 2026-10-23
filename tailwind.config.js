@@ -20,7 +20,7 @@ module.exports = {
         slate: { DEFAULT: '#596B68', deep: '#3D4D4A' },          // Slate Grey – paragraph text
 
 
-        cream: '#E5F4E8',          // main page background = Soft Mint
+        cream: '#F7FCF8',          // page background = Ivory White (mint is for panels)
 
         "ink-dark": "#1C332C",
         "ink-mid": "#596B68",

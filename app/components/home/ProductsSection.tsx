@@ -20,7 +20,7 @@ export default function ProductsSection({ products }: Props) {
 
   return (
     <section
-      className="py-12 border-t bg-white sm:py-16 lg:py-20 border-border"
+      className="py-12 border-t bg-mint sm:py-16 lg:py-20 border-sage/60"
       id="products"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
