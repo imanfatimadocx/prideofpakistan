@@ -81,7 +81,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
 
   if (comingSoon || videos.length === 0) {
     return (
-      <section className="py-12 bg-sage sm:py-16 lg:py-20" id="pride-tv">
+      <section className="py-12 bg-mint border-t border-sage/60 sm:py-16 lg:py-20" id="pride-tv">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green mb-3 font-body">
             Pride TV
@@ -98,7 +98,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
   }
 
   return (
-    <section className="py-12 bg-sage sm:py-16 lg:py-20" id="pride-tv">
+    <section className="py-12 bg-mint border-t border-sage/60 sm:py-16 lg:py-20" id="pride-tv">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8">
