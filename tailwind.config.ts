@@ -13,9 +13,9 @@ const config: Config = {
         leaf: { DEFAULT: '#5BB56B', light: '#7CC78A', dark: '#2A7F45' },
         sage: '#B9DFC5',
         mint: '#E5F4E8',
-        ivory: '#F7FCF8',
+        ivory: '#FFFFFF',
         slate: { DEFAULT: '#596B68', deep: '#3D4D4A' },
-        cream: '#F7FCF8',          // page background = Ivory White (mint is for panels)
+        cream: '#FFFFFF',          // page background = plain white (mint is for panels)
         ink: { dark: '#1C332C', mid: '#596B68', muted: '#657673' },
         border: '#DCE7E0',
       },

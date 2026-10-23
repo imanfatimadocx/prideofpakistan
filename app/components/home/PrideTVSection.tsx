@@ -81,7 +81,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
 
   if (comingSoon || videos.length === 0) {
     return (
-      <section className="py-12 bg-mint border-t border-sage/60 sm:py-16 lg:py-20" id="pride-tv">
+      <section className="py-12 bg-white border-t border-border sm:py-16 lg:py-20" id="pride-tv">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
           <p className="text-[11px] font-bold tracking-[.16em] uppercase text-green mb-3 font-body">
             Pride TV
@@ -98,7 +98,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
   }
 
   return (
-    <section className="py-12 bg-mint border-t border-sage/60 sm:py-16 lg:py-20" id="pride-tv">
+    <section className="py-12 bg-white border-t border-border sm:py-16 lg:py-20" id="pride-tv">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8">
@@ -154,12 +154,12 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                 onClick={() => setActiveId(v.video_id)}
                 className={`w-full flex items-start gap-3 p-2.5 rounded-lg text-left transition-all ${
                   activeId === v.video_id
-                    ? "bg-white/70 border border-white"
-                    : "hover:bg-white/40 border border-transparent"
+                    ? "bg-mint border border-sage"
+                    : "hover:bg-mint/60 border border-transparent"
                 }`}
               >
                 {/* Thumb */}
-                <div className="relative flex-shrink-0 w-24 overflow-hidden rounded-md h-14 bg-white/50">
+                <div className="relative flex-shrink-0 w-24 overflow-hidden rounded-md h-14 bg-mint">
                   {v.thumb_url || v.video_embed_code ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -168,7 +168,7 @@ export default function PrideTVSection({ videos, comingSoon }: Props) {
                       className="object-cover w-full h-full"
                     />
                   ) : (
-                    <div className="w-full h-full bg-white/50" />
+                    <div className="w-full h-full bg-mint" />
                   )}
                   {activeId === v.video_id && (
                     <div className="absolute inset-0 flex items-center justify-center bg-green/60">

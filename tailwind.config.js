@@ -16,11 +16,11 @@ module.exports = {
         "leaf-dark": "#2A7F45",    // links / active states (readable on light backgrounds)
         sage: "#B9DFC5",           // Pastel Sage – header accent / top bar
         mint: "#E5F4E8",           // Soft Mint – light panels / sections
-        ivory: "#F7FCF8",          // Ivory White – header & main background
+        ivory: "#FFFFFF",          // was Ivory #F7FCF8 – now plain white (client request)
         slate: { DEFAULT: '#596B68', deep: '#3D4D4A' },          // Slate Grey – paragraph text
 
 
-        cream: '#F7FCF8',          // page background = Ivory White (mint is for panels)
+        cream: "#FFFFFF",          // page background = plain white (mint is for panels)
 
         "ink-dark": "#1C332C",
         "ink-mid": "#596B68",
