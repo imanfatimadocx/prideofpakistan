@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import AuthProvider from "@/app/components/admin/AuthProvider";
 import EventBanners from "@/app/components/shared/EventBanners";
-
-// Google AdSense publisher ID (also in public/ads.txt)
-const ADSENSE_CLIENT = "ca-pub-9598615284449312";
+import AdSenseScript from "@/app/components/shared/AdSenseScript";
+import { ADSENSE_CLIENT } from "@/app/lib/adsense";
 
 export const metadata: Metadata = {
   title: "Pride of Pakistan",
@@ -25,16 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* Google AdSense. A plain <script> (not next/script) because AdSense
-            rejects the extra data-nscript attribute next/script adds. */}
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          crossOrigin="anonymous"
-        />
-      </head>
       <body>
+        {/* AdSense loads on public pages only (not admin / dashboard / sign-in) */}
+        <AdSenseScript />
         <AuthProvider>
           <EventBanners />
           {children}
