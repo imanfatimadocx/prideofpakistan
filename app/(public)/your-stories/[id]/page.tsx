@@ -71,7 +71,8 @@ export default async function StoryDetailPage({ params }: Props) {
               {story.shortdesc}
             </p>
           )}
-          {coverImage && images.length === 0 && (
+          {/* Cover image (always shown when set; extra images float beside the text) */}
+          {coverImage && (
             <div
               className="w-full overflow-hidden rounded-xl mb-8"
               style={{ aspectRatio: "600/350" }}
@@ -90,8 +91,8 @@ export default async function StoryDetailPage({ params }: Props) {
                 {images.map((img, i) => (
                   <div key={i} className="w-full">
                     <div
-                      className="w-full overflow-hidden rounded-xl"
-                      style={{ aspectRatio: "600/350" }}
+                      className="w-[75%] overflow-hidden rounded-xl"
+                      style={{ aspectRatio: "120/100" }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -126,7 +127,7 @@ export default async function StoryDetailPage({ params }: Props) {
               WhatsApp Share
             </a>
           </div>
-          <CommentSection entityType="story" entityId={storyId} />;
+          <CommentSection entityType="story" entityId={storyId} />
         </div>
       </main>
       <Footer />
