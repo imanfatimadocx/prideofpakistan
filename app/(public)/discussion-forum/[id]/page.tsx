@@ -87,7 +87,7 @@ export default async function NewsDetailPage({ params }: Props) {
               <img
                 src={coverImage}
                 alt={item.title}
-                className="object-top w-full h-full object-cover"
+                className="object-cover object-top w-full h-full"
               />
             </div>
           )}
@@ -99,14 +99,14 @@ export default async function NewsDetailPage({ params }: Props) {
                 {images.map((img, i) => (
                   <div key={i} className="w-full">
                     <div
-                      className="w-full overflow-hidden rounded-xl"
-                      style={{ aspectRatio: "600/350" }}
+                      className="w-[75%] overflow-hidden rounded-xl"
+                      style={{ aspectRatio: "120/100" }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="object-top w-full h-full object-cover"
+                        className="object-cover object-top w-full h-full"
                       />
                     </div>
                     {img.caption && (
