@@ -28,7 +28,7 @@ const ENTITY_LABELS: Record<string, string> = {
 const ENTITY_LINKS: Record<string, (id: number) => string> = {
   profile: (id) => `/who-is-who/${id}`,
   business: (id) => `/business/${id}`,
-  news: (id) => `/news/${id}`,
+  news: (id) => `/discussion-forum/${id}`,
   story: (id) => `/your-stories/${id}`,
 };
 

@@ -42,7 +42,7 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className="max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-14">
           {/* Back */}
           <Link
-            href="/news"
+            href="/discussion-forum"
             className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
           >
             <svg
@@ -77,8 +77,8 @@ export default async function NewsDetailPage({ params }: Props) {
               {item.shortdesc}
             </p>
           )}
-          {/* Cover image */}
-          {coverImage && images.length === 0 && (
+          {/* Cover image (always shown when set; extra images float beside the text) */}
+          {coverImage && (
             <div
               className="w-full mb-8 overflow-hidden rounded-xl"
               style={{ aspectRatio: "600/350" }}
@@ -130,7 +130,7 @@ export default async function NewsDetailPage({ params }: Props) {
           {/* Share */}
           <div className="flex flex-wrap gap-2 pt-6 mt-10 border-t border-border">
             <a
-              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://prideofpakistan.com/news/${newsId}`)}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://prideofpakistan.com/discussion-forum/${newsId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-[11px] font-semibold text-blue-600 border border-blue-200 bg-blue-50 px-2.5 py-1 rounded hover:bg-blue-100 transition-colors no-underline font-body"
@@ -146,7 +146,7 @@ export default async function NewsDetailPage({ params }: Props) {
               Share
             </a>
             <a
-              href={`https://wa.me/?text=${encodeURIComponent(`${item.title} — https://prideofpakistan.com/news/${newsId}`)}`}
+              href={`https://wa.me/?text=${encodeURIComponent(`${item.title} — https://prideofpakistan.com/discussion-forum/${newsId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"

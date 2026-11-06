@@ -10,7 +10,7 @@ const NAV = [
   { label: "Who Is Who", href: "/who-is-who" },
   { label: "Pakistani Products", href: "/products" },
   { label: "Pakistani Businesses", href: "/business" },
-  { label: "Discussion Forum", href: "/news" },
+  { label: "Discussion Forum", href: "/discussion-forum" },
   { label: "Your Stories", href: "/your-stories" },
   { label: "Pride TV", href: "/pride-tv" },
 ];

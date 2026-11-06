@@ -49,7 +49,7 @@ export default async function AdminUsersPage({
           {query
             ? `${total} of ${allTotal} accounts match “${query}”`
             : `${total} registered account${total === 1 ? "" : "s"}`}
-          . You can set a new password for anyone who is locked out.
+          . You can set a new password for anyone who is locked out, or delete an account.
         </p>
 
         <form method="get" className="flex gap-3 p-4 mb-5 bg-white border border-border rounded-xl">

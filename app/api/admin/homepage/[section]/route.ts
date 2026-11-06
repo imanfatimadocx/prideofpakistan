@@ -22,7 +22,7 @@ const PAGE_PATHS: Record<string, string> = {
   page_whoiswho: "/who-is-who",
   page_products: "/products",
   page_businesses: "/business",
-  page_news: "/news",
+  page_news: "/discussion-forum",
   page_stories: "/your-stories",
   page_contact: "/contact",
   page_submitprofile: "/submit-profile",

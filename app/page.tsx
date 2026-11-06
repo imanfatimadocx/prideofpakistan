@@ -156,11 +156,11 @@ export default async function HomePage() {
                   <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">Discussion Forum</h2>
                   <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
                 </div>
-                <Link href="/news" className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
+                <Link href="/discussion-forum" className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">View All →</Link>
               </div>
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {newsCards.map((item) => (
-                  <Link key={item.id} href={`/news/${item.id}`} className="no-underline group">
+                  <Link key={item.id} href={`/discussion-forum/${item.id}`} className="no-underline group">
                     <div className="w-full overflow-hidden rounded-lg" style={{ aspectRatio: "600/350" }}>
                       {item.smallimage ? (
                         // eslint-disable-next-line @next/next/no-img-element

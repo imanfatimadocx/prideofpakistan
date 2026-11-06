@@ -44,7 +44,7 @@ export default async function NewsPage() {
                 return (
                   <Link
                     key={item.id}
-                    href={`/news/${item.id}`}
+                    href={`/discussion-forum/${item.id}`}
                     className="overflow-hidden no-underline transition-all bg-white border group border-border rounded-xl hover:border-leaf hover:-translate-y-1 hover:shadow-lg"
                   >
                     {/* Cover */}
