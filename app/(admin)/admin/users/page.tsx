@@ -19,8 +19,8 @@ export default async function AdminUsersPage({
   const where: Prisma.PublicUserWhereInput = query
     ? {
         OR: [
-          { name: { contains: query, mode: "insensitive" } },
-          { email: { contains: query, mode: "insensitive" } },
+          { name: { contains: query } },
+          { email: { contains: query } },
         ],
       }
     : {};
@@ -49,7 +49,7 @@ export default async function AdminUsersPage({
           {query
             ? `${total} of ${allTotal} accounts match “${query}”`
             : `${total} registered account${total === 1 ? "" : "s"}`}
-          . You can set a new password for anyone who is locked out.
+          . You can set a new password for anyone who is locked out, or delete an account.
         </p>
 
         <form method="get" className="flex gap-3 p-4 mb-5 bg-white border border-border rounded-xl">
@@ -58,11 +58,11 @@ export default async function AdminUsersPage({
             name="q"
             defaultValue={query}
             placeholder="Search by name or email…"
-            className="flex-1 px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+            className="flex-1 px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
           />
           <button
             type="submit"
-            className="px-5 py-2.5 text-sm font-semibold text-white rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+            className="px-5 py-2.5 text-sm font-semibold text-white rounded-md bg-leaf font-body hover:bg-leaf-dark"
           >
             Search
           </button>
@@ -88,12 +88,12 @@ export default async function AdminUsersPage({
             </span>
             <div className="flex gap-2">
               {current > 1 && (
-                <Link href={href(current - 1)} className="px-4 py-2 no-underline bg-white border rounded-md border-border text-ink-mid hover:border-gold hover:text-gold">
+                <Link href={href(current - 1)} className="px-4 py-2 no-underline bg-white border rounded-md border-border text-ink-mid hover:border-leaf hover:text-leaf-dark">
                   ← Previous
                 </Link>
               )}
               {current < pages && (
-                <Link href={href(current + 1)} className="px-4 py-2 no-underline bg-white border rounded-md border-border text-ink-mid hover:border-gold hover:text-gold">
+                <Link href={href(current + 1)} className="px-4 py-2 no-underline bg-white border rounded-md border-border text-ink-mid hover:border-leaf hover:text-leaf-dark">
                   Next →
                 </Link>
               )}

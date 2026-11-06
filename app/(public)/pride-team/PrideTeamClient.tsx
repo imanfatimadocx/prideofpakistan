@@ -46,7 +46,7 @@ function MemberCard({ m }: { m: Member }) {
           {m.fullname}
         </p>
         {m.designation && (
-          <p className="text-xs font-semibold text-gold font-body mt-0.5">
+          <p className="text-xs font-semibold text-leaf-dark font-body mt-0.5">
             {m.designation}
           </p>
         )}
@@ -116,7 +116,7 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
                 setPage(1);
               }}
               placeholder="Search by name, role, city or country…"
-              className="flex-1 px-4 py-2.5 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+              className="flex-1 px-4 py-2.5 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
             />
             <p className="text-xs text-ink-muted font-body sm:w-32 sm:text-right">
               {filtered.length} member{filtered.length === 1 ? "" : "s"}
@@ -131,7 +131,7 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
               className={`px-2.5 h-8 rounded text-xs font-semibold font-body transition-colors ${
                 letter === null
                   ? "bg-green text-white"
-                  : "text-ink-mid hover:bg-gold-pale"
+                  : "text-ink-mid hover:bg-sage/40"
               }`}
             >
               All
@@ -150,7 +150,7 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
                     letter === l
                       ? "bg-green text-white"
                       : on
-                        ? "text-ink-mid hover:bg-gold-pale hover:text-gold"
+                        ? "text-ink-mid hover:bg-sage/40 hover:text-leaf-dark"
                         : "text-ink-muted/30 cursor-not-allowed"
                   }`}
                 >
@@ -182,7 +182,7 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
             <button
               onClick={() => goTo(current - 1)}
               disabled={current === 1}
-              className="px-4 py-2 text-sm bg-white border rounded-md border-border text-ink-mid font-body hover:border-gold hover:text-gold disabled:opacity-40"
+              className="px-4 py-2 text-sm bg-white border rounded-md border-border text-ink-mid font-body hover:border-leaf hover:text-leaf-dark disabled:opacity-40"
             >
               ← Previous
             </button>
@@ -192,8 +192,8 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
                 onClick={() => goTo(p)}
                 className={`w-9 h-9 rounded-md text-sm font-semibold font-body border ${
                   p === current
-                    ? "bg-gold text-white border-gold"
-                    : "bg-white border-border text-ink-mid hover:border-gold"
+                    ? "bg-green text-white border-green"
+                    : "bg-white border-border text-ink-mid hover:border-green"
                 }`}
               >
                 {p}
@@ -202,7 +202,7 @@ export default function PrideTeamClient({ members }: { members: Member[] }) {
             <button
               onClick={() => goTo(current + 1)}
               disabled={current === pages}
-              className="px-4 py-2 text-sm bg-white border rounded-md border-border text-ink-mid font-body hover:border-gold hover:text-gold disabled:opacity-40"
+              className="px-4 py-2 text-sm bg-white border rounded-md border-border text-ink-mid font-body hover:border-leaf hover:text-leaf-dark disabled:opacity-40"
             >
               Next →
             </button>

@@ -20,7 +20,7 @@ export default async function AdminTeamPage() {
           <a
             href="/pride-team"
             target="_blank"
-            className="text-gold hover:underline"
+            className="text-leaf-dark hover:underline"
           >
             Pride Team
           </a>{" "}

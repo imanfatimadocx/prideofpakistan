@@ -29,7 +29,7 @@ function Carousel({ images }: { images: { src: string; caption: string }[] }) {
         <img
           src={images[current].src}
           alt={images[current].caption}
-          className="object-fit object-top w-full h-full transition-all duration-700"
+          className="object-cover object-top w-full h-full transition-all duration-700"
         />
         <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
           <p className="text-sm leading-snug font-body text-white/90">
@@ -78,7 +78,7 @@ function Carousel({ images }: { images: { src: string; caption: string }[] }) {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-gold" : "w-1.5 h-1.5 bg-border hover:bg-gold/50"}`}
+            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-leaf" : "w-1.5 h-1.5 bg-border hover:bg-sage/50"}`}
             aria-label={`Go to image ${i + 1}`}
           />
         ))}
@@ -114,7 +114,7 @@ export default function AboutClient({ data }: { data: AboutData }) {
         <div className="mb-6 space-y-5 text-base leading-relaxed text-ink-mid font-body">
           <p>{data.body1a}</p>
           <p>{data.body1b}</p>
-          <blockquote className="py-2 pl-5 border-l-4 border-gold">
+          <blockquote className="py-2 pl-5 border-l-4 border-leaf">
             <p className="text-xl leading-snug font-display text-green">
               "{data.quote}"
             </p>
@@ -134,15 +134,9 @@ export default function AboutClient({ data }: { data: AboutData }) {
         <div className="flex flex-col clear-both gap-3 pt-2 sm:flex-row">
           <Link
             href="/register"
-            className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
           >
             Submit Your Profile →
-          </Link>
-          <Link
-            href="/membership"
-            className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition-colors rounded-md bg-green font-body hover:opacity-90"
-          >
-            Become a Member
           </Link>
         </div>
       </div>

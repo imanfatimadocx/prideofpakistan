@@ -71,7 +71,7 @@ export default function BusinessVideoField({
         }}
         placeholder="https://www.youtube.com/watch?v=..."
         className={`w-full px-3 py-2.5 text-sm border rounded-md font-body focus:outline-none transition-colors ${
-          invalid ? "border-red-300 focus:border-red-400" : "border-border focus:border-gold"
+          invalid ? "border-red-300 focus:border-red-400" : "border-border focus:border-leaf"
         }`}
       />
       {invalid && (
@@ -103,7 +103,7 @@ export default function BusinessVideoField({
           type="button"
           onClick={() => save(value.trim())}
           disabled={saving || !dirty || invalid}
-          className="bg-gold text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+          className="bg-leaf text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save Video"}
         </button>

@@ -5,6 +5,7 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import CommentSection from "@/app/components/shared/CommentSection";
+import { sanitizeForDisplay } from "@/app/lib/sanitize";
 
 export const revalidate = 3600;
 
@@ -42,8 +43,8 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className="max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-14">
           {/* Back */}
           <Link
-            href="/news"
-            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-gold font-body hover:underline"
+            href="/discussion-forum"
+            className="flex items-center gap-2 mb-8 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline"
           >
             <svg
               width="16"
@@ -60,7 +61,7 @@ export default async function NewsDetailPage({ params }: Props) {
             Back to Discussion Forum
           </Link>
           {/* Date */}
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate font-body mb-3">
             {new Date(item.date_time).toLocaleDateString("en-GB", {
               day: "numeric",
               month: "long",
@@ -77,8 +78,8 @@ export default async function NewsDetailPage({ params }: Props) {
               {item.shortdesc}
             </p>
           )}
-          {/* Cover image */}
-          {coverImage && images.length === 0 && (
+          {/* Cover image (always shown when set; extra images float beside the text) */}
+          {coverImage && (
             <div
               className="w-full mb-8 overflow-hidden rounded-xl"
               style={{ aspectRatio: "600/350" }}
@@ -87,7 +88,7 @@ export default async function NewsDetailPage({ params }: Props) {
               <img
                 src={coverImage}
                 alt={item.title}
-                className="object-top w-full h-full object-fit"
+                className="object-cover object-top w-full h-full"
               />
             </div>
           )}
@@ -99,14 +100,14 @@ export default async function NewsDetailPage({ params }: Props) {
                 {images.map((img, i) => (
                   <div key={i} className="w-full">
                     <div
-                      className="w-full overflow-hidden rounded-xl"
-                      style={{ aspectRatio: "600/350" }}
+                      className="w-[75%] overflow-hidden rounded-xl"
+                      style={{ aspectRatio: "120/100" }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="object-top w-full h-full object-fit"
+                        className="object-cover object-top w-full h-full"
                       />
                     </div>
                     {img.caption && (
@@ -121,8 +122,8 @@ export default async function NewsDetailPage({ params }: Props) {
 
             {/* Article text */}
             <div
-              className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-gold prose-strong:text-ink-dark"
-              dangerouslySetInnerHTML={{ __html: item.description }}
+              className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-leaf-dark prose-strong:text-ink-dark"
+              dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(item.description) }}
             />
 
             <div className="clear-both" />
@@ -130,7 +131,7 @@ export default async function NewsDetailPage({ params }: Props) {
           {/* Share */}
           <div className="flex flex-wrap gap-2 pt-6 mt-10 border-t border-border">
             <a
-              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://prideofpakistan.com/news/${newsId}`)}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://prideofpakistan.com/discussion-forum/${newsId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-[11px] font-semibold text-blue-600 border border-blue-200 bg-blue-50 px-2.5 py-1 rounded hover:bg-blue-100 transition-colors no-underline font-body"
@@ -146,10 +147,10 @@ export default async function NewsDetailPage({ params }: Props) {
               Share
             </a>
             <a
-              href={`https://wa.me/?text=${encodeURIComponent(`${item.title} — https://prideofpakistan.com/news/${newsId}`)}`}
+              href={`https://wa.me/?text=${encodeURIComponent(`${item.title} — https://prideofpakistan.com/discussion-forum/${newsId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+              className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
             >
               <svg
                 width="12"
@@ -162,7 +163,7 @@ export default async function NewsDetailPage({ params }: Props) {
               WhatsApp
             </a>
           </div>
-          <CommentSection entityType="news" entityId={newsId} />;
+          <CommentSection entityType="news" entityId={newsId} />
         </div>
       </main>
       <Footer />

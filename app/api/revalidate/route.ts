@@ -6,7 +6,7 @@ const PATHS = [
   "/who-is-who",
   "/products",
   "/business",
-  "/news",
+  "/discussion-forum",
   "/your-stories",
   "/contact",
   "/about",

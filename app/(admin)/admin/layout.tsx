@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import AdminNav from "@/app/components/admin/AdminNav";
 import AdminMain from "@/app/components/admin/AdminMain";
+export const dynamic = "force-dynamic";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (

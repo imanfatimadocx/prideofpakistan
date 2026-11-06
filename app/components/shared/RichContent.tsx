@@ -1,4 +1,5 @@
 import "@/app/styles/rich-content.css";
+import { sanitizeForDisplay } from "@/app/lib/sanitize";
 
 /** Renders HTML that was sanitised on save (see app/lib/sanitize.ts). */
 export default function RichContent({
@@ -12,7 +13,7 @@ export default function RichContent({
   return (
     <div
       className={`rich-content ${className}`}
-      dangerouslySetInnerHTML={{ __html: html }}
+      dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(html) }}
     />
   );
 }

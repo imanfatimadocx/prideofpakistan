@@ -60,7 +60,7 @@ export default async function OurSponsorsPage() {
                           src={logo}
                           alt={s.title}
                           loading="lazy"
-                          className="object-fit w-full h-full transition-transform duration-300 rounded-lg group-hover:scale-105"
+                          className="object-contain w-full h-full transition-transform duration-300 rounded-lg group-hover:scale-105"
                         />
                       ) : (
                         <div className="flex items-center justify-center w-full h-full text-3xl font-bold text-white rounded-lg bg-green font-display">
@@ -111,7 +111,7 @@ export default async function OurSponsorsPage() {
                             href={s.website}
                             target="_blank"
                             rel="noopener noreferrer sponsored"
-                            className="block mt-1.5 text-xs font-semibold no-underline text-gold font-body hover:underline"
+                            className="block mt-1.5 text-xs font-semibold no-underline text-leaf-dark font-body hover:underline"
                           >
                             Visit website ↗
                           </a>
@@ -132,7 +132,7 @@ export default async function OurSponsorsPage() {
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+                className="inline-flex items-center px-6 py-3 text-sm font-semibold text-white no-underline transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
               >
                 Get in Touch
               </Link>

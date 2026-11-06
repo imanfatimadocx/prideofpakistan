@@ -87,7 +87,7 @@ export default function UserStoriesClient({
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold flex-1 min-w-[180px]"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf flex-1 min-w-[180px]"
         />
         <select
           value={filterStatus}
@@ -95,7 +95,7 @@ export default function UserStoriesClient({
             setFilterStatus(e.target.value);
             setPage(1);
           }}
-          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All</option>
           <option value="pending">Pending</option>
@@ -130,7 +130,7 @@ export default function UserStoriesClient({
                   <img
                     src={s.image}
                     alt={s.title}
-                    className="flex-shrink-0 object-fit w-12 h-12 rounded-lg"
+                    className="flex-shrink-0 object-cover w-12 h-12 rounded-lg"
                   />
                 )}
                 <div className="flex-1 min-w-0">
@@ -144,7 +144,7 @@ export default function UserStoriesClient({
                         {" · "}
                         <a
                           href={`mailto:${s.authorEmail}`}
-                          className="no-underline text-gold hover:underline"
+                          className="no-underline text-leaf-dark hover:underline"
                         >
                           {s.authorEmail}
                         </a>
@@ -174,7 +174,7 @@ export default function UserStoriesClient({
               <div className="flex items-center gap-3 px-5 py-3 border-t border-border bg-cream">
                 <Link
                   href={`/admin/user-stories/${s.id}`}
-                  className="text-xs font-semibold text-gold no-underline font-body hover:underline"
+                  className="text-xs font-semibold text-leaf-dark no-underline font-body hover:underline"
                 >
                   View Full Story →
                 </Link>

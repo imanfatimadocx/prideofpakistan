@@ -32,7 +32,7 @@ const EMPTY: Omit<Banner, 'id' | 'createdAt'> = {
 const TYPE_LABELS = { modal: 'Full-screen Modal', strip: 'Dismissible Strip' }
 const COLOR_STYLES: Record<string, string> = {
   green: 'bg-green text-white',
-  gold:  'bg-gold text-white',
+  gold:  'bg-green text-white',
   red:   'bg-red-600 text-white',
 }
 
@@ -153,7 +153,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
       {!showForm && (
         <button
           onClick={openNew}
-          className="bg-gold text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors"
+          className="bg-leaf text-white px-5 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors"
         >
           + Create Banner
         </button>
@@ -179,7 +179,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                   key={t}
                   type="button"
                   onClick={() => setForm((f) => ({ ...f, type: t }))}
-                  className={`border rounded-xl p-4 text-left transition-colors ${form.type === t ? 'border-gold bg-gold-pale' : 'border-border hover:border-gold/50'}`}
+                  className={`border rounded-xl p-4 text-left transition-colors ${form.type === t ? 'border-leaf bg-sage/40' : 'border-border hover:border-leaf/50'}`}
                 >
                   <p className="text-sm font-bold text-ink-dark font-body">{TYPE_LABELS[t]}</p>
                   <p className="text-xs text-ink-muted font-body mt-0.5">
@@ -198,7 +198,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                   value={form.title ?? ''}
                   onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
                   placeholder="e.g. Happy Independence Day!"
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
                 />
               </div>
             )}
@@ -206,14 +206,14 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
             {/* Message */}
             <div>
               <label className="block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body">
-                Message <span className="text-gold">*</span>
+                Message <span className="text-leaf-dark">*</span>
               </label>
               <textarea
                 value={form.message}
                 onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                 rows={form.type === 'modal' ? 4 : 2}
                 placeholder={form.type === 'strip' ? 'Short announcement…' : 'Your event message…'}
-                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
+                className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none"
               />
             </div>
 
@@ -227,7 +227,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                     <img src={imagePreview} alt="Banner" className="object-cover w-full h-full" />
                   </div>
                 )}
-                <label className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block ${imageUploading ? 'opacity-50' : ''}`}>
+                <label className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block ${imageUploading ? 'opacity-50' : ''}`}>
                   {imageUploading ? 'Uploading…' : imagePreview ? 'Change Image' : 'Upload Image'}
                   <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={imageUploading} />
                 </label>
@@ -246,7 +246,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                   value={form.ctaLabel ?? ''}
                   onChange={(e) => setForm((f) => ({ ...f, ctaLabel: e.target.value }))}
                   placeholder="e.g. Learn More"
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
                 />
               </div>
               <div>
@@ -256,7 +256,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                   value={form.ctaLink ?? ''}
                   onChange={(e) => setForm((f) => ({ ...f, ctaLink: e.target.value }))}
                   placeholder="/events or https://…"
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
                 />
               </div>
             </div>
@@ -288,7 +288,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                   type="datetime-local"
                   value={form.startDate}
                   onChange={(e) => setForm((f) => ({ ...f, startDate: e.target.value }))}
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
                 />
               </div>
               <div>
@@ -297,7 +297,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                   type="datetime-local"
                   value={form.endDate}
                   onChange={(e) => setForm((f) => ({ ...f, endDate: e.target.value }))}
-                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
                 />
               </div>
             </div>
@@ -311,7 +311,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
               <button
                 type="button"
                 onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
-                className={`w-11 h-6 rounded-full transition-colors flex items-center ${form.active ? 'bg-gold' : 'bg-border'}`}
+                className={`w-11 h-6 rounded-full transition-colors flex items-center ${form.active ? 'bg-leaf' : 'bg-border'}`}
               >
                 <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform mx-0.5 ${form.active ? 'translate-x-5' : 'translate-x-0'}`} />
               </button>
@@ -321,7 +321,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
             <button
               onClick={handleSave}
               disabled={saving}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
             >
               {saving ? 'Saving…' : editingId ? 'Update Banner' : 'Create Banner'}
             </button>
@@ -339,7 +339,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
           {banners.map((b) => {
             const live = isLive(b)
             return (
-              <div key={b.id} className={`bg-white border rounded-xl p-5 ${live ? 'border-gold/40' : 'border-border'}`}>
+              <div key={b.id} className={`bg-white border rounded-xl p-5 ${live ? 'border-sage' : 'border-border'}`}>
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -371,7 +371,7 @@ export default function BannersClient({ banners: initial }: { banners: Banner[] 
                     >
                       {b.active ? 'Deactivate' : 'Activate'}
                     </button>
-                    <button onClick={() => openEdit(b)} className="text-xs font-semibold text-gold font-body hover:underline">Edit</button>
+                    <button onClick={() => openEdit(b)} className="text-xs font-semibold text-leaf-dark font-body hover:underline">Edit</button>
                     <button onClick={() => handleDelete(b.id)} disabled={deleting === b.id} className="text-xs text-red-500 font-body hover:underline disabled:opacity-50">
                       {deleting === b.id ? '…' : 'Delete'}
                     </button>
