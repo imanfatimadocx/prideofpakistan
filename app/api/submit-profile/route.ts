@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
 import { saveImage } from "@/app/lib/storage";
+import { stripTags } from "@/app/lib/sanitize";
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -10,12 +11,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Login required." }, { status: 401 });
 
     const formData = await req.formData();
-    const title = formData.get("title") as string;
-    const Profession = formData.get("Profession") as string;
-    const City = (formData.get("City") as string) || "";
-    const Country = (formData.get("Country") as string) || "Pakistan";
-    const Email = formData.get("Email") as string;
-    const shortdesc = formData.get("shortdesc") as string;
+    const title = stripTags(formData.get("title"), 255);
+    const Profession = stripTags(formData.get("Profession"), 255);
+    const City = stripTags(formData.get("City"), 255);
+    const Country = stripTags(formData.get("Country"), 255) || "Pakistan";
+    const Email = stripTags(formData.get("Email"), 255);
+    const shortdesc = stripTags(formData.get("shortdesc"), 5000);
     const submitterEmail =
       (formData.get("submitterEmail") as string) || session.user.email || "";
     const imageFile = formData.get("image") as File | null;

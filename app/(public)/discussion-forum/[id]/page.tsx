@@ -5,6 +5,7 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import CommentSection from "@/app/components/shared/CommentSection";
+import { sanitizeForDisplay } from "@/app/lib/sanitize";
 
 export const revalidate = 3600;
 
@@ -122,7 +123,7 @@ export default async function NewsDetailPage({ params }: Props) {
             {/* Article text */}
             <div
               className="leading-relaxed prose prose-neutral max-w-none font-body text-ink-mid prose-headings:font-display prose-headings:text-green prose-a:text-leaf-dark prose-strong:text-ink-dark"
-              dangerouslySetInnerHTML={{ __html: item.description }}
+              dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(item.description) }}
             />
 
             <div className="clear-both" />

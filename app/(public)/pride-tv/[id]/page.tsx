@@ -4,6 +4,7 @@ import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
+import { sanitizeForDisplay } from "@/app/lib/sanitize";
 
 export const revalidate = 60;
 
@@ -115,7 +116,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
                 {video.description && (
                   <div
                     className="text-sm leading-relaxed prose text-white/65 font-body prose-invert max-w-none"
-                    dangerouslySetInnerHTML={{ __html: video.description }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(video.description) }}
                   />
                 )}
               </div>

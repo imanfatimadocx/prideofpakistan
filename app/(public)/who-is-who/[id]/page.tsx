@@ -5,6 +5,7 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import CommentSection from "@/app/components/shared/CommentSection";
+import { sanitizeForDisplay } from "@/app/lib/sanitize";
 export const dynamic = "force-dynamic";
 
 interface Props {
@@ -109,7 +110,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                   <SectionTitle>Introduction</SectionTitle>
                   <div
                     className="text-base leading-relaxed text-ink-dark font-body"
-                    dangerouslySetInnerHTML={{ __html: profile.shortdesc }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(profile.shortdesc) }}
                   />
                 </section>
               )}
@@ -119,7 +120,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                   <SectionTitle>Professional Achievements</SectionTitle>
                   <div
                     className="text-base leading-relaxed prose prose-neutral max-w-none text-ink-dark font-body prose-a:text-leaf-dark prose-headings:font-display prose-headings:text-green prose-img:rounded-lg"
-                    dangerouslySetInnerHTML={{ __html: description }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(description) }}
                   />
                 </section>
               )}
@@ -129,7 +130,7 @@ export default async function ProfileDetailPage({ params }: Props) {
                   <SectionTitle>Education</SectionTitle>
                   <div
                     className="text-base leading-relaxed text-ink-dark font-body"
-                    dangerouslySetInnerHTML={{ __html: profile.edu_desc }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(profile.edu_desc) }}
                   />
                 </section>
               )}

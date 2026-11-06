@@ -4,32 +4,23 @@ import { authOptions } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
 import { saveImage } from "@/app/lib/storage";
 import { parseVideoUrl } from "@/app/lib/video";
+import { stripTags } from "@/app/lib/sanitize";
 
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
     const formData = await req.formData();
-    const company_name = ((formData.get("company_name") as string) || "").slice(
-      0,
-      254,
-    );
-    const name = ((formData.get("name") as string) || "").slice(0, 254);
-    const l_name = ((formData.get("l_name") as string) || "").slice(0, 254);
-    const email = ((formData.get("email") as string) || "").slice(0, 254);
-    const phone = ((formData.get("phone") as string) || "").slice(0, 254);
-    const city = ((formData.get("city") as string) || "").slice(0, 254);
-    const country = ((formData.get("country") as string) || "Pakistan").slice(
-      0,
-      254,
-    );
-    const site_url = ((formData.get("site_url") as string) || "").slice(0, 254);
-    const shortdesc = ((formData.get("shortdesc") as string) || "").slice(
-      0,
-      254,
-    );
-    const company_description =
-      (formData.get("company_description") as string) || "";
+    const company_name = stripTags(formData.get("company_name"), 254);
+    const name = stripTags(formData.get("name"), 254);
+    const l_name = stripTags(formData.get("l_name"), 254);
+    const email = stripTags(formData.get("email"), 254);
+    const phone = stripTags(formData.get("phone"), 254);
+    const city = stripTags(formData.get("city"), 254);
+    const country = stripTags(formData.get("country"), 254) || "Pakistan";
+    const site_url = stripTags(formData.get("site_url"), 254);
+    const shortdesc = stripTags(formData.get("shortdesc"), 254);
+    const company_description = stripTags(formData.get("company_description"), 10000);
 
     const videoRaw = ((formData.get("video_url") as string) || "").trim();
     const video = videoRaw ? parseVideoUrl(videoRaw) : null;

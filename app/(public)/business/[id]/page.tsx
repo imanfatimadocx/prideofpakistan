@@ -5,6 +5,7 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import VideoEmbed from "@/app/components/shared/VideoEmbed";
+import { sanitizeForDisplay } from "@/app/lib/sanitize";
 
 export const dynamic = "force-dynamic";
 
@@ -168,7 +169,7 @@ export default async function BusinessDetailPage({ params }: Props) {
                       <div
                         className="text-sm leading-relaxed prose text-ink-mid font-body prose-neutral max-w-none prose-a:text-leaf-dark prose-headings:font-display prose-headings:text-green"
                         dangerouslySetInnerHTML={{
-                          __html: biz.description || biz.company_description,
+                          __html: sanitizeForDisplay(biz.description || biz.company_description),
                         }}
                       />
                     ) : (
