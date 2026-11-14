@@ -83,7 +83,7 @@ export default function ProfilesTableClient({
             setSearch(e.target.value);
             resetPage();
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold flex-1 min-w-[180px]"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf flex-1 min-w-[180px]"
         />
         <select
           value={filterStatus}
@@ -91,7 +91,7 @@ export default function ProfilesTableClient({
             setFilterStatus(e.target.value);
             resetPage();
           }}
-          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All Statuses</option>
           <option value="0">Pending</option>
@@ -104,7 +104,7 @@ export default function ProfilesTableClient({
             setFilterFeatured(e.target.value);
             resetPage();
           }}
-          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All Profiles</option>
           <option value="1">Featured Only</option>
@@ -116,7 +116,7 @@ export default function ProfilesTableClient({
             setFilterCategory(e.target.value);
             resetPage();
           }}
-          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+          className="px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All Categories</option>
           {categories.map((c) => (
@@ -137,7 +137,7 @@ export default function ProfilesTableClient({
               setSearch("");
               resetPage();
             }}
-            className="text-xs font-semibold text-gold font-body hover:underline"
+            className="text-xs font-semibold text-leaf-dark font-body hover:underline"
           >
             Clear filters
           </button>
@@ -204,7 +204,7 @@ export default function ProfilesTableClient({
                           <img
                             src={p.image}
                             alt={p.title}
-                            className="flex-shrink-0 object-top w-16 h-16 rounded-lg object-fit"
+                            className="flex-shrink-0 object-top w-16 h-16 rounded-lg object-cover"
                           />
                         ) : (
                           <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-bold text-white rounded-full bg-green font-display">
@@ -243,7 +243,7 @@ export default function ProfilesTableClient({
                     {/* Featured */}
                     <td className="px-4 py-3">
                       {p.feature === 1 ? (
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-gold-pale text-gold font-body">
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-sage/40 text-leaf-dark font-body">
                           Featured
                         </span>
                       ) : (
@@ -265,7 +265,7 @@ export default function ProfilesTableClient({
                         </Link>
                         <Link
                           href={`/admin/profiles/${p.id}/edit`}
-                          className="text-xs font-semibold no-underline text-gold font-body hover:underline"
+                          className="text-xs font-semibold no-underline text-leaf-dark font-body hover:underline"
                         >
                           Edit
                         </Link>

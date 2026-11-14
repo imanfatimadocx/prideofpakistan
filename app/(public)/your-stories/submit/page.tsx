@@ -5,6 +5,13 @@ import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import SubmitStoryForm from "./SubmitStoryForm";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Share Your Story",
+  description: "Share your story with the Pride of Pakistan community.",
+  path: "/your-stories/submit",
+});
 
 export default async function SubmitStoryPage() {
   const session = await getServerSession(authOptions);

@@ -61,7 +61,7 @@ function LoginForm() {
           name="email"
           type="email"
           required
-          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
           placeholder="you@example.com"
         />
       </div>
@@ -72,7 +72,7 @@ function LoginForm() {
           name="password"
           type="password"
           required
-          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-gold transition-colors"
+          className="w-full border border-border rounded-md px-3.5 py-2.5 text-sm font-body focus:outline-none focus:border-leaf transition-colors"
           placeholder="Your password"
         />
       </div>
@@ -82,14 +82,14 @@ function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
       >
         {loading ? 'Signing in…' : 'Sign In'}
       </button>
 
       <p className="text-sm text-center text-ink-muted font-body">
         Don&apos;t have an account?{' '}
-        <Link href="/register" className="font-semibold text-gold hover:underline">
+        <Link href="/register" className="font-semibold text-leaf-dark hover:underline">
           Create one
         </Link>
       </p>

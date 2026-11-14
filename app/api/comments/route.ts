@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
   try {
     const comment = await prisma.comment.create({
       data: {
+        likedBy: [],
         content: content.trim(),
         authorName: session.user.name ?? "Anonymous",
         authorEmail: session.user.email ?? "",

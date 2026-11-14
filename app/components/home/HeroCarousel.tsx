@@ -6,29 +6,34 @@ interface Props {
   image?: string | null;
 }
 
+// Ivory White hero. If the admin has uploaded a hero image in the homepage
+// editor, it is shown behind the text with a light ivory layer for readability.
 export default function HeroSection({ heading, subtext, image }: Props) {
-  const bgImage = image && image.trim() !== "" ? image : "/test-bg.jpeg";
+  const bgImage = image && image.trim() !== "" ? image : null;
 
   return (
-    <section className="relative overflow-hidden h-[100vh] sm:h-[80vh] lg:h-[80vh]">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={bgImage}
-        alt="Pakistan"
-        className="absolute inset-0 object-cover object-center w-full h-full"
-      />
-      <div className="absolute inset-0 bg-black/65" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-green/60" />
-
-      <div className="relative z-10 flex items-center justify-center h-full">
+    <section className="relative overflow-hidden bg-ivory border-b border-sage py-16 sm:py-24 lg:py-28">
+      {bgImage && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={bgImage}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 object-cover object-center w-full h-full"
+          />
+          <div className="absolute inset-0 bg-ivory/70" />
+        </>
+      )}
+      <div className="relative">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
           <div className="max-w-[680px]">
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] font-black text-white leading-[1.05] mb-5 -tracking-[.02em]">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] font-black text-green leading-[1.05] mb-5 -tracking-[.02em]">
               {heading && heading.trim() !== ""
                 ? heading
                 : "The Pride of Pakistan"}
             </h1>
-            <p className="text-base sm:text-lg text-white/75 font-body leading-relaxed mb-8 max-w-[520px]">
+            <p className="text-base sm:text-lg text-ink-mid font-body leading-relaxed mb-8 max-w-[520px]">
               {subtext && subtext.trim() !== ""
                 ? subtext
                 : "We honour the achievements of outstanding Pakistanis around the world, visionaries, entrepreneurs, innovators, and leaders whose talent, dedication, and integrity have made a lasting impact on their communities and beyond."}
@@ -36,13 +41,13 @@ export default function HeroSection({ heading, subtext, image }: Props) {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center gap-2 bg-gold text-white px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-gold-light hover:text-ink-dark transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-leaf text-white px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-leaf-dark transition-colors"
               >
                 About Us →
               </Link>
               <Link
                 href="/mission"
-                className="inline-flex items-center justify-center gap-2 bg-white/90 text-green px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-white/80 hover:text-ink-dark transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-mint border border-sage text-green px-7 py-3.5 rounded-md font-semibold text-sm font-body hover:bg-sage transition-colors"
               >
                 Our Mission →
               </Link>

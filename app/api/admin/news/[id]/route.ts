@@ -32,7 +32,7 @@ export async function PATCH(
       },
     });
     revalidatePath("/");
-    revalidatePath("/news");
+    revalidatePath("/discussion-forum");
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error(err);
@@ -50,7 +50,7 @@ export async function DELETE(
   try {
     await prisma.latestNews.delete({ where: { id: Number(id) } });
     revalidatePath("/");
-    revalidatePath("/news");
+    revalidatePath("/discussion-forum");
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error(err);

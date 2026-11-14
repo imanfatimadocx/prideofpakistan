@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
@@ -17,6 +19,22 @@ function resolveImage(img: string | null): string | null {
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const id = Number((await params).id);
+  if (!Number.isInteger(id)) return { title: "Your Stories" };
+  const s = await prisma.userStory.findUnique({
+    where: { id },
+    select: { title: true, shortdesc: true, image: true, status: true },
+  });
+  if (!s || s.status !== "approved") return { title: "Your Stories" };
+  return pageMeta({
+    title: s.title || "Your Stories",
+    description: summary(s.shortdesc),
+    path: `/your-stories/${id}`,
+    image: resolveImagePath(s.image),
+  });
 }
 
 export default async function StoryDetailPage({ params }: Props) {
@@ -39,7 +57,7 @@ export default async function StoryDetailPage({ params }: Props) {
         <div className="max-w-[860px] mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-14">
           <Link
             href="/your-stories"
-            className="flex items-center gap-2 text-sm font-semibold no-underline text-gold font-body hover:underline mb-8"
+            className="flex items-center gap-2 text-sm font-semibold no-underline text-leaf-dark font-body hover:underline mb-8"
           >
             <svg
               width="16"
@@ -55,7 +73,7 @@ export default async function StoryDetailPage({ params }: Props) {
             </svg>
             Back to Your Stories
           </Link>
-          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold font-body mb-3">
+          <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate font-body mb-3">
             By {story.authorName} ·{" "}
             {new Date(story.createdAt).toLocaleDateString("en-GB", {
               day: "numeric",
@@ -71,7 +89,8 @@ export default async function StoryDetailPage({ params }: Props) {
               {story.shortdesc}
             </p>
           )}
-          {coverImage && images.length === 0 && (
+          {/* Cover image (always shown when set; extra images float beside the text) */}
+          {coverImage && (
             <div
               className="w-full overflow-hidden rounded-xl mb-8"
               style={{ aspectRatio: "600/350" }}
@@ -80,7 +99,7 @@ export default async function StoryDetailPage({ params }: Props) {
               <img
                 src={coverImage}
                 alt={story.title}
-                className="w-full h-full object-fit object-top"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           )}
@@ -90,14 +109,14 @@ export default async function StoryDetailPage({ params }: Props) {
                 {images.map((img, i) => (
                   <div key={i} className="w-full">
                     <div
-                      className="w-full overflow-hidden rounded-xl"
-                      style={{ aspectRatio: "600/350" }}
+                      className="w-[75%] overflow-hidden rounded-xl"
+                      style={{ aspectRatio: "120/100" }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={img.src}
                         alt={img.caption}
-                        className="w-full h-full object-fit object-top"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                     {img.caption && (
@@ -110,7 +129,7 @@ export default async function StoryDetailPage({ params }: Props) {
               </div>
             )}
 
-            <div className="prose prose-neutral max-w-none font-body text-ink-mid leading-relaxed prose-headings:font-display prose-headings:text-green prose-a:text-gold">
+            <div className="prose prose-neutral max-w-none font-body text-ink-mid leading-relaxed prose-headings:font-display prose-headings:text-green prose-a:text-leaf-dark">
               {story.content}
             </div>
 
@@ -121,12 +140,12 @@ export default async function StoryDetailPage({ params }: Props) {
               href={`https://wa.me/?text=${encodeURIComponent(`${story.title} — https://prideofpakistan.com/your-stories/${storyId}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[11px] font-semibold text-green-700 border border-green-200 bg-green-50 px-2.5 py-1 rounded hover:bg-green-100 transition-colors no-underline font-body"
+              className="flex items-center gap-1.5 text-[11px] font-semibold text-green border border-sage bg-mint px-2.5 py-1 rounded hover:bg-sage/60 transition-colors no-underline font-body"
             >
               WhatsApp Share
             </a>
           </div>
-          <CommentSection entityType="story" entityId={storyId} />;
+          <CommentSection entityType="story" entityId={storyId} />
         </div>
       </main>
       <Footer />

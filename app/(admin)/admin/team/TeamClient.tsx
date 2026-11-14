@@ -28,7 +28,7 @@ const EMPTY: Omit<Member, "id"> = {
 };
 
 const input =
-  "w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors";
+  "w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors";
 const labelCls =
   "block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5 font-body";
 
@@ -156,7 +156,7 @@ export default function TeamClient({
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className={labelCls}>
-              Full name <span className="text-gold">*</span>
+              Full name <span className="text-leaf-dark">*</span>
             </label>
             <input
               className={input}
@@ -233,7 +233,7 @@ export default function TeamClient({
             onChange={(e) =>
               setForm((f) => ({ ...f, status: e.target.checked ? 1 : 0 }))
             }
-            className="w-4 h-4 accent-[#C9992A]"
+            className="w-4 h-4 accent-[#5BB56B]"
           />
           <span className="text-sm text-ink-dark font-body">
             Show on the website
@@ -246,7 +246,7 @@ export default function TeamClient({
           <button
             onClick={save}
             disabled={saving}
-            className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+            className="bg-leaf text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
           >
             {saving ? "Saving…" : editingId ? "Update Member" : "Add Member"}
           </button>
@@ -274,7 +274,7 @@ export default function TeamClient({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search members…"
-            className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-gold"
+            className="px-3 py-2 text-sm bg-white border rounded-md border-border font-body focus:outline-none focus:border-leaf"
           />
         </div>
         {notice && (
@@ -332,7 +332,7 @@ export default function TeamClient({
                   </button>
                   <button
                     onClick={() => edit(m)}
-                    className="text-xs font-semibold text-gold font-body hover:underline"
+                    className="text-xs font-semibold text-leaf-dark font-body hover:underline"
                   >
                     Edit
                   </button>

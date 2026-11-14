@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider  = "mysql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 // ─── ENUMS ───────────────────────────────────────────────────────────────────
@@ -439,7 +438,7 @@ model Comment {
   parent      Comment?  @relation("replies", fields: [parentId], references: [id], onDelete: Cascade)
   replies     Comment[] @relation("replies")
   likes       Int       @default(0)
-  likedBy     Json      @default("[]")
+  likedBy     Json
   createdAt   DateTime  @default(now())
 
   @@map("comments")
@@ -506,4 +505,16 @@ model VideoCategory {
   status    Int    @default(1)
 
   @@map("video_categories")
+}
+
+// ─── UPLOADED IMAGES (stored in the database) ───────────────────────────────
+model Media {
+  id        Int      @id @default(autoincrement())
+  path      String   @unique @db.VarChar(255)
+  mime      String   @db.VarChar(50)
+  size      Int
+  data      Bytes    @db.LongBlob
+  createdAt DateTime @default(now())
+
+  @@map("media")
 }

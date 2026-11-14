@@ -116,7 +116,7 @@ export default function SubmitStoryForm() {
         </p>
         <button
           onClick={() => router.push("/your-stories")}
-          className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors"
+          className="bg-leaf text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors"
         >
           Back to Stories
         </button>
@@ -143,7 +143,7 @@ export default function SubmitStoryForm() {
             value={form.title}
             onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
             placeholder="Give your story a title…"
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
           />
         </div>
         <div>
@@ -157,7 +157,7 @@ export default function SubmitStoryForm() {
             }
             rows={2}
             placeholder="A brief summary of your story…"
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none"
           />
         </div>
       </div>
@@ -176,11 +176,11 @@ export default function SubmitStoryForm() {
             <img
               src={coverPreview}
               alt="Cover preview"
-              className="object-top w-full h-full object-fit"
+              className="object-top w-full h-full object-cover"
             />
           </div>
         )}
-        <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block">
+        <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block">
           {coverPreview ? "Change Cover Image" : "Upload Cover Image"}
           <input
             type="file"
@@ -201,7 +201,7 @@ export default function SubmitStoryForm() {
           onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
           rows={12}
           placeholder="Write your story here…"
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none leading-relaxed"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none leading-relaxed"
         />
       </div>
 
@@ -212,7 +212,7 @@ export default function SubmitStoryForm() {
             Additional Images
           </h2>
           <label
-            className={`cursor-pointer bg-gold text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`cursor-pointer bg-leaf text-white px-4 py-2 rounded-md text-xs font-semibold font-body hover:bg-leaf-dark transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {uploading ? "Uploading…" : "+ Add Image"}
             <input
@@ -248,7 +248,7 @@ export default function SubmitStoryForm() {
                     value={img.caption}
                     onChange={(e) => updateCaption(i, e.target.value)}
                     placeholder="Caption…"
-                    className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-gold"
+                    className="w-full px-3 py-2 text-sm border rounded-md border-border font-body focus:outline-none focus:border-leaf"
                   />
                   <div className="flex flex-wrap items-center gap-2">
                     <button
@@ -286,7 +286,7 @@ export default function SubmitStoryForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+        className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
       >
         {submitting ? "Submitting…" : "Submit Story for Review"}
       </button>

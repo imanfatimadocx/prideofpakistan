@@ -117,7 +117,7 @@ function Carousel({
             <img
               src={images[current].src}
               alt={images[current].caption}
-              className="object-fit object-top w-full h-full transition-all duration-700 hover:scale-105"
+              className="object-cover object-top w-full h-full transition-all duration-700 hover:scale-105"
             />
           </a>
         ) : (
@@ -125,7 +125,7 @@ function Carousel({
           <img
             src={images[current].src}
             alt={images[current].caption}
-            className="object-fit object-top w-full h-full transition-all duration-700"
+            className="object-cover object-top w-full h-full transition-all duration-700"
           />
         )}
         <div className="absolute bottom-0 left-0 right-0 px-4 py-3 pointer-events-none bg-gradient-to-t from-black/70 to-transparent">
@@ -133,7 +133,7 @@ function Carousel({
             {images[current].caption}
           </p>
           {images[current].href && (
-            <p className="text-[11px] text-gold font-body mt-0.5">
+            <p className="text-[11px] text-leaf-dark font-body mt-0.5">
               View Profile →
             </p>
           )}
@@ -180,7 +180,7 @@ function Carousel({
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-gold" : "w-1.5 h-1.5 bg-border hover:bg-gold/50"}`}
+            className={`rounded-full transition-all ${i === current ? "w-5 h-1.5 bg-leaf" : "w-1.5 h-1.5 bg-border hover:bg-sage/50"}`}
             aria-label={`Go to image ${i + 1}`}
           />
         ))}
@@ -213,7 +213,7 @@ export default function MissionClient({ data }: { data: MissionData }) {
           <h2 className="mb-5 text-3xl font-bold leading-tight font-display sm:text-4xl text-green">
             {data.heading1}
           </h2>
-          <div className="w-12 h-[3px] bg-gold rounded mb-6" />
+          <div className="w-12 h-[3px] bg-leaf rounded mb-6" />
           <div className="mb-10 space-y-5 text-base leading-relaxed text-ink-mid font-body">
             <p>{data.body1a}</p>
             <p>{data.body1b}</p>
@@ -222,11 +222,11 @@ export default function MissionClient({ data }: { data: MissionData }) {
           <h2 className="mb-5 text-3xl font-bold leading-tight font-display sm:text-4xl text-green">
             {data.heading2}
           </h2>
-          <div className="w-12 h-[3px] bg-gold rounded mb-6" />
+          <div className="w-12 h-[3px] bg-leaf rounded mb-6" />
           <div className="mb-8 space-y-5 text-base leading-relaxed text-ink-mid font-body">
             <p>{data.body2a}</p>
             <p>{data.body2b}</p>
-            <blockquote className="py-2 pl-5 border-l-4 border-gold">
+            <blockquote className="py-2 pl-5 border-l-4 border-leaf">
               <p className="text-xl leading-snug font-display text-green">
                 "{data.quote}"
               </p>
@@ -237,7 +237,7 @@ export default function MissionClient({ data }: { data: MissionData }) {
           <div className="flex flex-col clear-both gap-3 pt-2 sm:flex-row">
             <Link
               href="/who-is-who"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark"
+              className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark"
             >
               Explore Who Is Who →
             </Link>
@@ -254,19 +254,19 @@ export default function MissionClient({ data }: { data: MissionData }) {
       <section className="py-16 bg-cream sm:py-20">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="mb-12 text-center">
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-3 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-3 font-body">
               What We Stand For
             </p>
             <h2 className="text-3xl font-bold font-display sm:text-4xl text-green">
               The Four Pillars of Our Mission
             </h2>
-            <div className="w-12 h-[3px] bg-gold mt-4 mx-auto rounded" />
+            <div className="w-12 h-[3px] bg-leaf mt-4 mx-auto rounded" />
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => (
               <div
                 key={p.title}
-                className="p-6 transition-all bg-white border border-border rounded-xl hover:border-gold hover:-translate-y-1"
+                className="p-6 transition-all bg-white border border-border rounded-xl hover:border-leaf hover:-translate-y-1"
               >
                 <div className="mb-4 text-green">{p.icon}</div>
                 <h3 className="mb-2 text-base font-bold font-display text-green">

@@ -90,7 +90,7 @@ function SectionEditor({
           onChange={(e) =>
             setContent((c) => ({ ...c, eyebrow: e.target.value }))
           }
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
         />
       </div>
 
@@ -105,7 +105,7 @@ function SectionEditor({
           onChange={(e) =>
             setContent((c) => ({ ...c, heading: e.target.value }))
           }
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
         />
       </div>
 
@@ -120,7 +120,7 @@ function SectionEditor({
             setContent((c) => ({ ...c, subtext: e.target.value }))
           }
           rows={3}
-          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
+          className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none"
         />
       </div>
 
@@ -153,7 +153,7 @@ function SectionEditor({
             </div>
           )}
           <label
-            className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {uploading
               ? "Uploading…"
@@ -177,7 +177,7 @@ function SectionEditor({
                 setContent((c) => ({ ...c, image: "" }));
                 setImagePreview(null);
               }}
-              className="block w-full p-2 mt-2 text-xs text-red-500 transition-colors border rounded-md font-body hover:underline border-lg radius-lg border-border"
+              className="block w-full p-2 mt-2 text-xs text-red-500 transition-colors border rounded-md font-body hover:underline rounded-lg border-border"
             >
               Remove image
             </button>
@@ -200,7 +200,7 @@ function SectionEditor({
         <button
           onClick={handleSave}
           disabled={saving}
-          className="px-6 py-2.5 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+          className="px-6 py-2.5 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save Changes"}
         </button>

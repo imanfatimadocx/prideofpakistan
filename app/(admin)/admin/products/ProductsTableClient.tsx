@@ -87,7 +87,7 @@ export default function ProductsTableClient({
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold flex-1 min-w-[180px]"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf flex-1 min-w-[180px]"
         />
         <select
           value={filterStatus}
@@ -95,7 +95,7 @@ export default function ProductsTableClient({
             setFilterStatus(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All Statuses</option>
           <option value="0">Pending</option>
@@ -108,7 +108,7 @@ export default function ProductsTableClient({
             setFilterFeatured(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All Products</option>
           <option value="1">Featured Only</option>
@@ -120,7 +120,7 @@ export default function ProductsTableClient({
             setFilterCategory(e.target.value);
             setPage(1);
           }}
-          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-gold"
+          className="border border-border rounded-md px-3 py-2 text-sm font-body focus:outline-none focus:border-leaf"
         >
           <option value="all">All Categories</option>
           {categories.map((c) => (
@@ -141,7 +141,7 @@ export default function ProductsTableClient({
               setSearch("");
               setPage(1);
             }}
-            className="text-xs text-gold font-semibold font-body hover:underline"
+            className="text-xs text-leaf-dark font-semibold font-body hover:underline"
           >
             Clear
           </button>
@@ -208,7 +208,7 @@ export default function ProductsTableClient({
                           <img
                             src={p.image}
                             alt={p.title}
-                            className="w-20 h-16 rounded-lg object-fit object-top flex-shrink-0"
+                            className="w-20 h-16 rounded-lg object-cover object-top flex-shrink-0"
                           />
                         ) : (
                           <div className="w-9 h-9 rounded-full bg-green flex items-center justify-center text-white font-bold font-display text-sm flex-shrink-0">
@@ -234,7 +234,7 @@ export default function ProductsTableClient({
                     </td>
                     <td className="px-4 py-3">
                       {p.feature === 1 ? (
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-gold-pale text-gold font-body">
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-sage/40 text-leaf-dark font-body">
                           Featured
                         </span>
                       ) : (
@@ -247,7 +247,7 @@ export default function ProductsTableClient({
                       {p.inquiryCount > 0 ? (
                         <Link
                           href={`/admin/products/${p.id}/inquiries`}
-                          className="text-xs font-semibold text-gold no-underline hover:underline font-body"
+                          className="text-xs font-semibold text-leaf-dark no-underline hover:underline font-body"
                         >
                           {p.inquiryCount} enquir
                           {p.inquiryCount === 1 ? "y" : "ies"}
@@ -269,7 +269,7 @@ export default function ProductsTableClient({
                         </Link>
                         <Link
                           href={`/admin/products/${p.id}/edit`}
-                          className="text-xs font-semibold no-underline text-gold font-body hover:underline"
+                          className="text-xs font-semibold no-underline text-leaf-dark font-body hover:underline"
                         >
                           Edit
                         </Link>

@@ -4,6 +4,13 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import AboutClient from "./AboutClient";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "About Us",
+  description: "The story of Pride of Pakistan and its founder, Imtiaz Ahmad.",
+  path: "/about",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -93,7 +100,7 @@ export default async function AboutPage() {
         <PageHero
           eyebrow="Our Story"
           title="About Pride of Pakistan"
-          subtitle="A movement to challenge misconceptions and showcase the true character of Pakistan."
+          subtitle="The founder set out to challenge widespread misconceptions about Pakistan - particularly those related to extremism and intolerance - by showcasing the country's true character: one rooted in diversity, progress, resilience, and hospitality."
         />
         <AboutClient data={data} />
       </main>
