@@ -7,7 +7,8 @@ import { ADSENSE_CLIENT } from "@/app/lib/adsense";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://prideofpakistan.com"),
-  title: "Pride of Pakistan",
+  // Each page sets its own title; this adds " | Pride of Pakistan" after it.
+  title: { default: "Pride of Pakistan", template: "%s | Pride of Pakistan" },
   description: "Showcasing the best of Pakistan to the world.",
   icons: {
     icon: "/icon-1.png",

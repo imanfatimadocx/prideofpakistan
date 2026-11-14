@@ -11,7 +11,7 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Our Sponsors | Pride of Pakistan",
+  title: "Our Sponsors",
   description: "The organisations and businesses supporting Pride of Pakistan.",
 };
 

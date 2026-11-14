@@ -112,6 +112,7 @@ export default function Footer() {
               { label: "Terms of Use", href: "/terms-of-use" },
               { label: "Privacy Policy", href: "/privacy-policy" },
               { label: "Disclaimer", href: "/disclaimer" },
+              { label: "Cookie Policy", href: "/cookie-policy" },
             ].map(({ label, href }) => (
               <Link
                 key={href}

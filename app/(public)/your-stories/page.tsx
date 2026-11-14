@@ -6,6 +6,13 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { getPageContent } from "@/app/lib/pageContent";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Your Stories",
+  description: "Stories shared by the Pride of Pakistan community.",
+  path: "/your-stories",
+});
 export const dynamic = "force-dynamic";
 
 function resolveImage(img: string | null): string | null {

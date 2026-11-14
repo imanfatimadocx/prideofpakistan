@@ -34,9 +34,9 @@ const getMember = cache(async (id: number) =>
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = Number((await params).id);
   const m = Number.isInteger(id) ? await getMember(id) : null;
-  if (!m) return { title: "Pride Team | Pride of Pakistan" };
+  if (!m) return { title: "Pride Team" };
   return {
-    title: `${m.fullname} | Pride Team | Pride of Pakistan`,
+    title: `${m.fullname} | Pride Team`,
     description: m.description?.slice(0, 160) || m.designation || undefined,
   };
 }

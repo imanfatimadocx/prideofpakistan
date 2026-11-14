@@ -26,6 +26,7 @@ const GROUPS = [
       { label: "Terms & Conditions", href: "/admin/pages/legal/terms" },
       { label: "Privacy Policy", href: "/admin/pages/legal/privacy" },
       { label: "Disclaimer", href: "/admin/pages/legal/disclaimer" },
+      { label: "Cookie Policy", href: "/admin/pages/legal/cookies" },
     ],
   },
 ];

@@ -4,6 +4,13 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import MissionClient from "./MissionClient";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Our Mission",
+  description: "Why Pride of Pakistan exists: showcasing the best of Pakistan to the world.",
+  path: "/mission",
+});
 
 export const dynamic = "force-dynamic";
 

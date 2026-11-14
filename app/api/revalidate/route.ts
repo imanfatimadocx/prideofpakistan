@@ -17,6 +17,7 @@ const PATHS = [
   "/terms-of-use",
   "/privacy-policy",
   "/disclaimer",
+  "/cookie-policy",
 ];
 
 function doRevalidate() {

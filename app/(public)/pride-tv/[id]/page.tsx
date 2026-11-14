@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
@@ -44,6 +46,22 @@ function getThumbnail(embedCode: string, existingThumb: string): string {
     if (m?.[1]) return `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`;
   }
   return "";
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const videoId = Number((await params).id);
+  if (!Number.isInteger(videoId)) return { title: "Pride TV" };
+  const v = await prisma.video.findUnique({
+    where: { video_id: BigInt(videoId) },
+    select: { title: true, seo_title: true, seo_description: true, description: true, thumb_url: true, video_embed_code: true, status: true },
+  });
+  if (!v || v.status !== "active") return { title: "Pride TV" };
+  return pageMeta({
+    title: v.seo_title || v.title || "Pride TV",
+    description: summary(v.seo_description, v.description),
+    path: `/pride-tv/${videoId}`,
+    image: resolveImagePath(getThumbnail(v.video_embed_code, v.thumb_url)),
+  });
 }
 
 export default async function PrideTVVideoPage({ params }: Props) {

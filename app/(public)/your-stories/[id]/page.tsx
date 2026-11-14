@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
@@ -17,6 +19,22 @@ function resolveImage(img: string | null): string | null {
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const id = Number((await params).id);
+  if (!Number.isInteger(id)) return { title: "Your Stories" };
+  const s = await prisma.userStory.findUnique({
+    where: { id },
+    select: { title: true, shortdesc: true, image: true, status: true },
+  });
+  if (!s || s.status !== "approved") return { title: "Your Stories" };
+  return pageMeta({
+    title: s.title || "Your Stories",
+    description: summary(s.shortdesc),
+    path: `/your-stories/${id}`,
+    image: resolveImagePath(s.image),
+  });
 }
 
 export default async function StoryDetailPage({ params }: Props) {

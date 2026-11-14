@@ -5,6 +5,7 @@ export const LEGAL_PAGES = {
   terms: { key: "legal_terms", path: "/terms-of-use", label: "Terms & Conditions" },
   privacy: { key: "legal_privacy", path: "/privacy-policy", label: "Privacy Policy" },
   disclaimer: { key: "legal_disclaimer", path: "/disclaimer", label: "Disclaimer" },
+  cookies: { key: "legal_cookies", path: "/cookie-policy", label: "Cookie Policy" },
 } as const;
 
 export type LegalPageSlug = keyof typeof LEGAL_PAGES;
@@ -131,6 +132,49 @@ export const LEGAL_DEFAULTS: Record<LegalPageSlug, LegalContent> = {
         id: "d4",
         heading: "",
         html: "<p>Pride of Pakistan website may contain links to other websites and the owner assumes no responsibility for the content of such websites. The owner of Pride of Pakistan website is not responsible for the accuracy, copyright compliance, legality or decency of material posted in any section of this site.</p>",
+      },
+    ],
+  },
+  cookies: {
+    title: "Cookie Policy",
+    intro:
+      "<p>This Cookie Policy explains what cookies are, which cookies prideofpakistan.com uses, why we use them, and how you can control them. It should be read together with our <a href=\"/privacy-policy\">Privacy Policy</a>.</p>",
+    updatedAt: null,
+    sections: [
+      {
+        id: "c1",
+        heading: "1. What are cookies?",
+        html: "<p>Cookies are small text files that a website saves on your computer, phone or tablet when you visit it. They help the website work properly, remember your choices and, in some cases, show advertising. Some cookies are deleted when you close your browser (session cookies); others stay for a set period (persistent cookies).</p>",
+      },
+      {
+        id: "c2",
+        heading: "2. Cookies that are strictly necessary",
+        html: "<p>These cookies are needed for the website to work and cannot be switched off. They do not collect information for advertising, and the law allows us to use them without asking for consent.</p><ul><li><strong>Sign-in session</strong> (next-auth.session-token): keeps you signed in to your member or admin account. Deleted when you close your browser or after 2 hours.</li><li><strong>Security</strong> (next-auth.csrf-token and next-auth.callback-url): protect the sign-in forms against attacks and return you to the right page after signing in.</li><li><strong>Your cookie choice</strong> (set by Google's consent message): remembers whether you accepted or declined advertising cookies, so we don't ask you on every visit.</li></ul><p>We also use your browser's temporary session storage to sign you out automatically when you close the browser tab. This is not a cookie and is cleared when the tab is closed.</p>",
+      },
+      {
+        id: "c3",
+        heading: "3. Advertising cookies",
+        html: "<p>We show advertising on the website through Google AdSense to help cover the cost of running Pride of Pakistan. Google and its partners may use cookies (for example __gads, __gpi and IDE) to:</p><ul><li>show adverts on our pages;</li><li>limit how often you see the same advert;</li><li>measure whether adverts are seen and clicked;</li><li>where you agree, show adverts based on your interests and other websites you have visited.</li></ul><p>Visitors in the United Kingdom, the European Economic Area and Switzerland are asked for consent before these cookies are used. If you decline, you may still see adverts, but they will not be personalised. You can learn more in <a href=\"https://policies.google.com/technologies/ads\">how Google uses cookies in advertising</a>.</p>",
+      },
+      {
+        id: "c4",
+        heading: "4. Cookies from embedded content",
+        html: "<p>Some pages include videos from YouTube (for example on Pride TV). When you play an embedded video, YouTube may set its own cookies. We do not control these cookies; please see <a href=\"https://policies.google.com/privacy\">Google's Privacy Policy</a> for details.</p>",
+      },
+      {
+        id: "c5",
+        heading: "5. How to manage cookies",
+        html: "<ul><li><strong>On our website:</strong> you can change your advertising cookie choice at any time using the privacy and cookie settings link shown by Google's consent message.</li><li><strong>In your browser:</strong> you can block or delete cookies in your browser settings. If you block the strictly necessary cookies, you will not be able to sign in.</li><li><strong>Google ad settings:</strong> you can turn off personalised advertising across Google services at <a href=\"https://adssettings.google.com\">adssettings.google.com</a>.</li></ul>",
+      },
+      {
+        id: "c6",
+        heading: "6. Changes to this policy",
+        html: "<p>We may update this Cookie Policy when we add or change features, for example if we add website analytics. The date at the top of this page shows when it was last updated.</p>",
+      },
+      {
+        id: "c7",
+        heading: "7. Contact",
+        html: `<p>If you have any questions about how we use cookies, please contact us at ${EMAIL}.</p>`,
       },
     ],
   },

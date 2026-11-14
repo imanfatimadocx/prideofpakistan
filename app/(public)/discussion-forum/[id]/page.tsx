@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
@@ -19,6 +21,22 @@ function resolveImage(img: string | null): string | null {
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const id = Number((await params).id);
+  if (!Number.isInteger(id)) return { title: "Discussion Forum" };
+  const n = await prisma.latestNews.findUnique({
+    where: { id },
+    select: { title: true, shortdesc: true, description: true, smallimage: true, status: true },
+  });
+  if (!n || n.status !== 1) return { title: "Discussion Forum" };
+  return pageMeta({
+    title: n.title || "Discussion Forum",
+    description: summary(n.shortdesc, n.description),
+    path: `/discussion-forum/${id}`,
+    image: resolveImagePath(n.smallimage),
+  });
 }
 
 export default async function NewsDetailPage({ params }: Props) {

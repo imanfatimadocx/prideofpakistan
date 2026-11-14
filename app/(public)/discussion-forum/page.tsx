@@ -5,6 +5,13 @@ import Footer from "@/app/components/layout/Footer";
 import Link from "next/link";
 import PageHero from "@/app/components/shared/PageHero";
 import { getPageContent } from "@/app/lib/pageContent";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Discussion Forum",
+  description: "News, updates and discussions from the Pride of Pakistan community.",
+  path: "/discussion-forum",
+});
 
 export const dynamic = "force-dynamic";
 

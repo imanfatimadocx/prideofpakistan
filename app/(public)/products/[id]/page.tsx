@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
@@ -19,6 +21,22 @@ function resolveImage(img: string | null): string | null {
 }
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const id = Number((await params).id);
+  if (!Number.isInteger(id)) return { title: "Pakistani Products" };
+  const p = await prisma.pakProduct.findUnique({
+    where: { id },
+    select: { title: true, meta_title: true, meta_desc: true, shortdesc: true, description: true, image: true, status: true },
+  });
+  if (!p || p.status !== 1) return { title: "Pakistani Products" };
+  return pageMeta({
+    title: p.meta_title || p.title || "Pakistani Products",
+    description: summary(p.meta_desc, p.shortdesc, p.description),
+    path: `/products/${id}`,
+    image: resolveImagePath(p.image),
+  });
 }
 
 export default async function ProductDetailPage({ params }: Props) {

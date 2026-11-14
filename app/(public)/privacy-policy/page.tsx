@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { title } = await getLegalContent("privacy");
-  return { title: `${title} | Pride of Pakistan` };
+  return { title: `${title}` };
 }
 
 export default function PrivacyPolicyPage() {

@@ -4,6 +4,13 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import AboutClient from "./AboutClient";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "About Us",
+  description: "The story of Pride of Pakistan and its founder, Imtiaz Ahmad.",
+  path: "/about",
+});
 
 export const dynamic = "force-dynamic";
 
