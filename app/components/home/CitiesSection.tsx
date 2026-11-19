@@ -23,15 +23,15 @@ export default function CitiesSection({ cities }: Props) {
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
               Explore Pakistan
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
               Cities, Towns &amp; Villages
             </h2>
-            <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+            <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
           </div>
-          <Link href="/cities" className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
+          <Link href="/cities" className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap">
             View All →
           </Link>
         </div>
@@ -56,7 +56,7 @@ export default function CitiesSection({ cities }: Props) {
               <div className="absolute inset-0 bg-gradient-to-t from-green/[.88] via-green/[.15] to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
                 {city.tag && (
-                  <span className="inline-block bg-gold text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded mb-1 sm:mb-1.5 tracking-[.08em] uppercase font-body">
+                  <span className="inline-block bg-sage text-green text-[9px] sm:text-[10px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded mb-1 sm:mb-1.5 tracking-[.08em] uppercase font-body">
                     {city.tag}
                   </span>
                 )}

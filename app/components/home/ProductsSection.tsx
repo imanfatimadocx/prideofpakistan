@@ -20,24 +20,24 @@ export default function ProductsSection({ products }: Props) {
 
   return (
     <section
-      className="py-12 border-t bg-white sm:py-16 lg:py-20 border-border"
+      className="py-12 border-t bg-mint sm:py-16 lg:py-20 border-sage/60"
       id="products"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-gold mb-2 font-body">
+            <p className="text-[11px] font-bold tracking-[.16em] uppercase text-slate mb-2 font-body">
               Made in Pakistan
             </p>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-[38px] font-bold text-green leading-tight">
               Pakistani Products
             </h2>
-            <div className="w-12 h-[3px] bg-gold mt-3 rounded" />
+            <div className="w-12 h-[3px] bg-leaf mt-3 rounded" />
           </div>
           <Link
             href="/products"
-            className="text-[13px] font-semibold text-gold no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap"
+            className="text-[13px] font-semibold text-leaf-dark no-underline flex items-center gap-1.5 hover:gap-3 transition-all font-body whitespace-nowrap"
           >
             View All →
           </Link>
@@ -61,7 +61,7 @@ export default function ProductsSection({ products }: Props) {
                     alt={p.title}
                     width={600}
                     height={350}
-                    className="object-fit object-top  rounded-lg w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top  rounded-lg w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-green">
@@ -75,7 +75,7 @@ export default function ProductsSection({ products }: Props) {
                 <p className="text-sm font-bold leading-snug transition-colors font-display text-ink-dark group-hover:text-green line-clamp-1">
                   {p.title}
                 </p>
-                <p className="text-[11px] font-semibold text-gold font-body mt-0.5">
+                <p className="text-[11px] font-semibold text-leaf-dark font-body mt-0.5">
                   View Product →
                 </p>
               </div>

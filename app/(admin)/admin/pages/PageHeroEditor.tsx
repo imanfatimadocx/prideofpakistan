@@ -49,7 +49,7 @@ export default function PageHeroEditor({ section, label, initial }: Props) {
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/admin/pages"
-          className="text-sm no-underline text-gold font-body hover:underline"
+          className="text-sm no-underline text-leaf-dark font-body hover:underline"
         >
           ← Pages
         </Link>
@@ -83,7 +83,7 @@ export default function PageHeroEditor({ section, label, initial }: Props) {
             onChange={(e) =>
               setForm((f) => ({ ...f, eyebrow: e.target.value }))
             }
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
           />
         </div>
 
@@ -97,7 +97,7 @@ export default function PageHeroEditor({ section, label, initial }: Props) {
             onChange={(e) =>
               setForm((f) => ({ ...f, heading: e.target.value }))
             }
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
           />
         </div>
 
@@ -111,14 +111,14 @@ export default function PageHeroEditor({ section, label, initial }: Props) {
               setForm((f) => ({ ...f, subtext: e.target.value }))
             }
             rows={3}
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold resize-none"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf resize-none"
           />
         </div>
 
         <button
           onClick={handleSave}
           disabled={saving}
-          className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+          className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save Changes"}
         </button>

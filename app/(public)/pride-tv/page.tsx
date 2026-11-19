@@ -5,6 +5,13 @@ import Footer from '@/app/components/layout/Footer'
 import PrideTVPageClient from './PrideTVPageClient'
 import { getPageContent } from '@/app/lib/pageContent'
 import PageHero from '@/app/components/shared/PageHero'
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Pride TV",
+  description: "Videos and interviews celebrating outstanding Pakistanis.",
+  path: "/pride-tv",
+});
 
 export const dynamic = "force-dynamic";
 

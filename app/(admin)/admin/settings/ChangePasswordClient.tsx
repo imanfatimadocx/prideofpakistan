@@ -71,7 +71,7 @@ export default function ChangePasswordClient() {
             value={current}
             onChange={(e) => setCurrent(e.target.value)}
             required
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
             placeholder="Enter current password"
           />
         </div>
@@ -85,7 +85,7 @@ export default function ChangePasswordClient() {
             value={newPass}
             onChange={(e) => setNewPass(e.target.value)}
             required
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
             placeholder="Minimum 8 characters"
           />
         </div>
@@ -99,7 +99,7 @@ export default function ChangePasswordClient() {
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
             required
-            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+            className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
             placeholder="Repeat new password"
           />
         </div>
@@ -107,7 +107,7 @@ export default function ChangePasswordClient() {
         <button
           type="submit"
           disabled={saving}
-          className="w-full bg-gold text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50 mt-2"
+          className="w-full bg-leaf text-white rounded-md py-2.5 text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50 mt-2"
         >
           {saving ? 'Updating...' : 'Update Password'}
         </button>

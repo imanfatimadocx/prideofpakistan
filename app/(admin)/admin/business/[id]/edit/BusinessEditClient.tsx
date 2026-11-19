@@ -162,7 +162,7 @@ export default function BusinessEditClient({
         <div className="flex items-center gap-3">
           <NextLink
             href="/admin/business"
-            className="text-sm no-underline text-gold font-body hover:underline"
+            className="text-sm no-underline text-leaf-dark font-body hover:underline"
           >
             ← Businesses
           </NextLink>
@@ -175,7 +175,7 @@ export default function BusinessEditClient({
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-gold text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+            className="bg-leaf text-white px-6 py-2.5 rounded-md text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
           >
             {saving ? "Saving..." : isNew ? "Create Business" : "Save Changes"}
           </button>
@@ -237,7 +237,7 @@ export default function BusinessEditClient({
                     onChange={(e) =>
                       setForm((f) => ({ ...f, [key]: e.target.value }))
                     }
-                    className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors"
+                    className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors"
                   />
                 </div>
               ))}
@@ -255,7 +255,7 @@ export default function BusinessEditClient({
                 setForm((f) => ({ ...f, shortdesc: e.target.value }))
               }
               rows={3}
-              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold transition-colors resize-none"
+              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors resize-none"
               placeholder="Brief description shown on listing cards…"
             />
           </div>
@@ -343,7 +343,7 @@ export default function BusinessEditClient({
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="object-fit object-top w-full h-full"
+                  className="object-cover object-top w-full h-full"
                 />
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-sm text-ink-muted font-body">
@@ -351,7 +351,7 @@ export default function BusinessEditClient({
                 </div>
               )}
             </div>
-            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-gold transition-colors text-center block">
+            <label className="w-full cursor-pointer bg-cream border border-border rounded-md px-4 py-2.5 text-xs font-semibold text-ink-dark font-body hover:border-leaf transition-colors text-center block">
               {imagePreview ? "Change Photo" : "Upload Photo"}
               <input
                 type="file"
@@ -375,7 +375,7 @@ export default function BusinessEditClient({
               onChange={(e) =>
                 setForm((f) => ({ ...f, status: Number(e.target.value) }))
               }
-              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
             >
               <option value={0}>Pending</option>
               <option value={1}>Approved</option>
@@ -396,7 +396,7 @@ export default function BusinessEditClient({
                   category_id: e.target.value ? Number(e.target.value) : null,
                 }))
               }
-              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf"
             >
               <option value="">— Select category —</option>
               {categories.map((c) => (
@@ -423,7 +423,7 @@ export default function BusinessEditClient({
                 onClick={() =>
                   setForm((f) => ({ ...f, feature: f.feature === 1 ? 0 : 1 }))
                 }
-                className={`flex-shrink-0 w-11 h-6 rounded-full transition-colors flex items-center ${form.feature === 1 ? "bg-gold" : "bg-border"}`}
+                className={`flex-shrink-0 w-11 h-6 rounded-full transition-colors flex items-center ${form.feature === 1 ? "bg-leaf" : "bg-border"}`}
               >
                 <div
                   className={`w-5 h-5 bg-white rounded-full shadow transition-transform mx-0.5 ${form.feature === 1 ? "translate-x-5" : "translate-x-0"}`}
@@ -437,7 +437,7 @@ export default function BusinessEditClient({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-gold font-body hover:bg-gold-light hover:text-ink-dark disabled:opacity-50"
+              className="w-full py-3 text-sm font-semibold text-white transition-colors rounded-md bg-leaf font-body hover:bg-leaf-dark disabled:opacity-50"
             >
               {saving
                 ? "Saving..."

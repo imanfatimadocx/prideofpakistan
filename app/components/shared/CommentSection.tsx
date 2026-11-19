@@ -100,7 +100,7 @@ function CommentItem({
             <button
               onClick={handleLike}
               disabled={liking}
-              className={`flex items-center gap-1 text-xs font-semibold font-body transition-colors ${liked ? "text-gold" : "text-ink-muted hover:text-gold"}`}
+              className={`flex items-center gap-1 text-xs font-semibold font-body transition-colors ${liked ? "text-leaf-dark" : "text-ink-muted hover:text-leaf-dark"}`}
             >
               <svg
                 width="13"
@@ -270,7 +270,7 @@ export default function CommentSection({
                   replyTo ? `Reply to ${replyTo.name}…` : "Write a comment…"
                 }
                 rows={3}
-                className="w-full px-4 py-3 text-sm border border-border rounded-xl font-body focus:outline-none focus:border-gold transition-colors resize-none"
+                className="w-full px-4 py-3 text-sm border border-border rounded-xl font-body focus:outline-none focus:border-leaf transition-colors resize-none"
               />
               {error && (
                 <p className="text-xs text-red-500 font-body mt-1">{error}</p>
@@ -279,7 +279,7 @@ export default function CommentSection({
                 <button
                   type="submit"
                   disabled={submitting || !content.trim()}
-                  className="bg-gold text-white px-5 py-2 rounded-lg text-sm font-semibold font-body hover:bg-gold-light hover:text-ink-dark transition-colors disabled:opacity-50"
+                  className="bg-leaf text-white px-5 py-2 rounded-lg text-sm font-semibold font-body hover:bg-leaf-dark transition-colors disabled:opacity-50"
                 >
                   {submitting
                     ? "Posting…"
@@ -296,7 +296,7 @@ export default function CommentSection({
           <p className="text-sm text-ink-muted font-body">
             <Link
               href="/login"
-              className="text-gold font-semibold hover:underline no-underline"
+              className="text-leaf-dark font-semibold hover:underline no-underline"
             >
               Log in
             </Link>{" "}

@@ -33,10 +33,10 @@ export default async function ProfileEditPage({ params }: Props) {
     categoryid: profile.categoryid ?? null,
     facebook: profile.facebook ?? '',
     linkedin: profile.linkedin ?? '',
+    threads: profile.threads ?? '',
     meta_title: profile.meta_title ?? '',
     meta_keywords: profile.meta_keyword ?? '',
     meta_description: profile.meta_desc ?? '',
-    threads: profile.threads ?? '',
   }
 
   const cats = categories.map((c) => ({
@@ -46,7 +46,7 @@ export default async function ProfileEditPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 lg:pt-8 lg:p-8">
+      <main className="flex-1 p-4 lg:p-8">
         <ProfileEditClient profile={serialized} categories={cats} />
       </main>
     </div>

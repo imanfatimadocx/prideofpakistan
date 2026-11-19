@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import typography from '@tailwindcss/typography'
 
 const config: Config = {
   content: [
@@ -8,23 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        green: {
-          DEFAULT: '#0D4A2E',
-          mid: '#1a6b42',
-          light: '#2d8a57',
-        },
-        gold: {
-          DEFAULT: '#C9992A',
-          light: '#E8B84B',
-          pale: '#F5E6C0',
-        },
-        cream: '#FAF6EE',
-        ink: {
-          dark: '#1A1208',
-          mid: '#4A3B1F',
-          muted: '#7A6B50',
-        },
-        border: '#DDD0B0',
+        green: { DEFAULT: '#064D32', mid: '#0B6B45', light: '#5BB56B' },
+        leaf: { DEFAULT: '#5BB56B', light: '#7CC78A', dark: '#2A7F45' },
+        sage: '#B9DFC5',
+        mint: '#E5F4E8',
+        ivory: '#FFFFFF',
+        slate: { DEFAULT: '#596B68', deep: '#3D4D4A' },
+        cream: '#FFFFFF',          // page background = plain white (mint is for panels)
+        ink: { dark: '#1C332C', mid: '#596B68', muted: '#657673' },
+        border: '#DCE7E0',
       },
       fontFamily: {
         display: ['"Playfair Display"', 'serif'],
@@ -47,7 +40,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 }
 
 export default config

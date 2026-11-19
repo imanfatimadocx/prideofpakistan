@@ -11,7 +11,7 @@ import PrideTeamClient from "./PrideTeamClient";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Pride Team | Pride of Pakistan",
+  title: "Pride Team",
   description: "Meet the people behind Pride of Pakistan.",
 };
 

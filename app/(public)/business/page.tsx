@@ -4,6 +4,13 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import BusinessPageClient from "./BusinessPageClient";
 import { getPageContent } from "@/app/lib/pageContent";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Pakistani Businesses",
+  description: "Browse Pakistani businesses from around the world.",
+  path: "/business",
+});
 
 export const dynamic = "force-dynamic";
 

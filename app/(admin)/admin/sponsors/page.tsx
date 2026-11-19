@@ -15,7 +15,7 @@ export default async function AdminSponsorsPage() {
         <h1 className="mb-1 text-2xl font-bold font-display text-green">Sponsors</h1>
         <p className="mb-8 text-sm text-ink-muted font-body">
           Live sponsors appear on the homepage and the{" "}
-          <a href="/our-sponsors" target="_blank" className="text-gold hover:underline">
+          <a href="/our-sponsors" target="_blank" className="text-leaf-dark hover:underline">
             Our Sponsors
           </a>{" "}
           page, in the order shown here.

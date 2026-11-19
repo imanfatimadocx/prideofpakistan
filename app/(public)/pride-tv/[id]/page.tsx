@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
+import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
+import { sanitizeForDisplay } from "@/app/lib/sanitize";
 
 export const revalidate = 60;
 
@@ -45,6 +48,22 @@ function getThumbnail(embedCode: string, existingThumb: string): string {
   return "";
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const videoId = Number((await params).id);
+  if (!Number.isInteger(videoId)) return { title: "Pride TV" };
+  const v = await prisma.video.findUnique({
+    where: { video_id: BigInt(videoId) },
+    select: { title: true, seo_title: true, seo_description: true, description: true, thumb_url: true, video_embed_code: true, status: true },
+  });
+  if (!v || v.status !== "active") return { title: "Pride TV" };
+  return pageMeta({
+    title: v.seo_title || v.title || "Pride TV",
+    description: summary(v.seo_description, v.description),
+    path: `/pride-tv/${videoId}`,
+    image: resolveImagePath(getThumbnail(v.video_embed_code, v.thumb_url)),
+  });
+}
+
 export default async function PrideTVVideoPage({ params }: Props) {
   const { id } = await params;
   const videoId = Number(id);
@@ -72,7 +91,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
           {/* Back link */}
           <Link
             href="/pride-tv"
-            className="inline-block mb-6 text-sm no-underline text-gold-light font-body hover:underline"
+            className="inline-block mb-6 text-sm no-underline text-sage font-body hover:underline"
           >
             ← Back to Pride TV
           </Link>
@@ -93,7 +112,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
               {/* Video info */}
               <div className="mt-5">
                 {video.featured === "feature" && (
-                  <span className="inline-block bg-gold text-white text-[10px] font-bold tracking-[.12em] uppercase px-3 py-1 rounded mb-3 font-body">
+                  <span className="inline-block bg-sage text-green text-[10px] font-bold tracking-[.12em] uppercase px-3 py-1 rounded mb-3 font-body">
                     Featured
                   </span>
                 )}
@@ -115,7 +134,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
                 {video.description && (
                   <div
                     className="text-sm leading-relaxed prose text-white/65 font-body prose-invert max-w-none"
-                    dangerouslySetInnerHTML={{ __html: video.description }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeForDisplay(video.description) }}
                   />
                 )}
               </div>
@@ -142,7 +161,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
                         <img
                           src={getThumbnail(v.video_embed_code, v.thumb_url)}
                           alt={v.title}
-                          className="object-fit w-full h-full"
+                          className="object-cover w-full h-full"
                         />
                         {/* Play overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
@@ -163,7 +182,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
                           </p>
                         )}
                         {v.featured === "feature" && (
-                          <span className="text-[9px] font-bold text-gold font-body uppercase tracking-wide mt-0.5 block">
+                          <span className="text-[9px] font-bold text-sage font-body uppercase tracking-wide mt-0.5 block">
                             Featured
                           </span>
                         )}
@@ -174,7 +193,7 @@ export default async function PrideTVVideoPage({ params }: Props) {
                 <div className="px-4 py-3 border-t border-white/10">
                   <Link
                     href="/pride-tv"
-                    className="text-xs font-semibold no-underline text-gold-light font-body hover:underline"
+                    className="text-xs font-semibold no-underline text-sage font-body hover:underline"
                   >
                     View all videos →
                   </Link>

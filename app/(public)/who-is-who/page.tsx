@@ -79,7 +79,7 @@ async function getData(): Promise<{
 }
 
 export const metadata = {
-  title: "Who Is Who | Pride of Pakistan",
+  title: "Who Is Who",
   description: "Browse outstanding Pakistanis across all fields.",
 };
 

@@ -6,7 +6,7 @@ const PATHS = [
   "/who-is-who",
   "/products",
   "/business",
-  "/news",
+  "/discussion-forum",
   "/your-stories",
   "/contact",
   "/about",
@@ -17,6 +17,7 @@ const PATHS = [
   "/terms-of-use",
   "/privacy-policy",
   "/disclaimer",
+  "/cookie-policy",
 ];
 
 function doRevalidate() {

@@ -4,6 +4,13 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import ProductsPageClient from "./ProductsPageClient";
 import { getPageContent } from "@/app/lib/pageContent";
+import { pageMeta } from "@/app/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Pakistani Products",
+  description: "Discover products made in Pakistan.",
+  path: "/products",
+});
 
 export const dynamic = "force-dynamic";
 

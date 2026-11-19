@@ -54,7 +54,7 @@ export default async function AdminDashboard() {
     },
     {
       label: "Pakistani Businesses",
-      color: "border-gold",
+      color: "border-leaf",
       stats: [
         { label: "Total Businesses", value: totalBusinesses },
         {
@@ -127,7 +127,7 @@ export default async function AdminDashboard() {
 
   return (
     <div className="flex min-h-screen bg-cream">
-      <main className="flex-1 p-4 lg:ml-64lg:p-8">
+      <main className="flex-1 p-4 lg:p-8">
         <div className="max-w-[1100px]">
           {/* Header */}
           <div className="mb-8">
@@ -183,7 +183,7 @@ export default async function AdminDashboard() {
                     <Link
                       key={action.href}
                       href={action.href}
-                      className="text-xs font-semibold text-gold font-body hover:underline no-underline border border-gold/20 bg-gold-pale px-3 py-1.5 rounded-md hover:bg-gold/10 transition-colors"
+                      className="text-xs font-semibold text-leaf-dark font-body hover:underline no-underline border border-sage bg-sage/40 px-3 py-1.5 rounded-md hover:bg-sage/30 transition-colors"
                     >
                       {action.label} →
                     </Link>
