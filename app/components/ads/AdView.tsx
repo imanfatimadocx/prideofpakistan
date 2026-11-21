@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import type { PublicAd, SlotPayload } from "@/app/lib/ads";
-import { ADSENSE_CLIENT } from "@/app/lib/adsense";
 
 /** Counts a view once, when at least half of the ad has been on screen. */
 function useViewBeacon(adIds: number[]) {
@@ -111,40 +110,8 @@ function Showcase({ ads, label }: { ads: PublicAd[]; label: string }) {
   );
 }
 
-declare global {
-  interface Window {
-    adsbygoogle?: unknown[];
-  }
-}
-
-function GoogleUnit({ slot, label }: { slot: string; label: string }) {
-  const pushed = useRef(false);
-  useEffect(() => {
-    if (pushed.current) return;
-    pushed.current = true;
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch {
-      /* ad blocker or script not loaded */
-    }
-  }, []);
-  return (
-    <div>
-      <Label text={label} />
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client={ADSENSE_CLIENT}
-        data-ad-slot={slot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-    </div>
-  );
-}
-
 /**
- * Renders one ad space from a payload decided on the server (or fetched for the footer).
+ * Renders one sponsor ad space from a payload decided on the server (or fetched for the footer).
  * Renders nothing when the space is empty, so there are no blank gaps.
  */
 export default function AdView({
@@ -156,15 +123,7 @@ export default function AdView({
   kind: "banner" | "showcase";
   className?: string;
 }) {
-  if (payload.show === "none") return null;
-  if (payload.show === "google") {
-    return (
-      <div className={className}>
-        <GoogleUnit slot={payload.adsenseSlot} label="Advertisement" />
-      </div>
-    );
-  }
-  if (!payload.ads.length) return null;
+  if (payload.show === "none" || !payload.ads.length) return null;
   return (
     <div className={className}>
       {kind === "showcase" ? (

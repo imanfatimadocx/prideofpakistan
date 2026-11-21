@@ -4,7 +4,7 @@ import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import { pageMeta } from "@/app/lib/seo";
 import { getAdvertisePage } from "@/app/lib/advertisePage";
-import { AD_SLOTS, AD_SLOT_KEYS, AD_SIZES } from "@/app/lib/ads";
+import { AD_SLOTS, AD_SLOT_KEYS } from "@/app/lib/ads";
 import AdvertiseEnquiry from "./AdvertiseEnquiry";
 
 export const dynamic = "force-dynamic";
@@ -17,11 +17,7 @@ export const metadata = pageMeta({
 
 export default async function AdvertisePage() {
   const c = await getAdvertisePage();
-  const spaces = AD_SLOT_KEYS.map((k) => ({
-    name: AD_SLOTS[k].label,
-    where: AD_SLOTS[k].where,
-    size: AD_SLOTS[k].kind === "showcase" ? AD_SIZES.square : `${AD_SIZES.desktop} (mobile ${AD_SIZES.mobile})`,
-  }));
+  const spaces = AD_SLOT_KEYS.map((k) => AD_SLOTS[k].label);
   const wa = c.whatsapp
     ? `https://wa.me/${c.whatsapp}?text=${encodeURIComponent("Assalam o Alaikum, I'd like to advertise on Pride of Pakistan.")}`
     : null;
@@ -49,6 +45,7 @@ export default async function AdvertisePage() {
                   </li>
                 ))}
               </ul>
+              {c.note && <p className="mt-8 text-sm leading-relaxed text-ink-mid font-body">{c.note}</p>}
             </div>
 
             <aside className="self-start p-6 space-y-4 bg-white border rounded-xl border-border">
@@ -68,25 +65,9 @@ export default async function AdvertisePage() {
             </aside>
           </section>
 
-          {/* Ad spaces */}
-          <section>
-            <h2 className="mb-3 text-2xl font-bold font-display sm:text-3xl text-green">Where your ad can appear</h2>
-            <div className="w-12 h-[3px] bg-leaf rounded mb-6" />
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {spaces.map((s) => (
-                <div key={s.name} className="p-5 bg-white border rounded-xl border-border">
-                  <p className="font-bold font-display text-green">{s.name}</p>
-                  <p className="mt-1 text-sm text-ink-mid font-body">{s.where}</p>
-                  <p className="mt-3 text-xs font-semibold text-slate font-body">Poster size: {s.size}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-sm leading-relaxed text-ink-mid font-body">{c.note}</p>
-          </section>
-
           {/* Enquiry */}
           <section id="enquiry" className="max-w-[760px] scroll-mt-28">
-            <AdvertiseEnquiry spaces={spaces.map((s) => s.name)} />
+            <AdvertiseEnquiry spaces={spaces} />
           </section>
         </div>
       </main>

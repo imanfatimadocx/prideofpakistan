@@ -220,7 +220,7 @@ export default function AdsClient({ ads: initial, slots }: { ads: AdminAd[]; slo
                 <input type="checkbox" checked={form.placements.includes(s.key)} onChange={() => togglePlacement(s.key)} className="w-4 h-4 mt-0.5 accent-[#5BB56B]" />
                 <span className="text-sm text-ink-dark font-body">
                   {s.label}
-                  {s.mode !== "ours" && <span className="block text-[11px] text-amber-700">Currently showing Google ads</span>}
+                  {s.mode !== "ours" && <span className="block text-[11px] text-amber-700">Set to Google ads in Ad spaces</span>}
                 </span>
               </label>
             ))}

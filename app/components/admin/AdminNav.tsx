@@ -68,7 +68,7 @@ const NAV_GROUPS = [
     items: [
       { label: "Advertisements", href: "/admin/ads" },
       { label: "Ad Spaces & Settings", href: "/admin/ads/settings" },
-      { label: "Advertise Page", href: "/admin/ads/settings#advertise-page" },
+      { label: "Advertise with Us Page", href: "/admin/ads/advertise-page" },
     ],
   },
   {

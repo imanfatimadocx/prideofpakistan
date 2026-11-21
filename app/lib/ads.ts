@@ -64,12 +64,12 @@ export const SHOWCASE_MAX = 6;
 
 export type SlotMode = "ours" | "google";
 
+/**
+ * "ours": the space shows sponsor ads booked for it (nothing if none are booked).
+ * "google": the space stays empty and Google's automatic ads decide where to place ads.
+ */
 export interface SlotSetting {
   mode: SlotMode;
-  /** AdSense display ad unit ID (the data-ad-slot number). Empty = no Google ad in this space. */
-  adsenseSlot: string;
-  /** In "ours" mode: show the Google ad when no sponsor ad is booked. */
-  googleFallback: boolean;
 }
 
 export interface AdSettings {
@@ -81,7 +81,7 @@ const SETTINGS_KEY = "ad_settings";
 
 export function defaultAdSettings(): AdSettings {
   const slots = {} as Record<AdSlotKey, SlotSetting>;
-  for (const k of AD_SLOT_KEYS) slots[k] = { mode: "google", adsenseSlot: "", googleFallback: true };
+  for (const k of AD_SLOT_KEYS) slots[k] = { mode: "google" };
   return { label: "Sponsored", slots };
 }
 
@@ -94,11 +94,7 @@ function normaliseSettings(raw: unknown): AdSettings {
   for (const k of AD_SLOT_KEYS) {
     const s = r.slots?.[k] as Partial<SlotSetting> | undefined;
     if (!s) continue;
-    base.slots[k] = {
-      mode: s.mode === "ours" ? "ours" : "google",
-      adsenseSlot: String(s.adsenseSlot ?? "").replace(/\D/g, "").slice(0, 20),
-      googleFallback: s.googleFallback !== false,
-    };
+    base.slots[k] = { mode: s.mode === "ours" ? "ours" : "google" };
   }
   return base;
 }
@@ -202,21 +198,17 @@ function weightedShuffle(rows: AdRow[]): AdRow[] {
 }
 
 export interface SlotPayload {
-  /** What to show: sponsor ads, a Google ad unit, or nothing. */
-  show: "ours" | "google" | "none";
+  /** What to show: sponsor ads, or nothing (Google's automatic ads handle the rest of the page). */
+  show: "ours" | "none";
   ads: PublicAd[];
-  adsenseSlot: string;
   label: string;
 }
 
 /** Decides what an ad space shows on this page view. */
 export async function getSlotPayload(slot: AdSlotKey): Promise<SlotPayload> {
   const [settings, live] = await Promise.all([getAdSettings(), getLiveAds()]);
-  const s = settings.slots[slot];
-  const google: SlotPayload = { show: "google", ads: [], adsenseSlot: s.adsenseSlot, label: settings.label };
-  const none: SlotPayload = { show: "none", ads: [], adsenseSlot: "", label: settings.label };
-
-  if (s.mode === "google") return s.adsenseSlot ? google : none;
+  const none: SlotPayload = { show: "none", ads: [], label: settings.label };
+  if (settings.slots[slot].mode !== "ours") return none;
 
   const candidates = weightedShuffle(live.filter((a) => placementsOf(a.placements).includes(slot)));
   const max = AD_SLOTS[slot].kind === "showcase" ? SHOWCASE_MAX : 1;
@@ -225,8 +217,7 @@ export async function getSlotPayload(slot: AdSlotKey): Promise<SlotPayload> {
     .map(toPublic)
     .filter((a) => a.desktop || a.square);
 
-  if (ads.length) return { show: "ours", ads, adsenseSlot: "", label: settings.label };
-  return s.googleFallback && s.adsenseSlot ? google : none;
+  return ads.length ? { show: "ours", ads, label: settings.label } : none;
 }
 
 /* ─── Validation for admin input ────────────────────────────────────────── */
