@@ -4,7 +4,6 @@ import Footer from "@/app/components/layout/Footer";
 import PageHero from "@/app/components/shared/PageHero";
 import { pageMeta } from "@/app/lib/seo";
 import { getAdvertisePage } from "@/app/lib/advertisePage";
-import { AD_SLOTS, AD_SLOT_KEYS } from "@/app/lib/ads";
 import AdvertiseEnquiry from "./AdvertiseEnquiry";
 
 export const dynamic = "force-dynamic";
@@ -17,7 +16,6 @@ export const metadata = pageMeta({
 
 export default async function AdvertisePage() {
   const c = await getAdvertisePage();
-  const spaces = AD_SLOT_KEYS.map((k) => AD_SLOTS[k].label);
   const wa = c.whatsapp
     ? `https://wa.me/${c.whatsapp}?text=${encodeURIComponent("Assalam o Alaikum, I'd like to advertise on Pride of Pakistan.")}`
     : null;
@@ -67,7 +65,7 @@ export default async function AdvertisePage() {
 
           {/* Enquiry */}
           <section id="enquiry" className="max-w-[760px] scroll-mt-28">
-            <AdvertiseEnquiry spaces={spaces} />
+            <AdvertiseEnquiry />
           </section>
         </div>
       </main>

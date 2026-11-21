@@ -5,7 +5,7 @@ const input =
   "w-full px-3.5 py-2.5 text-sm border border-border rounded-md font-body focus:outline-none focus:border-leaf transition-colors bg-white";
 
 /** Sends the enquiry to Admin > Contact Queries, with the subject "Advertising enquiry". */
-export default function AdvertiseEnquiry({ spaces }: { spaces: string[] }) {
+export default function AdvertiseEnquiry() {
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,14 +17,12 @@ export default function AdvertiseEnquiry({ spaces }: { spaces: string[] }) {
     const email = String(f.get("email") ?? "").trim();
     const business = String(f.get("business") ?? "").trim();
     const phone = String(f.get("phone") ?? "").trim();
-    const interest = f.getAll("spaces").map(String);
     const details = String(f.get("message") ?? "").trim();
     if (!name || !email || !details) return setError("Please fill in your name, email and a short message.");
 
     const lines: string[] = [];
     if (business) lines.push(`Business: ${business}`);
     if (phone) lines.push(`Phone / WhatsApp: ${phone}`);
-    if (interest.length) lines.push(`Interested in: ${interest.join(", ")}`);
     const message = [...lines, ...(lines.length ? [""] : []), details].join("\n");
 
     setSending(true);
@@ -74,17 +72,6 @@ export default function AdvertiseEnquiry({ spaces }: { spaces: string[] }) {
           <input name="phone" className={input} autoComplete="tel" />
         </label>
       </div>
-      <fieldset>
-        <legend className="mb-2 text-sm font-semibold text-ink-dark font-body">Which spaces interest you?</legend>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {spaces.map((s) => (
-            <label key={s} className="flex items-start gap-2 text-sm cursor-pointer text-ink-mid font-body">
-              <input type="checkbox" name="spaces" value={s} className="w-4 h-4 mt-0.5 accent-[#5BB56B]" />
-              {s}
-            </label>
-          ))}
-        </div>
-      </fieldset>
       <label className="block">
         <span className="block mb-1.5 text-sm font-semibold text-ink-dark font-body">Tell us about your campaign *</span>
         <textarea name="message" required rows={4} className={`${input} resize-y`} placeholder="What you'd like to promote, when, and for how long…" />
