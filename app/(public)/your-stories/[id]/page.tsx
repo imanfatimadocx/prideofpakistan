@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
+import AdSlot from "@/app/components/ads/AdSlot";
 import { notFound } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
@@ -145,6 +146,7 @@ export default async function StoryDetailPage({ params }: Props) {
               WhatsApp Share
             </a>
           </div>
+          <AdSlot slot="article" className="my-8" />
           <CommentSection entityType="story" entityId={storyId} />
         </div>
       </main>

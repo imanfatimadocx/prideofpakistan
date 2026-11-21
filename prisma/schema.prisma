@@ -518,3 +518,42 @@ model Media {
 
   @@map("media")
 }
+
+// ─── ADVERTISING ──────────────────────────────────────────────────────────────
+// Sponsor ads managed in Admin > Advertising. Which spaces show "our ads" or a
+// Google ad is stored in page_content under the key "ad_settings".
+
+model Advertisement {
+  id           Int       @id @default(autoincrement())
+  title        String    @db.VarChar(255) // internal name, e.g. "HBL Ramadan campaign"
+  advertiser   String    @db.VarChar(255)
+  imageDesktop String    @db.VarChar(255) // wide banner, 1200x250
+  imageMobile  String    @default("") @db.VarChar(255) // 600x300, optional
+  imageSquare  String    @default("") @db.VarChar(255) // 400x400, for the showcase grid
+  altText      String    @default("") @db.VarChar(255)
+  linkUrl      String    @default("") @db.VarChar(500)
+  placements   Json // array of ad space keys, see app/lib/ads.ts
+  startsAt     DateTime  @default(now())
+  endsAt       DateTime?
+  status       Int       @default(1) // 1 = active, 0 = paused
+  priority     Int       @default(1) // 1 = normal, 2 = high (shown more often)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  stats        AdStat[]
+
+  @@index([status])
+  @@map("advertisements")
+}
+
+model AdStat {
+  id     Int           @id @default(autoincrement())
+  adId   Int
+  day    DateTime      @db.Date
+  views  Int           @default(0)
+  clicks Int           @default(0)
+  ad     Advertisement @relation(fields: [adId], references: [id], onDelete: Cascade)
+
+  @@unique([adId, day])
+  @@index([day])
+  @@map("ad_stats")
+}

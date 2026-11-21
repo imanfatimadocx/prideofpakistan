@@ -9,6 +9,7 @@ import BusinessSection, { BizCard } from "@/app/components/home/BusinessSection"
 import ProductsSection, { ProductCard } from "@/app/components/home/ProductsSection";
 import PrideTVSection, { VideoCard } from "@/app/components/home/PrideTVSection";
 import SponsorsSection from "@/app/components/home/SponsorsSection";
+import AdSlot from "@/app/components/ads/AdSlot";
 
 export const dynamic = 'force-dynamic'
 
@@ -136,6 +137,7 @@ export default async function HomePage() {
           subtext={hp('hero', 'subtext', '')}
           image={hp('hero', 'image', '')}
         />
+        <AdSlot slot="home_top" section />
         {profiles.length > 0 && (
           <WhoIsWhoSection
             profiles={profiles}
@@ -144,6 +146,7 @@ export default async function HomePage() {
             profileOfTheDay={profileOfTheDay}
           />
         )}
+        <AdSlot slot="home_middle" section />
         <ProductsSection products={products} />
         <BusinessSection businesses={bizs} />
 

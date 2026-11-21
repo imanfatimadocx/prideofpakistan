@@ -64,6 +64,14 @@ const NAV_GROUPS = [
     ],
   },
   {
+    label: "Advertising",
+    items: [
+      { label: "Advertisements", href: "/admin/ads" },
+      { label: "Ad Spaces & Settings", href: "/admin/ads/settings" },
+      { label: "Advertise Page", href: "/admin/ads/settings#advertise-page" },
+    ],
+  },
+  {
     label: "Pages",
     items: [
       { label: "Homepage", href: "/admin/homepage" },
@@ -124,6 +132,13 @@ const GROUP_ICONS: Record<string, JSX.Element> = {
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <polygon points="23 7 16 12 23 17 23 7" />
       <rect width="15" height="14" x="1" y="5" rx="2" />
+    </svg>
+  ),
+  Advertising: (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z" />
+      <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+      <path d="M18.5 5.5a9 9 0 0 1 0 13" />
     </svg>
   ),
   "Team & Sponsors": (
@@ -187,7 +202,7 @@ function AdminNavInner() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b lg:hidden bg-green border-white/10">
+      <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b lg:hidden print:hidden bg-green border-white/10">
         <div className="flex items-center gap-2.5">
           <div className="flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-md bg-leaf">
             <span className="text-green font-bold text-[10px] font-display">P</span>
@@ -215,7 +230,7 @@ function AdminNavInner() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-green z-50 flex flex-col transition-transform duration-300 lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
+        className={`print:hidden fixed top-0 left-0 h-full w-64 bg-green z-50 flex flex-col transition-transform duration-300 lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
       >
         {/* Logo */}
         <div className="flex-shrink-0 px-5 py-5 border-b border-white/10">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
+import AdSlot from "@/app/components/ads/AdSlot";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/app/lib/prisma";
 import Topbar from "@/app/components/layout/Topbar";
@@ -450,6 +451,7 @@ export default async function BusinessDetailPage({ params }: Props) {
             </div>
           </div>
         </div>
+        <AdSlot slot="business" section />
       </main>
       <Footer />
     </>

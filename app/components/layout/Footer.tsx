@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import FooterAds from "@/app/components/ads/FooterAds";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
+    <>
+    <FooterAds />
     <footer className="py-12 border-t-4 bg-green border-leaf text-white/80 sm:py-16 lg:pb-8">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-14 mb-10 sm:mb-12">
@@ -65,6 +68,7 @@ export default function Footer() {
                 { label: "Pakistani Businesses", href: "/business" },
                 { label: "List Your Business", href: "/list-business" },
                 { label: "Our Sponsors", href: "/our-sponsors" },
+                { label: "Advertise with Us", href: "/advertise" },
                 { label: "Contact Us", href: "/contact" },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -126,5 +130,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

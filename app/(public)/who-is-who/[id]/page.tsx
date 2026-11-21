@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMeta, resolveImagePath, summary } from "@/app/lib/seo";
+import AdSlot from "@/app/components/ads/AdSlot";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
@@ -374,6 +375,7 @@ export default async function ProfileDetailPage({ params }: Props) {
 
         {/* Comments */}
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 pb-16">
+          <AdSlot slot="profile" className="mb-10" />
           <CommentSection entityType="profile" entityId={profileId} />
         </div>
       </main>

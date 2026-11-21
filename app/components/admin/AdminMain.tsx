@@ -9,5 +9,5 @@ export default function AdminMain({ children }: { children: ReactNode }) {
 
   if (isLogin) return <main>{children}</main>;
 
-  return <main className="pt-14 lg:pt-0 lg:pl-64">{children}</main>;
+  return <main className="pt-14 lg:pt-0 lg:pl-64 print:p-0">{children}</main>;
 }

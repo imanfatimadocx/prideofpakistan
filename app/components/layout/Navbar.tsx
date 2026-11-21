@@ -13,6 +13,7 @@ const NAV = [
   { label: "Discussion Forum", href: "/discussion-forum" },
   { label: "Your Stories", href: "/your-stories" },
   { label: "Pride TV", href: "/pride-tv" },
+  { label: "Advertise", href: "/advertise" },
 ];
 
 export default function Navbar() {
@@ -56,7 +57,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-0.5">
+          <div className="hidden xl:flex items-center gap-0.5">
             {NAV.map(({ label, href }) => (
               <Link
                 key={href}
@@ -108,7 +109,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile - right side: auth shortcut + hamburger */}
-          <div className="flex items-center gap-3 lg:hidden">
+          <div className="flex items-center gap-3 xl:hidden">
             {session ? (
               <Link
                 href={dashboardHref}
@@ -146,7 +147,7 @@ export default function Navbar() {
 
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/50 z-[200] lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/50 z-[200] xl:hidden transition-opacity duration-300 ${
           open
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -156,7 +157,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-ivory z-[210] lg:hidden shadow-2xl flex flex-col transition-transform duration-300 ease-[cubic-bezier(.77,0,.175,1)] ${
+        className={`fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-ivory z-[210] xl:hidden shadow-2xl flex flex-col transition-transform duration-300 ease-[cubic-bezier(.77,0,.175,1)] ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
